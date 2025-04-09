@@ -1,0 +1,213 @@
+// ****************************************************************************
+// GEMHH
+// ****************************************************************************
+
+
+const unsigned long PortAtBoot[] = { 
+    // COM0
+    SET_PORT_VAL(PORT_PIO0, 2, SET_PIN_OUT_1, SET_PORT_PN | 1), // D: COM0-TX
+    SET_PORT_VAL(PORT_PIO0, 3, SET_PIN_INPUT, SET_PORT_PN | 1), // D: COM0-RX
+    
+    SET_PORT_VAL(PORT_PIO0, 4, SET_PIN_INPUT, SET_PORT_PU | 0), // Presenza Connettore Alim/Seriale
+    SET_PORT_VAL(PORT_PIO0, 5, SET_PIN_INPUT, SET_PORT_PU | 0), // Presenza Tensione Esterna
+    SET_PORT_VAL(PORT_PIO0, 6, SET_PIN_INPUT, SET_PORT_PU | 0), // Stato di carica Batteria
+    SET_PORT_VAL(PORT_PIO0, 7, SET_PIN_INPUT, SET_PIOW_NORMAL | SET_PORT_PU | 0), // Ingresso Carica-batteria Tensione OK
+    SET_PORT_VAL(PORT_PIO0, 8, SET_PIN_INPUT, SET_PIOW_NORMAL | SET_PORT_PN | 0), // Presenza Connettore Utente
+//    SET_PORT_VAL(PORT_PIO0, 8, SET_PIN_OUT_1, SET_PORT_AD | 0), // Presenza Connettore Utente
+    
+#ifdef USE_TWI2_ON_ARM
+// Carica batterie
+    SET_PORT_VAL(PORT_PIO0,10, SET_PIN_INPUT, SET_PORT_OD | 2), // D: TWI2-SDA // SET_PORT_OD
+    SET_PORT_VAL(PORT_PIO0,11, SET_PIN_INPUT, SET_PORT_OD | 2), // D: TWI2-SCL // SET_PORT_OD
+#endif
+
+	SET_PORT_VAL(PORT_PIO0,12, SET_PIN_INPUT, SET_PORT_AD | 3), // A: ADC-6
+    SET_PORT_VAL(PORT_PIO0,13, SET_PIN_INPUT, SET_PORT_AD | 3), // A: ADC-7
+
+    SET_PORT_VAL(PORT_PIO0,14, SET_PIN_OUT_1, SET_PORT_PN | 0), // Blocco voltmetro di IPP
+    
+#ifdef USE_SPI_ON_ARM
+	// SPI0
+    SET_PORT_VAL(PORT_PIO0,15, SET_PIN_OUT_1, SET_PORT_PN | 2), // D: SPI0-CLK
+    SET_PORT_VAL(PORT_PIO0,16, SET_PIN_OUT_1, SET_PORT_PN | 0), // D: SPI0-SSEL
+    SET_PORT_VAL(PORT_PIO0,17, SET_PIN_INPUT, SET_PORT_PU | 2), // D: SPI0-MISO
+    SET_PORT_VAL(PORT_PIO0,18, SET_PIN_OUT_1, SET_PORT_PN | 2), // D: SPI0-MOSI
+#endif
+
+#ifdef USE_TWI1_ON_ARM
+    // TWI1
+    SET_PORT_VAL(PORT_PIO0,19, SET_PIN_INPUT, SET_PORT_OD | 3), // D: TWI1-SDA
+    SET_PORT_VAL(PORT_PIO0,20, SET_PIN_INPUT, SET_PORT_OD | 3), // D: TWI1-SCL
+#endif // USE_TWI1_ON_ARM
+
+	SET_PORT_VAL(PORT_PIO0,21, SET_PIN_INPUT, SET_PORT_PU | 0), // INT2 di Accelerometro
+    SET_PORT_VAL(PORT_PIO0,22, SET_PIN_INPUT, SET_PORT_PU | 0), // INT1 di Accelerometro
+    
+    // ADC-DAC
+    SET_PORT_VAL(PORT_PIO0,23, SET_PIN_INPUT, SET_PORT_AD | 1), // A: ADC-0
+    SET_PORT_VAL(PORT_PIO0,24, SET_PIN_INPUT, SET_PORT_AD | 1), // A: ADC-1
+    SET_PORT_VAL(PORT_PIO0,25, SET_PIN_INPUT, SET_PORT_AD | 1), // A: ADC-2
+    
+    // DAC
+	SET_PORT_VAL(PORT_PIO0,26, SET_PIN_INPUT, SET_PORT_DA | 2), // A: Uscita Analogica
+//    SET_PORT_VAL(PORT_PIO0,26, SET_PIN_OUT_0, SET_PORT_PN | 2), // A: Uscita Analogica
+    
+#ifdef USE_TWI_ON_ARM
+    // TWI0
+    SET_PORT_VAL(PORT_PIO0,27, SET_PIN_OUT_1,               1), // I: TWI0-SDA
+    SET_PORT_VAL(PORT_PIO0,28, SET_PIN_OUT_1,               1), // I: TWI0-SCL
+#endif
+
+//     SET_PORT_VAL(PORT_PIO0,29, SET_PIN_INPUT,               0), // USB
+//     SET_PORT_VAL(PORT_PIO0,30, SET_PIN_INPUT,               0), // USB
+
+#ifdef USE_USB_ON_ARM
+    SET_PORT_VAL(PORT_PIO0,31, SET_PIN_INPUT, SET_PORT_PN | 1), // USB D+, D- is pin37
+#endif // USE_USB_ON_ARM
+
+    SET_PORT_VAL(PORT_PIO1,10, SET_PIN_OUT_1, SET_PORT_PN | 0), // *Abilita l'Amplificatore x l'Uscita
+    
+    SET_PORT_VAL(PORT_PIO1,17, SET_PIN_OUT_1, SET_PORT_PN | 0), // Comando di spegnimento
+    
+    // LEDs
+	SET_PORT_VAL(PORT_PIO1,18, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Rosso
+	SET_PORT_VAL(PORT_PIO1,19, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Verde
+	SET_PORT_VAL(PORT_PIO1,20, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Blu
+	SET_PORT_VAL(PORT_PIO1,21, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Rosso
+	SET_PORT_VAL(PORT_PIO1,22, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Verde
+	SET_PORT_VAL(PORT_PIO1,23, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Blu
+	SET_PORT_VAL(PORT_PIO1,24, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Rosso
+	SET_PORT_VAL(PORT_PIO1,25, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Verde
+	SET_PORT_VAL(PORT_PIO1,26, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Blu
+	SET_PORT_VAL(PORT_PIO1,27, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Rosso
+	SET_PORT_VAL(PORT_PIO1,28, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Verde
+	SET_PORT_VAL(PORT_PIO1,29, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Blu
+	
+	SET_PORT_VAL(PORT_PIO1,30, SET_PIN_INPUT, SET_PORT_PN | 0), // Connected with P0.25 (Vext)
+
+    SET_PORT_VAL(PORT_PIO2, 0, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 1
+    SET_PORT_VAL(PORT_PIO2, 1, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 2
+    SET_PORT_VAL(PORT_PIO2, 2, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 3
+    SET_PORT_VAL(PORT_PIO2, 3, SET_PIN_INPUT, SET_PORT_PN | 0), // Scarica lettura analogico Ip
+    
+    // COM2
+    SET_PORT_VAL(PORT_PIO2, 8, SET_PIN_OUT_1, SET_PORT_PN | 2), // D: COM2-TX CNS LU2_COM
+    SET_PORT_VAL(PORT_PIO2, 9, SET_PIN_INPUT, SET_PORT_PU | 2), // D: COM2-RX
+    
+#ifdef USE_TWI2_ON_ARM
+// Carica batterie
+    SET_PORT_VAL(PORT_PIO0,10, SET_PIN_OUT_0, SET_PORT_OD | 2), // D: TWI2-SDA
+    SET_PORT_VAL(PORT_PIO0,11, SET_PIN_OUT_0, SET_PORT_OD | 2), // D: TWI2-SCL
+#endif
+
+	// USB type ( default to 1)
+	SET_PORT_VAL(PORT_PIO4, 4, SET_PIN_OUT_1, SET_PORT_PN | 0), // USB host type
+    // Buzzer
+    SET_PORT_VAL(PORT_PIO5, 0, SET_PIN_OUT_0, SET_PORT_PN | 3), // Buzzer
+
+	// As last
+#ifdef FR_OFF_DEBUG // for  DEBUG
+    SET_PORT_VAL(PORT_PIO1, 9, SET_PIN_OUT_0, SET_PORT_PN | 0), // *Abilita Dr.RS232, Buzzer, Leds e Analog IN
+#else // Production
+    SET_PORT_VAL(PORT_PIO1, 9, SET_PIN_OUT_1, SET_PORT_PN | 0), // *Abilita Dr.RS232, Buzzer, Leds e Analog IN
+#endif
+	
+	// stop here
+    0
+} ;
+
+const unsigned long PortAtOff[] = {
+    // COM0
+    SET_PORT_VAL(PORT_PIO0, 2, SET_PIN_INPUT, SET_PORT_PU | 0), // D: COM0-TX
+    SET_PORT_VAL(PORT_PIO0, 3, SET_PIN_INPUT, SET_PORT_PU | 0), // D: COM0-RX
+    
+    SET_PORT_VAL(PORT_PIO0, 4, SET_PIN_INPUT, SET_PORT_PU | 0), // Presenza Connettore Alim/Seriale
+    SET_PORT_VAL(PORT_PIO0, 5, SET_PIN_INPUT, SET_PORT_PU | 0), // Presenza Tensione Esterna
+    SET_PORT_VAL(PORT_PIO0, 6, SET_PIN_INPUT, SET_PORT_PU | 0), // Stato di carica Batteria
+    SET_PORT_VAL(PORT_PIO0, 7, SET_PIN_INPUT, SET_PIOW_NORMAL | SET_PORT_PU | 0), // Ingresso Carica-batteria Tensione OK
+//    SET_PORT_VAL(PORT_PIO0, 8, SET_PIN_INPUT, SET_PORT_PN | 0), // Presenza Connettore Utente
+    SET_PORT_VAL(PORT_PIO0, 8, SET_PIN_INPUT, SET_PIOW_NORMAL | SET_PORT_PN | 0), // Presenza Connettore Utente
+    
+#ifdef  USE_TWI2_ON_ARM  
+    SET_PORT_VAL(PORT_PIO0,10, SET_PIN_INPUT, SET_PORT_PN | 0), // D: TWI2-SDA
+    SET_PORT_VAL(PORT_PIO0,11, SET_PIN_INPUT, SET_PORT_PN | 0), // D: TWI2-SCL
+#endif
+	SET_PORT_VAL(PORT_PIO0,12, SET_PIN_INPUT, SET_PORT_PD | 0), // A: ADC-6
+    SET_PORT_VAL(PORT_PIO0,13, SET_PIN_INPUT, SET_PORT_PD | 0), // A: ADC-7
+
+    SET_PORT_VAL(PORT_PIO0,14, SET_PIN_OUT_1, SET_PORT_PN | 0), // Blocco voltmetro di IPP
+    
+#ifdef USE_SPI_ON_ARM
+	// SPI0
+    SET_PORT_VAL(PORT_PIO0,15, SET_PIN_INPUT, SET_PORT_PD | 0), // D: SPI0-CLK
+    SET_PORT_VAL(PORT_PIO0,16, SET_PIN_INPUT, SET_PORT_PD | 0), // D: SPI0-SSEL
+    SET_PORT_VAL(PORT_PIO0,17, SET_PIN_INPUT, SET_PORT_PD | 0), // D: SPI0-MISO
+    SET_PORT_VAL(PORT_PIO0,18, SET_PIN_INPUT, SET_PORT_PD | 0), // D: SPI0-MOSI
+#endif
+
+#ifdef USE_TWI1_ON_ARM
+    // TWI1
+    SET_PORT_VAL(PORT_PIO0,19, SET_PIN_INPUT, SET_PORT_PN | 0), // D: TWI1-SDA
+    SET_PORT_VAL(PORT_PIO0,20, SET_PIN_INPUT, SET_PORT_PN | 0), // D: TWI1-SCL
+#endif // USE_TWI1_ON_ARM
+
+	SET_PORT_VAL(PORT_PIO0,21, SET_PIN_INPUT, SET_PORT_PU | 0), // INT2 di Accelerometro
+    SET_PORT_VAL(PORT_PIO0,22, SET_PIN_INPUT, SET_PORT_PU | 0), // INT1 di Accelerometro
+    
+    // ADC-DAC
+    SET_PORT_VAL(PORT_PIO0,23, SET_PIN_INPUT, SET_PORT_PD | 0), // A: ADC-0
+    SET_PORT_VAL(PORT_PIO0,24, SET_PIN_INPUT, SET_PORT_PD | 0), // A: ADC-1
+    SET_PORT_VAL(PORT_PIO0,25, SET_PIN_INPUT, SET_PORT_PD | 0), // A: ADC-2
+    
+    // DAC
+    SET_PORT_VAL(PORT_PIO0,26, SET_PIN_INPUT, SET_PORT_PD | 0), // A: Uscita Analogica
+    
+#ifdef USE_TWI_ON_ARM
+    // TWI0
+    SET_PORT_VAL(PORT_PIO0,27, SET_PIN_INPUT, SET_PORT_PN | 0), // I: TWI0-SDA
+    SET_PORT_VAL(PORT_PIO0,28, SET_PIN_INPUT, SET_PORT_PN | 0), // I: TWI0-SCL
+#endif
+
+#ifdef FR_OFF_DEBUG // for  DEBUG
+    SET_PORT_VAL(PORT_PIO1, 9, SET_PIN_OUT_0, SET_PORT_PN | 0), // *Abilita Dr.RS232, Buzzer, Leds e Analog IN
+#else // Production
+    SET_PORT_VAL(PORT_PIO1, 9, SET_PIN_OUT_1, SET_PORT_PN | 0), // *Abilita Dr.RS232, Buzzer, Leds e Analog IN
+#endif
+    SET_PORT_VAL(PORT_PIO1,10, SET_PIN_OUT_1, SET_PORT_PN | 0), // *Abilita l'Amplificatore x l'Uscita
+    
+    SET_PORT_VAL(PORT_PIO1,17, SET_PIN_OUT_1, SET_PORT_PN | 0), // Comando di spegnimento
+//    SET_PORT_VAL(PORT_PIO1,17, SET_PIN_OUT_0, SET_PORT_PN | 0), // Comando di spegnimento
+    
+    // LEDs
+	SET_PORT_VAL(PORT_PIO1,18, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Rosso
+	SET_PORT_VAL(PORT_PIO1,19, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Verde
+	SET_PORT_VAL(PORT_PIO1,20, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 1 - Blu
+	SET_PORT_VAL(PORT_PIO1,21, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Rosso
+	SET_PORT_VAL(PORT_PIO1,22, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Verde
+	SET_PORT_VAL(PORT_PIO1,23, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 2 - Blu
+	SET_PORT_VAL(PORT_PIO1,24, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Rosso
+	SET_PORT_VAL(PORT_PIO1,25, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Verde
+	SET_PORT_VAL(PORT_PIO1,26, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 3 - Blu
+	SET_PORT_VAL(PORT_PIO1,27, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Rosso
+	SET_PORT_VAL(PORT_PIO1,28, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Verde
+	SET_PORT_VAL(PORT_PIO1,29, SET_PIN_OUT_0, SET_PORT_PN | 0), // Led 4 - Blu
+	SET_PORT_VAL(PORT_PIO1,30, SET_PIN_INPUT, SET_PORT_PN | 0), // Connected with P0.25 (Vext)
+	
+    SET_PORT_VAL(PORT_PIO2, 0, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 1
+    SET_PORT_VAL(PORT_PIO2, 1, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 2
+    SET_PORT_VAL(PORT_PIO2, 2, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 3
+    SET_PORT_VAL(PORT_PIO2, 3, SET_PIN_INPUT, SET_PORT_PU | 0), // Tasto 4
+    
+    // COM2
+    SET_PORT_VAL(PORT_PIO2, 8, SET_PIN_INPUT, SET_PORT_PU | 0), // D: COM2-TX CNS LU2_COM
+    SET_PORT_VAL(PORT_PIO2, 9, SET_PIN_INPUT, SET_PORT_PU | 0), // D: COM2-RX
+    
+    // USB type ( default to 1)
+	SET_PORT_VAL(PORT_PIO4, 4, SET_PIN_OUT_1, SET_PORT_PN | 0), // USB host type
+	
+    // Buzzer
+    SET_PORT_VAL(PORT_PIO5, 0, SET_PIN_OUT_0, SET_PORT_PN | 0), // Buzzer
+	
+	// stop here
+    0
+} ;

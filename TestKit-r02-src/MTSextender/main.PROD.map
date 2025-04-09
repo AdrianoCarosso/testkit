@@ -1,0 +1,1606 @@
+Archive member included to satisfy reference by file (symbol)
+
+Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+                              Objs/main.PROD.o (rtxcinit)
+Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                              Objs/main.PROD.o (KS_defslice)
+Libs/librtxc.PROD.a(rtxc.PROD.o)
+                              Libs/librtxc.PROD.a(rtxcinit.PROD.o) (taskinit)
+Libs/librtxc.PROD.a(lock.PROD.o)
+                              Objs/main.PROD.o (_enable)
+Libs/libdrv.PROD.a(cpart.PROD.o)
+                              Libs/librtxc.PROD.a(rtxc.PROD.o) (pkkheader)
+Libs/libdrv.PROD.a(cqueue.PROD.o)
+                              Libs/librtxc.PROD.a(rtxc.PROD.o) (qkkheader)
+Libs/libdrv.PROD.a(cres.PROD.o)
+                              Libs/librtxc.PROD.a(rtxcapi.PROD.o) (rheader)
+Libs/libdrv.PROD.a(csema.PROD.o)
+                              Libs/librtxc.PROD.a(rtxcapi.PROD.o) (semat)
+Libs/libdrv.PROD.a(extapi.PROD.o)
+                              Objs/tasks.PROD.o (EKS_GetSetup)
+Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                              Libs/libdrv.PROD.a(extapi.PROD.o) (systime2date)
+Libs/libdrv.PROD.a(flashapi.PROD.o)
+                              Libs/libdrv.PROD.a(extapi.PROD.o) (SPI_FlashErase)
+Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+                              Libs/libdrv.PROD.a(extapi.PROD.o) (sprintf)
+Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+                              Objs/tasks.PROD.o (printf)
+Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+                              Objs/tasks.PROD.o (puts)
+Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                              Objs/main.PROD.o (LowLevelInit)
+Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                              Libs/libdrv.PROD.a(drv_clk.PROD.o) (com3drvpit)
+Libs/libdrv.PROD.a(drv_can.PROD.o)
+                              Objs/main.PROD.o (canstart)
+Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                              Objs/main.PROD.o (spistart)
+Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                              Objs/main.PROD.o (twistart)
+Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                              Objs/main.PROD.o (usbtask)
+Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                              Objs/main.PROD.o (adcstart)
+Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                              Objs/main.PROD.o (diostart)
+Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+                              Objs/tasks.PROD.o (simple_strtol)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+                              Libs/RTXCutil.PROD.o (__aeabi_uidiv)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+                              Libs/RTXCutil.PROD.o (__aeabi_idiv)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+                              /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+                              Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o) (__aeabi_uldivmod)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+                              /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o) (__udivmoddi4)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+                              /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o) (__clzdi2)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+                              /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o) (__clzsi2)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+                              Objs/tasks.PROD.o (memcpy)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+                              Libs/libdrv.PROD.a(extapi.PROD.o) (strlen)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+                              Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o) (strnlen)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+                              Libs/libdrv.PROD.a(extapi.PROD.o) (memcmp)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+                              Libs/libdrv.PROD.a(drv_adc.PROD.o) (memset)
+/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+                              Objs/tasks.PROD.o (_ctype_)
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+CODE             0x00000000         0x00040000         xr
+DATA             0x00200000         0x00008000         rw
+STACK            0x00208000         0x00000000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD Libs/RTXCstartup.PROD.o
+LOAD Libs/RTXCutil.PROD.o
+LOAD Libs/RTXCsys32.PROD.o
+LOAD Objs/main.PROD.o
+LOAD Objs/tasks.PROD.o
+LOAD Libs/librtxc.PROD.a
+LOAD Libs/libdrv.PROD.a
+LOAD /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libm.a
+START GROUP
+LOAD /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a
+LOAD /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a
+END GROUP
+
+.text           0x00000000      0x29c
+ *RTXCstartup*.o(.text)
+ .text          0x00000000      0x29c Libs/RTXCstartup.PROD.o
+                0x00000000                _startup
+                0x00000044                Global_RAM_TOP
+                0x00000048                Global_KERNEL_TOP
+                0x0000004c                Global_IRQ_STACK_SIZE
+                0x00000050                Global_SVC_STACK_SIZE
+                0x00000054                Global_SYSKERNEL_STACK_SIZE
+                0x00000058                Global_STACK_FILLER
+                0x000000f0                exit
+                0x000000f4                IRQ_Handler_Entry
+                0x00000198                SWI_Handler_Entry
+                0x0000021c                AT91F_Default_FIQ_handler
+                0x00000220                AT91F_Default_IRQ_handler
+                0x00000224                AT91F_Spurious_handler
+                0x00000228                CodeUpgrade
+
+.vfp11_veneer   0x0000029c        0x0
+ .vfp11_veneer  0x0000029c        0x0 linker stubs
+
+.v4_bx          0x0000029c        0x0
+ .v4_bx         0x0000029c        0x0 linker stubs
+
+.iplt           0x0000029c        0x0
+ .iplt          0x0000029c        0x0 Libs/RTXCstartup.PROD.o
+
+.text.__udivmoddi4
+                0x000002a0      0x1a8
+ .text.__udivmoddi4
+                0x000002a0      0x19c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+                0x000002a0                __udivmoddi4
+ *fill*         0x0000043c        0x4 
+ .text.__udivmoddi4.__stub
+                0x00000440        0x8 linker stubs
+
+.text.memcpy    0x00000448       0x90
+ .text.memcpy   0x00000448       0x90 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+                0x00000448                memcpy
+
+.text.strlen    0x000004d8       0x60
+ .text.strlen   0x000004d8       0x60 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+                0x000004d8                strlen
+
+.text.strnlen   0x00000538       0x28
+ .text.strnlen  0x00000538       0x28 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+                0x00000538                strnlen
+
+.text.memcmp    0x00000560       0x4c
+ .text.memcmp   0x00000560       0x4c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+                0x00000560                memcmp
+
+.text.memset    0x000005ac       0xb0
+ .text.memset   0x000005ac       0xb0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+                0x000005ac                memset
+
+.text.__set_ctype
+                0x0000065c        0xc
+ .text.__set_ctype
+                0x0000065c        0xc /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+                0x0000065c                __set_ctype
+
+.text           0x00000668     0x8af8
+ *(.text)
+ .text          0x00000668      0x3b0 Libs/RTXCutil.PROD.o
+                0x00000668                AT91F_CLOCKinit
+                0x000008d4                ProgramCopy
+                0x00000a14                ProgramCopyEnd
+ .text          0x00000a18       0x14 Libs/RTXCsys32.PROD.o
+                0x00000a18                AT91F_WATCHDOGinit
+ .text          0x00000a2c       0xe4 Objs/main.PROD.o
+                0x00000a2c                maintask
+                0x00000adc                putchar
+                0x00000af4                getchar
+ .text          0x00000b10     0x1574 Objs/tasks.PROD.o
+                0x00000b10                GetHexValue
+                0x00000b7c                HandleSrecord
+                0x00000d58                HandleCanRead
+                0x00000db4                ParseBuffer
+                0x00001d20                tk0extender
+ .text          0x00002084       0x20 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+                0x00002084                rtxcinit
+ .text          0x000020a4      0x6d8 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                0x000020a4                KS_block
+                0x000020b8                KS_version
+                0x000020c0                KS_nop
+                0x000020d0                KS_alloc
+                0x00002104                KS_defpriority
+                0x00002118                KS_defslice
+                0x00002140                KS_delay
+                0x00002158                KS_dequeue
+                0x00002178                KS_enqueue
+                0x00002198                KS_execute
+                0x000021ac                KS_free
+                0x000021c0                KS_lock
+                0x0000222c                KS_pend
+                0x00002240                KS_resume
+                0x00002254                KS_signal
+                0x0000226c                KS_stop_timer
+                0x00002284                KS_start_timer
+                0x000022a4                KS_suspend
+                0x000022b8                KS_terminate
+                0x000022cc                KS_unblock
+                0x000022e0                KS_unlock
+                0x00002350                KS_user
+                0x00002368                KS_wait
+                0x00002384                KS_yield
+                0x0000239c                KS_allocw
+                0x000023e8                KS_inqres
+                0x00002400                KS_defres
+                0x0000241c                KS_defqsema
+                0x00002438                KS_dequeuew
+                0x00002454                KS_elapse
+                0x00002468                KS_enqueuew
+                0x00002484                KS_inqmap
+                0x00002498                KS_lockw
+                0x00002508                KS_purgequeue
+                0x0000251c                KS_waitm
+                0x00002530                KS_inqtimer
+                0x00002544                KS_alloct
+                0x000025ac                KS_defqueue
+                0x000025d4                KS_dequeuet
+                0x00002600                KS_enqueuet
+                0x0000262c                KS_inqpriority
+                0x00002650                KS_inqqueue
+                0x00002660                KS_inqsema
+                0x0000266c                KS_inqtask
+                0x00002678                KS_lockt
+                0x000026f0                KS_pendm
+                0x00002704                KS_restart_timer
+                0x00002728                KS_signalm
+                0x0000273c                KS_waitt
+                0x0000275c                KS_inqslice
+ .text          0x0000277c     0x18e8 Libs/librtxc.PROD.a(rtxc.PROD.o)
+                0x00002954                taskinit
+                0x000029d4                resinit
+                0x000029fc                partinit
+                0x00002a58                queueinit
+                0x00002a98                semainit
+                0x00002ad0                clockinit
+                0x00002ad4                KS_ISRalloc
+                0x00002b08                KS_ISRsignal
+                0x00002b34                postem
+                0x00002e68                rtxc
+                0x00003fc0                KS_ISRexit
+                0x0000400c                KS_ISRtick
+ .text          0x00004064       0x40 Libs/librtxc.PROD.a(lock.PROD.o)
+                0x00004064                _enable
+                0x00004078                _disable
+                0x0000408c                _pushccr
+                0x00004098                _popccr
+ .text          0x000040a4        0x0 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .text          0x000040a4        0x0 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .text          0x000040a4        0x0 Libs/libdrv.PROD.a(cres.PROD.o)
+ .text          0x000040a4        0x0 Libs/libdrv.PROD.a(csema.PROD.o)
+ .text          0x000040a4     0x1ab4 Libs/libdrv.PROD.a(extapi.PROD.o)
+                0x000040a4                EKS_GetSetup
+                0x000040d0                EKS_ParSize
+                0x000040d8                CheckPointer
+                0x0000412c                EKS_PktBufRelease
+                0x000041b0                EKS_PktBufCat
+                0x00004264                EKS_PktBufDuplicate
+                0x00004398                EKS_PktBufLength
+                0x0000441c                EKS_PktBufPullup
+                0x00004508                EKS_PktBufCopy
+                0x00004568                EKS_PktBufComp
+                0x000045e8                EKS_Pkt2BufComp
+                0x000047b0                EKS_LCK_FlashRead
+                0x000047d4                EKS_LCK_FlashWrite
+                0x0000480c                EKS_LCK_FlashErase
+                0x0000482c                EKS_FlashClear
+                0x00004858                EKS_PktBufStore
+                0x00004bd8                EKS_PktBufCheck
+                0x00004c78                EKS_FlashTotal
+                0x00004c80                EKS_FlashFree
+                0x00004ce0                EKS_FlashCheckSum
+                0x00004cf8                EKS_PktBufMyTime
+                0x00004e0c                EKS_PktBufFromTime
+                0x00004e1c                EKS_PktBufComprexTime
+                0x00004e2c                EKS_PktBufAccTime
+                0x00004e3c                EKS_GetHHMM
+                0x00004e74                EKS_EnqShutdown
+                0x00004e80                EKS_AskShutdown
+                0x00004ec8                EKS_AgreeShutdown
+                0x00004f5c                EKS_RamFill
+                0x00004f80                EKS_RamWrite
+                0x00004ff4                EKS_RamRead
+                0x00005028                EKS_RamCheckSum
+                0x00005088                pdebugt
+                0x00005090                panic
+                0x000050b0                EKS_NewSetup
+                0x00005108                EKS_ParClear
+                0x00005150                EKS_ParRead
+                0x00005238                EKS_ParReadShort
+                0x000052cc                EKS_ParReadLong
+                0x00005368                EKS_PktBufCheckStore
+                0x00005608                EKS_ParWrite
+                0x00005800                EKS_ParWriteShort
+                0x0000583c                EKS_ParWriteLong
+                0x00005880                EKS_PktBufAdd
+                0x00005918                EKS_PktBufAddString
+                0x00005964                EKS_PktBufRetrive
+                0x00005b3c                EKS_init
+ .text          0x00005b58      0x28c Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                0x00005b58                date2systime
+                0x00005be4                systime2date
+                0x00005cdc                RTC_WriteTime_t
+                0x00005d80                RTC_ReadTime_t
+                0x00005da8                RTC_WriteAlarm_t
+                0x00005dd8                RTC_ReadStatus
+ .text          0x00005de4      0x430 Libs/libdrv.PROD.a(flashapi.PROD.o)
+                0x00005de4                SPI_FlashWaitForEnd
+                0x00005e54                SPI_FlashQuery
+                0x00005eb4                SPI_FlashErase
+                0x00005fe8                SPI_FlashRead
+                0x000060bc                SPI_FlashWrite
+ .text          0x00006214      0x870 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+                0x00006468                vsnprintf
+                0x00006488                skip_atoi
+                0x000064c0                local_vsnprintf
+                0x000069fc                vsnprintf_repeater
+                0x00006a0c                snprintf
+                0x00006a34                vsprintf
+                0x00006a58                sprintf
+ .text          0x00006a84       0x44 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+                0x00006a84                printf
+ .text          0x00006ac8       0x24 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+                0x00006ac8                puts
+ .text          0x00006aec      0x2d0 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                0x00006aec                slowclkc
+                0x00006afc                clkc
+                0x00006be4                AT91F_AIC_Configure
+                0x00006c14                LowLevelInit
+                0x00006c58                clkstart
+                0x00006cf0                tickwait
+                0x00006d38                clkstop
+                0x00006d58                Set_LedBlinker
+                0x00006d9c                KS_inqtime
+                0x00006da8                KS_deftime
+ .text          0x00006dbc      0x960 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                0x00006dbc                com0drv
+                0x00006e94                com1drv
+                0x00006f6c                com2drv
+                0x00007044                com3drvpit
+                0x000070f8                uartDMAstartTx
+                0x0000711c                uartDMAstartRx
+                0x0000714c                uartstart
+                0x00007318                uartdrv
+                0x000076b0                uartstop
+ .text          0x0000771c      0x460 Libs/libdrv.PROD.a(drv_can.PROD.o)
+                0x0000771c                can0drv
+                0x00007754                can1drv
+                0x0000778c                canaddress
+                0x000077a0                canstart
+                0x0000782c                CAN_speed
+                0x00007994                CAN_configure
+                0x00007a48                CAN_read
+                0x00007afc                CAN_write
+                0x00007b44                CAN_status
+                0x00007b54                canstop
+ .text          0x00007b7c      0x1f4 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                0x00007b7c                spidrv
+                0x00007bb0                spistart
+                0x00007cb0                SPI_rtx2
+                0x00007d4c                spistop
+ .text          0x00007d70      0x280 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                0x00007d70                twidrv
+                0x00007e04                twistart
+                0x00007e7c                TWI_send
+                0x00007ee0                TWI_receive
+                0x00007f4c                TWI_txrx
+                0x00007fd0                twistop
+ .text          0x00007ff0      0x894 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                0x00007ff0                usbdrv
+                0x00008054                USB_SendNextData
+                0x000080a0                USB_RxData
+                0x000080b0                USB_SendData
+                0x000080f0                USB_SendZlp
+                0x00008118                USB_SendStall
+                0x00008144                USB_RxSetup
+                0x0000869c                USB_Receive
+                0x00008700                USB_Transmit
+                0x00008768                usbtask
+ .text          0x00008884      0x1fc Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                0x00008884                tc0drv
+                0x000088d0                adcstart
+                0x000089ec                adcstop
+                0x00008a28                ADC_read
+ .text          0x00008a80      0x290 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                0x00008a80                diostart
+                0x00008b0c                diostop
+                0x00008b28                dio_read
+                0x00008bcc                dio_write
+                0x00008c88                dio_mask
+                0x00008cf0                dio_counter
+ .text          0x00008d10       0xdc Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+                0x00008d10                simple_strtoul
+                0x00008dd0                simple_strtol
+ .text          0x00008dec      0x11c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+                0x00008dec                __udivsi3
+                0x00008dec                __aeabi_uidiv
+                0x00008ee8                __aeabi_uidivmod
+ .text          0x00008f08      0x150 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+                0x00008f08                __aeabi_idiv
+                0x00008f08                __divsi3
+                0x00009038                __aeabi_idivmod
+ .text          0x00009058        0x4 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+                0x00009058                __aeabi_ldiv0
+                0x00009058                __aeabi_idiv0
+ .text          0x0000905c       0x3c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+                0x0000905c                __aeabi_uldivmod
+ .text          0x00009098        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+ .text          0x00009098       0x28 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+                0x00009098                __clzdi2
+ .text          0x000090c0       0x48 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+                0x000090c0                __clzsi2
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+ .text          0x00009108        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+ .text.__stub   0x00009108       0x4c linker stubs
+ *(.glue_7t)
+ .glue_7t       0x00009160        0x0 linker stubs
+ *(.glue_7)
+ .glue_7        0x00009160        0x0 linker stubs
+                0x00009160                        . = ALIGN (0x4)
+
+.rodata         0x00009160     0x1385
+ *(.rodata*)
+ .rodata        0x00009160       0x45 Objs/main.PROD.o
+                0x00009164                rtxkktcb
+                0x000091a4                ntasks
+ *fill*         0x000091a5        0x3 
+ .rodata.str1.4
+                0x000091a8      0x783 Objs/tasks.PROD.o
+                                0x6ec (size before relaxing)
+ *fill*         0x0000992b        0x1 
+ .rodata        0x0000992c      0x152 Objs/tasks.PROD.o
+ .rodata.str1.4
+                0x00009a7e       0x1d Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ *fill*         0x00009a7e        0x2 
+ .rodata        0x00009a80       0xc0 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .rodata        0x00009b40       0x19 Libs/libdrv.PROD.a(cpart.PROD.o)
+                0x00009b40                pkkheader
+                0x00009b58                nparts
+ *fill*         0x00009b59        0x3 
+ .rodata        0x00009b5c       0xc1 Libs/libdrv.PROD.a(cqueue.PROD.o)
+                0x00009b5c                qkkheader
+                0x00009c1c                nqueues
+ .rodata        0x00009c1d        0x1 Libs/libdrv.PROD.a(cres.PROD.o)
+                0x00009c1d                nres
+ *fill*         0x00009c1e        0x2 
+ .rodata        0x00009c20        0x5 Libs/libdrv.PROD.a(csema.PROD.o)
+                0x00009c20                siglistsize
+                0x00009c24                nsemas
+ .rodata.str1.4
+                0x00009c25       0x79 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .rodata.str1.4
+                0x00009c25        0x7 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ *fill*         0x00009c25        0x3 
+ .rodata        0x00009c28      0x721 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ *fill*         0x0000a349        0x3 
+ .rodata        0x0000a34c       0x38 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .rodata        0x0000a384       0x5f Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                0x0000a384                devDescriptor
+                0x0000a398                cfgDescriptor
+                0x0000a3dc                line_pars
+ *fill*         0x0000a3e3        0x1 
+ .rodata._ctype_
+                0x0000a3e4      0x101 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+                0x0000a3e4                _ctype_
+
+.ARM.extab.text.__udivmoddi4
+                0x0000a4e5        0x0
+ .ARM.extab.text.__udivmoddi4
+                0x0000a4e5        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+
+.ARM.exidx.text.__udivmoddi4
+                0x0000a4e8        0x8
+ .ARM.exidx.text.__udivmoddi4
+                0x0000a4e8        0x8 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+
+.rel.dyn        0x0000a4f0        0x0
+ .rel.iplt      0x0000a4f0        0x0 Libs/RTXCstartup.PROD.o
+                0x0000a4f0                        . = ALIGN (0x4)
+                0x0000a4f0                        _etext = .
+                [!provide]                        PROVIDE (etext = .)
+
+.data           0x00200000        0x4 load address 0x0000a4f0
+                0x00200000                        _data = .
+ *(.data)
+ .data          0x00200000        0x0 Libs/RTXCstartup.PROD.o
+ .data          0x00200000        0x0 Libs/RTXCutil.PROD.o
+ .data          0x00200000        0x0 Libs/RTXCsys32.PROD.o
+ .data          0x00200000        0x0 Objs/main.PROD.o
+ .data          0x00200000        0x0 Objs/tasks.PROD.o
+ .data          0x00200000        0x0 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .data          0x00200000        0x0 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .data          0x00200000        0x0 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .data          0x00200000        0x0 Libs/librtxc.PROD.a(lock.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(cres.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(csema.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .data          0x00200000        0x0 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .data          0x00200000        0x4 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                0x00200000                ADcoeff
+ .data          0x00200004        0x0 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .data          0x00200004        0x0 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+ .data          0x00200004        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+
+.igot.plt       0x00200004        0x0 load address 0x0000a4f4
+ .igot.plt      0x00200004        0x0 Libs/RTXCstartup.PROD.o
+                0x00200004                        . = ALIGN (0x4)
+                0x00200004                        _edata = .
+                [!provide]                        PROVIDE (edata = .)
+
+.bss            0x00200004     0x2dfc load address 0x0000a4f4
+                0x00200004                        __bss_start = .
+                0x00200004                        __bss_start__ = .
+ *(.bss)
+ .bss           0x00200004        0x0 Libs/RTXCstartup.PROD.o
+ .bss           0x00200004        0x0 Libs/RTXCutil.PROD.o
+ .bss           0x00200004        0x0 Libs/RTXCsys32.PROD.o
+ .bss           0x00200004       0x90 Objs/main.PROD.o
+                0x00200004                rtxtcb
+ .bss           0x00200094      0x31c Objs/tasks.PROD.o
+                0x00200094                GlobTimer
+                0x00200098                GlobCurrTimer
+                0x00200130                CanMsg
+                0x00200230                CanLenMsg
+                0x002002b0                CanCurrTimer
+                0x00200330                CanTimer
+ .bss           0x002003b0        0x0 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .bss           0x002003b0        0x0 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .bss           0x002003b0       0x2c Libs/librtxc.PROD.a(rtxc.PROD.o)
+                0x002003b0                clkqptr
+                0x002003b4                rtctick
+                0x002003b8                hipritsk
+                0x002003bc                semaput
+                0x002003c0                scheduler
+                0x002003c4                nsrttcb
+                0x002003c8                semaget
+                0x002003cc                t_expired
+                0x002003d0                sliceup
+                0x002003d4                isrcnt
+                0x002003d8                kernellastrunstack
+ .bss           0x002003dc        0x0 Libs/librtxc.PROD.a(lock.PROD.o)
+ .bss           0x002003dc     0x1828 Libs/libdrv.PROD.a(cpart.PROD.o)
+                0x002003dc                pheader
+ .bss           0x00201c04      0xa10 Libs/libdrv.PROD.a(cqueue.PROD.o)
+                0x00201c04                qheader
+ .bss           0x00202614       0x8c Libs/libdrv.PROD.a(cres.PROD.o)
+                0x00202614                rheader
+ .bss           0x002026a0       0x48 Libs/libdrv.PROD.a(csema.PROD.o)
+                0x002026a0                semat
+                0x002026c8                siglist
+ .bss           0x002026e8      0x12a Libs/libdrv.PROD.a(extapi.PROD.o)
+                0x002026ec                trans_addr
+                0x00202712                extapibuf
+ .bss           0x00202812        0x0 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .bss           0x00202812        0x1 Libs/libdrv.PROD.a(flashapi.PROD.o)
+                0x00202812                flashcode
+ .bss           0x00202813        0x0 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .bss           0x00202813        0x0 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .bss           0x00202813        0x0 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ *fill*         0x00202813        0x1 
+ .bss           0x00202814       0x24 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                0x0020281c                led_counter
+                0x00202820                led_prescaler
+                0x00202824                led_curmask
+                0x0020282c                led_bitnum
+                0x00202830                led_mask
+ .bss           0x00202838       0xd8 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                0x00202838                rxbuffidx
+                0x0020283c                iptr
+                0x00202840                nptr
+                0x00202844                com0err
+                0x00202846                com1err
+                0x00202848                com2err
+                0x0020284a                com3err
+                0x0020284c                cptr
+                0x00202890                rxbuff
+ .bss           0x00202910        0xa Libs/libdrv.PROD.a(drv_can.PROD.o)
+                0x00202910                int_pend
+                0x00202914                int_mask
+                0x00202918                CanStatus
+ .bss           0x0020291a        0x2 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                0x0020291a                spi0err
+                0x0020291b                spi0start
+ .bss           0x0020291c        0xa Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                0x0020291c                twibuflen
+                0x00202920                twibufptr
+                0x00202924                twi0err
+ *fill*         0x00202926        0x2 
+ .bss           0x00202928       0x12 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                0x00202928                currDataLen
+                0x0020292c                currDataPtr
+                0x00202930                currConfiguration
+                0x00202931                currConnection
+                0x00202934                currRcvBank
+                0x00202938                usberr
+ *fill*         0x0020293a        0x2 
+ .bss           0x0020293c       0x14 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                0x0020293c                muxnum
+                0x00202940                adcmuxval
+ .bss           0x00202950        0x4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                0x00202950                tw1in_change
+                0x00202952                tw2in_change
+ .bss           0x00202954        0x0 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+ .bss           0x00202954        0x0 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+ *(COMMON)
+                0x00202954                        . = ALIGN (0x4)
+                0x00202954                        __bss_end = .
+                0x00202954                        __bss_end__ = .
+                0x00202954                        __noinit_start = .
+ *(.noinit)
+ .noinit        0x00202954        0x4 Libs/RTXCutil.PROD.o
+                0x00202954                current_clock
+ .noinit        0x00202958      0x4a8 Objs/main.PROD.o
+                0x00202e00                        __noinit_end = .
+
+.int_data       0x00208000        0x0
+ *(.internal_ram_top)
+ .internal_ram_top
+                0x00208000        0x0 Libs/RTXCstartup.PROD.o
+                0x00208000                        ram_end = ADDR (.int_data)
+OUTPUT(Objs/main.PROD.elf elf32-littlearm)
+LOAD linker stubs
+
+.reset          0x00000000        0x0
+ .reset         0x00000000        0x0 Libs/RTXCstartup.PROD.o
+
+.ARM.attributes
+                0x00000000       0x26
+ .ARM.attributes
+                0x00000000       0x1a Libs/RTXCstartup.PROD.o
+ .ARM.attributes
+                0x0000001a       0x2a Libs/RTXCutil.PROD.o
+ .ARM.attributes
+                0x00000044       0x2a Libs/RTXCsys32.PROD.o
+ .ARM.attributes
+                0x0000006e       0x2a Objs/main.PROD.o
+ .ARM.attributes
+                0x00000098       0x2a Objs/tasks.PROD.o
+ .ARM.attributes
+                0x000000c2       0x2a Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .ARM.attributes
+                0x000000ec       0x2a Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .ARM.attributes
+                0x00000116       0x2a Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .ARM.attributes
+                0x00000140       0x1a Libs/librtxc.PROD.a(lock.PROD.o)
+ .ARM.attributes
+                0x0000015a       0x2a Libs/libdrv.PROD.a(cpart.PROD.o)
+ .ARM.attributes
+                0x00000184       0x2a Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .ARM.attributes
+                0x000001ae       0x2a Libs/libdrv.PROD.a(cres.PROD.o)
+ .ARM.attributes
+                0x000001d8       0x2a Libs/libdrv.PROD.a(csema.PROD.o)
+ .ARM.attributes
+                0x00000202       0x2a Libs/libdrv.PROD.a(extapi.PROD.o)
+ .ARM.attributes
+                0x0000022c       0x2a Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .ARM.attributes
+                0x00000256       0x2a Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .ARM.attributes
+                0x00000280       0x2a Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .ARM.attributes
+                0x000002aa       0x2a Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .ARM.attributes
+                0x000002d4       0x2a Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .ARM.attributes
+                0x000002fe       0x2a Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .ARM.attributes
+                0x00000328       0x2a Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .ARM.attributes
+                0x00000352       0x2a Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .ARM.attributes
+                0x0000037c       0x2a Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .ARM.attributes
+                0x000003a6       0x2a Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .ARM.attributes
+                0x000003d0       0x2a Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .ARM.attributes
+                0x000003fa       0x2a Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .ARM.attributes
+                0x00000424       0x2a Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .ARM.attributes
+                0x0000044e       0x2a Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .ARM.attributes
+                0x00000478       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000494       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x000004b0       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x000004cc       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .ARM.attributes
+                0x000004e8       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+ .ARM.attributes
+                0x00000512       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+ .ARM.attributes
+                0x0000052e       0x1c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+ .ARM.attributes
+                0x0000054a       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+ .ARM.attributes
+                0x00000574       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+ .ARM.attributes
+                0x0000059e       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+ .ARM.attributes
+                0x000005c8       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+ .ARM.attributes
+                0x000005f2       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+ .ARM.attributes
+                0x0000061c       0x2a /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+
+.comment        0x00000000       0x45
+ .comment       0x00000000       0x45 Libs/RTXCutil.PROD.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045       0x46 Libs/RTXCsys32.PROD.o
+ .comment       0x00000045       0x46 Objs/main.PROD.o
+ .comment       0x00000045       0x46 Objs/tasks.PROD.o
+ .comment       0x00000045       0x46 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .comment       0x00000045       0x46 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .comment       0x00000045       0x46 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(cres.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(csema.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .comment       0x00000045       0x46 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_line     0x00000000     0xd675
+ .debug_line    0x00000000      0x113 Libs/RTXCstartup.PROD.o
+ .debug_line    0x00000113      0x6fe Libs/RTXCutil.PROD.o
+ .debug_line    0x00000811       0x7b Libs/RTXCsys32.PROD.o
+ .debug_line    0x0000088c      0x21f Objs/main.PROD.o
+ .debug_line    0x00000aab     0x1dc8 Objs/tasks.PROD.o
+ .debug_line    0x00002873       0x66 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_line    0x000028d9      0xb6c Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_line    0x00003445     0x2623 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_line    0x00005a68       0x62 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_line    0x00005aca       0x62 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_line    0x00005b2c       0x64 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_line    0x00005b90       0x60 Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_line    0x00005bf0       0x54 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_line    0x00005c44     0x22eb Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_line    0x00007f2f      0x345 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_line    0x00008274      0x4ef Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_line    0x00008763      0xe27 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_line    0x0000958a      0x157 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_line    0x000096e1       0x8b Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_line    0x0000976c      0x519 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_line    0x00009c85      0xf0a Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_line    0x0000ab8f      0x822 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_line    0x0000b3b1      0x35e Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_line    0x0000b70f      0x49c Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_line    0x0000bbab     0x11cb Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_line    0x0000cd76      0x34d Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_line    0x0000d0c3      0x3c4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_line    0x0000d487      0x1ee Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_line_str
+                0x00000000      0x11f
+ .debug_line_str
+                0x00000000      0x11f Libs/RTXCstartup.PROD.o
+                                 0x49 (size before relaxing)
+ .debug_line_str
+                0x0000011f       0x35 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_line_str
+                0x0000011f       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+ .debug_line_str
+                0x0000011f       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+ .debug_line_str
+                0x0000011f       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_line_str
+                0x0000011f       0xb9 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .debug_line_str
+                0x0000011f       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+ .debug_line_str
+                0x0000011f       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+
+.debug_info     0x00000000    0x1451d
+ .debug_info    0x00000000       0x25 Libs/RTXCstartup.PROD.o
+ .debug_info    0x00000025      0x919 Libs/RTXCutil.PROD.o
+ .debug_info    0x0000093e       0xcf Libs/RTXCsys32.PROD.o
+ .debug_info    0x00000a0d      0xa7e Objs/main.PROD.o
+ .debug_info    0x0000148b     0x2044 Objs/tasks.PROD.o
+ .debug_info    0x000034cf       0x94 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_info    0x00003563     0x190f Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_info    0x00004e72     0x1ff8 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_info    0x00006e6a       0x24 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_info    0x00006e8e      0x40e Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_info    0x0000729c      0x636 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_info    0x000078d2      0x3cd Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_info    0x00007c9f      0x205 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_info    0x00007ea4     0x33b6 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_info    0x0000b25a      0xd36 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_info    0x0000bf90      0x6c9 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_info    0x0000c659      0x82f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_info    0x0000ce88      0x18c Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_info    0x0000d014       0x9b Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_info    0x0000d0af     0x144e Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_info    0x0000e4fd     0x14da Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_info    0x0000f9d7      0xf0b Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_info    0x000108e2      0xa5f Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_info    0x00011341      0xa9a Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_info    0x00011ddb      0xfff Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_info    0x00012dda      0xac0 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_info    0x0001389a      0xab2 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_info    0x0001434c      0x1d1 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_abbrev   0x00000000     0x3df6
+ .debug_abbrev  0x00000000       0x14 Libs/RTXCstartup.PROD.o
+ .debug_abbrev  0x00000014      0x1d1 Libs/RTXCutil.PROD.o
+ .debug_abbrev  0x000001e5       0x95 Libs/RTXCsys32.PROD.o
+ .debug_abbrev  0x0000027a      0x2ac Objs/main.PROD.o
+ .debug_abbrev  0x00000526      0x3e9 Objs/tasks.PROD.o
+ .debug_abbrev  0x0000090f       0x4b Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_abbrev  0x0000095a      0x338 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_abbrev  0x00000c92      0x452 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_abbrev  0x000010e4       0x14 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_abbrev  0x000010f8      0x117 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_abbrev  0x0000120f      0x12e Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_abbrev  0x0000133d      0x116 Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_abbrev  0x00001453       0xa7 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_abbrev  0x000014fa      0x557 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_abbrev  0x00001a51      0x211 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_abbrev  0x00001c62      0x1fc Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_abbrev  0x00001e5e      0x37f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_abbrev  0x000021dd      0x114 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_abbrev  0x000022f1       0xa4 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_abbrev  0x00002395      0x3ae Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_abbrev  0x00002743      0x446 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_abbrev  0x00002b89      0x38f Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_abbrev  0x00002f18      0x2e8 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_abbrev  0x00003200      0x278 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_abbrev  0x00003478      0x42a Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_abbrev  0x000038a2      0x279 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_abbrev  0x00003b1b      0x1d4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_abbrev  0x00003cef      0x107 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_aranges  0x00000000      0x360
+ .debug_aranges
+                0x00000000       0x20 Libs/RTXCstartup.PROD.o
+ .debug_aranges
+                0x00000020       0x20 Libs/RTXCutil.PROD.o
+ .debug_aranges
+                0x00000040       0x20 Libs/RTXCsys32.PROD.o
+ .debug_aranges
+                0x00000060       0x20 Objs/main.PROD.o
+ .debug_aranges
+                0x00000080       0x20 Objs/tasks.PROD.o
+ .debug_aranges
+                0x000000a0       0x20 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_aranges
+                0x000000c0       0x20 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_aranges
+                0x000000e0       0x20 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_aranges
+                0x00000100       0x20 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_aranges
+                0x00000120       0x18 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_aranges
+                0x00000138       0x18 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_aranges
+                0x00000150       0x18 Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_aranges
+                0x00000168       0x18 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_aranges
+                0x00000180       0x20 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_aranges
+                0x000001a0       0x20 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_aranges
+                0x000001c0       0x20 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_aranges
+                0x000001e0       0x20 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_aranges
+                0x00000200       0x20 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_aranges
+                0x00000220       0x20 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_aranges
+                0x00000240       0x20 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_aranges
+                0x00000260       0x20 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_aranges
+                0x00000280       0x20 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_aranges
+                0x000002a0       0x20 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_aranges
+                0x000002c0       0x20 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_aranges
+                0x000002e0       0x20 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_aranges
+                0x00000300       0x20 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_aranges
+                0x00000320       0x20 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_aranges
+                0x00000340       0x20 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_str      0x00000000     0x2dca
+ .debug_str     0x00000000     0x2dca Libs/RTXCstartup.PROD.o
+                                 0x57 (size before relaxing)
+ .debug_str     0x00002dca      0x6e1 Libs/RTXCutil.PROD.o
+ .debug_str     0x00002dca      0x17a Libs/RTXCsys32.PROD.o
+ .debug_str     0x00002dca      0x676 Objs/main.PROD.o
+ .debug_str     0x00002dca      0x7fc Objs/tasks.PROD.o
+ .debug_str     0x00002dca       0xf8 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_str     0x00002dca      0x929 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_str     0x00002dca      0x991 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_str     0x00002dca       0x43 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_str     0x00002dca      0x263 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_str     0x00002dca      0x3ac Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_str     0x00002dca      0x2da Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_str     0x00002dca      0x298 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_str     0x00002dca      0xb58 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_str     0x00002dca      0x925 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_str     0x00002dca      0x39f Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_str     0x00002dca      0x290 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_str     0x00002dca      0x19c Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_str     0x00002dca       0xcc Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_str     0x00002dca      0xc95 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_str     0x00002dca      0x976 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_str     0x00002dca      0x7c3 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_str     0x00002dca      0x74f Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_str     0x00002dca      0x700 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_str     0x00002dca      0x799 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_str     0x00002dca      0x75a Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_str     0x00002dca      0x742 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_str     0x00002dca      0x18d Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_loclists
+                0x00000000     0x91a3
+ .debug_loclists
+                0x00000000      0x1bf Libs/RTXCutil.PROD.o
+ .debug_loclists
+                0x000001bf       0x5e Objs/main.PROD.o
+ .debug_loclists
+                0x0000021d     0x17d9 Objs/tasks.PROD.o
+ .debug_loclists
+                0x000019f6      0x49f Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_loclists
+                0x00001e95     0x168a Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_loclists
+                0x0000351f     0x233b Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_loclists
+                0x0000585a      0x1b2 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_loclists
+                0x00005a0c      0x2ab Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_loclists
+                0x00005cb7     0x10ad Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_loclists
+                0x00006d64       0x24 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_loclists
+                0x00006d88       0x2b Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_loclists
+                0x00006db3      0x280 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_loclists
+                0x00007033      0xa1f Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_loclists
+                0x00007a52      0x7ee Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_loclists
+                0x00008240      0x12b Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_loclists
+                0x0000836b      0x2b7 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_loclists
+                0x00008622      0x6e7 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_loclists
+                0x00008d09       0xba Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_loclists
+                0x00008dc3      0x20b Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_loclists
+                0x00008fce      0x1d5 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+.debug_frame    0x00000000     0x1920
+ .debug_frame   0x00000000       0x6c Libs/RTXCutil.PROD.o
+ .debug_frame   0x0000006c       0x20 Libs/RTXCsys32.PROD.o
+ .debug_frame   0x0000008c       0x60 Objs/main.PROD.o
+ .debug_frame   0x000000ec       0xd8 Objs/tasks.PROD.o
+ .debug_frame   0x000001c4       0x28 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_frame   0x000001ec      0x450 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_frame   0x0000063c      0x1e4 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_frame   0x00000820      0x5c0 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_frame   0x00000de0       0xac Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_frame   0x00000e8c       0xd4 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_frame   0x00000f60      0x104 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_frame   0x00001064       0x30 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_frame   0x00001094       0x28 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_frame   0x000010bc      0x104 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_frame   0x000011c0      0x118 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_frame   0x000012d8      0x110 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_frame   0x000013e8       0x80 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_frame   0x00001468       0xa0 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_frame   0x00001508      0x110 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_frame   0x00001618       0x74 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_frame   0x0000168c       0xa4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_frame   0x00001730       0x4c Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .debug_frame   0x0000177c       0x20 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+ .debug_frame   0x0000179c       0x20 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+ .debug_frame   0x000017bc       0x2c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x000017e8       0x3c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00001824       0x30 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+ .debug_frame   0x00001854       0x28 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+ .debug_frame   0x0000187c       0x28 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+ .debug_frame   0x000018a4       0x2c /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+ .debug_frame   0x000018d0       0x30 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+ .debug_frame   0x00001900       0x20 /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+
+.debug_rnglists
+                0x00000000      0x65c
+ .debug_rnglists
+                0x00000000       0x15 Objs/main.PROD.o
+ .debug_rnglists
+                0x00000015      0x220 Objs/tasks.PROD.o
+ .debug_rnglists
+                0x00000235       0xe0 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_rnglists
+                0x00000315      0x1db Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_rnglists
+                0x000004f0       0x56 Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_rnglists
+                0x00000546       0x36 Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_rnglists
+                0x0000057c       0x61 Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_rnglists
+                0x000005dd       0x69 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_rnglists
+                0x00000646       0x16 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+
+Cross Reference Table
+
+Symbol                                            File
+ADC_read                                          Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Objs/tasks.PROD.o
+ADcoeff                                           Libs/libdrv.PROD.a(drv_adc.PROD.o)
+AT91F_AIC_Configure                               Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+AT91F_CLOCKinit                                   Libs/RTXCutil.PROD.o
+                                                  Objs/main.PROD.o
+                                                  Libs/RTXCstartup.PROD.o
+AT91F_Default_FIQ_handler                         Libs/RTXCstartup.PROD.o
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+AT91F_Default_IRQ_handler                         Libs/RTXCstartup.PROD.o
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+AT91F_Spurious_handler                            Libs/RTXCstartup.PROD.o
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+AT91F_WATCHDOGinit                                Libs/RTXCsys32.PROD.o
+                                                  Libs/RTXCstartup.PROD.o
+CAN_configure                                     Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CAN_read                                          Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CAN_speed                                         Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CAN_status                                        Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CAN_write                                         Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CanCurrTimer                                      Objs/tasks.PROD.o
+CanLenMsg                                         Objs/tasks.PROD.o
+CanMsg                                            Objs/tasks.PROD.o
+CanStatus                                         Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/tasks.PROD.o
+CanTimer                                          Objs/tasks.PROD.o
+CheckPointer                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+CodeUpgrade                                       Libs/RTXCstartup.PROD.o
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_AgreeShutdown                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+EKS_AskShutdown                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+EKS_EnqShutdown                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_FlashCheckSum                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_FlashClear                                    Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_FlashFree                                     Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_FlashTotal                                    Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_GetHHMM                                       Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_GetSetup                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+EKS_LCK_FlashErase                                Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_LCK_FlashRead                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_LCK_FlashWrite                                Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_NewSetup                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParClear                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParRead                                       Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParReadLong                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParReadShort                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParSize                                       Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParWrite                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParWriteLong                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_ParWriteShort                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_Pkt2BufComp                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufAccTime                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufAdd                                     Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufAddString                               Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufCat                                     Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufCheck                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufCheckStore                              Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufComp                                    Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufComprexTime                             Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufCopy                                    Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufDuplicate                               Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufFromTime                                Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufLength                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufMyTime                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufPullup                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufRelease                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufRetrive                                 Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_PktBufStore                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_RamCheckSum                                   Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_RamFill                                       Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+EKS_RamRead                                       Libs/libdrv.PROD.a(extapi.PROD.o)
+EKS_RamWrite                                      Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+EKS_init                                          Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/main.PROD.o
+GetHexValue                                       Objs/tasks.PROD.o
+GlobCurrTimer                                     Objs/tasks.PROD.o
+GlobTimer                                         Objs/tasks.PROD.o
+Global_IRQ_STACK_SIZE                             Libs/RTXCstartup.PROD.o
+Global_KERNEL_TOP                                 Libs/RTXCstartup.PROD.o
+Global_RAM_TOP                                    Libs/RTXCstartup.PROD.o
+Global_STACK_FILLER                               Libs/RTXCstartup.PROD.o
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+Global_SVC_STACK_SIZE                             Libs/RTXCstartup.PROD.o
+Global_SYSKERNEL_STACK_SIZE                       Libs/RTXCstartup.PROD.o
+HandleCanRead                                     Objs/tasks.PROD.o
+HandleSrecord                                     Objs/tasks.PROD.o
+IRQ_Handler_Entry                                 Libs/RTXCstartup.PROD.o
+KS_ISRalloc                                       Libs/librtxc.PROD.a(rtxc.PROD.o)
+KS_ISRexit                                        Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+KS_ISRsignal                                      Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+KS_ISRtick                                        Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+KS_alloc                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_alloct                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_allocw                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_block                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_defpriority                                    Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_defqsema                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_defqueue                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_defres                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_defslice                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/main.PROD.o
+KS_deftime                                        Libs/libdrv.PROD.a(drv_clk.PROD.o)
+KS_delay                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_dequeue                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_dequeuet                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_dequeuew                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/main.PROD.o
+KS_elapse                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_enqueue                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+KS_enqueuet                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+KS_enqueuew                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+                                                  Objs/main.PROD.o
+KS_execute                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/main.PROD.o
+KS_free                                           Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_inqmap                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_inqpriority                                    Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqqueue                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqres                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqsema                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqslice                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqtask                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_inqtime                                        Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_inqtimer                                       Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_lock                                           Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_lockt                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_lockw                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_nop                                            Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_pend                                           Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_pendm                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_purgequeue                                     Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_restart_timer                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_resume                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_signal                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_signalm                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_start_timer                                    Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_stop_timer                                     Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_suspend                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_terminate                                      Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_unblock                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/main.PROD.o
+KS_unlock                                         Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+KS_user                                           Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+KS_version                                        Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_wait                                           Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+KS_waitm                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Objs/tasks.PROD.o
+KS_waitt                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+KS_yield                                          Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+LowLevelInit                                      Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Objs/main.PROD.o
+ParseBuffer                                       Objs/tasks.PROD.o
+ProgramCopy                                       Libs/RTXCutil.PROD.o
+                                                  Libs/RTXCstartup.PROD.o
+ProgramCopyEnd                                    Libs/RTXCutil.PROD.o
+                                                  Libs/RTXCstartup.PROD.o
+RTC_ReadStatus                                    Libs/libdrv.PROD.a(cvtdate.PROD.o)
+RTC_ReadTime_t                                    Libs/libdrv.PROD.a(cvtdate.PROD.o)
+RTC_WriteAlarm_t                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+RTC_WriteTime_t                                   Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+SPI_FlashErase                                    Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+SPI_FlashQuery                                    Libs/libdrv.PROD.a(flashapi.PROD.o)
+SPI_FlashRead                                     Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+SPI_FlashWaitForEnd                               Libs/libdrv.PROD.a(flashapi.PROD.o)
+SPI_FlashWrite                                    Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+SPI_rtx2                                          Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(flashapi.PROD.o)
+SWI_Handler_Entry                                 Libs/RTXCstartup.PROD.o
+Set_LedBlinker                                    Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Objs/tasks.PROD.o
+TWI_receive                                       Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_dio.PROD.o)
+TWI_send                                          Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_dio.PROD.o)
+TWI_txrx                                          Libs/libdrv.PROD.a(drv_twi.PROD.o)
+Top_Stack                                         Libs/RTXCstartup.PROD.o
+USB_Receive                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_RxData                                        Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_RxSetup                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_SendData                                      Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_SendNextData                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_SendStall                                     Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_SendZlp                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+USB_Transmit                                      Libs/libdrv.PROD.a(drv_usb.PROD.o)
+__aeabi_idiv                                      /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/RTXCutil.PROD.o
+__aeabi_idiv0                                     /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+__aeabi_idivmod                                   /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+__aeabi_ldiv0                                     /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_dvmd_tls.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+__aeabi_uidiv                                     /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+                                                  Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/RTXCutil.PROD.o
+__aeabi_uidivmod                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+                                                  Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+__aeabi_uldivmod                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+                                                  Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+__bss_end                                         Libs/RTXCstartup.PROD.o
+__bss_start                                       Libs/RTXCstartup.PROD.o
+__clzdi2                                          /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+__clzsi2                                          /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzdi2.o)
+__divsi3                                          /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_divsi3.o)
+__set_ctype                                       /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+__udivmoddi4                                      /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivmoddi4.o)
+                                                  /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_aeabi_uldivmod.o)
+__udivsi3                                         /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_udivsi3.o)
+_ctype_                                           /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-ctype_.o)
+                                                  Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+                                                  Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+                                                  Objs/tasks.PROD.o
+_data                                             Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Libs/RTXCstartup.PROD.o
+_disable                                          Libs/librtxc.PROD.a(lock.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+_edata                                            Libs/RTXCstartup.PROD.o
+_enable                                           Libs/librtxc.PROD.a(lock.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+                                                  Objs/main.PROD.o
+_etext                                            Libs/RTXCstartup.PROD.o
+_popccr                                           Libs/librtxc.PROD.a(lock.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+_pushccr                                          Libs/librtxc.PROD.a(lock.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+_startup                                          Libs/RTXCstartup.PROD.o
+adcmuxval                                         Libs/libdrv.PROD.a(drv_adc.PROD.o)
+adcstart                                          Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Objs/main.PROD.o
+adcstop                                           Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+can0drv                                           Libs/libdrv.PROD.a(drv_can.PROD.o)
+can1drv                                           Libs/libdrv.PROD.a(drv_can.PROD.o)
+canaddress                                        Libs/libdrv.PROD.a(drv_can.PROD.o)
+canstart                                          Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Objs/main.PROD.o
+canstop                                           Libs/libdrv.PROD.a(drv_can.PROD.o)
+cfgDescriptor                                     Libs/libdrv.PROD.a(drv_usb.PROD.o)
+clkc                                              Libs/libdrv.PROD.a(drv_clk.PROD.o)
+clkqptr                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+clkstart                                          Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Objs/main.PROD.o
+clkstop                                           Libs/libdrv.PROD.a(drv_clk.PROD.o)
+clockinit                                         Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+com0drv                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com0err                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com1drv                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com1err                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com2drv                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com2err                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+com3drvpit                                        Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+com3err                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+cptr                                              Libs/libdrv.PROD.a(drv_uart.PROD.o)
+currConfiguration                                 Libs/libdrv.PROD.a(drv_usb.PROD.o)
+currConnection                                    Libs/libdrv.PROD.a(drv_usb.PROD.o)
+currDataLen                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+currDataPtr                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+currRcvBank                                       Libs/libdrv.PROD.a(drv_usb.PROD.o)
+current_clock                                     Libs/RTXCutil.PROD.o
+                                                  Libs/libdrv.PROD.a(drv_adc.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_can.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_clk.PROD.o)
+date2systime                                      Libs/libdrv.PROD.a(cvtdate.PROD.o)
+devDescriptor                                     Libs/libdrv.PROD.a(drv_usb.PROD.o)
+dio_counter                                       Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Objs/tasks.PROD.o
+dio_mask                                          Libs/libdrv.PROD.a(drv_dio.PROD.o)
+dio_read                                          Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Objs/tasks.PROD.o
+dio_write                                         Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Objs/tasks.PROD.o
+diostart                                          Libs/libdrv.PROD.a(drv_dio.PROD.o)
+                                                  Objs/main.PROD.o
+diostop                                           Libs/libdrv.PROD.a(drv_dio.PROD.o)
+exit                                              Libs/RTXCstartup.PROD.o
+extapibuf                                         Libs/libdrv.PROD.a(extapi.PROD.o)
+flashcode                                         Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Libs/RTXCutil.PROD.o
+getchar                                           Objs/main.PROD.o
+hipritsk                                          Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+int_mask                                          Libs/libdrv.PROD.a(drv_can.PROD.o)
+int_pend                                          Libs/libdrv.PROD.a(drv_can.PROD.o)
+iptr                                              Libs/libdrv.PROD.a(drv_uart.PROD.o)
+isrcnt                                            Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/RTXCstartup.PROD.o
+kernellastrunstack                                Libs/librtxc.PROD.a(rtxc.PROD.o)
+led_bitnum                                        Libs/libdrv.PROD.a(drv_clk.PROD.o)
+led_counter                                       Libs/libdrv.PROD.a(drv_clk.PROD.o)
+led_curmask                                       Libs/libdrv.PROD.a(drv_clk.PROD.o)
+led_mask                                          Libs/libdrv.PROD.a(drv_clk.PROD.o)
+led_prescaler                                     Libs/libdrv.PROD.a(drv_clk.PROD.o)
+line_pars                                         Libs/libdrv.PROD.a(drv_usb.PROD.o)
+local_vsnprintf                                   Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+maintask                                          Objs/main.PROD.o
+                                                  Libs/RTXCstartup.PROD.o
+memcmp                                            /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcmp.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+memcpy                                            /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memcpy-stub.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Objs/tasks.PROD.o
+memset                                            /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-memset.o)
+                                                  Libs/libdrv.PROD.a(drv_adc.PROD.o)
+muxnum                                            Libs/libdrv.PROD.a(drv_adc.PROD.o)
+nparts                                            Libs/libdrv.PROD.a(cpart.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+nptr                                              Libs/libdrv.PROD.a(drv_uart.PROD.o)
+nqueues                                           Libs/libdrv.PROD.a(cqueue.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+nres                                              Libs/libdrv.PROD.a(cres.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+nsemas                                            Libs/libdrv.PROD.a(csema.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+nsrttcb                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+ntasks                                            Objs/main.PROD.o
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+panic                                             Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_usb.PROD.o)
+partinit                                          Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+pdebugt                                           Libs/libdrv.PROD.a(extapi.PROD.o)
+pheader                                           Libs/libdrv.PROD.a(cpart.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+pkkheader                                         Libs/libdrv.PROD.a(cpart.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+postem                                            Libs/librtxc.PROD.a(rtxc.PROD.o)
+printf                                            Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Objs/tasks.PROD.o
+putchar                                           Objs/main.PROD.o
+                                                  Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+                                                  Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+                                                  Objs/tasks.PROD.o
+puts                                              Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+                                                  Objs/tasks.PROD.o
+qheader                                           Libs/libdrv.PROD.a(cqueue.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+qkkheader                                         Libs/libdrv.PROD.a(cqueue.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+queueinit                                         Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+resinit                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+rheader                                           Libs/libdrv.PROD.a(cres.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+rtctick                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Objs/tasks.PROD.o
+rtxc                                              Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/RTXCstartup.PROD.o
+rtxcinit                                          Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+                                                  Objs/main.PROD.o
+rtxkktcb                                          Objs/main.PROD.o
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+rtxtcb                                            Objs/main.PROD.o
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+rxbuff                                            Libs/libdrv.PROD.a(drv_uart.PROD.o)
+rxbuffidx                                         Libs/libdrv.PROD.a(drv_uart.PROD.o)
+scheduler                                         Libs/librtxc.PROD.a(rtxc.PROD.o)
+semaget                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+semainit                                          Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+semaput                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+semat                                             Libs/libdrv.PROD.a(csema.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+siglist                                           Libs/libdrv.PROD.a(csema.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxc.PROD.o)
+siglistsize                                       Libs/libdrv.PROD.a(csema.PROD.o)
+simple_strtol                                     Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+                                                  Objs/tasks.PROD.o
+simple_strtoul                                    Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+skip_atoi                                         Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+sliceup                                           Libs/librtxc.PROD.a(rtxc.PROD.o)
+slowclkc                                          Libs/libdrv.PROD.a(drv_clk.PROD.o)
+snprintf                                          Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+spi0err                                           Libs/libdrv.PROD.a(drv_spi.PROD.o)
+spi0start                                         Libs/libdrv.PROD.a(drv_spi.PROD.o)
+spidrv                                            Libs/libdrv.PROD.a(drv_spi.PROD.o)
+spistart                                          Libs/libdrv.PROD.a(drv_spi.PROD.o)
+                                                  Libs/libdrv.PROD.a(flashapi.PROD.o)
+                                                  Objs/main.PROD.o
+spistop                                           Libs/libdrv.PROD.a(drv_spi.PROD.o)
+sprintf                                           Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+strlen                                            /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strlen-stub.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+strnlen                                           /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/nofp/libc.a(libc_a-strnlen.o)
+                                                  Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+systime2date                                      Libs/libdrv.PROD.a(cvtdate.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+t_expired                                         Libs/librtxc.PROD.a(rtxc.PROD.o)
+taskinit                                          Libs/librtxc.PROD.a(rtxc.PROD.o)
+                                                  Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+tc0drv                                            Libs/libdrv.PROD.a(drv_adc.PROD.o)
+tickwait                                          Libs/libdrv.PROD.a(drv_clk.PROD.o)
+                                                  Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Libs/libdrv.PROD.a(extapi.PROD.o)
+tk0extender                                       Objs/tasks.PROD.o
+                                                  Objs/main.PROD.o
+trans_addr                                        Libs/libdrv.PROD.a(extapi.PROD.o)
+tw1in_change                                      Libs/libdrv.PROD.a(drv_dio.PROD.o)
+tw2in_change                                      Libs/libdrv.PROD.a(drv_dio.PROD.o)
+twi0err                                           Libs/libdrv.PROD.a(drv_twi.PROD.o)
+twibuflen                                         Libs/libdrv.PROD.a(drv_twi.PROD.o)
+twibufptr                                         Libs/libdrv.PROD.a(drv_twi.PROD.o)
+twidrv                                            Libs/libdrv.PROD.a(drv_twi.PROD.o)
+twistart                                          Libs/libdrv.PROD.a(drv_twi.PROD.o)
+                                                  Objs/main.PROD.o
+twistop                                           Libs/libdrv.PROD.a(drv_twi.PROD.o)
+uartDMAstartRx                                    Libs/libdrv.PROD.a(drv_uart.PROD.o)
+uartDMAstartTx                                    Libs/libdrv.PROD.a(drv_uart.PROD.o)
+uartdrv                                           Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Objs/main.PROD.o
+uartstart                                         Libs/libdrv.PROD.a(drv_uart.PROD.o)
+                                                  Objs/tasks.PROD.o
+                                                  Objs/main.PROD.o
+uartstop                                          Libs/libdrv.PROD.a(drv_uart.PROD.o)
+usbdrv                                            Libs/libdrv.PROD.a(drv_usb.PROD.o)
+usberr                                            Libs/libdrv.PROD.a(drv_usb.PROD.o)
+usbtask                                           Libs/libdrv.PROD.a(drv_usb.PROD.o)
+                                                  Objs/main.PROD.o
+vsnprintf                                         Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+                                                  Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+vsnprintf_repeater                                Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+vsprintf                                          Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)

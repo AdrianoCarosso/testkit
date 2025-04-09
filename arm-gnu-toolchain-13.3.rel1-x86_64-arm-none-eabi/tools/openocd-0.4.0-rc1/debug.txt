@@ -1,0 +1,451 @@
+Debug: 51 8406 command.c:114 script_debug(): command - ocd_command
+Debug: 52 8406 command.c:124 script_debug(): ocd_command - argv[0]=ocd_command
+Debug: 53 8406 command.c:124 script_debug(): ocd_command - argv[1]=type
+Debug: 54 8406 command.c:124 script_debug(): ocd_command - argv[2]=ocd_halt
+Debug: 55 8406 command.c:114 script_debug(): command - halt
+Debug: 56 8406 command.c:124 script_debug(): halt - argv[0]=ocd_halt
+Debug: 58 8406 target.c:2048 handle_halt_command(): -
+Debug: 59 8406 cortex_m3.c:487 cortex_m3_halt(): target->state: halted
+Debug: 60 8406 cortex_m3.c:491 cortex_m3_halt(): target was already halted
+Debug: 61 13765 command.c:114 script_debug(): command - ocd_command
+Debug: 62 13765 command.c:124 script_debug(): ocd_command - argv[0]=ocd_command
+Debug: 63 13765 command.c:124 script_debug(): ocd_command - argv[1]=type
+Debug: 64 13765 command.c:124 script_debug(): ocd_command - argv[2]=ocd_flash
+Debug: 65 13765 command.c:124 script_debug(): ocd_command - argv[3]=write_bank
+Debug: 66 13765 command.c:124 script_debug(): ocd_command - argv[4]=0
+Debug: 67 13765 command.c:124 script_debug(): ocd_command - argv[5]=C:\util\gcc-cm3-4.4.2\sample\main.CBUG.bin
+Debug: 68 13765 command.c:124 script_debug(): ocd_command - argv[6]=0
+Debug: 69 13765 command.c:114 script_debug(): command - ocd_flash
+Debug: 70 13765 command.c:124 script_debug(): ocd_flash - argv[0]=ocd_flash
+Debug: 71 13765 command.c:124 script_debug(): ocd_flash - argv[1]=write_bank
+Debug: 72 13765 command.c:124 script_debug(): ocd_flash - argv[2]=0
+Debug: 73 13765 command.c:124 script_debug(): ocd_flash - argv[3]=C:\util\gcc-cm3-4.4.2\sample\main.CBUG.bin
+Debug: 74 13765 command.c:124 script_debug(): ocd_flash - argv[4]=0
+Debug: 76 13765 configuration.c:87 find_file(): found C:\util\gcc-cm3-4.4.2\sample\main.CBUG.bin
+Debug: 77 13765 nor\lpc2000.c:560 lpc2000_write(): lpc2000_write, offset: 0, count: 1288
+Debug: 78 13765 nor\lpc2000.c:587 lpc2000_write(): first_sector: 0, last_sector: 0
+Debug: 79 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x00: 0x10007ff0
+Debug: 80 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x04: 0x000000e1
+Debug: 81 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x08: 0x000000c5
+Debug: 82 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x0c: 0x000000c9
+Debug: 83 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x10: 0x000000cd
+Debug: 84 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x14: 0x000000d1
+Debug: 85 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x18: 0x000000d5
+Debug: 86 13765 nor\lpc2000.c:596 lpc2000_write(): Vector 0x1c: 0x00000000
+Debug: 87 13765 nor\lpc2000.c:601 lpc2000_write(): checksum: 0xefff7b2e
+Warn : 88 13765 nor\lpc2000.c:607 lpc2000_write(): Verification will fail since checksum in image (0x00000000) to be written to flash is different from calculated vector checksum (0xefff7b2e).
+Warn : 89 13765 nor\lpc2000.c:608 lpc2000_write(): To remove this warning modify build tools on developer PC to inject correct LPC vector checksum.
+Debug: 90 13765 target.c:1056 target_alloc_working_area(): MMU disabled, using physical address for working memory 0x10000000
+Debug: 91 13765 target.c:1118 target_alloc_working_area(): allocated new working area at address 0x10000000
+Debug: 92 13797 target.c:1118 target_alloc_working_area(): allocated new working area at address 0x10001000
+Debug: 93 13812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 94 13812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xffffffff
+Debug: 95 13828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 96 13828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 97 13828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 98 13828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 99 13844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 100 13844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 101 13844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 102 13844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 103 13859 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 104 13859 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 105 13859 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x107
+Debug: 106 13859 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 107 13875 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 108 13875 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 109 13875 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x61000000
+Debug: 110 13875 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 111 13890 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 112 13890 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 113 13890 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 114 13890 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 115 13906 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 116 13906 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 117 13906 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 118 13906 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 119 13906 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 120 13906 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 0, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 121 13906 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 0)
+Debug: 122 13906 armv7m.c:129 armv7m_restore_context():  
+Debug: 123 13922 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 124 13922 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 125 13922 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 126 13922 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 127 13922 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 128 13922 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 129 13922 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 130 13922 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 131 13937 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 132 13937 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 133 13937 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 134 13937 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 135 13937 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 136 13937 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 137 13937 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 138 13937 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 139 13953 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 140 13953 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 141 13953 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 142 13953 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 143 13953 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 144 13953 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 145 13969 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xfffffffe
+Debug: 146 13969 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 147 13969 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 148 13969 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 149 13984 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 150 13984 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 151 13984 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 152 13984 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 153 14000 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 154 14000 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 155 14000 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 156 14000 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x1fff1ff1
+Debug: 157 14015 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 158 14015 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 159 14015 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 160 14031 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x41000000
+Debug: 161 14031 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 162 14031 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 163 14031 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 164 14047 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 165 14047 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 166 14047 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 167 14047 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 168 14047 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 169 14047 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 170 14047 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 0, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 171 14047 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 172 14047 breakpoints.c:127 breakpoint_free(): free BPID: 0 --> 0
+Debug: 173 14047 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 174 14062 armv7m.c:459 armv7m_run_algorithm(): restoring register xPSR with value 0x61000000
+Debug: 175 14062 armv7m.c:459 armv7m_run_algorithm(): restoring register r12 with value 0x00000107
+Debug: 176 14062 armv7m.c:459 armv7m_run_algorithm(): restoring register r1 with value 0xffffffff
+Debug: 177 14062 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 50 (0x00000000, 0x00000000, 0x0022ee50, 0x0022eee0, 0x78001199) completed with result = 00000000
+Debug: 178 14062 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Debug: 179 14062 target.c:1235 target_write_buffer(): writing buffer of 1024 byte at 0x10000000
+Debug: 180 14078 nor\lpc2000.c:674 lpc2000_write(): writing 0x400 bytes to address 0x0
+Debug: 181 14078 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 182 14094 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 183 14094 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 184 14094 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 185 14094 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 1, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 186 14094 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 1)
+Debug: 187 14094 armv7m.c:129 armv7m_restore_context():  
+Debug: 188 14094 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 189 14094 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 190 14109 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 191 14109 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 192 14109 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 193 14109 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 194 14109 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 195 14109 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 196 14109 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 197 14109 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 198 14125 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 199 14125 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 200 14125 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 201 14125 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 202 14125 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 203 14125 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 204 14125 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 205 14125 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 206 14125 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 207 14125 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 208 14140 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 209 14140 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 210 14140 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xffffffff
+Debug: 211 14156 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 212 14156 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 213 14156 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 214 14156 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 215 14172 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 216 14172 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 217 14172 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 218 14187 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 219 14187 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 220 14187 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 221 14187 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x107
+Debug: 222 14203 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 223 14203 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 224 14203 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 225 14203 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x61000000
+Debug: 226 14219 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 227 14219 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 228 14219 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 229 14219 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 230 14234 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 231 14234 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 232 14234 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 233 14234 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 234 14234 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 235 14234 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 1, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 236 14234 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 237 14234 breakpoints.c:127 breakpoint_free(): free BPID: 1 --> 0
+Debug: 238 14234 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 239 14234 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 51 (0x00000000, 0x10000000, 0x00000400, 0x00003e80, 0x78001199) completed with result = 00000000
+Debug: 240 14234 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Debug: 241 14234 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 242 14234 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 243 14250 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 244 14250 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 245 14250 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 2, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 246 14250 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 2)
+Debug: 247 14250 armv7m.c:129 armv7m_restore_context():  
+Debug: 248 14250 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 249 14250 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 250 14250 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 251 14250 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 252 14265 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 253 14265 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 254 14265 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 255 14265 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 256 14265 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 257 14265 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 258 14281 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 259 14281 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 260 14281 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 261 14281 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 262 14281 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 263 14281 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 264 14281 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 265 14281 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 266 14281 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 267 14281 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 268 14297 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 269 14297 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 270 14297 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xfffffffe
+Debug: 271 14312 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 272 14312 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 273 14312 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 274 14312 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 275 14328 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 276 14328 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 277 14328 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 278 14328 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 279 14344 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 280 14344 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 281 14344 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x1fff1ff1
+Debug: 282 14344 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 283 14359 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 284 14359 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 285 14359 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x41000000
+Debug: 286 14359 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 287 14375 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 288 14375 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 289 14375 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 290 14375 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 291 14390 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 292 14390 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 293 14390 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 294 14390 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 295 14390 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 2, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 296 14390 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 297 14390 breakpoints.c:127 breakpoint_free(): free BPID: 2 --> 0
+Debug: 298 14390 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 299 14390 armv7m.c:459 armv7m_run_algorithm(): restoring register xPSR with value 0x61000000
+Debug: 300 14390 armv7m.c:459 armv7m_run_algorithm(): restoring register r12 with value 0x00000107
+Debug: 301 14390 armv7m.c:459 armv7m_run_algorithm(): restoring register r1 with value 0xffffffff
+Debug: 302 14390 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 50 (0x00000000, 0x00000000, 0x00000400, 0x00003e80, 0x78001199) completed with result = 00000000
+Debug: 303 14390 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Debug: 304 14390 target.c:1235 target_write_buffer(): writing buffer of 256 byte at 0x10000000
+Debug: 305 14406 nor\lpc2000.c:674 lpc2000_write(): writing 0x100 bytes to address 0x400
+Debug: 306 14406 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 307 14406 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 308 14406 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 309 14406 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 310 14406 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 3, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 311 14406 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 3)
+Debug: 312 14406 armv7m.c:129 armv7m_restore_context():  
+Debug: 313 14422 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 314 14422 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 315 14422 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 316 14422 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 317 14422 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 318 14422 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 319 14422 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 320 14422 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 321 14437 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 322 14437 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 323 14437 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 324 14437 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 325 14437 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 326 14437 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 327 14437 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 328 14437 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 329 14453 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 330 14453 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 331 14453 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 332 14453 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 333 14453 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 334 14453 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 335 14469 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xffffffff
+Debug: 336 14469 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 337 14469 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 338 14469 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 339 14484 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 340 14484 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 341 14484 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 342 14484 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 343 14500 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 344 14500 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 345 14500 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 346 14500 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x107
+Debug: 347 14515 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 348 14515 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 349 14515 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 350 14531 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x61000000
+Debug: 351 14531 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 352 14531 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 353 14531 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 354 14547 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 355 14547 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 356 14547 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 357 14547 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 358 14547 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 359 14547 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 360 14547 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 3, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 361 14547 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 362 14547 breakpoints.c:127 breakpoint_free(): free BPID: 3 --> 0
+Debug: 363 14547 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 364 14562 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 51 (0x00000400, 0x10000000, 0x00000100, 0x00003e80, 0x78001199) completed with result = 00000000
+Debug: 365 14562 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Debug: 366 14562 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 367 14562 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 368 14562 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 369 14562 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 370 14562 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 4, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 371 14562 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 4)
+Debug: 372 14562 armv7m.c:129 armv7m_restore_context():  
+Debug: 373 14562 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 374 14562 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 375 14578 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 376 14578 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 377 14578 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 378 14578 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 379 14578 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 380 14578 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 381 14578 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 382 14578 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 383 14594 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 384 14594 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 385 14594 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 386 14594 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 387 14594 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 388 14594 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 389 14594 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 390 14594 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 391 14609 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 392 14609 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 393 14609 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 394 14609 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 395 14625 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xfffffffe
+Debug: 396 14625 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 397 14625 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 398 14625 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 399 14640 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 400 14640 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 401 14640 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 402 14640 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 403 14656 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 404 14656 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 405 14656 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 406 14656 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x1fff1ff1
+Debug: 407 14672 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 408 14672 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 409 14672 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 410 14672 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x41000000
+Debug: 411 14687 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 412 14687 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 413 14687 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 414 14687 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 415 14703 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 416 14703 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 417 14703 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 418 14703 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 419 14703 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 420 14703 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 4, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 421 14703 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 422 14703 breakpoints.c:127 breakpoint_free(): free BPID: 4 --> 0
+Debug: 423 14703 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 424 14703 armv7m.c:459 armv7m_run_algorithm(): restoring register xPSR with value 0x61000000
+Debug: 425 14703 armv7m.c:459 armv7m_run_algorithm(): restoring register r12 with value 0x00000107
+Debug: 426 14703 armv7m.c:459 armv7m_run_algorithm(): restoring register r1 with value 0xffffffff
+Debug: 427 14703 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 50 (0x00000000, 0x00000000, 0x00000100, 0x00003e80, 0x78001199) completed with result = 00000000
+Debug: 428 14703 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Debug: 429 14703 target.c:1235 target_write_buffer(): writing buffer of 256 byte at 0x10000000
+Debug: 430 14719 nor\lpc2000.c:674 lpc2000_write(): writing 0x100 bytes to address 0x500
+Debug: 431 14719 target.c:1235 target_write_buffer(): writing buffer of 24 byte at 0x10001008
+Debug: 432 14719 target.c:1235 target_write_buffer(): writing buffer of 20 byte at 0x10001020
+Debug: 433 14719 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x50001005
+Debug: 434 14719 cortex_m3.c:929 cortex_m3_set_breakpoint(): fpc_num 0 fpcr_value 0x50001005
+Debug: 435 14719 cortex_m3.c:956 cortex_m3_set_breakpoint(): BPID: 5, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 436 14719 breakpoints.c:102 breakpoint_add(): added hardware breakpoint at 0x10001004 of length 0x00000002, (BPID: 5)
+Debug: 437 14719 armv7m.c:129 armv7m_restore_context():  
+Debug: 438 14734 cortex_m3.c:1415 cortex_m3_store_core_reg_u32(): write special reg 19 value 0x1 
+Debug: 439 14734 armv7m.c:242 armv7m_write_core_reg(): write core reg 19 value 0x1
+Debug: 440 14734 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 16 value 0x61000000
+Debug: 441 14734 armv7m.c:242 armv7m_write_core_reg(): write core reg 16 value 0x61000000
+Debug: 442 14734 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 15 value 0x10001000
+Debug: 443 14734 armv7m.c:242 armv7m_write_core_reg(): write core reg 15 value 0x10001000
+Debug: 444 14750 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 14 value 0x10001005
+Debug: 445 14750 armv7m.c:242 armv7m_write_core_reg(): write core reg 14 value 0x10001005
+Debug: 446 14750 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 13 value 0x100010b4
+Debug: 447 14750 armv7m.c:242 armv7m_write_core_reg(): write core reg 13 value 0x100010b4
+Debug: 448 14750 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 12 value 0x1fff1ff1
+Debug: 449 14750 armv7m.c:242 armv7m_write_core_reg(): write core reg 12 value 0x1fff1ff1
+Debug: 450 14750 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 1 value 0x10001020
+Debug: 451 14750 armv7m.c:242 armv7m_write_core_reg(): write core reg 1 value 0x10001020
+Debug: 452 14765 cortex_m3.c:1381 cortex_m3_store_core_reg_u32(): write core reg 0 value 0x10001008
+Debug: 453 14765 armv7m.c:242 armv7m_write_core_reg(): write core reg 0 value 0x10001008
+Debug: 454 14765 target.c:952 target_call_event_callbacks(): target event 22 (debug-resumed)
+Debug: 455 14765 cortex_m3.c:681 cortex_m3_resume(): target debug resumed at 0x10001000
+Debug: 456 14765 cortex_m3.c:459 cortex_m3_poll():  
+Debug: 457 14765 cortex_m3.c:339 cortex_m3_debug_entry():  
+Debug: 458 14765 cortex_m3.c:148 cortex_m3_clear_halt():  NVIC_DFSR 0x3
+Debug: 459 14781 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 0  value 0x0
+Debug: 460 14781 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 1  value 0xffffffff
+Debug: 461 14781 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 2  value 0xffffffff
+Debug: 462 14781 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 3  value 0x0
+Debug: 463 14797 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 4  value 0x3456abcd
+Debug: 464 14797 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 5  value 0x3456abcd
+Debug: 465 14797 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 6  value 0x12345678
+Debug: 466 14797 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 7  value 0x1fff0290
+Debug: 467 14812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 8  value 0x10000118
+Debug: 468 14812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 9  value 0x23f022e3
+Debug: 469 14812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 10  value 0x71cb9406
+Debug: 470 14812 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 11  value 0x9726a575
+Debug: 471 14828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 12  value 0x107
+Debug: 472 14828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 13  value 0x100010b4
+Debug: 473 14828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 14  value 0x1fff167b
+Debug: 474 14828 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 475 14844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 16  value 0x61000000
+Debug: 476 14844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 17  value 0x100010b4
+Debug: 477 14844 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 18  value 0xb092e258
+Debug: 478 14859 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 19 value 0x1
+Debug: 479 14859 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 20 value 0x0
+Debug: 480 14859 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 21 value 0x0
+Debug: 481 14859 cortex_m3.c:1335 cortex_m3_load_core_reg_u32(): load from special reg 22 value 0x0
+Debug: 482 14859 cortex_m3.c:399 cortex_m3_debug_entry(): entered debug state in core mode: Thread at PC 0x10001004, target->state: halted
+Debug: 483 14859 target.c:952 target_call_event_callbacks(): target event 21 (debug-halted)
+Debug: 484 14875 cortex_m3.c:1303 cortex_m3_load_core_reg_u32(): load from core reg 15  value 0x10001004
+Debug: 485 14875 cortex_m3.c:979 cortex_m3_unset_breakpoint(): BPID: 5, Type: 0, Address: 0x10001004 Length: 2 (set=1)
+Debug: 486 14875 target.c:1549 target_write_u32(): address: 0xe0002008, value: 0x00000000
+Debug: 487 14875 breakpoints.c:127 breakpoint_free(): free BPID: 5 --> 0
+Debug: 488 14875 target.c:1317 target_read_buffer(): reading buffer of 20 byte at 0x10001020
+Debug: 489 14875 nor\lpc2000.c:368 lpc2000_iap_call(): IAP command = 51 (0x00000500, 0x10000000, 0x00000100, 0x00003e80, 0x78001199) completed with result = 00000000
+Debug: 490 14875 nor\lpc2000.c:379 lpc2000_iap_call(): IAP status_code = 0
+Info : 491 14875 nor\tcl.c:627 handle_flash_write_bank_command(): enter -1-
+Info : 492 14875 nor\tcl.c:630 handle_flash_write_bank_command(): enter -2-
+User : 493 14875 command.c:527 command_print(): wrote  zu 1288 byte from file C:\util\gcc-cm3-4.4.2\sample\main.CBUG.bin to flash bank 0 at offset 0x00000000 in 1.109375s (1.134 kb/s)
+Info : 494 14875 nor\tcl.c:636 handle_flash_write_bank_command(): enter -3-
+Info : 495 14875 nor\tcl.c:640 handle_flash_write_bank_command(): enter -4-
+Debug: 496 14875 log.c:491 keep_alive(): keep_alive() was not invoked in the 1000ms timelimit (1110). This may cause trouble with GDB connections.
+Debug: 498 51625 command.c:114 script_debug(): command - ocd_command
+Debug: 499 51625 command.c:124 script_debug(): ocd_command - argv[0]=ocd_command
+Debug: 500 51625 command.c:124 script_debug(): ocd_command - argv[1]=type
+Debug: 501 51625 command.c:124 script_debug(): ocd_command - argv[2]=ocd_shutdown
+Debug: 502 51625 command.c:114 script_debug(): command - shutdown
+Debug: 503 51625 command.c:124 script_debug(): shutdown - argv[0]=ocd_shutdown
+Info : 505 51640 server.c:455 server_loop(): dropped 'telnet' connection - error -400

@@ -1,0 +1,8 @@
+[user]
+	email = adriano.carosso@waynet.it
+	#name = Adriano Carosso
+	name = AdrianoCarosso
+[alias]
+        commitall = "!git add -A && git commit -a"
+
+

@@ -1,0 +1,11 @@
+1)  Avviare "HyperTerminal" a 300 baud con echo dei caratteri inviati
+2)  inviare il file di testo "tk1xx.txt"
+3)  attendere di vedere che la riga inizia con "S903...."
+4)  premere P8 (per entrare in debug)
+5)  digitare "wc" per verificare il checksum della RAM
+6)  digitare "o+" per eseguire l'aggiornamento
+7)  verificare che il TestKit si spenga e riaccenda (dal led verde)
+8)  uscire da "HyperTerminal"
+8)  scollegare il "TestKit", attendere qualche secondo e ricollegarlo
+9)  Avviare nuovamente "HyperTerminal" a 300 baud con echo dei caratteri inviati
+10) Digitare "V" per verificare la versione del "TestKit"

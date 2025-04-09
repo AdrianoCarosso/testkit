@@ -1,0 +1,132 @@
+// --------------------------------------------------------------
+// use environment already built in 64 bit mode
+
+cp -arp /opt/gcc-arm-3.4.5/* /opt/gcc32-arm-3.4.5
+
+// --------------------------------------------------------------
+// binutils
+
+cd /home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/binutils
+rm -fr *
+env CFLAGS=-m32 LDFLAGS=-m32 \
+ ../binutils-2.16.1/configure --target=arm-elf \
+ --prefix=/opt/gcc32-arm-3.4.5 \
+ --disable-nls \
+ --with-float=soft
+
+make
+make install
+
+// --------------------------------------------------------------
+// set PATH
+
+PATH=$PATH:/opt/gcc32-arm-3.4.5/bin
+export PATH
+
+// --------------------------------------------------------------
+// gcc
+
+cd /home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/compiler
+rm -fr *
+env CFLAGS=-m32 LDFLAGS=-m32 \
+ ../gcc-3.4.5/configure --target=arm-elf \
+ --prefix=/opt/gcc32-arm-3.4.5 \
+ --enable-languages="c" --with-newlib \
+ --with-headers=/home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/newlib-1.14.0/newlib/libc/include \
+ --disable-shared \
+ --with-float=soft --disable-libssp
+
+make 
+make install
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------------------------------------------------
+// set PATH (optional)
+
+PATH=$PATH:/opt/gcc-arm-3.4.5/bin
+export PATH
+
+// --------------------------------------------------------------
+// gcc
+
+cd /home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/compiler
+../gcc-3.4.5/configure --target=arm-elf  --prefix=/opt/gcc-arm-3.4.5 \
+ --enable-languages="c" --with-newlib --without-headers \
+ --disable-shared --disable-libssp --disable-nls --with-float=soft
+
+make all-gcc
+make install-gcc
+
+// --------------------------------------------------------------
+// newlib
+
+cd /home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/library
+../newlib-1.14.0/configure --srcdir=/home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/newlib-1.14.0 \
+ --target=arm-elf --enable-newlib-io-long-long \
+ --prefix=/opt/gcc-arm-3.4.5 --with-float=soft --disable-newlib-supplied-syscalls \
+ --enable-target-optspace
+
+make
+make install
+
+// --------------------------------------------------------------
+// gcc
+
+cd /home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/compiler
+../gcc-3.4.5/configure --target=arm-elf \
+ --prefix=/opt/gcc-arm-3.4.5 \
+ --enable-languages="c" --with-newlib \
+ --with-headers=/home/mario/Mario/Experiments/TEST/gcc-arm-3.4.5/newlib-1.14.0/newlib/libc/include \
+ --disable-shared \
+ --with-float=soft --disable-libssp
+
+make 
+make install
+
+
+// --------------------------------------------------------------
+// OLD
+
+gcc-core-3.4.5.tar.gz    ( 1/12/2005)
+binutils-2.16.1.tar.bz2  (12/06/2005)
+//////binutils-2.15.tar.bz2    (17/05/2004)
+newlib-1.14.0.tar.gz     (16/12/2005)
+
+mkdir usrarm
+mkdir winarm
+mkdir winarm/binutils
+mkdir winarm/compiler
+mkdir winarm/library
+
+PATH=$PATH:/home/Administrator/usrarm/bin
+export PATH
+
+cd winarm/binutils
+../../binutils-2.16.1/configure --prefix=/home/Administrator/usrarm --target=arm-elf /////--disable-nls
+make
+make install
+cd ../..
+
+cd winarm/compiler
+../../gcc-3.4.5/configure --prefix=/home/Administrator/usrarm --target=arm-elf --enable-languages=c --with-dwarf2 --with-newlib --disable-libssp --with-float=soft
+//--disable-fpu --with-tune=arm7tdvi
+make
+make install
+cd ../..
+
+cd winarm/library
+../../newlib-1.14.0/configure --srcdir=/home/Administrator/newlib-1.14.0 --target=arm-elf --enable-newlib-io-long-long --prefix=/home/Administrator/usrarm --with-float=soft --disable-newlib-supplied-syscalls --enable-target-optspace
+make
+make install
+cd ../..
+
