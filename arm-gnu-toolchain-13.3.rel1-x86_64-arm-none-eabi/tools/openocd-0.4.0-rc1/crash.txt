@@ -1,6 +1,0 @@
-debug_level 3
-log_output C:\\brignolo\\Programmers\\openocd-0.4.0-rc1\\debug.txt
-soft_reset_halt
-flash probe 0
-flash write_bank 0 C:\\util\\gcc-cm3-4.4.2\\sample\\main.CBUG.bin 0
-

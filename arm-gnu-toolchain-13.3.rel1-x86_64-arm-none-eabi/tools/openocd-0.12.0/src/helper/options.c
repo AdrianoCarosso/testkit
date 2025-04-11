@@ -34,6 +34,10 @@
 #include <windows.h>
 #endif
 
+#ifdef USE_TESTJTAG
+int test_port_initial_value = -1 ; /* 0xa0 ; */
+#endif // USE_TESTJTAG
+
 static int help_flag, version_flag;
 
 static const struct option long_options[] = {
@@ -44,6 +48,11 @@ static const struct option long_options[] = {
 	{"search",		required_argument,		0,				's'},
 	{"log_output",	required_argument,		0,				'l'},
 	{"command",		required_argument,		0,				'c'},
+#ifdef USE_TESTJTAG
+        {"port",        required_argument,              0,              'p'},
+#else // USE_TESTJTAG
+        {"pipe",        no_argument,            0,              'p'},
+#endif // USE_TESTJTAG
 	{0, 0, 0, 0}
 };
 

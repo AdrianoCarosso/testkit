@@ -2243,16 +2243,13 @@ static Jim_Obj *JimStringToUpper(Jim_Interp *interp, Jim_Obj *strObjPtr)
  *       However, no format item can be >= JIM_MAX_FMT
  */
 #define JIM_MAX_FMT 2048
-static Jim_Obj *Jim_FormatString_Inner(Jim_Interp *interp, Jim_Obj *fmtObjPtr,
-        int objc, Jim_Obj *const *objv, char *sprintf_buf)
-{
+static Jim_Obj *Jim_FormatString_Inner(Jim_Interp *interp, Jim_Obj *fmtObjPtr, int objc, Jim_Obj *const *objv, char *sprintf_buf) {
     const char *fmt, *_fmt;
     int fmtLen;
     Jim_Obj *resObjPtr;
 
-
     fmt = Jim_GetString(fmtObjPtr, &fmtLen);
-	_fmt = fmt;
+	  _fmt = fmt;
     resObjPtr = Jim_NewStringObj(interp, "", 0);
     while (fmtLen) {
         const char *p = fmt;

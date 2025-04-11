@@ -22,36 +22,29 @@
 #include "ublast_access.h"
 #include <ftdi.h>
 
-static struct ftdi_context *ublast_getftdic(struct ublast_lowlevel *low)
-{
+static struct ftdi_context *ublast_getftdic(struct ublast_lowlevel *low){
 	return low->priv;
 }
 
-static int ublast_ftdi_read(struct ublast_lowlevel *low, uint8_t *buf,
-			    unsigned size, uint32_t *bytes_read)
-{
+static int ublast_ftdi_read(struct ublast_lowlevel *low, uint8_t *buf, unsigned size, uint32_t *bytes_read){
 	int retval;
 	int timeout = 100;
 	struct ftdi_context *ftdic = ublast_getftdic(low);
 
 	*bytes_read = 0;
 	while ((*bytes_read < size) && timeout--) {
-		retval = ftdi_read_data(ftdic, buf + *bytes_read,
-				size - *bytes_read);
+		retval = ftdi_read_data(ftdic, buf + *bytes_read, size - *bytes_read);
 		if (retval < 0)	{
 			*bytes_read = 0;
-			LOG_ERROR("ftdi_read_data: %s",
-					ftdi_get_error_string(ftdic));
+			LOG_ERROR("ftdi_read_data: %s",	ftdi_get_error_string(ftdic));
 			return ERROR_JTAG_DEVICE_ERROR;
-		}
+		  }
 		*bytes_read += retval;
 	}
 	return ERROR_OK;
 }
 
-static int ublast_ftdi_write(struct ublast_lowlevel *low, uint8_t *buf, int size,
-			     uint32_t *bytes_written)
-{
+static int ublast_ftdi_write(struct ublast_lowlevel *low, uint8_t *buf, int size, uint32_t *bytes_written){
 	int retval;
 	struct ftdi_context *ftdic = ublast_getftdic(low);
 
@@ -66,8 +59,7 @@ static int ublast_ftdi_write(struct ublast_lowlevel *low, uint8_t *buf, int size
 	return ERROR_OK;
 }
 
-static int ublast_ftdi_init(struct ublast_lowlevel *low)
-{
+static int ublast_ftdi_init(struct ublast_lowlevel *low) {
 	uint8_t latency_timer;
 	struct ftdi_context *ftdic = ublast_getftdic(low);
 
@@ -100,8 +92,7 @@ static int ublast_ftdi_init(struct ublast_lowlevel *low)
 	return ERROR_OK;
 }
 
-static int ublast_ftdi_quit(struct ublast_lowlevel *low)
-{
+static int ublast_ftdi_quit(struct ublast_lowlevel *low){
 	struct ftdi_context *ftdic = ublast_getftdic(low);
 
 	ftdi_usb_close(ftdic);

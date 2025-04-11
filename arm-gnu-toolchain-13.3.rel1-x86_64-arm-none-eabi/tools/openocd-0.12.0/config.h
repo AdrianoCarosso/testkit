@@ -65,7 +65,7 @@
 #define BUILD_IMX_GPIO 0
 
 /* 0 if you do not want the SEGGER J-Link Programmer. */
-#define BUILD_JLINK 1
+#define BUILD_JLINK 0
 
 /* 0 if you don't want JTAG DPI. */
 #define BUILD_JTAG_DPI 0
@@ -155,7 +155,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define if your libftdi has ftdi_tcioflush() */
-/* #undef HAVE_LIBFTDI_TCIOFLUSH */
+#define HAVE_LIBFTDI_TCIOFLUSH 1
 
 /* Define if you have libusb-1.x */
 #define HAVE_LIBUSB1 1

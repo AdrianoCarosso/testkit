@@ -75,9 +75,7 @@ struct mpsse_ctx {
 };
 
 /* Returns true if the string descriptor indexed by str_index in device matches string */
-static bool string_descriptor_equal(struct libusb_device_handle *device, uint8_t str_index,
-	const char *string)
-{
+static bool string_descriptor_equal(struct libusb_device_handle *device, uint8_t str_index,	const char *string){
 	int retval;
 	char desc_string[256]; /* Max size of string descriptor */
 	retval = libusb_get_string_descriptor_ascii(device, str_index, (unsigned char *)desc_string,
@@ -89,8 +87,7 @@ static bool string_descriptor_equal(struct libusb_device_handle *device, uint8_t
 	return strncmp(string, desc_string, sizeof(desc_string)) == 0;
 }
 
-static bool device_location_equal(struct libusb_device *device, const char *location)
-{
+static bool device_location_equal(struct libusb_device *device, const char *location){
 	bool result = false;
 #ifdef HAVE_LIBUSB_GET_PORT_NUMBERS
 	char *loc = strdup(location);
@@ -148,9 +145,7 @@ static bool device_location_equal(struct libusb_device *device, const char *loca
  * Set any field to 0 as a wildcard. If the device is found true is returned, with ctx containing
  * the already opened handle. ctx->interface must be set to the desired interface (channel) number
  * prior to calling this function. */
-static bool open_matching_device(struct mpsse_ctx *ctx, const uint16_t *vid, const uint16_t *pid,
-	const char *product, const char *serial, const char *location)
-{
+static bool open_matching_device(struct mpsse_ctx *ctx, const uint16_t *vid, const uint16_t *pid,	const char *product, const char *serial, const char *location){
 	struct libusb_device **list;
 	struct libusb_device_descriptor desc;
 	struct libusb_config_descriptor *config0;
@@ -176,8 +171,7 @@ static bool open_matching_device(struct mpsse_ctx *ctx, const uint16_t *vid, con
 
 		err = libusb_open(device, &ctx->usb_dev);
 		if (err != LIBUSB_SUCCESS) {
-			LOG_ERROR("libusb_open() failed with %s",
-				  libusb_error_name(err));
+			LOG_ERROR("libusb_open() failed with %s", libusb_error_name(err));
 			continue;
 		}
 
@@ -307,9 +301,7 @@ error:
 	return false;
 }
 
-struct mpsse_ctx *mpsse_open(const uint16_t *vid, const uint16_t *pid, const char *description,
-	const char *serial, const char *location, int channel)
-{
+struct mpsse_ctx *mpsse_open(const uint16_t *vid, const uint16_t *pid, const char *description,	const char *serial, const char *location, int channel){
 	struct mpsse_ctx *ctx = calloc(1, sizeof(*ctx));
 	int err;
 
@@ -401,8 +393,7 @@ void mpsse_close(struct mpsse_ctx *ctx)
 	free(ctx);
 }
 
-bool mpsse_is_high_speed(struct mpsse_ctx *ctx)
-{
+bool mpsse_is_high_speed(struct mpsse_ctx *ctx){
 	return ctx->type != TYPE_FT2232C;
 }
 
@@ -440,16 +431,13 @@ static unsigned buffer_read_space(struct mpsse_ctx *ctx)
 	return ctx->read_size - ctx->read_count;
 }
 
-static void buffer_write_byte(struct mpsse_ctx *ctx, uint8_t data)
-{
+static void buffer_write_byte(struct mpsse_ctx *ctx, uint8_t data){
 	LOG_DEBUG_IO("%02x", data);
 	assert(ctx->write_count < ctx->write_size);
 	ctx->write_buffer[ctx->write_count++] = data;
 }
 
-static unsigned buffer_write(struct mpsse_ctx *ctx, const uint8_t *out, unsigned out_offset,
-	unsigned bit_count)
-{
+static unsigned buffer_write(struct mpsse_ctx *ctx, const uint8_t *out, unsigned out_offset, unsigned bit_count){
 	LOG_DEBUG_IO("%d bits", bit_count);
 	assert(ctx->write_count + DIV_ROUND_UP(bit_count, 8) <= ctx->write_size);
 	bit_copy(ctx->write_buffer + ctx->write_count, 0, out, out_offset, bit_count);
@@ -557,9 +545,7 @@ void mpsse_clock_tms_cs_out(struct mpsse_ctx *ctx, const uint8_t *out, unsigned 
 	mpsse_clock_tms_cs(ctx, out, out_offset, 0, 0, length, tdi, mode);
 }
 
-void mpsse_clock_tms_cs(struct mpsse_ctx *ctx, const uint8_t *out, unsigned out_offset, uint8_t *in,
-	unsigned in_offset, unsigned length, bool tdi, uint8_t mode)
-{
+void mpsse_clock_tms_cs(struct mpsse_ctx *ctx, const uint8_t *out, unsigned out_offset, uint8_t *in, unsigned in_offset, unsigned length, bool tdi, uint8_t mode){
 	LOG_DEBUG_IO("%sout %d bits, tdi=%d", in ? "in" : "", length, tdi);
 	assert(out);
 
@@ -694,8 +680,7 @@ void mpsse_loopback_config(struct mpsse_ctx *ctx, bool enable)
 	single_byte_boolean_helper(ctx, enable, 0x84, 0x85);
 }
 
-void mpsse_set_divisor(struct mpsse_ctx *ctx, uint16_t divisor)
-{
+void mpsse_set_divisor(struct mpsse_ctx *ctx, uint16_t divisor){
 	LOG_DEBUG("%d", divisor);
 
 	if (ctx->retval != ERROR_OK) {
@@ -711,8 +696,7 @@ void mpsse_set_divisor(struct mpsse_ctx *ctx, uint16_t divisor)
 	buffer_write_byte(ctx, divisor >> 8);
 }
 
-int mpsse_divide_by_5_config(struct mpsse_ctx *ctx, bool enable)
-{
+int mpsse_divide_by_5_config(struct mpsse_ctx *ctx, bool enable){
 	if (!mpsse_is_high_speed(ctx))
 		return ERROR_FAIL;
 
@@ -722,8 +706,7 @@ int mpsse_divide_by_5_config(struct mpsse_ctx *ctx, bool enable)
 	return ERROR_OK;
 }
 
-int mpsse_rtck_config(struct mpsse_ctx *ctx, bool enable)
-{
+int mpsse_rtck_config(struct mpsse_ctx *ctx, bool enable){
 	if (!mpsse_is_high_speed(ctx))
 		return ERROR_FAIL;
 
@@ -733,8 +716,7 @@ int mpsse_rtck_config(struct mpsse_ctx *ctx, bool enable)
 	return ERROR_OK;
 }
 
-int mpsse_set_frequency(struct mpsse_ctx *ctx, int frequency)
-{
+int mpsse_set_frequency(struct mpsse_ctx *ctx, int frequency){
 	LOG_DEBUG("target %d Hz", frequency);
 	assert(frequency >= 0);
 	int base_clock;
@@ -771,8 +753,7 @@ struct transfer_result {
 	unsigned transferred;
 };
 
-static LIBUSB_CALL void read_cb(struct libusb_transfer *transfer)
-{
+static LIBUSB_CALL void read_cb(struct libusb_transfer *transfer){
 	struct transfer_result *res = transfer->user_data;
 	struct mpsse_ctx *ctx = res->ctx;
 
@@ -809,8 +790,7 @@ static LIBUSB_CALL void read_cb(struct libusb_transfer *transfer)
 			res->done = true;
 }
 
-static LIBUSB_CALL void write_cb(struct libusb_transfer *transfer)
-{
+static LIBUSB_CALL void write_cb(struct libusb_transfer *transfer){
 	struct transfer_result *res = transfer->user_data;
 	struct mpsse_ctx *ctx = res->ctx;
 
@@ -830,8 +810,7 @@ static LIBUSB_CALL void write_cb(struct libusb_transfer *transfer)
 	}
 }
 
-int mpsse_flush(struct mpsse_ctx *ctx)
-{
+int mpsse_flush(struct mpsse_ctx *ctx){
 	int retval = ctx->retval;
 
 	if (retval != ERROR_OK) {

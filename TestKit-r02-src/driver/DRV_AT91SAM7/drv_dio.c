@@ -66,8 +66,7 @@ void dio_mask(int port, int pmask) ;
 //----------------------------------------------------------------------------
 // DIO initializer
 
-void diostart(void)
-{
+void diostart(void){
     // ------------------------------------------------------------
     // Enable clock for I/O
 
@@ -169,8 +168,7 @@ void diostart(void)
 //----------------------------------------------------------------------------
 // DIO terminator
 
-void diostop(void)
-{
+void diostop(void){
     // Disable odometers
 
 #if defined(USE_AT91SAM7A3)
@@ -345,10 +343,10 @@ unsigned char *lcc ;
 #ifdef USE_PCAL9555A_TW1
     case PORT_TW1 : // TWI-1
         {
-            //KS_lockw(TWIPORT) ;         // we trust with
+      //KS_lockw(TWIPORT) ;         // we trust with
  			TWI_txrx(PCAL9555A_ADDR,  0x4C, &lcc[2], 2) ;
-            TWI_txrx(PCAL9555A_ADDR, 0x100, &lcc[0], 2) ; // ((unsigned char *)(&retval)), 2) ;
-            //KS_unlock(TWIPORT) ;        // we trust with
+      TWI_txrx(PCAL9555A_ADDR, 0x100, &lcc[0], 2) ; // ((unsigned char *)(&retval)), 2) ;
+      //KS_unlock(TWIPORT) ;        // we trust with
         }
         break ;
 #endif // USE_PCAL9555A_TW1
@@ -617,8 +615,7 @@ void dio_write(int port, int pmask, int pval)
 //      2       external optional MAX7324 TW1, 8 output data bit
 //      3       external optional MAX7324 TW2, 8 output data bit
 
-void dio_mask(int port, int pmask)
-{
+void dio_mask(int port, int pmask){
 #if defined(USE_AT91SAM7A3_)
     KS_lockw(TWIPORT) ;         // we trust with
 #endif // defined(USE_AT91SAM7A3)

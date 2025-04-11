@@ -4,7 +4,6 @@
  *   Copyright (C) 2010 Serge Vakulenko                                    *
  *   serge@vak.ru                                                          *
  ***************************************************************************/
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -617,6 +616,7 @@ static const struct command_registration ft232r_command_handlers[] = {
 	},
 	COMMAND_REGISTRATION_DONE
 };
+
 
 /*
  * Synchronous bitbang protocol implementation.

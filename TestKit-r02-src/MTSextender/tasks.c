@@ -127,7 +127,7 @@ void tk0extender(void) {
     dio_write(PORT_TW1, 0x80, 0x80) ;
 //#endif // USE_REAL_BOARD
 
-        // Init semaphore and timer
+     // Init semaphore and timer
 
     KS_defqsema(LU0Q, LU0QSEM, QNE) ;           // wake up on no empty
     KS_defqsema(TK0IPORT, TK0ISEM, QNE) ;       // wake up on no empty
@@ -248,16 +248,6 @@ void tk0extender(void) {
             }
 #endif // USE_CAN_ON_ARM
 
-//#ifdef USE_REAL_LEDS
-//            // let led to blink
-//            if (AT91C_BASE_PIOA->PIO_PDSR & LED_MASK) {
-//                // set at 0 (turn led on)
-//                AT91C_BASE_PIOA->PIO_CODR = LED_MASK ;
-//            } else {
-//                // set at 1 (turn led off)
-//                AT91C_BASE_PIOA->PIO_SODR = LED_MASK ;
-//            }
-//#endif // USE_REAL_LEDS
             break ;
 
         case PORT0SEM :                // serial port -0-
@@ -324,8 +314,7 @@ void tk0extender(void) {
 
 #define BASE    16
 
-int GetHexValue(const char *cp, int len)
-{
+int GetHexValue(const char *cp, int len){
     int result = 0 ;    // default
     int value ;
 
@@ -341,8 +330,7 @@ int GetHexValue(const char *cp, int len)
 // -----------------------------------------------------------------------
 // HandleSrecord
 
-void HandleSrecord(const char *linebuff)
-{
+void HandleSrecord(const char *linebuff){
     unsigned char binbuff[40] ;
     int size, addr, i ;
 
@@ -409,8 +397,7 @@ void HandleCanRead(int chn, int mbx)
 // -----------------------------------------------------------------------
 // ParseBuffer
 
-void ParseBuffer(const char *usbbuf)
-{
+void ParseBuffer(const char *usbbuf){
     int i, r ;
     unsigned char c ;
     int outmask, outval ;

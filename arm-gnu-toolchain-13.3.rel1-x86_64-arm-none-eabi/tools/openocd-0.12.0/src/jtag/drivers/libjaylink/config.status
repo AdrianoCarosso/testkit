@@ -901,16 +901,16 @@ S["MKDIR_P"]="/usr/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]="strip"
 S["install_sh"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/install-sh"
-S["MAKEINFO"]="${SHELL} '/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing' m"\
-"akeinfo"
-S["AUTOHEADER"]="${SHELL} '/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing' a"\
-"utoheader"
-S["AUTOMAKE"]="${SHELL} '/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing' a"\
-"utomake-1.16"
-S["AUTOCONF"]="${SHELL} '/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing' a"\
-"utoconf"
-S["ACLOCAL"]="${SHELL} '/home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing' a"\
-"clocal-1.16"
+S["MAKEINFO"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing mak"\
+"einfo"
+S["AUTOHEADER"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing aut"\
+"oheader"
+S["AUTOMAKE"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing aut"\
+"omake-1.16"
+S["AUTOCONF"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing aut"\
+"oconf"
+S["ACLOCAL"]="${SHELL} /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/tools/openocd-0.12.0/src/jtag/drivers/libjaylink/build-aux/missing acl"\
+"ocal-1.16"
 S["VERSION"]="0.3.1"
 S["PACKAGE"]="libjaylink"
 S["CYGPATH_W"]="echo"
@@ -945,7 +945,6 @@ S["infodir"]="${datarootdir}/info"
 S["docdir"]="${datarootdir}/doc/${PACKAGE_TARNAME}"
 S["oldincludedir"]="/usr/include"
 S["includedir"]="${prefix}/include"
-S["runstatedir"]="${localstatedir}/run"
 S["localstatedir"]="${prefix}/var"
 S["sharedstatedir"]="${prefix}/com"
 S["sysconfdir"]="${prefix}/etc"

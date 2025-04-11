@@ -10,7 +10,6 @@ TASK=main.$(DBG)
 ifndef CPU
 CPU=AT91SAM7A3
 #CPU=AT91SAM7S256
-#CPU=LPC17XX
 endif
 
 # DEBUG may be:         1, 0
@@ -144,24 +143,6 @@ clean:
 
 # erase first 128KB: flash erase 0 0 17
 chip: $(TASK).bin
-ifeq ($(CPU),LPC17XX)
-	echo "halt" >$(TEMPFILE)
-	echo "wait_halt" >>$(TEMPFILE)
-	echo "soft_reset_halt" >>$(TEMPFILE)
-	echo "sleep 10" >>$(TEMPFILE)
-	echo "flash probe 0" >>$(TEMPFILE)
-	echo "# erase first 256KB" >>$(TEMPFILE)
-	echo "flash erase_sector 0 0 21" >>$(TEMPFILE)
-	echo "sleep 100" >>$(TEMPFILE)
-	echo "reset run" >>$(TEMPFILE)
-	echo "halt" >>$(TEMPFILE)
-	echo "wait_halt" >>$(TEMPFILE)
-	echo "#sleep 5" >>$(TEMPFILE)
-	echo "soft_reset_halt" >>$(TEMPFILE)
-	echo "flash write_bank 0 $(TASK).bin 0x0" >>$(TEMPFILE)
-	echo "resume" >>$(TEMPFILE)
-	echo "shutdown" >>$(TEMPFILE)
-else
 	echo "halt" >$(TEMPFILE)
 	echo "sleep 10" >>$(TEMPFILE)
 	echo "soft_reset_halt" >>$(TEMPFILE)
@@ -171,7 +152,6 @@ else
 	echo "resume" >>$(TEMPFILE)
 	echo "reset" >>$(TEMPFILE)
 	echo "shutdown" >>$(TEMPFILE)
-endif
 	$(OOCD) -f SendOOCD.AT91.cfg
 	$(RM) $(TEMPFILE)
 

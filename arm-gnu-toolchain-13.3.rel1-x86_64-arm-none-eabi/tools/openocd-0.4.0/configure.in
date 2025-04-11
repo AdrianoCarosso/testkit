@@ -1,6 +1,5 @@
 AC_PREREQ(2.60)
-AC_INIT([openocd], [0.4.0],
-  [OpenOCD Mailing List <openocd-development@lists.berlios.de>])
+AC_INIT([openocd], [0.4.0], [OpenOCD Mailing List <openocd-development@lists.berlios.de>])
 AC_CONFIG_SRCDIR([src/openocd.c])
 
 AM_INIT_AUTOMAKE([-Wall -Wno-portability dist-bzip2 dist-zip])

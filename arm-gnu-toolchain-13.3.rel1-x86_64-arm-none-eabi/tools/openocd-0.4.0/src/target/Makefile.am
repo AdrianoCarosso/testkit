@@ -148,7 +148,7 @@ noinst_HEADERS = \
 	xscale.h \
 	xscale_debug.h
 
-nobase_dist_pkglib_DATA =
-nobase_dist_pkglib_DATA += ecos/at91eb40a.elf
+#nobase_dist_pkglib_DATA =
+#nobase_dist_pkglib_DATA += ecos/at91eb40a.elf
 
 MAINTAINERCLEANFILES = $(srcdir)/Makefile.in

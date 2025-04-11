@@ -1,5 +1,6 @@
 #! /bin/sh
 # Generated automatically by config.status (openocd) 0.12.0
+# Libtool was configured on host mdvr.way.dmz:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -144,7 +145,7 @@ sharedlib_from_linklib_cmd="printf %s\\n"
 AR="ar"
 
 # Flags to create an archive.
-AR_FLAGS="cr"
+AR_FLAGS="cru"
 
 # How to feed a file listing to the archiver.
 archiver_list_spec="@"
@@ -411,7 +412,7 @@ hardcode_automatic=no
 inherit_rpath=no
 
 # Whether libtool must link a program against all its dependency libraries.
-link_all_deplibs=no
+link_all_deplibs=unknown
 
 # Set to "yes" if exported symbols are required.
 always_export_symbols=no

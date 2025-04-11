@@ -1,19 +1,14 @@
 # not a GNU package. You can remove this line, if
 # have all needed files, that a GNU package needs
-AUTOMAKE_OPTIONS = gnu 1.6
+AUTOMAKE_OPTIONS = gnu 1.6 
 
-nobase_dist_pkgdata_DATA = \
-	contrib/libdcc/dcc_stdio.c \
-	contrib/libdcc/dcc_stdio.h \
-	contrib/libdcc/example.c \
-	contrib/libdcc/README \
-	contrib/openocd.udev
+AUTOMAKE_OPTIONS += subdir-objects
+
+nobase_dist_pkgdata_DATA = contrib/libdcc/dcc_stdio.c contrib/libdcc/dcc_stdio.h contrib/libdcc/example.c contrib/libdcc/README contrib/openocd.udev
 
 SUBDIRS = src doc
 
-EXTRA_DIST = \
-	Doxyfile.in \
-	tools/logger.pl
+EXTRA_DIST = Doxyfile.in tools/logger.pl
 
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status --recheck
