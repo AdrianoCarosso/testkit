@@ -95,12 +95,7 @@
 #include "_AT91SAM7A3.h"
 
 #define USE_REAL_BOARD
-#undef  USE_EVALUATION_BOARD
-
-#if defined(USE_EVALUATION_BOARD) && defined(USE_REAL_BOARD)
-#error "Only one BOARD must be defined"
-#endif
-
+#define TOOLKIT_V2
 // -----------------------------------------------------------------------
 // Performance options
 
@@ -138,7 +133,6 @@
 // TWI options
 // This definition is also used in csema.c/h
 
-#ifdef USE_REAL_BOARD
 #define USE_TWI_ON_ARM
 #undef  USE_PARAMETERS_ON_TWI
 
@@ -148,19 +142,30 @@
 #undef USE_RTC_TWI_DS1337       // RTC chip NOT used
 //#define DS1337_ADDR     0x68
 
+#ifdef TOOLKIT_V2
+#define USE_PCAL9555A_TW1         // I/O n. 1
+#define PCAL9555A_ADDR 0x20
+#define PORT_TW1        2       // external digital I/O PORT -TW1-
+
+#define USE_PCAL9555A_TW2         // I/O n. 2
+#define PCAL9555A_ADDR2 0x21
+#define PORT_TW2        3       // external digital I/O PORT -TW2-
+
+#define PCAL9555A_ADDR3 0x22
+
+#else
 #define USE_MAX7324_TW1         // I/O n. 1
 #define MAX7324_R1_ADDR 0x68
 #define MAX7324_W1_ADDR 0x58
+#define PORT_TW1        2       // external digital I/O PORT -TW1-
 
 #define USE_MAX7324_TW2         // I/O n. 2
 #define MAX7324_R2_ADDR 0x69
 #define MAX7324_W2_ADDR 0x59
-#endif // USE_REAL_BOARD
+#define PORT_TW2        3       // external digital I/O PORT -TW2-
 
-#ifdef  USE_EVALUATION_BOARD
-#undef USE_TWI_ON_ARM
-#undef USE_PARAMETERS_ON_TWI
-#endif // USE_EVALUATION_BOARD
+#endif
+
 
 #define CNT_PPS         0
 #define CNT_ODOMETER    1
@@ -173,11 +178,6 @@
 #undef USE_ADC_FAST_ON_ARM
 #define USE_ADC_MUX_ON_ARM
 #endif // USE_REAL_BOARD
-
-#ifdef  USE_EVALUATION_BOARD
-#undef USE_ADC_FAST_ON_ARM
-#undef USE_ADC_MUX_ON_ARM
-#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // CAN options
@@ -194,10 +194,6 @@
 #ifdef USE_REAL_BOARD
 #define EXTERNAL_CLOCK          16000000   // Exetrnal oscillator MAINCK
 #endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-#define EXTERNAL_CLOCK          18432000   // Exetrnal oscilator MAINCK
-#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // EXTAPI options
@@ -229,13 +225,6 @@ extern unsigned short usberr ;
 #define TK0PERR  com1err	// Task 0 input port error flag
 #endif // USE_REAL_BOARD
 
-#ifdef USE_EVALUATION_BOARD
-#define TK0IPORT COM3IQ 	// Task 0 Input port
-#define TK0OPORT COM3OQ 	// Task 0 Output port (monitor)
-#define TK0ISEM  PORT3SEM	// Task 0 input port semaphore
-#define TK0PERR  com3err	// Task 0 input port error flag
-#endif // USE_EVALUATION_BOARD
-
 #else  // USE_TASK0_SERIAL
 
 #define TK0IPORT USBIQ 	        // Task 0 Input port
@@ -252,11 +241,6 @@ extern unsigned short usberr ;
 #define MONITOPORT COM1OQ
 #define MONITIPORT COM1IQ
 #endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-#define MONITOPORT COM3OQ
-#define MONITIPORT COM3IQ
-#endif // USE_EVALUATION_BOARD
 
 #define MONIUNBLOCK { KS_unblock(UARTDRV, UARTDRV) ; }
 
@@ -312,33 +296,12 @@ MAXTASKS        // evaluate total number
 
 #define PORT_PIOA       0       // internal digital I/O PORT -A-
 #define PORT_PIOB       1       // internal digital I/O PORT -B-
-#ifdef USE_MAX7324_TW1          // I/O n. 1
-#define PORT_TW1        2       // external digital I/O PORT -TW1-
-#endif // USE_MAX7324_TW1
-#ifdef USE_MAX7324_TW2          // I/O n. 2
-#define PORT_TW2        3       // external digital I/O PORT -TW2-
-#endif // USE_MAX7324_TW2
 
 #ifdef REAL_GYRO
 #define PIO_GYRO	AT91C_PIO_PB20
 #else
 #define PIO_GYRO 	0          // no present
 #endif                         
-
-
-#ifdef USE_EVALUATION_BOARD
-#define LED1            0x1000000
-#define LED2            0x2000000
-#define LED3            0x0100000
-#define LED4            0x0200000
-
-#define PIOA_LED        (LED1)          // Led
-
-#define PIOA_MASK       (LED1 | LED2 | LED3 | LED4)
-#define PIOA_PMASK		PIOA_MASK
-#define PIOB_MASK       (0)
-#define PIOB_PMASK		PIOB_MASK
-#endif // USE_EVALUATION_BOARD
 
 #ifdef USE_REAL_BOARD
 #define LED1            0x00000010

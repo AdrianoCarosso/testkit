@@ -26,14 +26,6 @@
 // -Os --> 10 sec = ???
 #define LOOPS_PER_SEC_Os 0
 
-#if defined(USE_LPC17XX)
-#define LOOPS_PER_SEC_O2        (current_clock/10)
-#endif // defined(USE_LPC17XX)
-
-#if defined(USE_LPC1788)
-#define LOOPS_PER_SEC_O2        (current_clock/10)
-#endif // defined(USE_LPC1788)
-
 #if defined(USE_AT91SAM3S4)
 #define LOOPS_PER_SEC_O2        (current_clock/12)
 #endif // defined(USE_AT91SAM3S4)

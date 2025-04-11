@@ -782,7 +782,7 @@ LOAD linker stubs
  .comment       0x00000045       0x46 Libs/libdrv.PROD.a(drv_dio.PROD.o)
  .comment       0x00000045       0x46 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
 
-.debug_line     0x00000000     0xd67b
+.debug_line     0x00000000     0xd67f
  .debug_line    0x00000000      0x113 Libs/RTXCstartup.PROD.o
  .debug_line    0x00000113      0x6fe Libs/RTXCutil.PROD.o
  .debug_line    0x00000811       0x7b Libs/RTXCsys32.PROD.o
@@ -809,8 +809,8 @@ LOAD linker stubs
  .debug_line    0x0000b715      0x49c Libs/libdrv.PROD.a(drv_twi.PROD.o)
  .debug_line    0x0000bbb1     0x11cb Libs/libdrv.PROD.a(drv_usb.PROD.o)
  .debug_line    0x0000cd7c      0x34d Libs/libdrv.PROD.a(drv_adc.PROD.o)
- .debug_line    0x0000d0c9      0x3c4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
- .debug_line    0x0000d48d      0x1ee Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .debug_line    0x0000d0c9      0x3c8 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_line    0x0000d491      0x1ee Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
 
 .debug_line_str
                 0x00000000      0x12b
@@ -832,65 +832,65 @@ LOAD linker stubs
  .debug_line_str
                 0x0000012b       0xbd /home/name/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/nofp/libgcc.a(_clzsi2.o)
 
-.debug_info     0x00000000    0x1451d
+.debug_info     0x00000000    0x1451b
  .debug_info    0x00000000       0x25 Libs/RTXCstartup.PROD.o
  .debug_info    0x00000025      0x919 Libs/RTXCutil.PROD.o
  .debug_info    0x0000093e       0xcf Libs/RTXCsys32.PROD.o
- .debug_info    0x00000a0d      0xa7e Objs/main.PROD.o
- .debug_info    0x0000148b     0x2044 Objs/tasks.PROD.o
- .debug_info    0x000034cf       0x94 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
- .debug_info    0x00003563     0x190f Libs/librtxc.PROD.a(rtxcapi.PROD.o)
- .debug_info    0x00004e72     0x1ff8 Libs/librtxc.PROD.a(rtxc.PROD.o)
- .debug_info    0x00006e6a       0x24 Libs/librtxc.PROD.a(lock.PROD.o)
- .debug_info    0x00006e8e      0x40e Libs/libdrv.PROD.a(cpart.PROD.o)
- .debug_info    0x0000729c      0x636 Libs/libdrv.PROD.a(cqueue.PROD.o)
- .debug_info    0x000078d2      0x3cd Libs/libdrv.PROD.a(cres.PROD.o)
- .debug_info    0x00007c9f      0x205 Libs/libdrv.PROD.a(csema.PROD.o)
- .debug_info    0x00007ea4     0x33b6 Libs/libdrv.PROD.a(extapi.PROD.o)
- .debug_info    0x0000b25a      0xd36 Libs/libdrv.PROD.a(cvtdate.PROD.o)
- .debug_info    0x0000bf90      0x6c9 Libs/libdrv.PROD.a(flashapi.PROD.o)
- .debug_info    0x0000c659      0x82f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
- .debug_info    0x0000ce88      0x18c Libs/libdrv.PROD.a(stdio_printf.PROD.o)
- .debug_info    0x0000d014       0x9b Libs/libdrv.PROD.a(stdio_puts.PROD.o)
- .debug_info    0x0000d0af     0x144e Libs/libdrv.PROD.a(drv_clk.PROD.o)
- .debug_info    0x0000e4fd     0x14da Libs/libdrv.PROD.a(drv_uart.PROD.o)
- .debug_info    0x0000f9d7      0xf0b Libs/libdrv.PROD.a(drv_can.PROD.o)
- .debug_info    0x000108e2      0xa5f Libs/libdrv.PROD.a(drv_spi.PROD.o)
- .debug_info    0x00011341      0xa9a Libs/libdrv.PROD.a(drv_twi.PROD.o)
- .debug_info    0x00011ddb      0xfff Libs/libdrv.PROD.a(drv_usb.PROD.o)
- .debug_info    0x00012dda      0xac0 Libs/libdrv.PROD.a(drv_adc.PROD.o)
- .debug_info    0x0001389a      0xab2 Libs/libdrv.PROD.a(drv_dio.PROD.o)
- .debug_info    0x0001434c      0x1d1 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .debug_info    0x00000a0d      0xa7c Objs/main.PROD.o
+ .debug_info    0x00001489     0x2044 Objs/tasks.PROD.o
+ .debug_info    0x000034cd       0x94 Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_info    0x00003561     0x190f Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_info    0x00004e70     0x1ff8 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_info    0x00006e68       0x24 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_info    0x00006e8c      0x40e Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_info    0x0000729a      0x636 Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_info    0x000078d0      0x3cd Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_info    0x00007c9d      0x205 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_info    0x00007ea2     0x33b6 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_info    0x0000b258      0xd36 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_info    0x0000bf8e      0x6c9 Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_info    0x0000c657      0x82f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_info    0x0000ce86      0x18c Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_info    0x0000d012       0x9b Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_info    0x0000d0ad     0x144e Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_info    0x0000e4fb     0x14da Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_info    0x0000f9d5      0xf0b Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_info    0x000108e0      0xa5f Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_info    0x0001133f      0xa9a Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_info    0x00011dd9      0xfff Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_info    0x00012dd8      0xac0 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_info    0x00013898      0xab2 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_info    0x0001434a      0x1d1 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
 
-.debug_abbrev   0x00000000     0x3df6
+.debug_abbrev   0x00000000     0x3de0
  .debug_abbrev  0x00000000       0x14 Libs/RTXCstartup.PROD.o
  .debug_abbrev  0x00000014      0x1d1 Libs/RTXCutil.PROD.o
  .debug_abbrev  0x000001e5       0x95 Libs/RTXCsys32.PROD.o
- .debug_abbrev  0x0000027a      0x2ac Objs/main.PROD.o
- .debug_abbrev  0x00000526      0x3e9 Objs/tasks.PROD.o
- .debug_abbrev  0x0000090f       0x4b Libs/librtxc.PROD.a(rtxcinit.PROD.o)
- .debug_abbrev  0x0000095a      0x338 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
- .debug_abbrev  0x00000c92      0x452 Libs/librtxc.PROD.a(rtxc.PROD.o)
- .debug_abbrev  0x000010e4       0x14 Libs/librtxc.PROD.a(lock.PROD.o)
- .debug_abbrev  0x000010f8      0x117 Libs/libdrv.PROD.a(cpart.PROD.o)
- .debug_abbrev  0x0000120f      0x12e Libs/libdrv.PROD.a(cqueue.PROD.o)
- .debug_abbrev  0x0000133d      0x116 Libs/libdrv.PROD.a(cres.PROD.o)
- .debug_abbrev  0x00001453       0xa7 Libs/libdrv.PROD.a(csema.PROD.o)
- .debug_abbrev  0x000014fa      0x557 Libs/libdrv.PROD.a(extapi.PROD.o)
- .debug_abbrev  0x00001a51      0x211 Libs/libdrv.PROD.a(cvtdate.PROD.o)
- .debug_abbrev  0x00001c62      0x1fc Libs/libdrv.PROD.a(flashapi.PROD.o)
- .debug_abbrev  0x00001e5e      0x37f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
- .debug_abbrev  0x000021dd      0x114 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
- .debug_abbrev  0x000022f1       0xa4 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
- .debug_abbrev  0x00002395      0x3ae Libs/libdrv.PROD.a(drv_clk.PROD.o)
- .debug_abbrev  0x00002743      0x446 Libs/libdrv.PROD.a(drv_uart.PROD.o)
- .debug_abbrev  0x00002b89      0x38f Libs/libdrv.PROD.a(drv_can.PROD.o)
- .debug_abbrev  0x00002f18      0x2e8 Libs/libdrv.PROD.a(drv_spi.PROD.o)
- .debug_abbrev  0x00003200      0x278 Libs/libdrv.PROD.a(drv_twi.PROD.o)
- .debug_abbrev  0x00003478      0x42a Libs/libdrv.PROD.a(drv_usb.PROD.o)
- .debug_abbrev  0x000038a2      0x279 Libs/libdrv.PROD.a(drv_adc.PROD.o)
- .debug_abbrev  0x00003b1b      0x1d4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
- .debug_abbrev  0x00003cef      0x107 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
+ .debug_abbrev  0x0000027a      0x296 Objs/main.PROD.o
+ .debug_abbrev  0x00000510      0x3e9 Objs/tasks.PROD.o
+ .debug_abbrev  0x000008f9       0x4b Libs/librtxc.PROD.a(rtxcinit.PROD.o)
+ .debug_abbrev  0x00000944      0x338 Libs/librtxc.PROD.a(rtxcapi.PROD.o)
+ .debug_abbrev  0x00000c7c      0x452 Libs/librtxc.PROD.a(rtxc.PROD.o)
+ .debug_abbrev  0x000010ce       0x14 Libs/librtxc.PROD.a(lock.PROD.o)
+ .debug_abbrev  0x000010e2      0x117 Libs/libdrv.PROD.a(cpart.PROD.o)
+ .debug_abbrev  0x000011f9      0x12e Libs/libdrv.PROD.a(cqueue.PROD.o)
+ .debug_abbrev  0x00001327      0x116 Libs/libdrv.PROD.a(cres.PROD.o)
+ .debug_abbrev  0x0000143d       0xa7 Libs/libdrv.PROD.a(csema.PROD.o)
+ .debug_abbrev  0x000014e4      0x557 Libs/libdrv.PROD.a(extapi.PROD.o)
+ .debug_abbrev  0x00001a3b      0x211 Libs/libdrv.PROD.a(cvtdate.PROD.o)
+ .debug_abbrev  0x00001c4c      0x1fc Libs/libdrv.PROD.a(flashapi.PROD.o)
+ .debug_abbrev  0x00001e48      0x37f Libs/libdrv.PROD.a(stdio_vsprintf.PROD.o)
+ .debug_abbrev  0x000021c7      0x114 Libs/libdrv.PROD.a(stdio_printf.PROD.o)
+ .debug_abbrev  0x000022db       0xa4 Libs/libdrv.PROD.a(stdio_puts.PROD.o)
+ .debug_abbrev  0x0000237f      0x3ae Libs/libdrv.PROD.a(drv_clk.PROD.o)
+ .debug_abbrev  0x0000272d      0x446 Libs/libdrv.PROD.a(drv_uart.PROD.o)
+ .debug_abbrev  0x00002b73      0x38f Libs/libdrv.PROD.a(drv_can.PROD.o)
+ .debug_abbrev  0x00002f02      0x2e8 Libs/libdrv.PROD.a(drv_spi.PROD.o)
+ .debug_abbrev  0x000031ea      0x278 Libs/libdrv.PROD.a(drv_twi.PROD.o)
+ .debug_abbrev  0x00003462      0x42a Libs/libdrv.PROD.a(drv_usb.PROD.o)
+ .debug_abbrev  0x0000388c      0x279 Libs/libdrv.PROD.a(drv_adc.PROD.o)
+ .debug_abbrev  0x00003b05      0x1d4 Libs/libdrv.PROD.a(drv_dio.PROD.o)
+ .debug_abbrev  0x00003cd9      0x107 Libs/libdrv.PROD.a(stdio_strtol.PROD.o)
 
 .debug_aranges  0x00000000      0x360
  .debug_aranges

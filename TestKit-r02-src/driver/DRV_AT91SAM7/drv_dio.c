@@ -184,8 +184,8 @@ void diostop(void){
 
 //----------------------------------------------------------------------------
 #ifdef PORT_TW1_CNF
-short dioconfTW(void)
-{
+#error siemo
+short dioconfTW(void) {
 unsigned char lbuf[5] ;
 unsigned short retval ;
 // unsigned short * ls ;
@@ -316,8 +316,7 @@ unsigned short retval ;
 //      2       external optional MAX7324 TW1, 8 input data bit + 8 input flag bit + 8 output data bit
 //      3       external optional MAX7324 TW2, 8 input data bit + 8 input flag bit + 8 output data bit
 
-unsigned long dio_read(int port)
-{
+unsigned long dio_read(int port) {
 unsigned long retval = 0 ;
 #ifdef USE_PCAL9555A_TW1
 unsigned char *lcc ;
@@ -350,6 +349,7 @@ unsigned char *lcc ;
         }
         break ;
 #endif // USE_PCAL9555A_TW1
+
 #ifdef USE_MAX7324_TW1          // I/O n. 1
     case PORT_TW1:     // TWI-1
         {
@@ -395,9 +395,9 @@ unsigned char *lcc ;
 #ifdef USE_PCAL9555A_TW2
     case PORT_TW3 : // TWI-1
         {
-            //TWI_txrx(PCAL9555A_ADDR3, 0x100, ((unsigned char *)(&retval)), 2) ;
+      //TWI_txrx(PCAL9555A_ADDR3, 0x100, ((unsigned char *)(&retval)), 2) ;
 			TWI_txrx(PCAL9555A_ADDR3,  0x4C, &lcc[2], 2) ;
-            TWI_txrx(PCAL9555A_ADDR3, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
+      TWI_txrx(PCAL9555A_ADDR3, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
         }
         break ;
 #endif // USE_PCAL9555A_TW3
