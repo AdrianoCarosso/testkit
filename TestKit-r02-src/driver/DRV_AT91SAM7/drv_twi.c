@@ -45,18 +45,12 @@ extern void AT91F_AIC_Configure(int irq_id, int priority, int src_type, FRAME *(
 //----------------------------------------------------------------------------
 // internal functions
 
-void twistart(void) ;
-void twistop(void) ;
-int TWI_send(int dev, unsigned char *buf, int len) ;
-int TWI_receive(int dev, unsigned char *buf, int len) ;
-
 FRAME *twidrv(FRAME * frame) ;
 
 //----------------------------------------------------------------------------
 // Interrupt routine for TWI
 
-FRAME *twidrv(FRAME * frame)
-{
+FRAME *twidrv(FRAME * frame){
     unsigned long status ;
 // Interrupts enabled from 21/Aug/2006
 //    ENABLE ;		// open interrupt window
@@ -111,8 +105,7 @@ FRAME *twidrv(FRAME * frame)
 //----------------------------------------------------------------------------
 // TWI initializer
 
-void twistart(void)
-{
+void twistart(void){
 #if defined(USE_AT91SAM7A3)
     // PIO A: Pull-up enable register
     AT91C_BASE_PIOA->PIO_PPUER = (unsigned long)(AT91C_PA0_TWD | AT91C_PA1_TWCK) ;
@@ -172,14 +165,12 @@ void twistart(void)
 //----------------------------------------------------------------------------
 // TWI TX with interrupt
 
-int TWI_send(int dev, unsigned char *buf, int len)
-{
+int TWI_send(int dev, unsigned char *buf, int len){
     // Set Master mode register
     AT91C_BASE_TWI->TWI_MMR = (dev << 16) ;
 
     // differentiate activity
     if (len == 1) {
-
         // Set Master mode
         AT91C_BASE_TWI->TWI_CR = AT91C_TWI_START | AT91C_TWI_MSEN | AT91C_TWI_STOP ;
         AT91C_BASE_TWI->TWI_THR = *buf ;
@@ -220,8 +211,7 @@ int TWI_send(int dev, unsigned char *buf, int len)
 //----------------------------------------------------------------------------
 // TWI RX with interrupt
 
-int TWI_receive(int dev, unsigned char *buf, int len)
-{
+int TWI_receive(int dev, unsigned char *buf, int len) {
     // Set Master mode register
     AT91C_BASE_TWI->TWI_MMR = (dev << 16) | AT91C_TWI_MREAD ;
 
@@ -270,8 +260,7 @@ int TWI_receive(int dev, unsigned char *buf, int len)
 //----------------------------------------------------------------------------
 // TWI Tx-Rx with interrupt
 
-int TWI_txrx(int dev, int sub, unsigned char *buf, int len)
-{
+int TWI_txrx(int dev, int sub, unsigned char *buf, int len){
     //twiaskrestart = 0 ;             // clear restart flag
     //twisuba = sub ;                 // must be 0 in order to bypass
     //if (sub) {
@@ -332,16 +321,15 @@ int TWI_txrx(int dev, int sub, unsigned char *buf, int len)
 //----------------------------------------------------------------------------
 // TWI terminator
 
-void twistop(void)
-{
-    // Disable interrupts
-    AT91C_BASE_TWI->TWI_IDR = (unsigned long) -1 ;
+void twistop(void) {
+  // Disable interrupts
+  AT91C_BASE_TWI->TWI_IDR = (unsigned long) -1 ;
 
-    // Reset peripheral
-    AT91C_BASE_TWI->TWI_CR = AT91C_TWI_SWRST ;
+  // Reset peripheral
+  AT91C_BASE_TWI->TWI_CR = AT91C_TWI_SWRST ;
 
-    // Peripheral Clock Disable Register
-    AT91C_BASE_PMC->PMC_PCDR = (1 << AT91C_ID_TWI) ;
+  // Peripheral Clock Disable Register
+  AT91C_BASE_PMC->PMC_PCDR = (1 << AT91C_ID_TWI) ;
 }
 #endif // USE_TWI_ON_ARM
 // end of file - drv_twi.c

@@ -422,8 +422,7 @@ void clkstop(void)
 // -----------------------------------------------------------------------------
 // Led Blinker
 
-void Set_LedBlinker(int led, unsigned long mask, int period)
-{
+void Set_LedBlinker(int led, unsigned long mask, int period) {
     led &= (MAX_NUMOFLEDS-1) ;          // only power of 2 num of leds
 
     DISABLE ;   // critical region

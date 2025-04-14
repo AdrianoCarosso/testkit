@@ -420,8 +420,7 @@ void EKS_ParClear(void)		// USE_PARAMETERS_ON_TWI
 // *********************************************************************
 // Parameter section - USE_PARAMETERS_ON_FLASH
 
-struct MYSETUP * EKS_GetSetup(void)		// USE_PARAMETERS_ON_FLASH
-{
+struct MYSETUP * EKS_GetSetup(void) {
 //     KS_lockw(SPIPORT) ;         // we trust with
 //     SPI_FlashRead((unsigned char *)(&setup), PARAM_START + (255 * PARAM_SSIZE), sizeof(setup)) ;
 //     KS_unlock(SPIPORT) ;        // free resource
@@ -430,8 +429,7 @@ struct MYSETUP * EKS_GetSetup(void)		// USE_PARAMETERS_ON_FLASH
     return(&setup) ;            // end of memory
 }
 
-void EKS_NewSetup(struct MYSETUP * ms)		// USE_PARAMETERS_ON_FLASH
-{
+void EKS_NewSetup(struct MYSETUP * ms){
     struct PKTMEMBUF *pmnew ;
 
     // alloc temporary
@@ -1508,8 +1506,7 @@ void EKS_FlashClear(void)
 }
 
 // Store a chain in Flash
-int EKS_PktBufStore(struct PKTMEMBUF * pmf, short signature, short id)
-{
+int EKS_PktBufStore(struct PKTMEMBUF * pmf, short signature, short id){
 struct PKTMEMBUF *pm ;
 struct FFILE head ;
 size_t i ;
@@ -1958,17 +1955,16 @@ unsigned long EKS_FlashTotal(void)
 }
 
 // Check free flash memory size
-unsigned long EKS_FlashFree(void)
-{
-        struct FFILE head ;
-        unsigned long total ;
-        unsigned long faddr ;
+unsigned long EKS_FlashFree(void) {
+    struct FFILE head ;
+    unsigned long total ;
+    unsigned long faddr ;
 
-        total = 0L ;        // init
+    total = 0L ;        // init
 
-        KS_lockw(SPIPORT) ;         // we trust with
+    KS_lockw(SPIPORT) ;         // we trust with
 
-        for(faddr=FLASH_START ; faddr < (FLASH_STOP-sizeof(head)) ; ) {      // find
+    for(faddr=FLASH_START ; faddr < (FLASH_STOP-sizeof(head)) ; ) {      // find
 
                 //memcpy_EP((unsigned char *)(&head), faddr, sizeof(head)) ;
                 SPI_FlashRead((unsigned char *)(&head), faddr, sizeof(head)) ;
@@ -2000,8 +1996,7 @@ unsigned long EKS_FlashFree(void)
 
 //#ifdef NOT_IMPLEMENTED
 // Check Flash checksum
-unsigned short EKS_FlashCheckSum(void)
-{
+unsigned short EKS_FlashCheckSum(void){
         unsigned long faddr ;
         unsigned short chk ;
 
@@ -2169,8 +2164,7 @@ void EKS_AskShutdown(unsigned char mode)
 
 //----------------------------------------------------------------------------
 // Task agrees shutdown
-void EKS_AgreeShutdown(void)
-{
+void EKS_AgreeShutdown(void){
 long i ;
 //time_t time_wd ;
 
@@ -2245,14 +2239,6 @@ long i ;
                                          AT91C_RSTC_PERRST  | // (RSTC) Peripheral Reset
                                          AT91C_RSTC_EXTRST ;  // (RSTC) External Reset
 #endif // defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
-#if defined(USE_LPC17XX)
-            WDT->WDFEED=0xAA ;
-            WDT->WDFEED=0x00 ;  // any value other than 55 will reset
-#endif // defined(USE_LPC17XX)
-#if defined(USE_LPC1788)
-            LPC_WDT->FEED=0xAA ;
-            LPC_WDT->FEED=0x00 ;  // any value other than 55 will reset
-#endif // defined(USE_LPC1788)
 #if defined(USE_AT91SAM3S4)
             // Make software reset
             RSTC->RSTC_CR = (RSTC_CR_KEY & (0xa5<<24)) |
@@ -2301,32 +2287,6 @@ long i ;
             for( ; ; ) ;    // just t be sure
 #endif // defined(USE_AT91SAM7A3)
 #ifndef USE_LOW_POWER
-#if defined(USE_LPC17XX)
-//			GPIO2->FIOCLR = (1<<9) ; // LED ON
-			SCB->SCR |= 4 ;			 // SLEEPDEEP enabled
-			SC->PCON = (0x2 | 0x1) ;   // deep power down mode at WFI with brown out
-    	    while (!(SC->PCON & 0x400)){
-				__WFI() ; // Not needed
-				
-			}
-//			GPIO2->FIOSET = (1<<9) ; // LED OFF
-			
-//            DISABLE ;       // no more interrupts
-            for( ; ; ) ;    // just t be sure
-#endif	// defined(USE_LPC17XX) || defined(USE_LPC1788)
-#if defined(USE_LPC1788)
-//			GPIO2->FIOCLR = (1<<9) ; // LED ON
-			SCB->SCR |= 4 ;			 // SLEEPDEEP enabled
-			LPC_SC->PCON = 0x2 | 0x1 ;   // NO-BOD, deep sleep mode at WFI
-    	    while (!(LPC_SC->PCON & 0x400)){
-				__WFI() ; // Not needed
-				
-			}
-//			GPIO2->FIOSET = (1<<9) ; // LED OFF
-			
-//            DISABLE ;       // no more interrupts
-            for( ; ; ) ;    // just t be sure
-#endif	// defined(USE_LPC17XX) || defined(USE_LPC1788)
             break ;
 #endif // ifndef USE_LOW_POWER
 
@@ -2334,13 +2294,13 @@ long i ;
         case SD_LOWPOWER :
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DEBUG
 #if defined(USE_AT91SAM7A3)
-            // disable serials
-            dio_write(PORT_PIOB, PIOB_SRV_ON, 0) ;
+    // disable serials
+    dio_write(PORT_PIOB, PIOB_SRV_ON, 0) ;
 
-            // Charge off
-            dio_write(PORT_TW2, (1<<0), (1<<0)) ;
-            // Ext alim off
-            dio_write(PORT_TW1, (1<<3), (1<<3)) ;
+    // Charge off
+    dio_write(PORT_TW2, (1<<0), (1<<0)) ;
+    // Ext alim off
+    dio_write(PORT_TW1, (1<<3), (1<<3)) ;
 #endif // defined(USE_AT91SAM7A3)
 
             runall = NO ;
@@ -2355,8 +2315,7 @@ long i ;
 
 //#ifdef USE_SPI_ON_ARM
 #if ( defined(USE_SPI_ON_ARM) && defined(USE_SERIALFLASH_ON_ARM) )
-int EKS_RamFill(void)
-{
+int EKS_RamFill(void){
         KS_lockw(SPIPORT) ;         // we trust with
         SPI_FlashErase(CODEFLASH_START, CODEFLASH_STOP) ;
         KS_unlock(SPIPORT) ;        // free resource

@@ -67,19 +67,16 @@ extern void dio_beeper(int freq) ;
 
 // ---------------------------------------------------------------------
 // Generic FLASH handler
-#ifdef USE_FLASH_DATA
 extern void				EKS_FlashClear(void) ;
 extern unsigned short	EKS_FlashCheckSum(void) ;
 
 extern void EKS_LCK_FlashRead(unsigned long bbegin, unsigned char *dst, int flen) ;
 extern void EKS_LCK_FlashWrite(unsigned long bbegin, unsigned char *src, int flen) ;
 extern void EKS_LCK_FlashErase(unsigned long bbegin, unsigned long bend) ;
-#endif
 
 // ---------------------------------------------------------------------
 // SPI handler
 
-//#ifdef USE_SPI_ON_ARM
 #ifdef USE_FLASH_DATA
 // #if ( defined(USE_SPI_ON_ARM) && defined(USE_SERIALFLASH_ON_ARM) )
 // extern void SPI_FlashErase(unsigned long bbegin, unsigned long bend) ;
@@ -154,7 +151,6 @@ extern void   EKS_init(unsigned char numtasks) ;
 
 // ---------------------------------------------------------------------
 // Transaction handler
-#ifdef USE_TRANSACTIONS_ON_ARM
 //
 // Flash transaction identificators
 //
@@ -167,7 +163,7 @@ extern void   EKS_init(unsigned char numtasks) ;
 #define DIR2OUT  (short) 0xa008		// to PDA from LU2
 
 
-extern int		  EKS_PktBufStore(struct PKTMEMBUF * pmf, short signature, short id) ;
+int		  EKS_PktBufStore(struct PKTMEMBUF * pmf, short signature, short id) ;
 extern int		  EKS_PktBufCheckStore(struct PKTMEMBUF * pmf, short signature, short id, unsigned char p_seqok, unsigned char p_trlast) ;
 extern struct PKTMEMBUF * EKS_PktBufRetrive(short signature, short id, unsigned long *st_addr) ;
 #ifdef TRANS_FASTCHECK
@@ -175,9 +171,6 @@ extern int		EKS_PktBufCheck(short signature, short id, short *id_retry) ;
 #else
 extern int 		EKS_PktBufCheck(short signature, short id);
 #endif
-#endif
-
-#if defined(USE_PKTMEMBUF) || defined(CBUG)
 
 // Queue attributes
 #define Q_MASKADDR	0x30ffffffL	// No attributes
@@ -204,7 +197,6 @@ extern struct PKTMEMBUF * EKS_PktBufFromTime(time_t giventime) ;
 extern struct PKTMEMBUF * EKS_PktBufAccTime(time_t giventime) ;
 extern void   EKS_GetHHMM(unsigned char * storetime) ;
 extern struct PKTMEMBUF * EKS_PktBufMyTime(time_t giventime, char type) ;
-#endif // defined(USE_PKTMEMBUF) || defined(CBUG)
 
 #if (defined(USE_TWI1_AUXILIARY) || defined(USE_TWI_SRV))
 #define USE_TWI1_ON_ARM
@@ -238,8 +230,6 @@ extern int SPI_get3axisfast(short *ax, short *ay, short *az) ;
 #define ACC_getfast SPI_get3axisfast
 #endif // USE_SPI_FAST_ACCELEROMETER
 
-
-#if defined(USE_PARAMETERS_ON_TWI) || defined(USE_PARAMETERS_ON_FLASH) || defined(USE_PARAMETERS_ON_EEPROM)
 #ifdef USE_TWI_ONLYAUX
 #define TWI_send(_A, _B, _C) 	 TWI1_send(_A, _B, _C)
 #define TWI_txrx(_A, _B, _C, _D) TWI1_txrx(_A, _B, _C, _D)
@@ -266,7 +256,6 @@ extern void		  EKS_ParClear(void) ;
 extern int		  EKS_ParSize(void) ;
 extern struct MYSETUP *   EKS_GetSetup(void) ;
 extern void		  EKS_NewSetup(struct MYSETUP *) ;
-#endif // defined(USE_PARAMETERS_ON_FLASH) || defined(USE_PARAMETERS_ON_TWI)
 
 // Input from subprocessor
 #if defined(USE_TWI_ON_ARM) && defined(USE_ATMEL_TWI)
@@ -281,14 +270,12 @@ extern int            EKS_RamRead(unsigned long pstart, unsigned char *buf, unsi
 extern unsigned short EKS_RamCheckSum(void) ;
 
 
-#ifdef USE_TRANSACTIONS_ON_ARM
 // Flash file
 struct FFILE {
 short fsign ;	// type signature
 short fid ;	// id of type
 size_t flen ;	// data len
 }  __attribute__ ((packed)) ;
-#endif
 
 #ifdef TRANS_PACK
 extern short EKS_transprepack(short * ntr ) ; // save compact trans on copy (input last trans ACK)
@@ -499,29 +486,23 @@ TX frame format (after our address Rx + R bit):
 
 #endif // defined(USE_TWI_ON_ARM) && defined(USE_ATMEL_TWI)
 
-#ifdef USE_CAN_ON_ARM
 // ***********************************************************************
 // CAN bus sub-system
 
 #define CAN_FLAG_INTERRUPT      1
 #define CAN_FLAG_EXTENDEDADDR   2
-#ifdef USE_CAN_TRANSMIT_ON_ARM
 #define CAN_FLAG_TRANSMIT       4
-#endif // USE_CAN_TRANSMIT_ON_ARM
 #define CAN_FLAG_BUFDATA		8	// New from 29/11/13
 #define CAN_TOT_MAILBOXES       16
 #define CAN_TOT_CHANNELS        2
 void CAN_speed(int cannum, unsigned long bitrate, int listenonly) ;
 void CAN_configure(int cannum, int mailbox, unsigned long addr, unsigned long mask, int flags) ;
 int CAN_read(int cannum, int mailbox, unsigned long *addr, unsigned char *buffer) ;
-#ifdef USE_CAN_TRANSMIT_ON_ARM
 int CAN_write(int cannum, int mailbox, unsigned char *buffer, int msglen) ;
-#endif // USE_CAN_TRANSMIT_ON_ARM
 unsigned long CAN_status(int cannum) ;
 
 extern void canstart(int cannum) ;
 extern void canstop(void) ;
-#endif // USE_CAN_ON_ARM
 
 // ***********************************************************************
 // from uartdrv.c
@@ -534,12 +515,10 @@ extern unsigned char COMS_disable ;
 
 // *********************************************************************
 // from drv_twi.c
-#ifdef USE_TWI_ON_ARM
-extern void twistart(void) ;
-extern void twistop(void) ;
-extern int TWI_send(int dev, unsigned char *buf, int len) ;
-extern int TWI_receive(int dev, unsigned char *buf, int len) ;
-#endif // USE_TWI_ON_ARM
+void twistart(void) ;
+void twistop(void) ;
+int TWI_send(int dev, unsigned char *buf, int len) ;
+int TWI_receive(int dev, unsigned char *buf, int len) ;
 
 // *********************************************************************
 // from drv_i2s.c
@@ -563,16 +542,13 @@ extern void DACwave(int samplingfreq, signed long * buffer, int samples
 
 // *********************************************************************
 // from drv_spi.c
-#ifdef USE_SPI_ON_ARM
-extern void spistart(void) ;
-extern void spistop(void) ;
-extern void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
-              		 unsigned char *buf2tx, unsigned char *buf2rx, int len2) ;
+void spistart(void) ;
+void spistop(void) ;
+void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1, unsigned char *buf2tx, unsigned char *buf2rx, int len2) ;
 #ifdef USE_DOUBLE_SPI
 extern void SPI1_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
                		  unsigned char *buf2tx, unsigned char *buf2rx, int len2) ;
 #endif // USE_DOUBLE_SPI
-#endif // USE_SPI_ON_ARM
 
 // *********************************************************************
 // from drv_dio.c

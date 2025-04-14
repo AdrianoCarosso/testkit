@@ -2,7 +2,7 @@
 # libftdi is required
 #
 # SEGGER J-Link
-# openocd -f tcl/interface/ftdi/RF_ft2232.cfg -f tcl/target/stm32f4x.cfg
+# sudo src/openocd -f tcl/interface/ftdi/RF_ft2232.cfg -f tcl/target/stm32f4x.cfg
 # openocd -f tcl/interface/ftdi/swd-resistor-hack2.cfg -f tcl/target/nrf52.cfg
 #
 # reset halt

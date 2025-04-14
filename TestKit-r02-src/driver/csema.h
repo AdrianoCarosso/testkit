@@ -28,11 +28,8 @@ COM4OSEM,       // COM 4 output
 COM4QSEM,       // COM 4 queue
 #endif // USE_COM4_ON_ARM
 
-#ifdef USE_SPI_ON_ARM
 SPISEM,         // SPI end of activity
-#endif // USE_SPI_ON_ARM
 
-#ifdef USE_TWI_ON_ARM
 TWI0SEM,        // TWI 0 end of activity
 #if (defined(USE_TWI1_AUXILIARY) || defined(USE_TWI_SRV) )
 TWI1SEM,        // TWI 1 end of activity
@@ -49,28 +46,20 @@ TWI1SLSM,
 #ifdef USE_TWI2_SLAVE
 TWI2SLSM,
 #endif // USE_TWI2_SLAVE
-#endif // USE_TWI_ON_ARM
 
 #ifdef USE_ADC_FAST_ON_ARM
 ADCSEM,         // ADC buffer
 #endif // USE_ADC_FAST_ON_ARM
 
-#ifdef USE_CAN_ON_ARM
 CAN0SEM,        // CAN 0 mailbox
 CAN1SEM,        // CAN 1 mailbox
-#endif // USE_CAN_ON_ARM
 
-#ifdef USE_USB_ON_ARM
-#ifdef USE_LPC1788
-USBTIMER,       // USB periodic task call
-#endif // USE_LPC1788
 #ifdef USE_AT91SAM7A3
 USBSEM0,        // USB activity Endpoint 0
 USBSEM1,        // USB activity Endpoint 1
 USBSEM2,        // USB activity Endpoint 2
 #endif // USE_AT91SAM7A3
 USBQSEM,        // USB queue
-#endif // USE_USB_ON_ARM
 
 #if defined(USE_DMA_NAND)
 NANDSEM,        // NAND DMA transfer
@@ -89,9 +78,7 @@ PORT3SEM,       // Peripheral 3 input
 PORT4SEM,       // Peripheral 4 input
 #endif // USE_COM4_ON_ARM
 
-#ifdef USE_USB_ON_ARM
 PORTUSEM,       // Peripheral U input
-#endif // USE_USB_ON_ARM
 
 LU0TSEM,        // LU 0 Cyclic timer
 LU1TSEM,        // LU 1 Cyclic timer

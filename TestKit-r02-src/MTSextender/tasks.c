@@ -15,12 +15,9 @@
 #include <cqueue.h>
 #include <cpart.h>
 #include <cres.h>
+#include "assign.h"
 
 #include <extapi.h>
-
-#include "_AT91SAM7A3.h"
-
-#include "assign.h"
 
 // -----------------------------------------------------------------------
 // local data
@@ -376,24 +373,27 @@ void HandleCanRead(int chn, int mbx)
 // ParseBuffer
 
 void ParseBuffer(const char *usbbuf){
-    int i, r ;
-    unsigned char c ;
-    int outmask, outval ;
-    int mode, baudrate ;
+  int i, r ;
+  unsigned char c ;
+  int outmask, outval ;
+  int mode, baudrate ;
 #ifdef USE_CAN_ON_ARM
-    int timerate ;
-    int chn, mbx ;
-    unsigned char canbuf[16] ;
-    int canptr ;
+  int timerate ;
+  int chn, mbx ;
+  unsigned char canbuf[16] ;
+  int canptr ;
 #endif // USE_CAN_ON_ARM
-    extern volatile TICKS rtctick ;
-    struct MYSETUP * psetup ;
+  extern volatile TICKS rtctick ;
+  struct MYSETUP * psetup ;
 
-    switch(usbbuf[0]) {
+  switch(usbbuf[0]) {
+    #if defined(USE_PARAMETERS_ON_TWI) || defined(USE_PARAMETERS_ON_FLASH) || defined(USE_PARAMETERS_ON_EEPROM)
+    //USE_PARAMETERS_ON_FLASH
     case 'V' :  // version
         psetup = EKS_GetSetup() ;
         printf("V=%d.%02d;%ld\n", SOFTREL, SUBSREL, psetup->sernum) ;
         break ;
+    #endif
 
 	case 'H':
 	case 'h':

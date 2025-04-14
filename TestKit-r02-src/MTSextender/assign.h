@@ -88,10 +88,6 @@
 #define SOFTREL         1       // current release.subrel
 #define SUBSREL        19
 
-// ****************************************************************************
-// who we are
-
-#define USE_AT91SAM7A3
 #include "_AT91SAM7A3.h"
 
 #define USE_REAL_BOARD

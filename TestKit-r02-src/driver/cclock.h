@@ -67,11 +67,10 @@ extern unsigned long long tickmeasure(unsigned long long lasttick) ;
 extern long int random(void) ;
 #endif // CBUG
 
-#ifdef USE_LED_BLINKER
 // -----------------------------------------------------------------------------
 // Led Blinker
-extern void Set_LedBlinker(int led, unsigned long mask, int period) ;
-#endif // USE_LED_BLINKER
+//extern void Set_LedBlinker(int led, unsigned long mask, int period) ;
+void Set_LedBlinker(int led, unsigned long mask, int period) ;
 
 #ifdef USE_BEEPER_TIMER8
 // -----------------------------------------------------------------------------

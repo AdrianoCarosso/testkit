@@ -297,8 +297,7 @@ $(OBJS)/csema.$(OBJEXT): $(DRIVERDIR)/csema.c $(DRIVERDIR)/csema.h $(DRIVERDIR)/
 # drivers
 #
 
-$(OBJS)/drv_clk.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_clk.c $(DRIVERDIR)/cclock.h $(DRIVERDIR)/csema.h \
-                           $(DRIVERDIR)/extapi.h $(INCLUDE_ASSIGN)
+$(OBJS)/drv_clk.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_clk.c $(DRIVERDIR)/cclock.h $(DRIVERDIR)/csema.h $(DRIVERDIR)/extapi.h $(INCLUDE_ASSIGN)
 	$(CC) $(CCFLAGS) $(DRIVERDIR)/$(DRVDIR)/drv_clk.c -o $*.o
 
 $(OBJS)/drv_uart.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_uart.c $(DRIVERDIR)/csema.h $(DRIVERDIR)/cqueue.h \
