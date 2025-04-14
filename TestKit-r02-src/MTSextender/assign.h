@@ -91,7 +91,7 @@
 // ****************************************************************************
 // who we are
 
-//#define USE_AT91SAM7A3
+#define USE_AT91SAM7A3
 #include "_AT91SAM7A3.h"
 
 #define USE_REAL_BOARD
@@ -111,18 +111,14 @@
 
 // ----------------------------------------------------------------------------
 // LED options
-#if defined(USE_REAL_BOARD)
 #define USE_LED_BLINKER
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // SPI options
-#if defined(USE_REAL_BOARD)
 #define USE_SPI_ON_ARM
 #define USE_PARAMETERS_ON_FLASH
 #define USE_SERIALFLASH_ON_ARM
 #define USE_FLASH_DATA
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // USB options
@@ -141,28 +137,27 @@
 #define USE_RTC_AT91SAM7        // RTC chip used
 #undef USE_RTC_TWI_DS1337       // RTC chip NOT used
 //#define DS1337_ADDR     0x68
+#define PORT_TW1        2       // external digital I/O PORT -TW1-
+#define PORT_TW2        3       // external digital I/O PORT -TW2-
 
 #ifdef TOOLKIT_V2
 #define USE_PCAL9555A_TW1         // I/O n. 1
 #define PCAL9555A_ADDR 0x20
-#define PORT_TW1        2       // external digital I/O PORT -TW1-
 
 #define USE_PCAL9555A_TW2         // I/O n. 2
 #define PCAL9555A_ADDR2 0x21
-#define PORT_TW2        3       // external digital I/O PORT -TW2-
 
 #define PCAL9555A_ADDR3 0x22
+#define PORT_TW3        4       // external digital I/O PORT -TW2-
 
 #else
 #define USE_MAX7324_TW1         // I/O n. 1
 #define MAX7324_R1_ADDR 0x68
 #define MAX7324_W1_ADDR 0x58
-#define PORT_TW1        2       // external digital I/O PORT -TW1-
 
 #define USE_MAX7324_TW2         // I/O n. 2
 #define MAX7324_R2_ADDR 0x69
 #define MAX7324_W2_ADDR 0x59
-#define PORT_TW2        3       // external digital I/O PORT -TW2-
 
 #endif
 
@@ -174,10 +169,8 @@
 // ADC options
 // This definition is also used in csema.c/h
 
-#ifdef USE_REAL_BOARD
 #undef USE_ADC_FAST_ON_ARM
 #define USE_ADC_MUX_ON_ARM
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // CAN options
@@ -191,15 +184,11 @@
 // CLOCK options
 
 // Master Clock
-#ifdef USE_REAL_BOARD
 #define EXTERNAL_CLOCK          16000000   // Exetrnal oscillator MAINCK
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // EXTAPI options
-#ifdef USE_REAL_BOARD
 #define USE_PKTMEMBUF
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 //	I/O port definition
@@ -218,12 +207,10 @@ extern unsigned short usberr ;
 
 #ifdef USE_TASK0_SERIAL
 
-#ifdef USE_REAL_BOARD
 #define TK0IPORT COM1IQ 	// Task 0 Input port
 #define TK0OPORT COM1OQ 	// Task 0 Output port (monitor)
 #define TK0ISEM  PORT1SEM	// Task 0 input port semaphore
 #define TK0PERR  com1err	// Task 0 input port error flag
-#endif // USE_REAL_BOARD
 
 #else  // USE_TASK0_SERIAL
 

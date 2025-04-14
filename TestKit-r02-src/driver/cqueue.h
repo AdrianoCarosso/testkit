@@ -21,10 +21,8 @@ COM4IQ,         // COM 4 input
 COM4OQ,         // COM 4 output
 #endif // USE_COM4_ON_ARM
 
-#ifdef USE_USB_ON_ARM
 USBIQ,          // COM 3 input
 USBOQ,          // COM 3 output
-#endif // USE_USB_ON_ARM
 
 LU0Q,           // LU 0 Queue
 LU1Q,           // LU 1 Queue

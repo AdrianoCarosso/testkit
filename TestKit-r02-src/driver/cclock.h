@@ -1,7 +1,6 @@
 /* cclock.h - RTXC Clock include file */
 
 #include "rtxcopts.h"
-#include "extapi.h"
 
 #ifdef HAS_ALLOC_TIMER /* { */
 #define NTMRS 6         /* number of timers */

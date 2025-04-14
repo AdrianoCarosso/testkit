@@ -37,10 +37,7 @@
 #error "Only USE_MAX7324_TW1 or USE_PCAL9555A_TW1"
 #endif
 
-#ifdef USE_PCAL9555A_TW1
 extern int TWI_txrx(int dev, int sub, unsigned char *buf, int len) ;
-#endif
-
 
 #ifdef USE_MAX7324_TW1  // I/O n. 1
 short tw1in_change = 0 ;
@@ -317,18 +314,15 @@ unsigned short retval ;
 //      3       external optional MAX7324 TW2, 8 input data bit + 8 input flag bit + 8 output data bit
 
 unsigned long dio_read(int port) {
-unsigned long retval = 0 ;
-#ifdef USE_PCAL9555A_TW1
-unsigned char *lcc ;
-	
+  unsigned long retval = 0 ;
+  unsigned char *lcc ;
 	lcc = (unsigned char *)(&retval) ;
-#endif
 
 #if defined(USE_AT91SAM7A3)
     KS_lockw(TWIPORT) ;         // we trust with
 #endif // defined(USE_AT91SAM7A3)
 
-    switch(port) {
+  switch(port) {
     case 0:     // PORT A
         retval = AT91C_BASE_PIOA->PIO_PDSR ;
         break ;
@@ -340,14 +334,11 @@ unsigned char *lcc ;
 #endif // defined(USE_AT91SAM7A3)
 
 #ifdef USE_PCAL9555A_TW1
-    case PORT_TW1 : // TWI-1
-        {
-      //KS_lockw(TWIPORT) ;         // we trust with
+    case PORT_TW1 : {
  			TWI_txrx(PCAL9555A_ADDR,  0x4C, &lcc[2], 2) ;
       TWI_txrx(PCAL9555A_ADDR, 0x100, &lcc[0], 2) ; // ((unsigned char *)(&retval)), 2) ;
-      //KS_unlock(TWIPORT) ;        // we trust with
-        }
-        break ;
+      }
+      break ;
 #endif // USE_PCAL9555A_TW1
 
 #ifdef USE_MAX7324_TW1          // I/O n. 1
@@ -374,13 +365,13 @@ unsigned char *lcc ;
 
 #ifdef USE_PCAL9555A_TW2
     case PORT_TW2 : // TWI-1
-        {
-            //KS_lockw(TWIPORT) ;         // we trust with
+      {
+      //KS_lockw(TWIPORT) ;         // we trust with
 			TWI_txrx(PCAL9555A_ADDR2,  0x4C, &lcc[2], 2) ;
-            TWI_txrx(PCAL9555A_ADDR2, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
-            //KS_unlock(TWIPORT) ;        // we trust with
-        }
-        break ;
+      TWI_txrx(PCAL9555A_ADDR2, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
+      //KS_unlock(TWIPORT) ;        // we trust with
+      }
+      break ;
 #endif // USE_PCAL9555A_TW2
 #ifdef USE_MAX7324_TW2          // I/O n. 2
     case PORT_TW2:     // TWI-2
@@ -418,8 +409,7 @@ unsigned char *lcc ;
 //      2       external optional MAX7324 TW1, 8 output data bit
 //      3       external optional MAX7324 TW2, 8 output data bit
 // Added ports 10,11,12 for change Pup/Pdn I/O expander
-void dio_write(int port, int pmask, int pval)
-{
+void dio_write(int port, int pmask, int pval){
 #if defined(USE_AT91SAM7A3)
     KS_lockw(TWIPORT) ;         // we trust with
 #endif // defined(USE_AT91SAM7A3)
@@ -431,7 +421,7 @@ void dio_write(int port, int pmask, int pval)
 	lcc = (unsigned char *)(&retval) ;
 #endif
 
-    switch(port) {
+  switch(port) {
     case PORT_PIOA:             // PORT A
         AT91C_BASE_PIOA->PIO_SODR = pmask & pval  ;      // set
         AT91C_BASE_PIOA->PIO_CODR = pmask & (~pval) ;   // clear
@@ -444,7 +434,6 @@ void dio_write(int port, int pmask, int pval)
         break ;
 #endif // defined(USE_AT91SAM7A3)
 
-#ifdef USE_PCAL9555A_TW1
 	case PORT_TW1 : // TWI-1
 		{
 // 			unsigned short * ls ;
@@ -463,7 +452,6 @@ void dio_write(int port, int pmask, int pval)
 			//KS_unlock(TWIPORT) ;        // we trust with
 		}
 		break ;
-#endif // USE_PCAL9555A_TW1
 #ifdef PORT_PUPTW1
 	case PORT_PUPTW1:
 		TWI_txrx(PCAL9555A_ADDR, 0x46, &lcc[0], 2) ; // Read actual status
@@ -673,8 +661,7 @@ void dio_mask(int port, int pmask){
 //      0       connected to GPS 1 PPS
 //      1       connected to odometer
 
-unsigned short dio_counter(int port)
-{
+unsigned short dio_counter(int port){
 #if defined(USE_AT91SAM7A3)
     if (port) {
         return(AT91C_BASE_TCB1->TCB_TC2.TC_CV) ;        // Odometer

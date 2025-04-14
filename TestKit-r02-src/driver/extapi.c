@@ -23,6 +23,10 @@
 #include "cres.h"
 
 #include "cvtdate.h"
+//----------------------------------------------------------------------------
+// who we are
+#include <assign.h>
+
 #include "extapi.h"
 
 #define  USE_FLASHMONITORING     // debug only
@@ -2226,14 +2230,12 @@ long i ;
 //            time_wd = RTC_ReadTime_t() ;
             //for( ; ; ) ;        // Watch dog will reset after 16 sec
             // break ;
-//#if defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
             for( i=0;i<2000; i++) 	tickwait(1000) ;
 
             //for( ; ; ) {				
             	//for(i=0;i<200000;i++) ;
 				//if (RTC_ReadTime_t()> (time_wd+2L) ) break ;
             //}
-//#endif
         case SD_REBOOT :        // system reboot
 #if defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
             //AT91C_BASE_SYS->SYS_GPBR1 |= FLAG_REBOOT ;

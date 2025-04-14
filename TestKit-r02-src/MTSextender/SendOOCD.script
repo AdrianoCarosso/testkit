@@ -1,9 +1,0 @@
-halt
-sleep 10
-soft_reset_halt
-sleep 10
-flash probe 0
-flash write_bank 0 main.PROD.bin 0x0
-resume
-reset
-shutdown

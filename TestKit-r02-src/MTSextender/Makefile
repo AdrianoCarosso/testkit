@@ -171,7 +171,7 @@ chip1: $(TASK).bin
 	echo "resume" >>$(TEMPFILE)
 	echo "reset" >>$(TEMPFILE)
 	echo "shutdown" >>$(TEMPFILE)
-	$(OOCD1) -f SendOOCD_2024.AT91.cfg
+	$(OOCD1) -p 160 -f SendOOCD_2024.AT91.cfg
 	$(RM) $(TEMPFILE)
 
 

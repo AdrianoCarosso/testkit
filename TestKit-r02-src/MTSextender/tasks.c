@@ -22,10 +22,6 @@
 
 #include "assign.h"
 
-#define USE_VERBOSE
-#define USE_REAL_INPUTS
-#define USE_REAL_OUTPUTS
-
 // -----------------------------------------------------------------------
 // local data
 
@@ -96,22 +92,6 @@ void tk0extender(void) {
 
     // Peripheral Clock Enable Register for PIO: already done in extapi.c EKS_init()
 
-#ifdef USE_REAL_INPUTS
-#ifdef USE_EVALUATION_BOARD
-    AT91C_BASE_PIOA->PIO_PPUDR = 0x03fc0000 ;    // pull-up disable register
-    AT91C_BASE_PIOB->PIO_PPUDR = 0x18003f00 ;    // pull-up disable register
-#endif // USE_EVALUATION_BOARD
-#endif // USE_REAL_INPUTS
-
-#ifdef USE_REAL_OUTPUTS
-#ifdef USE_EVALUATION_BOARD
-    AT91C_BASE_PIOB->PIO_PER = 0xff ;   // Set in PIO mode
-    AT91C_BASE_PIOB->PIO_PPUDR = 0xff ; // no pull up
-    AT91C_BASE_PIOB->PIO_OER = 0xff ;   // Configure in Output
-    AT91C_BASE_PIOB->PIO_CODR = 0xff ;  // set at 0
-#endif // USE_EVALUATION_BOARD
-#endif // USE_REAL_OUTPUTS
-
     //printf("Start: 0x%x\n", AT91C_BASE_RSTC->RSTC_RSR) ;
 
     //KS_signal(CBUGSEMA) ;        // wake up debugger now
@@ -120,14 +100,12 @@ void tk0extender(void) {
     KS_delay(SELFTASK, ((TICKS)200*CLKRATE/1000)) ;     // skip time
     Set_LedBlinker(0, 0x0f0f0f0f, 50) ;
 
-//#ifdef USE_REAL_BOARD
     dio_write(PORT_TW1, 0x80, 0x80) ;
     dio_write(PORT_PIOB, 0x24, 0x00) ;
     dio_write(PORT_PIOB, PIOB_MTS3V_OFF, 0x00) ;
     dio_write(PORT_TW1, 0x80, 0x80) ;
-//#endif // USE_REAL_BOARD
 
-     // Init semaphore and timer
+    // Init semaphore and timer
 
     KS_defqsema(LU0Q, LU0QSEM, QNE) ;           // wake up on no empty
     KS_defqsema(TK0IPORT, TK0ISEM, QNE) ;       // wake up on no empty
@@ -417,7 +395,6 @@ void ParseBuffer(const char *usbbuf){
         printf("V=%d.%02d;%ld\n", SOFTREL, SUBSREL, psetup->sernum) ;
         break ;
 
-#ifdef USE_VERBOSE
 	case 'H':
 	case 'h':
 		printf(" Available commands are:\r\n") ;
@@ -446,7 +423,6 @@ void ParseBuffer(const char *usbbuf){
         psetup = EKS_GetSetup() ;
         printf("Version %d.%02d, S/N %ld\n", SOFTREL, SUBSREL, psetup->sernum) ;
         break ;
-#endif // USE_VERBOSE
 
     case 'D' :  // dump
         // digital I/O
@@ -462,7 +438,6 @@ void ParseBuffer(const char *usbbuf){
         printf("%x,%x,%x\n", dio_counter(CNT_PPS), dio_counter(CNT_ODOMETER), rtctick) ;
         break ;
 
-#ifdef USE_VERBOSE
     case 'd' :  // dump
         // digital I/O
         printf("PIOA=0x%08lx, PIOB=0x%08lx, TW1=0x%08lx, TW2=0x%08lx\n", dio_read(PORT_PIOA), dio_read(PORT_PIOB),
@@ -476,12 +451,9 @@ void ParseBuffer(const char *usbbuf){
         // read counters
         printf("Cpps=%d, Codom=%d, Tick=%d\n", dio_counter(CNT_PPS), dio_counter(CNT_ODOMETER), rtctick) ;
         break ;
-#endif // USE_VERBOSE
 
     case 'C' :  // serial
-#ifdef USE_VERBOSE
     case 'c' :  // serial
-#endif // USE_VERBOSE
         i=2 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
         while((usbbuf[i]) && (usbbuf[i+1])) {
@@ -503,9 +475,7 @@ void ParseBuffer(const char *usbbuf){
         break ;
 
     case 'T' :  // timer
-#ifdef USE_VERBOSE
     case 't' :  // timer
-#endif // USE_VERBOSE
         i=1 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
         GlobTimer = atoi(&usbbuf[i]) ;  // base 10 in verbose mode
@@ -513,9 +483,7 @@ void ParseBuffer(const char *usbbuf){
         break ;
 
     case 'X' :  // set output
-#ifdef USE_VERBOSE
     case 'x' :  // set output
-#endif // USE_VERBOSE
         i=1 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
 
@@ -538,19 +506,15 @@ void ParseBuffer(const char *usbbuf){
         
         // printf("Mask=0x%08x, Val=0x%08x\n", outmask, outval) ;
 
-#ifdef USE_REAL_OUTPUTS
         dio_write(r, outmask, outval) ;
 //        // set at 0
 //        AT91C_BASE_PIOB->PIO_CODR = outmask & (~outval) ;       // set at 0
 //        // set at 1
 //        AT91C_BASE_PIOB->PIO_SODR = outmask & outval ;          // set at 1
-#endif // USE_REAL_OUTPUTS
         break ;
 
     case 'B' :  // set baud
-#ifdef USE_VERBOSE
     case 'b' :  // set baud
-#endif // USE_VERBOSE
         i=2 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
 
@@ -609,9 +573,7 @@ void ParseBuffer(const char *usbbuf){
         
 #ifdef USE_CAN_ON_ARM
     case 'A' :  // set CAN baud
-#ifdef USE_VERBOSE
     case 'a' :  // set CAN baud
-#endif // USE_VERBOSE
         i=2 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
 
@@ -631,17 +593,13 @@ void ParseBuffer(const char *usbbuf){
         chn = GetHexValue(&usbbuf[1], 1) & 1 ;
         printf("F%d=%x\n", chn, CanStatus[chn]) ;
         break ;
-#ifdef USE_VERBOSE
     case 'f' :  // check CAN flags
         chn = GetHexValue(&usbbuf[1], 1) & 1 ;
         printf("CanStatus[%d] %x\n", chn, CanStatus[chn]) ;
         break ;
-#endif // USE_VERBOSE
 
     case 'M' :  // set CAN MAILBOX
-#ifdef USE_VERBOSE
     case 'm' :  // set CAN MAILBOX
-#endif // USE_VERBOSE
         chn = GetHexValue(&usbbuf[1], 1) & 1 ;
         mbx = GetHexValue(&usbbuf[2], 1) ;
         
@@ -687,9 +645,7 @@ void ParseBuffer(const char *usbbuf){
         break ;
 
     case 'E' :  // emit CAN MAILBOX
-#ifdef USE_VERBOSE
     case 'e' :  // emit CAN MAILBOX
-#endif // USE_VERBOSE
         chn = GetHexValue(&usbbuf[1], 1) & 1 ;
         mbx = GetHexValue(&usbbuf[2], 1) ;
 
@@ -733,9 +689,7 @@ void ParseBuffer(const char *usbbuf){
 #endif // USE_CAN_ON_ARM
 
     case 'L' :
-#ifdef USE_VERBOSE
     case 'l' :  // set Red Led
-#endif // USE_VERBOSE
         i=1 ;   // start from here
         while((usbbuf[i] == ' ') || (usbbuf[i] == '=')) i++ ;
 
@@ -756,7 +710,6 @@ void ParseBuffer(const char *usbbuf){
 	case 'U':        
 		i = 2 ;
 		while(usbbuf[i]){	// Scan all command
-#ifdef USE_REAL_OUTPUTS
 			switch (usbbuf[i]){
 				case 'A':	// Analog channel
 				case 'I':	// Digital channel out (In for MTS)
@@ -818,7 +771,6 @@ void ParseBuffer(const char *usbbuf){
 						dio_write(1, 0x20, 0x0) ; // pioB 5 to 0
 					break ;
 			}
-#endif // #ifdef USE_REAL_OUTPUTS
 			i++ ;
 		}
 		break ;

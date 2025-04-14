@@ -8,10 +8,6 @@
 #ifndef _EXTAPI_H
 #define _EXTAPI_H
 
-//----------------------------------------------------------------------------
-// who we are
-#include <assign.h>
-
 // -----------------------------------------------------------------------
 // TASK options
 #define TASK_ATTRIBUTE __attribute__ ((noreturn))

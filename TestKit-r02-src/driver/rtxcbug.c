@@ -1572,8 +1572,7 @@ int UsedStackEval(unsigned long *sstart, int ssize)
 	return(ssize - (i*4)) ;
 }
 
-void cbugstack(void)
-{
+void cbugstack(void){
     int i ;
     SEMA *psema ;
     int lr ;
@@ -1802,8 +1801,7 @@ int i ;
 #endif
 
 #ifdef M2102C
-static void dsetvibra(char * param)
-{
+static void dsetvibra(char * param) {
 	//unsigned int i ;
 	unsigned char parport, parnum, parval ;
 
@@ -1860,8 +1858,7 @@ extern unsigned char fastaccbuf[FAST_ACC_BUFFER_SIZE] ;
 extern unsigned char ext_pot ;
 extern unsigned short read_time ;
 // a <pot> <sec>
-static int outctrl(char * param)
-{
+static int outctrl(char * param){
 unsigned char parpot ;
 unsigned char buf[3] ;
 
@@ -1872,7 +1869,7 @@ unsigned char buf[3] ;
 	
 	parpot = (unsigned char)(atoi(param)) ; // get parameter number
 	ext_pot = parpot & 0x7f ;
-	
+	#warning INCLUDED
 	dio_write(PORT_PIO1, (1<<10), 0 ) ;
 	
 	// Read reg.2 if not 128 set at 128 before change reg.0
