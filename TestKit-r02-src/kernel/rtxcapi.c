@@ -28,13 +28,12 @@ extern TCB * hipritsk; /* highest priority task */
 #define KS2(p) KS(p)
 
 #if defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
-//#define KS(p) asm volatile("mov r0, %0 \n\t" "swi" : /* no outputs */ : "r" (&p))
 #define KS(p) asm volatile("mov r0, %0 \n\t" "swi 0" : /* no outputs */ : "r" (&p))
 #endif // defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 #define KS(p) asm volatile("mov r0, %0 \n\t" "svc #0" : /* no outputs */ : "r" (&p))
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
 //__inline__ static void _ks(unsigned char * p) __attribute__ ( ( naked, always_inline ) ) ;
 //__inline__ static void _ks(unsigned char * p) { __asm__ __volatile__("mov r0, %0 \n\t" "swi" : /* no outputs */ : "r" (&p)) ; }

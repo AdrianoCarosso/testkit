@@ -38,6 +38,12 @@ extern void AT91F_AIC_Configure(int irq_id, int priority, int src_type, FRAME *(
 
 //----------------------------------------------------------------------------
 // internal functions
+
+void spistart(void) ;
+void spistop(void) ;
+void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
+              unsigned char *buf2tx, unsigned char *buf2rx, int len2) ;
+
 FRAME *spidrv(FRAME * frame) ;
 
 //----------------------------------------------------------------------------

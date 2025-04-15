@@ -1,6 +1,7 @@
 /* cclock.h - RTXC Clock include file */
 
 #include "rtxcopts.h"
+#include "extapi.h"
 
 #ifdef HAS_ALLOC_TIMER /* { */
 #define NTMRS 6         /* number of timers */
@@ -64,13 +65,14 @@ void CLOCKinit(unsigned long desired_clock) ;
 extern void tickwait(int udelay) ;
 #ifdef CBUG
 extern unsigned long long tickmeasure(unsigned long long lasttick) ;
-extern long int random(void) ;
+extern int random(void) ;
 #endif // CBUG
 
+#ifdef USE_LED_BLINKER
 // -----------------------------------------------------------------------------
 // Led Blinker
-//extern void Set_LedBlinker(int led, unsigned long mask, int period) ;
-void Set_LedBlinker(int led, unsigned long mask, int period) ;
+extern void Set_LedBlinker(int led, unsigned long mask, int period) ;
+#endif // USE_LED_BLINKER
 
 #ifdef USE_BEEPER_TIMER8
 // -----------------------------------------------------------------------------

@@ -39,7 +39,7 @@ typedef struct frame
 } __attribute__ ((packed)) FRAME ;
 #endif // defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 typedef struct frame
 {
     unsigned long r4 ;
@@ -62,7 +62,7 @@ typedef struct frame
     unsigned long optres ;      // optionally reserved for 8 byte alignment
 
 } __attribute__ ((packed)) FRAME ;
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
 /* RTXC task control block */
 typedef struct tcb

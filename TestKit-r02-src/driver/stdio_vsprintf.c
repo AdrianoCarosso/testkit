@@ -40,7 +40,7 @@ int vsnprintf_repeater(void *p)
                                 ((struct VSNPRINTF_ARGS *)(p))->ap )) ;
 }
 
-int vsnprintf(char *buf, const unsigned long size, const char *fmt, va_list args)
+int vsnprintf(char *buf, size_t size, const char *fmt, va_list args)
 {
         struct VSNPRINTF_ARGS vsnprintf_argument ;
 
@@ -50,6 +50,7 @@ int vsnprintf(char *buf, const unsigned long size, const char *fmt, va_list args
         vsnprintf_argument.ap = args ;
         return(KS_user(&vsnprintf_repeater, (void *)(&vsnprintf_argument))) ;
 }
+
 #endif // USE_RTXC_CALL
 
 // *********************************************************************

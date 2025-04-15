@@ -6,6 +6,8 @@
 #include <limits.h>
 #include <time.h>
 
+#include "extapi.h"
+
 /**
  * simple_strtoull - convert a string to an unsigned long long
  * @cp: The start of the string

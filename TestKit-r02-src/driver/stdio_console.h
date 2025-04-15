@@ -22,7 +22,7 @@ int scanf(const char *, ...) ;
 int sscanf(const char *, const char *, ...) ;
 int vprintf(const char *, __VALIST) ;
 int vsprintf(char *, const char *, __VALIST) ;
-int vsnprintf(char *, const unsigned long, const char *, __VALIST) ;
+//int vsnprintf(char *, const unsigned long, const char *, __VALIST) ;
 char * gets(char *) ;
 int puts(const char *) ;
 int sprintf(char *, const char *, ...) ;

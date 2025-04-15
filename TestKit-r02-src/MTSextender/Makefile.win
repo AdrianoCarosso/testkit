@@ -1,0 +1,425 @@
+######################################################
+# MakeOptions for this task
+# Target CPU; arm7
+
+TASK=main.$(DBG)
+
+######################################################
+# select device and options
+
+# DEBUG may be:         1, 0
+# Set default value if undeclared
+!IFNDEF DEBUG
+DEBUG=1
+!ENDIF
+
+!IF ($(DEBUG)==0)
+DBG=PROD
+DBGMSG=none (production)
+!ELSE
+DBG=CBUG
+DBGMSG=YES
+!ENDIF
+
+FULLARM=-mcpu=arm7tdmi -msoft-float
+THUMB=-mthumb -mcpu=arm7tdmi -msoft-float
+#THUMB=-mcpu=arm7tdmi -msoft-float
+
+!MESSAGE Compile options: CPU=$(THUMB), DEBUG=$(DBGMSG)
+
+######################################################
+# select directory options
+
+COS=E:\util\gcc-arm-3.4.5
+#COS=C:\util\gcc-arm-4.1.2
+CC=$(COS)\bin\arm-elf-gcc
+AR=$(COS)\bin\arm-elf-ar
+LK=$(COS)\bin\arm-elf-gcc
+OC=$(COS)\bin\arm-elf-objcopy
+DP=$(COS)\bin\arm-elf-objdump
+SZ=$(COS)\bin\arm-elf-size
+
+# library (.a) file creation command
+AR=$(COS)\bin\arm-elf-ar.exe
+
+# -p 160 means 0xA0
+OOCD=$(COS)\tools\OpenOCD\openocd -p 160
+
+CP=copy
+RM=del /q
+RD=rd
+
+# Doxygen
+DOXYGEN=doxygen
+
+KERNELDIR=..\kernel
+DRIVERDIR=..\driver
+LIBS=Libs
+OBJS=Objs
+LIBEXT=$(DBG).a
+OBJEXT=$(DBG).o
+
+######################################################
+# select compile/link options
+#
+
+# lib
+ARFLAGS=rc
+
+# compiler
+# -mthumb-interwork
+#OPTIM=-O2 -fomit-frame-pointer -fpack-struct
+OPTIM=-O2 -fomit-frame-pointer -fno-strict-aliasing
+CCFLAGS=-c -g -I$(KERNELDIR) -I$(DRIVERDIR) -I.\ -D$(DBG) $(OPTIM) -nostartfiles -Wall -Werror $(THUMB)
+CCFLAGS32=-c -g -I$(KERNELDIR) -I$(DRIVERDIR) -I.\ -D$(DBG) $(OPTIM) -nostartfiles -Wall -Werror $(FULLARM)
+
+# linker
+LIB_RTXC=rtxc.$(DBG)
+LIB_DRV=drv.$(DBG)
+LDLIBS=-L$(LIBS) -l$(LIB_RTXC) -l$(LIB_DRV) -lm
+LDFLAGS=-nostartfiles $(THUMB)
+MAP=-Wl,-Map,$(TASK).map -Wl,--cref
+
+# loader
+LD_FILE=AT91SAM7A3-ROM.ld
+
+# HEX file
+OCFLAGS= --srec-len 32
+
+######################################################
+# check local/public directories
+
+!IF [if not exist $(OBJS) mkdir "$(OBJS)"]
+!ENDIF
+
+!IF [if not exist $(LIBS) mkdir "$(LIBS)"]
+!ENDIF
+
+######################################################
+# select directory options
+
+ALL: $(TASK).bin $(TASK).srec
+
+
+DUMP: $(TASK).dump
+
+
+TOT:
+	$(COS)\bin\wc -lc ../kernel/*.h ../driver/*.h *.h ../kernel/*.c ../driver/*.c *.c
+
+
+CLEAN:
+	-$(RD) /s /q $(OBJS)
+	-$(RD) /s /q $(LIBS)
+	-$(RD) /s /q doxygen
+        -$(RM) *.map
+        -$(RM) *.srec
+        -$(RM) *.dump
+        -$(RM) *.bin
+
+
+CHIP: $(TASK).bin
+        @rem <<SendOOCD.script
+#poll
+halt
+sleep 10
+#poll
+soft_reset_halt
+sleep 10
+flash probe 0
+flash write_bank 0 $(TASK).bin 0
+#poll
+reset
+#sleep 10
+shutdown
+<<NOKEEP
+        $(OOCD) -f SendOOCD.cfg
+
+BOOT: boot.bin
+
+
+CHIPBOOT: boot.bin
+        @rem <<SendOOCD.script
+#poll
+halt
+sleep 10
+#poll
+soft_reset_halt
+sleep 10
+flash probe 0
+flash write_bank 0 boot.bin 0x0
+#poll
+reset
+#sleep 10
+shutdown
+<<NOKEEP
+        $(OOCD) -f SendOOCD.cfg
+
+CHIPRESET:
+        @rem <<SendOOCD.script
+#jtag_reset 0 1
+#sleep 100
+#jtag_reset 0 0
+reset
+shutdown
+<<NOKEEP
+        $(OOCD) -f SendOOCD.cfg
+
+DOX:
+        $(DOXYGEN) main.dox
+
+
+######################################################
+# KERNEL section
+
+#
+# Library files
+#
+
+$(LIBS)\lib$(LIB_RTXC).a: $(OBJS)\rtxcinit.$(OBJEXT) $(OBJS)\rtxcapi.$(OBJEXT) \
+	       $(OBJS)\rtxc.$(OBJEXT) $(OBJS)\lock.$(OBJEXT)
+	-$(RM) $(LIBS)\lib$(LIB_RTXC).a
+	$(AR) $(ARFLAGS) $(LIBS)\lib$(LIB_RTXC).a $(OBJS)\rtxcinit.$(OBJEXT) $(OBJS)\rtxcapi.$(OBJEXT) \
+	       $(OBJS)\rtxc.$(OBJEXT) $(OBJS)\lock.$(OBJEXT)
+
+#
+# RTXC assembler utilities
+#
+$(OBJS)\lock.$(OBJEXT): $(KERNELDIR)\lock.S
+	$(CC) $(CCFLAGS) $(KERNELDIR)\lock.S -o $*.o
+
+#
+# RTXC init
+#
+$(OBJS)\rtxcinit.$(OBJEXT): $(KERNELDIR)\rtxcinit.c $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(KERNELDIR)\rtxcinit.c -o $*.o
+
+#
+# RTXC C interface
+#
+$(OBJS)\rtxcapi.$(OBJEXT): $(KERNELDIR)\rtxcapi.c $(KERNELDIR)\rtxcapi.h \
+            $(KERNELDIR)\rtxstruc.h $(KERNELDIR)\rtxcarg.h \
+		    $(KERNELDIR)\typedef.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(KERNELDIR)\rtxcapi.c -o $*.o
+
+#
+# RTXC core file
+#
+$(OBJS)\rtxc.$(OBJEXT): $(KERNELDIR)\rtxc.c $(KERNELDIR)\rtxcapi.h \
+            $(KERNELDIR)\rtxstruc.h $(KERNELDIR)\rtxcarg.h $(KERNELDIR)\typedef.h \
+            $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(KERNELDIR)\rtxc.c -o $*.o
+
+
+######################################################
+# DRIVER section
+
+#
+# Library files
+#
+
+$(LIBS)\lib$(LIB_DRV).a: $(OBJS)\cclock.$(OBJEXT) $(OBJS)\cpart.$(OBJEXT) $(OBJS)\cqueue.$(OBJEXT) \
+                    $(OBJS)\cres.$(OBJEXT) $(OBJS)\csema.$(OBJEXT) \
+                    $(OBJS)\extapi.$(OBJEXT) $(OBJS)\cvtdate.$(OBJEXT) \
+                    $(OBJS)\rtxcbug.$(OBJEXT) $(OBJS)\cbugutil.$(OBJEXT) \
+                    $(OBJS)\stdio_vsscanf.$(OBJEXT) $(OBJS)\stdio_vsprintf.$(OBJEXT) \
+                    $(OBJS)\stdio_printf.$(OBJEXT) \
+                    $(OBJS)\stdio_gets.$(OBJEXT) $(OBJS)\stdio_puts.$(OBJEXT) \
+                    $(OBJS)\stdio_strtod.$(OBJEXT) \
+                    $(OBJS)\drv_clk.$(OBJEXT) $(OBJS)\drv_uart.$(OBJEXT) \
+                    $(OBJS)\drv_can.$(OBJEXT) $(OBJS)\drv_spi.$(OBJEXT) \
+                    $(OBJS)\drv_twi.$(OBJEXT) $(OBJS)\drv_usb.$(OBJEXT) \
+                    $(OBJS)\drv_adc.$(OBJEXT) $(OBJS)\drv_dio.$(OBJEXT) \
+                    $(OBJS)\XYZaccel.$(OBJEXT) \
+                    $(OBJS)\stdio_strtol.$(OBJEXT) $(OBJS)\stdio_strtoll.$(OBJEXT)
+	-$(RM) $(LIBS)\lib$(LIB_DRV).a
+	$(AR) $(ARFLAGS) $(LIBS)\lib$(LIB_DRV).a \
+              $(OBJS)\cclock.$(OBJEXT) $(OBJS)\cpart.$(OBJEXT) $(OBJS)\cqueue.$(OBJEXT) \
+              $(OBJS)\cres.$(OBJEXT) $(OBJS)\csema.$(OBJEXT) \
+              $(OBJS)\extapi.$(OBJEXT) $(OBJS)\cvtdate.$(OBJEXT) \
+              $(OBJS)\rtxcbug.$(OBJEXT) $(OBJS)\cbugutil.$(OBJEXT) \
+              $(OBJS)\stdio_vsscanf.$(OBJEXT) $(OBJS)\stdio_vsprintf.$(OBJEXT) \
+              $(OBJS)\stdio_printf.$(OBJEXT) \
+              $(OBJS)\stdio_gets.$(OBJEXT) $(OBJS)\stdio_puts.$(OBJEXT) \
+              $(OBJS)\stdio_strtod.$(OBJEXT) \
+              $(OBJS)\drv_clk.$(OBJEXT) $(OBJS)\drv_uart.$(OBJEXT) \
+              $(OBJS)\drv_can.$(OBJEXT) $(OBJS)\drv_spi.$(OBJEXT) \
+              $(OBJS)\drv_twi.$(OBJEXT) $(OBJS)\drv_usb.$(OBJEXT) \
+              $(OBJS)\drv_adc.$(OBJEXT) $(OBJS)\drv_dio.$(OBJEXT) \
+              $(OBJS)\XYZaccel.$(OBJEXT) \
+              $(OBJS)\stdio_strtol.$(OBJEXT) $(OBJS)\stdio_strtoll.$(OBJEXT)
+
+#
+# Compile basic utilities
+#
+
+$(LIBS)\RTXCstartup.boot.o: $(DRIVERDIR)\RTXCstartup.S
+	$(CC) $(CCFLAGS) -DMAKEBOOT $(DRIVERDIR)\RTXCstartup.S -o $(LIBS)\RTXCstartup.boot.o
+
+$(LIBS)\RTXCstartup.$(DBG).o: $(DRIVERDIR)\RTXCstartup.S
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\RTXCstartup.S -o $(LIBS)\RTXCstartup.$(DBG).o
+
+$(LIBS)\RTXCutil.$(DBG).o: $(DRIVERDIR)\RTXCutil.c
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\RTXCutil.c -o $(LIBS)\RTXCutil.$(DBG).o
+
+$(LIBS)\RTXCsys32.$(DBG).o: $(DRIVERDIR)\RTXCsys32.c
+	$(CC) $(CCFLAGS32) $(DRIVERDIR)\RTXCsys32.c -o $(LIBS)\RTXCsys32.$(DBG).o
+
+#
+# system tables
+#
+
+$(OBJS)\cclock.$(OBJEXT): $(DRIVERDIR)\cclock.c $(DRIVERDIR)\cclock.h $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cclock.c -o $*.o
+
+$(OBJS)\cpart.$(OBJEXT): $(DRIVERDIR)\cpart.c $(DRIVERDIR)\cpart.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cpart.c -o $*.o
+
+$(OBJS)\cqueue.$(OBJEXT): $(DRIVERDIR)\cqueue.c $(DRIVERDIR)\cqueue.h $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cqueue.c -o $*.o
+
+$(OBJS)\cres.$(OBJEXT): $(DRIVERDIR)\cres.c $(DRIVERDIR)\cres.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cres.c -o $*.o
+
+$(OBJS)\csema.$(OBJEXT): $(DRIVERDIR)\csema.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\csema.c -o $*.o
+
+#
+# drivers
+#
+
+$(OBJS)\drv_clk.$(OBJEXT): $(DRIVERDIR)\drv_clk.c $(DRIVERDIR)\cclock.h $(DRIVERDIR)\csema.h \
+                           $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_clk.c -o $*.o
+
+$(OBJS)\drv_uart.$(OBJEXT): $(DRIVERDIR)\drv_uart.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                            $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_uart.c -o $*.o
+
+$(OBJS)\drv_spi.$(OBJEXT): $(DRIVERDIR)\drv_spi.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_spi.c -o $*.o
+
+$(OBJS)\drv_twi.$(OBJEXT): $(DRIVERDIR)\drv_twi.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_twi.c -o $*.o
+
+$(OBJS)\drv_usb.$(OBJEXT): $(DRIVERDIR)\drv_usb.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_usb.c -o $*.o
+
+$(OBJS)\drv_adc.$(OBJEXT): $(DRIVERDIR)\drv_adc.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_adc.c -o $*.o
+
+$(OBJS)\drv_dio.$(OBJEXT): $(DRIVERDIR)\drv_dio.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_dio.c -o $*.o
+
+$(OBJS)\drv_can.$(OBJEXT): $(DRIVERDIR)\drv_can.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cqueue.h \
+                           $(DRIVERDIR)\extapi.h $(KERNELDIR)\rtxcapi.h $(KERNELDIR)\rtxcopts.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\drv_can.c -o $*.o
+
+$(OBJS)\XYZaccel.$(OBJEXT): $(DRIVERDIR)\XYZaccel.c
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\XYZaccel.c -o $*.o
+
+
+#
+# rtxcbug
+#
+
+$(OBJS)\rtxcbug.$(OBJEXT): $(DRIVERDIR)\rtxcbug.c $(DRIVERDIR)\csema.h $(DRIVERDIR)\cres.h \
+                           $(DRIVERDIR)\cqueue.h $(DRIVERDIR)\rtxcbug.h \
+		                   $(KERNELDIR)\enable.h $(DRIVERDIR)\cvtdate.h $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\rtxcbug.c -o $*.o
+
+$(OBJS)\cbugutil.$(OBJEXT): $(DRIVERDIR)\cbugutil.c $(DRIVERDIR)\rtxcbug.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cbugutil.c -o $*.o
+
+#
+# utilities
+#
+
+$(OBJS)\cvtdate.$(OBJEXT): $(DRIVERDIR)\cvtdate.c $(DRIVERDIR)\cvtdate.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\cvtdate.c -o $*.o
+
+$(OBJS)\extapi.$(OBJEXT): $(DRIVERDIR)\extapi.c $(DRIVERDIR)\extapi.h $(DRIVERDIR)\cvtdate.h \
+                          $(DRIVERDIR)\csema.h $(DRIVERDIR)\cres.h $(DRIVERDIR)\cqueue.h \
+		                  $(DRIVERDIR)\rtxcbug.h $(KERNELDIR)\enable.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\extapi.c -o $*.o
+
+#
+# stdio_console
+#
+
+$(OBJS)\stdio_vsscanf.$(OBJEXT): $(DRIVERDIR)\stdio_vsscanf.c $(DRIVERDIR)\stdio_console.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_vsscanf.c -o $*.o
+
+$(OBJS)\stdio_vsprintf.$(OBJEXT): $(DRIVERDIR)\stdio_vsprintf.c $(DRIVERDIR)\stdio_console.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_vsprintf.c -o $*.o
+
+$(OBJS)\stdio_printf.$(OBJEXT): $(DRIVERDIR)\stdio_printf.c $(DRIVERDIR)\stdio_console.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_printf.c -o $*.o
+
+$(OBJS)\stdio_gets.$(OBJEXT): $(DRIVERDIR)\stdio_gets.c $(DRIVERDIR)\stdio_console.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_gets.c -o $*.o
+
+$(OBJS)\stdio_puts.$(OBJEXT): $(DRIVERDIR)\stdio_puts.c $(DRIVERDIR)\stdio_console.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_puts.c -o $*.o
+
+$(OBJS)\stdio_strtol.$(OBJEXT): $(DRIVERDIR)\stdio_strtol.c $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_strtol.c -o $*.o
+
+$(OBJS)\stdio_strtoll.$(OBJEXT): $(DRIVERDIR)\stdio_strtoll.c $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_strtoll.c -o $*.o
+
+$(OBJS)\stdio_strtod.$(OBJEXT): $(DRIVERDIR)\stdio_strtod.c $(DRIVERDIR)\extapi.h
+	$(CC) $(CCFLAGS) $(DRIVERDIR)\stdio_strtod.c -o $*.o
+
+
+######################################################
+# build local binary files
+
+$(TASK).bin: $(OBJS)\$(TASK).elf
+	$(OC) --output-target=binary $(OBJS)\$(TASK).elf $(TASK).bin
+        $(SZ) $(OBJS)\$(TASK).elf
+
+$(TASK).srec: $(OBJS)\$(TASK).elf
+	$(OC) --output-target=srec $(OCFLAGS) $(OBJS)\$(TASK).elf $(TASK).srec
+        $(SZ) $(OBJS)\$(TASK).elf
+
+$(OBJS)\$(TASK).elf: $(OBJS)\main.$(OBJEXT) $(OBJS)\tasks.$(OBJEXT) \
+                     $(LIBS)\lib$(LIB_RTXC).a \
+                     $(LIBS)\lib$(LIB_DRV).a \
+                     $(LIBS)\RTXCstartup.$(DBG).o $(LIBS)\RTXCutil.$(DBG).o $(LIBS)\RTXCsys32.$(DBG).o \
+                     $(LIBS)\RTXCstartup.boot.o \
+                     Makefile
+	$(LK) $(LDFLAGS) $(MAP) -T $(LD_FILE) -o $(OBJS)\$(TASK).elf \
+              $(LIBS)\RTXCstartup.$(DBG).o $(LIBS)\RTXCutil.$(DBG).o \
+              $(LIBS)\RTXCsys32.$(DBG).o \
+              $(OBJS)\main.$(OBJEXT) $(OBJS)\tasks.$(OBJEXT) \
+              $(LDLIBS)
+
+$(TASK).dump: $(OBJS)\$(TASK).elf
+	$(DP) -sd $(OBJS)\$(TASK).elf > $(TASK).dump
+
+boot.bin: $(OBJS)\boot.elf
+	$(OC) --output-target=binary $(OBJS)\boot.elf boot.bin
+        $(SZ) $(OBJS)\boot.elf
+
+$(OBJS)\boot.elf: $(LIBS)\RTXCstartup.boot.o \
+                  $(LIBS)\RTXCsys32.PROD.o \
+                  Makefile
+	$(LK) $(LDFLAGS) -T $(LD_FILE) -o $(OBJS)\boot.elf \
+              $(LIBS)\RTXCstartup.boot.o \
+              $(LIBS)\RTXCsys32.PROD.o
+
+######################################################
+# Compile user tasks
+
+$(OBJS)\main.$(OBJEXT): main.c assign.h
+	$(CC) $(CCFLAGS) main.c -o $*.o
+
+$(OBJS)\tasks.$(OBJEXT): tasks.c assign.h
+	$(CC) $(CCFLAGS) tasks.c -o $*.o
+

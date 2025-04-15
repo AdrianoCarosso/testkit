@@ -49,7 +49,7 @@ void DumpReg(char *header, FRAME *f)
 //    cbugflag = 1 ;
 //    for( ; ; ) ;
 //    return ;
-    
+
     DISABLE ;
     printf("%s %d\n", header, rtctick) ;
     printf("userccr=%08lx\n", f->userccr) ;
@@ -94,9 +94,9 @@ void DumpReg(char *header, FRAME *f)
 #define CCR_T0 0x3f             // CCR at start of task IRQ+FIQ enabled, Thumb, SYS
 #endif // defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 #define CCR_T0 0x01000000       // CCR at start of task: Thumb
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
 /* stash sema in siglist */
 #define SIGNAL(sema) DISABLE; *semaput++ = sema; scheduler = 0; ENABLE
@@ -2467,9 +2467,9 @@ DumpReg("RTXC_DELAY out", hipritsk->sp) ;
      }
 #endif /* } FPU */
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
      ENABLE ;   // enable flag is not inside CCR
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
      return(hipritsk->sp); /* exit to hipritsk via tcb.sp */
    }
 
@@ -2544,11 +2544,11 @@ void taskinit(void)
    TCB *ptcb;
 
 #ifdef CBUG
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 // Already done in RTXCstartup_xxx.c
 //   extern const unsigned long __kernel_stack_start ;
 //   kernellastrunstack = __kernel_stack_start ;
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 #if defined(USE_AT91SAM7A3) || defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
    extern char ram_end[] ;                 // end of RAM
    // Stack info from RTXCstartup.S
@@ -2693,9 +2693,9 @@ void taskinit(void)
 #endif /* } CBUG */
 #endif /* } BSS_NOT_ZERO */
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
    isrcnt = 1 ; // not used +++++++++++++++++++TODO++++++++++++++++++++
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 }
 
 #ifdef HAS_RESOURCES /* { */
@@ -2782,7 +2782,7 @@ void partinit(void)
    const PKHEADER *ppkh;
    //int cnt ;
    //size_t siz ;
-   
+
    for (i = 1, ppkh = &pkkheader[1], pph = &pheader[1]; i <= nparts;
 	i++,   ppkh++,              pph++)
    {
@@ -3031,9 +3031,9 @@ FRAME * KS_ISRexit(FRAME *frame, SEMA sema)
 
     if (isrcnt == 1) {          // interrupted a task, not RTXC or another isr
         if (scheduler) {
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
             ENABLE ;            // enable flag is not inside CCR
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
             return(frame) ;     // return to rtxc or isr
         }
 
@@ -3045,9 +3045,9 @@ FRAME * KS_ISRexit(FRAME *frame, SEMA sema)
 
     } else {
         /* return to isr, postem() will be performed later */
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
         ENABLE ;        // enable flag is not inside CCR
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
         return(frame);  // return to rtxc or isr
     }
 }
@@ -3404,9 +3404,9 @@ if (AT91C_BASE_PIOA->PIO_PDSR & LED1) {
 #endif // USE_LEDDEBUG
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
    ENABLE;      // enable flag is not inside CCR
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
    return(hipritsk->sp); /* exit to hipritsk via tcb.sp */
 }
 

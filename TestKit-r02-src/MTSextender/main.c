@@ -21,10 +21,11 @@
 #include "csema.h"
 #include "extapi.h"
 #include <cvtdate.h>
+#include <stdio_console.h>
+
 
 #include "assign.h"
 
-#include <stdio_console.h>
 
 #include "_AT91SAM7A3.h"
 
@@ -229,13 +230,16 @@ void AT91F_Console_Init(unsigned long baud_rate)
 
 //----------------------------------------------------------------------------
 
-void maintask(void) {
+void maintask(void)
+{
     int i ;
     
-  //AT91F_LowLevelInit() ;
+    //AT91F_LowLevelInit() ;
 	LowLevelInit() ;
 
-  AT91F_CLOCKinit(48000000) ;
+
+    AT91F_CLOCKinit(48000000) ;
+	
 
 #ifdef USE_DIRECT_USART
     AT91F_Console_Init(19200) ;
@@ -266,33 +270,23 @@ void maintask(void) {
 #ifdef USE_REAL_BOARD
     // GSM
     uartstart(/* com = */ 0, /* baud_rate = */ 9600 /* test rs485 115200 */ /*38400*/ /*57600*/,
-              /* mode = */ AT91C_US_USMODE_HWHSH | AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
+              /* mode =  AT91C_US_USMODE_HWHSH | */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
 
 #ifndef USE_DIRECT_USART
     // LU11 - CONSOLE
-    uartstart(/* com = */ 1, /* baud_rate = */ 19200,
+    uartstart(/* com = */ 1, /* baud_rate = */ 9600,
               /* mode = */ /*AT91C_US_USMODE_HWHSH | */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
 #endif // USE_DIRECT_USART
 
     // LU2 - AUX
-    uartstart(/* com = */ 2, /* baud_rate = */ 19200,
-              /* mode = */ AT91C_US_USMODE_HWHSH | AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
+    uartstart(/* com = */ 2, /* baud_rate = */ 9600,
+              /* mode =  AT91C_US_USMODE_HWHSH  | */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
 
     // GPS
-    //uartstart(/* com = */ 3, /* baud_rate = */ 4800,
-    //          /* mode = */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
+    uartstart(/* com = */ 3, /* baud_rate = */ 9600,
+              /* mode = */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
 #endif // USE_REAL_BOARD
 
-#ifdef USE_EVALUATION_BOARD
-    uartstart(/* com = */ 0, /* baud_rate = */ 115200,
-              /* mode = */ AT91C_US_USMODE_HWHSH | AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
-
-#ifndef USE_DIRECT_USART
-    // LU11 - CONSOLE
-    uartstart(/* com = */ 3, /* baud_rate = */ 19200,
-              /* mode = */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
-#endif // USE_DIRECT_USART
-#endif // USE_EVALUATION_BOARD
 
 // -----------------------------------------------------------------------
 // Are we ready? Let's the dance open!
@@ -300,21 +294,24 @@ void maintask(void) {
     ENABLE ;		// enable interrupts
 
 // -----------------------------------------------------------------------
+
 // start all declared tasks
 
     for(i=0 ; i<ntasks ; i++) { // start up tasks in startup list
-      PRIORITY pri ;
-      int t ;
-	    t = startls[i] ;	// task number
-      if (!t) break ;         // null terminated list
+        PRIORITY pri ;
+        int t ;
+		t = startls[i] ;	// task number
 
-      KS_execute(t) ; 		// let it run
+		if (!t) break ;         // null terminated list
 
-      pri = rtxkktcb[t].priority ;
-      if ( pri == 10 ) {
-          KS_defslice(t, 2) ; 	// max time slice
-      }
+		KS_execute(t) ; 		// let it run
+
+		pri = rtxkktcb[t].priority ;
+		if ( pri == 10 ) {
+			KS_defslice(t, 2) ; 	// max time slice
+		}
     }
+
 
 // -----------------------------------------------------------------------
 // let all task to run
@@ -339,7 +336,8 @@ void maintask(void) {
 
 //----------------------------------------------------------------------------
 
-int putchar(int c){
+int putchar(int c)
+{
 #ifdef USE_DIRECT_USART
 #ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
@@ -358,7 +356,8 @@ int putchar(int c){
 
 //----------------------------------------------------------------------------
 
-int getchar(void){
+int getchar(void)
+{
 #ifdef USE_DIRECT_USART
 #ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address

@@ -376,7 +376,7 @@ unsigned long long tickmeasure(unsigned long long lasttick)
 // tick measure function
 
 #ifdef CBUG
-long int random(void)
+int random(void)
 {
     static unsigned long last ;
 
@@ -422,7 +422,8 @@ void clkstop(void)
 // -----------------------------------------------------------------------------
 // Led Blinker
 
-void Set_LedBlinker(int led, unsigned long mask, int period) {
+void Set_LedBlinker(int led, unsigned long mask, int period)
+{
     led &= (MAX_NUMOFLEDS-1) ;          // only power of 2 num of leds
 
     DISABLE ;   // critical region

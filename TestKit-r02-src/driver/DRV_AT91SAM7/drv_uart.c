@@ -91,7 +91,7 @@ unsigned char iptr[4] ;	        // interrupt RX char pointer
 unsigned char cptr[4] ;	        // consumer RX char pointer
 //unsigned short iptr[4] ;	        // interrupt RX char pointer
 //unsigned short cptr[4] ;	        // consumer RX char pointer _FR_ 09/10/09
-volatile unsigned char nptr[4] ;// num of RX chars
+volatile unsigned char nptr[3] ;// num of RX chars
 
 #else // RX_BUFFER
 
@@ -105,7 +105,8 @@ unsigned char ichar3 ;	        // input char
 //----------------------------------------------------------------------------
 // Interrupt routine for COM 0
 
-FRAME *com0drv(FRAME * frame){
+FRAME *com0drv(FRAME * frame)
+{
     register AT91PS_USART USART_pt = AT91C_BASE_US0 ;   // <-- COMx
     register unsigned int status ;
 #ifdef RX_BUFFER
@@ -182,7 +183,8 @@ FRAME *com0drv(FRAME * frame){
 //----------------------------------------------------------------------------
 // Interrupt routine for COM 1
 
-FRAME *com1drv(FRAME * frame){
+FRAME *com1drv(FRAME * frame)
+{
     register AT91PS_USART USART_pt = AT91C_BASE_US1 ;   // <-- COMx
     register unsigned int status ;
 #ifdef RX_BUFFER
@@ -425,7 +427,8 @@ FRAME *com3drv(FRAME * frame)
 // Usart DMA start TX
 
 #ifdef TX_BUFFER
-void uartDMAstartTx(AT91PS_USART puart, unsigned char* ptr, int plen){
+void uartDMAstartTx(AT91PS_USART puart, unsigned char* ptr, int plen)
+{
     puart->US_TPR = (unsigned long)(ptr) ;      // TX buffer ptr
     puart->US_TCR = plen ;      // TX buffer len
     puart->US_TNCR = 0 ;        // next void
@@ -439,7 +442,8 @@ void uartDMAstartTx(AT91PS_USART puart, unsigned char* ptr, int plen){
 // Usart DMA start RX
 
 #ifdef RX_BUFFER
-void uartDMAstartRx(AT91PS_USART puart, int num){
+void uartDMAstartRx(AT91PS_USART puart, int num)
+{
     // next buffer
     rxbuffidx[num] ^= 1 ;
 
@@ -452,7 +456,8 @@ void uartDMAstartRx(AT91PS_USART puart, int num){
 //----------------------------------------------------------------------------
 // Usart initializer
 
-void uartstart(int num, unsigned long baud_rate, int mode){
+void uartstart(int num, unsigned long baud_rate, int mode)
+{
     AT91PS_USART UART_BASE ;
     unsigned long baud_value ;
     int handshake ;

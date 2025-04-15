@@ -30,6 +30,7 @@
 //
 //   1.18 08/Lug/2011 _FR_ Can timer for emit data
 //
+//   2.00 03/Set/2013 _FR_ New TestKit
 
 // Available commands are:
 // Ax <BaudRate>        							Ser CANx baud rate
@@ -85,13 +86,22 @@
 // ****************************************************************************
 // who we are
 
-#define SOFTREL         1       // current release.subrel
-#define SUBSREL        19
+#define SOFTREL         2       // current release.subrel
+#define SUBSREL         1
 
+// ****************************************************************************
+// who we are
+
+//#define USE_AT91SAM7A3
 #include "_AT91SAM7A3.h"
 
 #define USE_REAL_BOARD
-#define TOOLKIT_V2
+#undef  USE_EVALUATION_BOARD
+
+#if defined(USE_EVALUATION_BOARD) && defined(USE_REAL_BOARD)
+#error "Only one BOARD must be defined"
+#endif
+
 // -----------------------------------------------------------------------
 // Performance options
 
@@ -107,14 +117,16 @@
 
 // ----------------------------------------------------------------------------
 // LED options
+#if defined(USE_REAL_BOARD)
 #define USE_LED_BLINKER
+#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // SPI options
+#if defined(USE_REAL_BOARD)
 #define USE_SPI_ON_ARM
 #define USE_PARAMETERS_ON_FLASH
-#define USE_SERIALFLASH_ON_ARM
-#define USE_FLASH_DATA
+#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // USB options
@@ -125,6 +137,7 @@
 // TWI options
 // This definition is also used in csema.c/h
 
+#ifdef USE_REAL_BOARD
 #define USE_TWI_ON_ARM
 #undef  USE_PARAMETERS_ON_TWI
 
@@ -133,40 +146,60 @@
 #define USE_RTC_AT91SAM7        // RTC chip used
 #undef USE_RTC_TWI_DS1337       // RTC chip NOT used
 //#define DS1337_ADDR     0x68
-#define PORT_TW1        2       // external digital I/O PORT -TW1-
-#define PORT_TW2        3       // external digital I/O PORT -TW2-
 
-#ifdef TOOLKIT_V2
-#define USE_PCAL9555A_TW1         // I/O n. 1
-#define PCAL9555A_ADDR 0x20
+// #define USE_MAX7324_TW1         // I/O n. 1
+// #define MAX7324_R1_ADDR 0x68
+// #define MAX7324_W1_ADDR 0x58
+// 
+// #define USE_MAX7324_TW2         // I/O n. 2
+// #define MAX7324_R2_ADDR 0x69
+// #define MAX7324_W2_ADDR 0x59
 
-#define USE_PCAL9555A_TW2         // I/O n. 2
-#define PCAL9555A_ADDR2 0x21
+#define USE_PCAL9555A_TW1       // I/O n. 1
+#ifdef USE_PCAL9555A_TW1
+#define PCAL9555A_ADDR       0x20 // (0x20<<1) on SAM7 no need
+#define PORT_TW1_CNF	0xffff		//All input
+#define PORT_TW1_PUP	0xffffffff	// Reg. 49h 48h 47h 46h
+#endif // USE_PCAL9555A_TW1
 
-#define PCAL9555A_ADDR3 0x22
-#define PORT_TW3        4       // external digital I/O PORT -TW2-
+#define USE_PCAL9555A_TW2       // I/O n. 2
+#ifdef USE_PCAL9555A_TW2
+#define PCAL9555A_ADDR2     0x21 //  (0x21<<1) on SAM7 no need
+#define PORT_TW2_CNF	0x0000		//All output
+#define PORT_TW2_PUP	0x00000000	// Reg. 49h 48h 47h 46h
+#endif // USE_PCAL9555A_TW2
 
-#else
-#define USE_MAX7324_TW1         // I/O n. 1
-#define MAX7324_R1_ADDR 0x68
-#define MAX7324_W1_ADDR 0x58
+#define USE_PCAL9555A_TW3       // I/O n. 3
+#ifdef USE_PCAL9555A_TW3
+#define PCAL9555A_ADDR3      0x22 // (0x22<<1) on SAM7 no need
+#define PORT_TW3_CNF	0x0000		//All output
+#define PORT_TW3_PUP	0x00000000	// Reg. 49h 48h 47h 46h
+#endif // USE_PCAL9555A_TW3
 
-#define USE_MAX7324_TW2         // I/O n. 2
-#define MAX7324_R2_ADDR 0x69
-#define MAX7324_W2_ADDR 0x59
+#endif // USE_REAL_BOARD
 
-#endif
-
+#ifdef  USE_EVALUATION_BOARD
+#undef USE_TWI_ON_ARM
+#undef USE_PARAMETERS_ON_TWI
+#endif // USE_EVALUATION_BOARD
 
 #define CNT_PPS         0
 #define CNT_ODOMETER    1
+
 
 // ----------------------------------------------------------------------------
 // ADC options
 // This definition is also used in csema.c/h
 
+#ifdef USE_REAL_BOARD
 #undef USE_ADC_FAST_ON_ARM
-#define USE_ADC_MUX_ON_ARM
+#undef USE_ADC_MUX_ON_ARM
+#endif // USE_REAL_BOARD
+
+#ifdef  USE_EVALUATION_BOARD
+#undef USE_ADC_FAST_ON_ARM
+#undef USE_ADC_MUX_ON_ARM
+#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // CAN options
@@ -180,11 +213,19 @@
 // CLOCK options
 
 // Master Clock
+#ifdef USE_REAL_BOARD
 #define EXTERNAL_CLOCK          16000000   // Exetrnal oscillator MAINCK
+#endif // USE_REAL_BOARD
+
+#ifdef USE_EVALUATION_BOARD
+#define EXTERNAL_CLOCK          18432000   // Exetrnal oscilator MAINCK
+#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // EXTAPI options
+#ifdef USE_REAL_BOARD
 #define USE_PKTMEMBUF
+#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 //	I/O port definition
@@ -198,15 +239,17 @@ extern unsigned short com3err ;
 extern unsigned short usberr ;
 #endif // USE_USB_ON_ARM
 
-// deifne in order to use serial line, undef for USB
+// define in order to use serial line, undef for USB
 #undef USE_TASK0_SERIAL
 
 #ifdef USE_TASK0_SERIAL
 
-#define TK0IPORT COM1IQ 	// Task 0 Input port
-#define TK0OPORT COM1OQ 	// Task 0 Output port (monitor)
-#define TK0ISEM  PORT1SEM	// Task 0 input port semaphore
-#define TK0PERR  com1err	// Task 0 input port error flag
+#define TK0IPORT COM2IQ 	// Task 0 Input port
+#define TK0OPORT COM2OQ 	// Task 0 Output port (monitor)
+#define TK0ISEM  PORT2SEM	// Task 0 input port semaphore
+#define TK0PERR  com2err	// Task 0 input port error flag
+
+#define MONIUNBLOCK { KS_unblock(UARTDRV, UARTDRV) ; }
 
 #else  // USE_TASK0_SERIAL
 
@@ -215,32 +258,16 @@ extern unsigned short usberr ;
 #define TK0ISEM  PORTUSEM	// Task 0 input port semaphore
 #define TK0PERR  usberr	        // Task 0 input port error flag
 
-#endif // USE_TASK0_SERIAL
-
-// Monitor port assignment
-#ifdef USE_TASK0_SERIAL
-
-#ifdef USE_REAL_BOARD
-#define MONITOPORT COM1OQ
-#define MONITIPORT COM1IQ
-#endif // USE_REAL_BOARD
-
-#define MONIUNBLOCK { KS_unblock(UARTDRV, UARTDRV) ; }
-
-#else  // USE_TASK0_SERIAL
-#define MONITOPORT USBOQ
-#define MONITIPORT USBIQ
 #define MONIUNBLOCK { KS_unblock(USBTASK, USBTASK) ; }
 
-//#define MONITOPORT COM1OQ
-//#define MONITIPORT COM1IQ
-//#define MONIUNBLOCK { KS_unblock(UARTDRV, UARTDRV) ; }
-
 #endif // USE_TASK0_SERIAL
 
+#define MONITOPORT TK0OPORT
+#define MONITIPORT TK0IPORT
+
 // modem
-#define MODEMOQ	 COM1OQ
-#define MODEMIQ	 COM1IQ
+//#define MODEMOQ	 COM1OQ
+//#define MODEMIQ	 COM1IQ
 
 // -----------------------------------------------------------------------
 // Task definitions
@@ -280,11 +307,49 @@ MAXTASKS        // evaluate total number
 #define PORT_PIOA       0       // internal digital I/O PORT -A-
 #define PORT_PIOB       1       // internal digital I/O PORT -B-
 
+#ifdef USE_MAX7324_TW1          // I/O n. 1
+#define PORT_TW1        2       // external digital I/O PORT -TW1-
+aa
+#endif // USE_MAX7324_TW1
+#ifdef USE_MAX7324_TW2          // I/O n. 2
+#define PORT_TW2        3       // external digital I/O PORT -TW2-
+#endif // USE_MAX7324_TW2
+
+
+#ifdef USE_PCAL9555A_TW1          // I/O n. 1
+#define PORT_TW1        2       // external digital I/O PORT -TW1-
+#define PORT_PUPTW1    10
+#endif
+#ifdef USE_PCAL9555A_TW2          // I/O n. 2
+#define PORT_TW2        3       // external digital I/O PORT -TW2-
+#define PORT_PUPTW2    11
+#endif
+#ifdef USE_PCAL9555A_TW3          // I/O n. 3
+#define PORT_TW3        4       // external digital I/O PORT -TW3-
+#define PORT_PUPTW3    12
+#endif
+
+
 #ifdef REAL_GYRO
 #define PIO_GYRO	AT91C_PIO_PB20
 #else
 #define PIO_GYRO 	0          // no present
 #endif                         
+
+
+#ifdef USE_EVALUATION_BOARD
+#define LED1            0x1000000
+#define LED2            0x2000000
+#define LED3            0x0100000
+#define LED4            0x0200000
+
+#define PIOA_LED        (LED1)          // Led
+
+#define PIOA_MASK       (LED1 | LED2 | LED3 | LED4)
+#define PIOA_PMASK		PIOA_MASK
+#define PIOB_MASK       (0)
+#define PIOB_PMASK		PIOB_MASK
+#endif // USE_EVALUATION_BOARD
 
 #ifdef USE_REAL_BOARD
 #define LED1            0x00000010
@@ -292,101 +357,144 @@ MAXTASKS        // evaluate total number
 #define LED3            0x00000010
 #define LED4            0x00000010
 #define LED_MASK        (LED1 | LED2 | LED3 | LED4)
-#define BPIOA_LEDR      18
-#define PIOA_LEDR       (1<<BPIOA_LEDR) // red led
 
 #define PIOA_LED        (1<<4)          // Led
-#define PIOA_STAYON     (1<<18)         // set to zero in order to turn off
-#define PIOA_MUX0       (1<<19)         // MUX address 0
-#define PIOA_MUX1       (1<<20)         // MUX address 1
-#define PIOA_MUX2       (1<<21)         // MUX address 2
-#define PIOA_GPSDIFF    (1<<23)         // change GPS input port
+#define BPIOA_LEDR      18
+#define PIOA_LEDR       (1<<BPIOA_LEDR) // red led
+#define PIOA_TTL		(1<<22)
+#define PIOA_CH0ANL		(1<<23)
+// #define PIOA_STAYON     (1<<18)         // set to zero in order to turn off
+// #define PIOA_MUX0       (1<<19)         // MUX address 0
+// #define PIOA_MUX1       (1<<20)         // MUX address 1
+// #define PIOA_MUX2       (1<<21)         // MUX address 2
+// #define PIOA_GPSDIFF    (1<<23)         // change GPS input port
 
-#define PIOA_MASK       (PIOA_LED | PIOA_LEDR | PIOA_STAYON | PIOA_MUX0 | PIOA_MUX1 | PIOA_MUX2 | PIOA_GPSDIFF | \
-                        (1<<30) | (1<<31) /* COM3 not used */ \
-                        )
+// output
+#define PIOA_MASK      (PIOA_LED | PIOA_LEDR | PIOA_TTL | PIOA_CH0ANL )
+//					(PIOA_LED | PIOA_LEDR | PIOA_STAYON | PIOA_MUX0 | PIOA_MUX1 | PIOA_MUX2 | PIOA_GPSDIFF | 
+//                        (1<<30) | (1<<31) /* COM3 not used */ 
+//                        )
+
+// output without pullup                        
 #define PIOA_PMASK		PIOA_MASK
-// Input without pull-up
-#define PIOA_INPMASK (AT91C_PIO_PA2  | AT91C_PIO_PA6  | AT91C_PIO_PA7  | \
-                      AT91C_PIO_PA9  | AT91C_PIO_PA25 |					 \
+// Input without p(!rv)ull-up
+#define PIOA_INPMASK (AT91C_PIO_PA0  | AT91C_PIO_PA1  | AT91C_PIO_PA2  | AT91C_PIO_PA6  |\
+                      AT91C_PIO_PA9  | AT91C_PIO_PA15 | AT91C_PIO_PA17 | AT91C_PIO_PA24 | AT91C_PIO_PA25 |\
                       AT91C_PIO_PA26 | AT91C_PIO_PA28 | AT91C_PIO_PA30 )
 
-#define PIOB_SRV_ON             (1<<0)          // enable RS232 drivers
-#define PIOB_GSM_SOFT_ON        (1<<1)          // GSM soft on
-#define PIOB_AUDIO_OFF          (1<<2)          // GSM Audio off
-#define PIOB_GSM_RST_OFF        (1<<3)          // GSM Reset off
-#define PIOB_CONSPWR_OFF        (1<<4)          // Console power off
-#define PIOB_GPS_OFF            (1<<5)          // GPS power off
-#define PIOB_ACC_BIT0           (1<<6)          // Accelerometer range selection bit 0
-#define PIOB_ACC_BIT1           (1<<7)          // Accelerometer range selection bit 1
-#define PIOB_CAN_OFF            (1<<8)          // CAN driver disable
-#define PIOB_MTS3V_OFF      (1<<13)         	// 3.3V of MTS with CORTEX 
-#define PIOB_RELE_OFF           (1<<29)         // RELE' disable
+// Pull-down ??
 
-#define PIOB_MASK       (PIOB_SRV_ON | PIOB_GSM_SOFT_ON | PIOB_AUDIO_OFF | PIOB_GSM_RST_OFF | \
-                         PIOB_CONSPWR_OFF | PIOB_GPS_OFF | PIOB_ACC_BIT0 | PIOB_ACC_BIT1 |    \
-                         PIOB_CAN_OFF | PIOB_MTS3V_OFF | PIOB_RELE_OFF | \
-                         (1<<9) /* only for extender */ \
-                         )
+#define PIOB_CH2ANL		(1<<1)
+#define PIOB_MTSPRES	(1<<2)
+#define PIOB_AN1AN2		(1<<3)
+#define PIOB_FLOAT		(1<<4)
+#define PIOB_PON		(1<<5)
+#define PIOB_VOLTAMP	(1<<6)
+#define PIOB_NOCOUNT	(1<<7)
+#define PIOB_CAN_OFF    (1<<8)          // CAN driver disable
+#define PIOB_CH1ANL		(1<<9)
+#define PIOB_MTS3V_OFF  (1<<13)         // 3.3V of MTS with CORTEX 
+
+// #define PIOB_SRV_ON             (1<<0)          // enable RS232 drivers
+// #define PIOB_GSM_SOFT_ON        (1<<1)          // GSM soft on
+// #define PIOB_AUDIO_OFF          (1<<2)          // GSM Audio off
+// #define PIOB_GSM_RST_OFF        (1<<3)          // GSM Reset off
+// #define PIOB_CONSPWR_OFF        (1<<4)          // Console power off
+// #define PIOB_GPS_OFF            (1<<5)          // GPS power off
+// #define PIOB_ACC_BIT0           (1<<6)          // Accelerometer range selection bit 0
+// #define PIOB_ACC_BIT1           (1<<7)          // Accelerometer range selection bit 1
+// #define PIOB_RELE_OFF           (1<<29)         // RELE' disable
+
+// output
+#define PIOB_MASK       (PIOB_CH2ANL  | PIOB_MTSPRES | PIOB_AN1AN2 | PIOB_FLOAT | PIOB_PON | \
+						 PIOB_VOLTAMP | PIOB_NOCOUNT | PIOB_CAN_OFF  | PIOB_CH1ANL | PIOB_MTS3V_OFF )
+// 						(PIOB_SRV_ON | PIOB_GSM_SOFT_ON | PIOB_AUDIO_OFF | PIOB_GSM_RST_OFF | 
+//                          PIOB_CONSPWR_OFF | PIOB_GPS_OFF | PIOB_ACC_BIT0 | PIOB_ACC_BIT1 |    
+//                          PIOB_CAN_OFF | PIOB_MTS3V_OFF | PIOB_RELE_OFF | 
+//                          (1<<9) /* only for extender */ 
+//                          )
+// output without pullup                        
 #define PIOB_PMASK		PIOB_MASK
 
 // Input without pull-up	// (AT91C_PIO_PB11)?
-#define PIOB_INPMASK	( AT91C_PIO_PB14 | AT91C_PIO_PB15 | AT91C_PIO_PB16 | \
-                          AT91C_PIO_PB17 | AT91C_PIO_PB18 | AT91C_PIO_PB19 | PIO_GYRO | \
-                          AT91C_PIO_PB21 | AT91C_PIO_PB22 | AT91C_PIO_PB23 | AT91C_PIO_PB25 | \
-                          AT91C_PIO_PB26 | AT91C_PIO_PB28 )
+#define PIOB_INPMASK	( AT91C_PIO_PB10 | AT91C_PIO_PB11 | AT91C_PIO_PB12 | \
+                          AT91C_PIO_PB14 | AT91C_PIO_PB15 | AT91C_PIO_PB16 | \
+                          AT91C_PIO_PB17 | AT91C_PIO_PB18 | AT91C_PIO_PB19 | AT91C_PIO_PB20 | \
+                          AT91C_PIO_PB21 | AT91C_PIO_PB22 | AT91C_PIO_PB23 | AT91C_PIO_PB24 | AT91C_PIO_PB25 | \
+                          AT91C_PIO_PB26 | AT91C_PIO_PB27 | AT91C_PIO_PB28 | AT91C_PIO_PB29 )
 #endif // USE_REAL_BOARD
 
+
+#if defined(USE_NANDFLASH_ON_ARM) || defined(USE_SPI_ON_ARM)
+#define USE_FLASH_DATA
+#endif
+
+#ifdef USE_NANDFLASH_ON_ARM
+#include "NandMap_BUS.h"
+#else	// Serial Flash 
 #ifdef USE_SPI_ON_ARM
-// ----------------------------- Flash map -------------------------------
-// External SPI Flash memory
-//
-// Area         Size      From      To
-// -----------------------------------
-// Upgrade      256k    000000  03ffff
-// Transaction  256k    040000  07ffff
-// Parameters   128k    080000  09ffff
-// Log           96k
-// Crash         64K
-// S.M.          64k
-// Target        64k
-// Free
-
-// Upgrade
-#define CODEFLASH_BEGIN 0x00000
-#define CODEFLASH_END   0x3ffff
-
-// Transactions
-#define USE_TRANSACTIONS_ON_ARM
-#define FLASH_BEGIN     0x40000
-#define FLASH_END       0x7ffff
-#define FLASH_SSIZE     512
-
-// Parameters
-#define PARAM_BEGIN     0x80000
-#define PARAM_END       0x9ffff
-#define PARAM_SSIZE     512
-
-#define CODEFLASH_START CODEFLASH_BEGIN
-#define CODEFLASH_STOP  CODEFLASH_END
-
-#define FLASH_START     FLASH_BEGIN
-#define FLASH_STOP      FLASH_END
-#define FLASH_TSSIZE    (8*512)        // _BM_ 28/8/2008
-#define FLASH_PAGESIZE  FLASH_SSIZE
-#define FLASH_TOTSIZE	(FLASH_STOP-FLASH_START+1)
-
-
-#define PARAM_START PARAM_BEGIN
-#define PARAM_STOP  PARAM_END
-
+#define USE_SERIALFLASH_ON_ARM
+#include "FlashMap_SPI.h"
 #endif // USE_SPI_ON_ARM
+#endif // USE_NANDFLASH_ON_ARM
+
+
+#if defined(USE_NANDFLASH_ON_ARM) && defined(USE_SERIALFLASH_ON_ARM)
+#error "Only one FLASH type must be defined"
+#endif
+
+// #ifdef USE_SPI_ON_ARM
+// // ----------------------------- Flash map -------------------------------
+// // External SPI Flash memory
+// //
+// // Area         Size      From      To
+// // -----------------------------------
+// // Upgrade      256k    000000  03ffff
+// // Transaction  256k    040000  07ffff
+// // Parameters   128k    080000  09ffff
+// // Log           96k
+// // Crash         64K
+// // S.M.          64k
+// // Target        64k
+// // Free
+// 
+// // Upgrade
+// #define CODEFLASH_BEGIN 0x00000
+// #define CODEFLASH_END   0x3ffff
+// 
+// // Transactions
+// #define USE_TRANSACTIONS_ON_ARM
+// #define FLASH_BEGIN     0x40000
+// #define FLASH_END       0x7ffff
+// #define FLASH_SSIZE     512
+// 
+// // Parameters
+// #define PARAM_BEGIN     0x80000
+// #define PARAM_END       0x9ffff
+// #define PARAM_SSIZE     512
+// 
+// #define CODEFLASH_START CODEFLASH_BEGIN
+// #define CODEFLASH_STOP  CODEFLASH_END
+// 
+// #define FLASH_START     FLASH_BEGIN
+// #define FLASH_STOP      FLASH_END
+// #define FLASH_TSSIZE    (8*512)        // _BM_ 28/8/2008
+// #define FLASH_PAGESIZE  FLASH_SSIZE
+// #define FLASH_TOTSIZE	(FLASH_STOP-FLASH_START+1)
+// 
+// 
+// #define PARAM_START PARAM_BEGIN
+// #define PARAM_STOP  PARAM_END
+// 
+// #endif // USE_SPI_ON_ARM
 
 // Internal Flash Code
 #define RUNCODE_START 	((unsigned long)(AT91C_IFLASH))	  	// Internal FLASH base address
 #define RUNCODE_SIZE    AT91C_IFLASH_SIZE	// Internal FLASH size in byte (256 Kbytes)
 
 #define AD_ADC0_MASK  0xff
+
+#define AD_ADC1_MASK  0xff
 
 
 // -----------------------------------------------------------------------

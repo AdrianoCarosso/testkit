@@ -14,12 +14,12 @@
         .func   _enable
 _enable:
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         mov r0, #0
         msr basepri, r0
 
-#else   // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#else   // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      pc
         nop
@@ -33,7 +33,7 @@ _enable32:
         bic     r0,r0,#0x80
         msr     cpsr_c,r0
 
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      lr
 
@@ -51,12 +51,12 @@ _enable32:
         .func   _disable
 _disable:
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         mov r0, #configMAX_SYSCALL_INTERRUPT_PRIORITY
         msr basepri, r0
 
-#else   // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#else   // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      pc
         nop
@@ -70,7 +70,7 @@ _disable32:
         orr     r0,r0,#0x80
         msr     cpsr_c,r0
 
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      lr
 
@@ -88,11 +88,11 @@ _disable32:
         .func   _pushccr
 _pushccr:
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         mrs r0, basepri
 
-#else   // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#else   // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      pc
         nop
@@ -104,7 +104,7 @@ _pushccr:
 _pushccr32:
         mrs     r0,cpsr
 
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      lr
 
@@ -121,11 +121,11 @@ _pushccr32:
         .func   _popccr
 _popccr:
 
-#if defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#if defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         msr basepri, r0
 
-#else   // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#else   // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      pc
         nop
@@ -137,7 +137,7 @@ _popccr:
 _popccr32:
         msr     cpsr_c,r0
 
-#endif // defined(USE_LPC17XX) || defined(USE_AT91SAM3S4)
+#endif // defined(USE_LPC17XX) || defined(USE_LPC1788) || defined(USE_AT91SAM3S4)
 
         bx      lr
 

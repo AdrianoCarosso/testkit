@@ -10,6 +10,7 @@ TASK=main.$(DBG)
 ifndef CPU
 CPU=AT91SAM7A3
 #CPU=AT91SAM7S256
+#CPU=LPC17XX
 endif
 
 # DEBUG may be:         1, 0
@@ -28,22 +29,20 @@ endif
 
 ######################################################
 # select directory options
-
 COS=~/test_kit/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi
+COSPREF=/bin/arm-none-eabi-
+OOCDMTS=$(COS)/tools/OpenOCD/openocd -p 28 -l nul
 
-CC=$(COS)/bin/arm-none-eabi-gcc
-AR=$(COS)/bin/arm-none-eabi-ar
-LK=$(COS)/bin/arm-none-eabi-gcc
-OC=$(COS)/bin/arm-none-eabi-objcopy
-DP=$(COS)/bin/arm-none-eabi-objdump
-SZ=$(COS)/bin/arm-none-eabi-size
-STRIP=$(COS)/bin/arm-none-eabi-strip
+CC=$(COS)$(COSPREF)gcc
+AR=$(COS)$(COSPREF)ar
+LK=$(COS)$(COSPREF)gcc
+OC=$(COS)$(COSPREF)objcopy
+DP=$(COS)$(COSPREF)objdump
+SZ=$(COS)$(COSPREF)size
+STRIP=$(COS)$(COSPREF)strip
 
-# library (.a) file creation command
-AR=$(COS)/bin/arm-none-eabi-ar
-
+#OOCD=$(COS)/tools/OpenOCD/openocd -p 160
 OOCD=$(COS)/tools/openocd-0.7.0/openocd -p 160
-OOCD1=$(COS)/tools/openocd-0.12.0/src/openocd
 
 CP=@cp -p
 RM=@rm -f
@@ -88,8 +87,9 @@ ARFLAGS=rc
 # -mthumb-interwork
 OPTIM=-O2 -fomit-frame-pointer -fpack-struct
 OPTIM=-O2 -fomit-frame-pointer -fno-strict-aliasing
-CCFLAGS=-c -g -I$(KERNELDIR) -I$(DRIVERDIR)  -I./ -D$(DBG) -DUSE_$(CPU) $(OPTIM) -nostartfiles -Wall -Wno-char-subscripts $(THUMB)
-CCFLAGS32=-c -g -I$(KERNELDIR) -I$(DRIVERDIR) -I./ -D$(DBG) -DUSE_$(CPU) $(OPTIM) -nostartfiles -Wall -Wno-char-subscripts $(FULLARM)
+#CCFLAGS=-c -g -I$(KERNELDIR) -I$(DRIVERDIR)  -I./ -D$(DBG) -DUSE_$(CPU) $(OPTIM) -nostartfiles -Wall -Werror $(THUMB)
+CCFLAGS=-c -g -I$(KERNELDIR) -I$(DRIVERDIR)  -I./ -D$(DBG) -DUSE_$(CPU) $(OPTIM) -nostartfiles -Wall $(THUMB)
+CCFLAGS32=-c -g -I$(KERNELDIR) -I$(DRIVERDIR) -I./ -D$(DBG) -DUSE_$(CPU) $(OPTIM) -nostartfiles -Wall -Werror $(FULLARM)
 
 # linker
 LIB_RTXC=rtxc.$(DBG)
@@ -124,9 +124,12 @@ TEMPFILE = ./SendOOCD.script
 all: $(TASK).bin $(TASK).srec
 	@echo "Compile options: CPU=$(CPU) $(THUMB), DEBUG=$(DBGMSG)"
 
+
 srec: $(TASK).srec
 
+
 dump: $(TASK).dump
+
 
 tot:
 	$(WC) -lc ../kernel/*.h ../driver/*.h *.h ../kernel/*.c ../driver/*.c *.c
@@ -143,6 +146,24 @@ clean:
 
 # erase first 128KB: flash erase 0 0 17
 chip: $(TASK).bin
+ifeq ($(CPU),LPC17XX)
+	echo "halt" >$(TEMPFILE)
+	echo "wait_halt" >>$(TEMPFILE)
+	echo "soft_reset_halt" >>$(TEMPFILE)
+	echo "sleep 10" >>$(TEMPFILE)
+	echo "flash probe 0" >>$(TEMPFILE)
+	echo "# erase first 256KB" >>$(TEMPFILE)
+	echo "flash erase_sector 0 0 21" >>$(TEMPFILE)
+	echo "sleep 100" >>$(TEMPFILE)
+	echo "reset run" >>$(TEMPFILE)
+	echo "halt" >>$(TEMPFILE)
+	echo "wait_halt" >>$(TEMPFILE)
+	echo "#sleep 5" >>$(TEMPFILE)
+	echo "soft_reset_halt" >>$(TEMPFILE)
+	echo "flash write_bank 0 $(TASK).bin 0x0" >>$(TEMPFILE)
+	echo "resume" >>$(TEMPFILE)
+	echo "shutdown" >>$(TEMPFILE)
+else
 	echo "halt" >$(TEMPFILE)
 	echo "sleep 10" >>$(TEMPFILE)
 	echo "soft_reset_halt" >>$(TEMPFILE)
@@ -152,6 +173,7 @@ chip: $(TASK).bin
 	echo "resume" >>$(TEMPFILE)
 	echo "reset" >>$(TEMPFILE)
 	echo "shutdown" >>$(TEMPFILE)
+endif
 	$(OOCD) -f SendOOCD.AT91.cfg
 	$(RM) $(TEMPFILE)
 
@@ -161,19 +183,10 @@ chipreset:
 	$(OOCD) -f SendOOCD.AT91.cfg
 	$(RM) $(TEMPFILE)
 
-chip1: $(TASK).bin
-	echo "halt" >$(TEMPFILE)
-	echo "sleep 10" >>$(TEMPFILE)
-	echo "soft_reset_halt" >>$(TEMPFILE)
-	echo "sleep 10" >>$(TEMPFILE)
-	echo "flash probe 0" >>$(TEMPFILE)
-	echo "flash write_bank 0 $(TASK).bin 0x0" >>$(TEMPFILE)
-	echo "resume" >>$(TEMPFILE)
-	echo "reset" >>$(TEMPFILE)
-	echo "shutdown" >>$(TEMPFILE)
-	$(OOCD1) -p 160 -f SendOOCD_2024.AT91.cfg
+setserial:
+	echo "shutdown" >$(TEMPFILE)
+	$(OOCDMTS) -f SendOOCD.AT91.cfg
 	$(RM) $(TEMPFILE)
-
 
 ######################################################
 # KERNEL section
@@ -297,7 +310,8 @@ $(OBJS)/csema.$(OBJEXT): $(DRIVERDIR)/csema.c $(DRIVERDIR)/csema.h $(DRIVERDIR)/
 # drivers
 #
 
-$(OBJS)/drv_clk.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_clk.c $(DRIVERDIR)/cclock.h $(DRIVERDIR)/csema.h $(DRIVERDIR)/extapi.h $(INCLUDE_ASSIGN)
+$(OBJS)/drv_clk.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_clk.c $(DRIVERDIR)/cclock.h $(DRIVERDIR)/csema.h \
+                           $(DRIVERDIR)/extapi.h $(INCLUDE_ASSIGN)
 	$(CC) $(CCFLAGS) $(DRIVERDIR)/$(DRVDIR)/drv_clk.c -o $*.o
 
 $(OBJS)/drv_uart.$(OBJEXT): $(DRIVERDIR)/$(DRVDIR)/drv_uart.c $(DRIVERDIR)/csema.h $(DRIVERDIR)/cqueue.h \
