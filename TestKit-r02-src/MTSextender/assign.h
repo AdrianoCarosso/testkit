@@ -91,8 +91,6 @@
 
 // ****************************************************************************
 // who we are
-
-//#define USE_AT91SAM7A3
 #include "_AT91SAM7A3.h"
 
 #define USE_REAL_BOARD
@@ -178,14 +176,8 @@
 
 #endif // USE_REAL_BOARD
 
-#ifdef  USE_EVALUATION_BOARD
-#undef USE_TWI_ON_ARM
-#undef USE_PARAMETERS_ON_TWI
-#endif // USE_EVALUATION_BOARD
-
 #define CNT_PPS         0
 #define CNT_ODOMETER    1
-
 
 // ----------------------------------------------------------------------------
 // ADC options
@@ -195,11 +187,6 @@
 #undef USE_ADC_FAST_ON_ARM
 #undef USE_ADC_MUX_ON_ARM
 #endif // USE_REAL_BOARD
-
-#ifdef  USE_EVALUATION_BOARD
-#undef USE_ADC_FAST_ON_ARM
-#undef USE_ADC_MUX_ON_ARM
-#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // CAN options

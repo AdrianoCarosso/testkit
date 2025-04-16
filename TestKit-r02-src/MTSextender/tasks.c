@@ -68,8 +68,7 @@ extern void uartstart(int num, unsigned long baud_rate, int mode) ;
 
 //----------------------------------------------------------------------------
 
-void tk0extender(void)
-{
+void tk0extender(void){
     static char usbdata[128] ;          // buffer of data from USB
     int usbidx ;                        // index of buffer
     unsigned long lpmget ;
@@ -103,22 +102,6 @@ void tk0extender(void)
 
     // Peripheral Clock Enable Register for PIO: already done in extapi.c EKS_init()
 
-#ifdef USE_REAL_INPUTS
-#ifdef USE_EVALUATION_BOARD
-    AT91C_BASE_PIOA->PIO_PPUDR = 0x03fc0000 ;    // pull-up disable register
-    AT91C_BASE_PIOB->PIO_PPUDR = 0x18003f00 ;    // pull-up disable register
-#endif // USE_EVALUATION_BOARD
-#endif // USE_REAL_INPUTS
-
-#ifdef USE_REAL_OUTPUTS
-#ifdef USE_EVALUATION_BOARD
-    AT91C_BASE_PIOB->PIO_PER = 0xff ;   // Set in PIO mode
-    AT91C_BASE_PIOB->PIO_PPUDR = 0xff ; // no pull up
-    AT91C_BASE_PIOB->PIO_OER = 0xff ;   // Configure in Output
-    AT91C_BASE_PIOB->PIO_CODR = 0xff ;  // set at 0
-#endif // USE_EVALUATION_BOARD
-#endif // USE_REAL_OUTPUTS
-
 //#ifdef USE_REAL_LEDS
 //    // configure the PIO Lines corresponding to LED1 to LED4 to be outputs
 //    // no need to set these pins to be driven by the PIO because it is GPIO pins only.
@@ -139,27 +122,63 @@ void tk0extender(void)
         // settling time
 
     KS_delay(SELFTASK, ((TICKS)200*CLKRATE/1000)) ;     // skip time
-    Set_LedBlinker(0, 0x0f0f0f0f, 250) ;
+    Set_LedBlinker(0, 0x0f0f0f0f, 50) ;
 
 #ifdef PORT_TW1_CNF
 	dioconfTW() ;
 #endif
 
-//#ifdef USE_REAL_BOARD
 	// Default
     dio_write(PORT_PIOA, PIOA_TTL, 0) ;
 
-    //dio_write(PORT_TW1, 0x80, 0x80) ;
     dio_write(PORT_PIOB, ( PIOB_PON | PIOB_MTSPRES ), 0) ;		// No presence & Vext to MTS
     dio_write(PORT_PIOB, PIOB_MTS3V_OFF, 0) ;					// No 3V to MTS
     dio_write(PORT_PIOB, ( PIOB_VOLTAMP | PIOB_FLOAT ), 0) ;	// Output as mA, dig. output float
     
+    #if 0
     dio_write(PORT_TW2, 0xe37f, 0) ;
     dio_write(PORT_TW2, 0x1c80, 0x1c80) ;
-    dio_write(PORT_TW3, 0xffff, 0xffff) ;
-//#endif // USE_REAL_BOARD
+    #else
+    dio_write(PORT_TW2, 0xe37f, 0) ;
+    dio_write(PORT_TW2, 0x1c80, 0x1c80) ;
 
-        // Init semaphore and timer
+    dio_write(PORT_TW2, 0xFF00, (0xA1<<8) );
+    /*
+    ftdi layout_init 0x0a08 0x0ffb
+    #0x0a08 = 0b0001001 00001000 -- data
+    #0x0ffb = 0b0001111 11111011 -- direction
+    #ftdi layout_signal name [-data|-ndata data_mask] [-input|-ninput input_mask] [-oe|-noe oe_mask] [-alias|-nalias name]
+
+    #ftdi layout_init 0x0248 0x0ffb
+    #0x0e08 = 0b0000010 01001000
+
+    # DLP2232M              pin Signal    Data    Direction       Notes
+    # ADBUS0                TCK           0       1 (out)
+    # ADBUS1                TDI           0       1 (out)
+    # ADBUS2                TDO           0       0 (in)
+    # ADBUS3                TMS           1       1 (out)         JTAG IEEE std recommendation
+
+    # ADBUS4                nSRST         0       1 (out)         Reset CPU
+    # ADBUS5                ENKIT*        0       1 (out)         Enable TestKit                            (active low)
+    # ADBUS6                CPU           1       1 (out)         Choice CPU0/1 (with MOD*=0)
+    # ADBUS7                MOD*          0       1 (out)         Talk to modem (with CPU=0)        (active low)
+
+    # ACBUS0                MDMLCK        0       1 (out)         Lock Modem reset
+    # ACBUS1                ENJ           0       1 (out)         Enable JTAG (otherwise rs232)
+    # ACBUS2                COM1*         0       1 (out)         Connect to COM0                               (active low)
+    # ACBUS3                COMDB         0       1 (out)         Connect to COM1
+    */
+    //dio_write(PORT_TW2, 0x0FFB, 0x0A08 );
+    //dio_write(PORT_TW2, 0xFF00, (0xA0<<8) );
+    //dio_write(PORT_TW2, 0xFF00, (0xB0<<8) );
+    //dio_write(PORT_TW2, 0xFF00, (0xA8<<8) );  // talk to modem
+    //dio_write(PORT_TW2, 0xFF00, (0xA4<<8) ); //talk to CPU 1
+    // CPU GD32F407
+    #endif
+
+    dio_write(PORT_TW3, 0xffff, 0xffff) ;
+
+    // Init semaphore and timer
 
     KS_defqsema(LU0Q, LU0QSEM, QNE) ;           // wake up on no empty
     KS_defqsema(TK0IPORT, TK0ISEM, QNE) ;       // wake up on no empty
@@ -394,13 +413,12 @@ void tk0extender(void)
 
 #define BASE    16
 
-int GetHexValue(const char *cp, int len)
-{
+int GetHexValue(const char *cp, int len){
     int result = 0 ;    // default
     int value ;
 
-    while( (isxdigit(*cp)) &&
-           ((value = isdigit(*cp) ? *cp-'0' : toupper(*cp)-'A'+10) < BASE) &&
+    while( (isxdigit((unsigned char)*cp)) &&
+           ((value = isdigit((unsigned char)*cp) ? *cp-'0' : toupper(*cp)-'A'+10) < BASE) &&
            (len--) ) {
         result = (result * BASE) + value ;
         cp++ ;
@@ -411,8 +429,7 @@ int GetHexValue(const char *cp, int len)
 // -----------------------------------------------------------------------
 // HandleSrecord
 
-void HandleSrecord(const char *linebuff)
-{
+void HandleSrecord(const char *linebuff){
     unsigned char binbuff[40] ;
     int size, addr, i ;
 
@@ -455,8 +472,7 @@ void HandleSrecord(const char *linebuff)
 // HandleCanRead
 
 #ifdef USE_CAN_ON_ARM
-void HandleCanRead(int chn, int mbx)
-{
+void HandleCanRead(int chn, int mbx){
 //    unsigned long canstat ;
     unsigned long can_address ;
     unsigned char can_data[8] ;
@@ -479,8 +495,7 @@ void HandleCanRead(int chn, int mbx)
 // -----------------------------------------------------------------------
 // ParseBuffer
 
-void ParseBuffer(const char *usbbuf)
-{
+void ParseBuffer(const char *usbbuf){
     int i, r ;
     unsigned char c ;
     int outmask, outval ;
@@ -651,7 +666,7 @@ void ParseBuffer(const char *usbbuf)
         outmask = GetHexValue(&usbbuf[i], 99) ;
 
         // next par
-        while(isxdigit(usbbuf[i])) i++ ;
+        while(isxdigit((unsigned char)usbbuf[i])) i++ ;
         while((usbbuf[i] == ' ') || (usbbuf[i] == ',')) i++ ;
 
         // get val
@@ -773,14 +788,14 @@ void ParseBuffer(const char *usbbuf)
         outmask = GetHexValue(&usbbuf[i], 99) ;
 
         // next par
-        while(isxdigit(usbbuf[i])) i++ ;
+        while(isxdigit((unsigned char)usbbuf[i])) i++ ;
         while((usbbuf[i] == ' ') || (usbbuf[i] == ',')) i++ ;
 
         // get val
         outval = GetHexValue(&usbbuf[i], 99) ;
 
         // next par
-        while(isxdigit(usbbuf[i])) i++ ;
+        while(isxdigit((unsigned char)usbbuf[i])) i++ ;
         while((usbbuf[i] == ' ') || (usbbuf[i] == ',')) i++ ;
 
         mode = (toupper(usbbuf[i]) == 'E') ? CAN_FLAG_EXTENDEDADDR : 0 ;
@@ -864,7 +879,7 @@ void ParseBuffer(const char *usbbuf)
         outmask = GetHexValue(&usbbuf[i], 99) & 0xff ;
 
         // next par
-        while(isxdigit(usbbuf[i])) i++ ;
+        while(isxdigit((unsigned char)usbbuf[i])) i++ ;
         while((usbbuf[i] == ' ') || (usbbuf[i] == ',')) i++ ;
 
         // get period val

@@ -1,0 +1,24 @@
+La struttura dell'applicativo Š:
+viene avviato MtsTestKit
+che avvia un secondo task -> collaudo (o program) 
+	vbinterface Š interno a collaudo
+
+	sequence Š interno a MtsTestKit
+
+Inserire il livello di debug all'interno del file mtsTestKit.ini
+oppure
+??inserire la variabile di livello di debug all'interno del "File impostazioni" (<mts>_Setting.txt) ??
+
+se la metto nel Setting.txt posso variare il livello di debug senza chiudere/riavviare MTSTestKit
+ogni volta che viene fatto partire un collaudo, cambiando il file <MTS>_Setting.txt, Š possibile
+modificare il livello di debug.
+
+La struttura TestSet Š privata x collaudo (popolata da SK_GetIniInfo();)
+ed aggiungo la variabile leveldebug -> 'TestSet.leveldebug'
+
+la variabile 'Gdata.leveldebug' invece Š usata in mts_tk_man.c
+
+aggiungere una funzione:
+	SetLevelDebug in vbinterface.c ( come SetINIKeyVal)
+e	l'analoga doSetLevelDebug	in sequence.c (come doSetINIKeyVal)
+	che setta 'Gdata.leveldebug' con il valore di 'TestSet.leveldebug'

@@ -303,9 +303,6 @@ unsigned short retval ;
 
 	KS_unlock(TWIPORT) ;        // we trust with
 	
-#ifdef PORT_TW_DEBUG
-	printf("dioconfTW end\n") ;
-#endif
 	return(retval) ;
 }
 #endif // #ifdef PORT_TW1_CNF
@@ -318,8 +315,7 @@ unsigned short retval ;
 //      2       external optional MAX7324 TW1, 8 input data bit + 8 input flag bit + 8 output data bit
 //      3       external optional MAX7324 TW2, 8 input data bit + 8 input flag bit + 8 output data bit
 
-unsigned long dio_read(int port)
-{
+unsigned long dio_read(int port) {
 unsigned long retval = 0 ;
 #ifdef USE_PCAL9555A_TW1
 unsigned char *lcc ;
@@ -352,48 +348,14 @@ unsigned char *lcc ;
         }
         break ;
 #endif // USE_PCAL9555A_TW1
-#ifdef USE_MAX7324_TW1          // I/O n. 1
-    case PORT_TW1:     // TWI-1
-        {
-            TWI_receive(MAX7324_R1_ADDR, ((unsigned char *)(&retval)), 2) ;
-            TWI_receive(MAX7324_W1_ADDR, ((unsigned char *)(&retval))+2, 1) ;
-            retval |= (tw1in_change & 0xff00) ;
-            tw1in_change = 0 ;
-            // PER DEBUG
-#ifdef USE_PDEBUG_ // FFFR
-    {
-        extern char cbugflag ;
-		if (retval & 0xff00){
-			if (!cbugflag) pdebugt(1,"----FLAG TW1 0x%lx", retval) ;
-		}
-	}
-#endif // #ifdef USE_PDEBUG
-            
-            // PER DEBUG
-        }
-        break ;
-#endif // USE_MAX7324_TW1
-
 #ifdef USE_PCAL9555A_TW2
     case PORT_TW2 : // TWI-1
         {
-            //KS_lockw(TWIPORT) ;         // we trust with
-			TWI_txrx(PCAL9555A_ADDR2,  0x4C, &lcc[2], 2) ;
-            TWI_txrx(PCAL9555A_ADDR2, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
-            //KS_unlock(TWIPORT) ;        // we trust with
+        TWI_txrx(PCAL9555A_ADDR2,  0x4C, &lcc[2], 2) ;
+        TWI_txrx(PCAL9555A_ADDR2, 0x100, &lcc[0], 2 ) ; // ((unsigned char *)(&retval)), 2) ;
         }
         break ;
 #endif // USE_PCAL9555A_TW2
-#ifdef USE_MAX7324_TW2          // I/O n. 2
-    case PORT_TW2:     // TWI-2
-        {
-            TWI_receive(MAX7324_R2_ADDR, ((unsigned char *)(&retval)), 2) ;
-            TWI_receive(MAX7324_W2_ADDR, ((unsigned char *)(&retval))+2, 1) ;
-            retval |= (tw2in_change & 0xff00) ;
-            tw2in_change = 0 ;
-        }
-        break ;
-#endif // USE_MAX7324_TW2
 #ifdef USE_PCAL9555A_TW2
     case PORT_TW3 : // TWI-1
         {
@@ -488,28 +450,9 @@ void dio_write(int port, int pmask, int pval)
 		break ;
 #endif // PORT_PUPTW1
 
-#ifdef USE_MAX7324_TW1  // I/O n. 1
-    case PORT_TW1:              // TWI-1
-        {
-            unsigned char c ;
-            // old value
-            TWI_receive(MAX7324_W1_ADDR, &c, 1) ;
-            // change value
-            c |= (pmask & pval) ;
-            c &= ((~pmask) | pval) ;
-            // new value
-            TWI_send(MAX7324_W1_ADDR, &c, 1) ;
-        }
-        break ;
-#endif // USE_MAX7324_TW1
-
 #ifdef USE_PCAL9555A_TW2
-	case PORT_TW2 : // TWI-1
+	case PORT_TW2 :
 		{
-// 			unsigned short * ls ;
-// 
-// 			ls = (unsigned short *) &lbuf[1] ;
-// 			//KS_lockw(TWIPORT) ;         // we trust with
 			TWI_txrx(PCAL9555A_ADDR2, 0x100, ((unsigned char *)(&retval)), 2) ;
 //			printf("set tw2: 0x%04x 0x%04x 0x%04x\n", retval, (~pmask), pval ) ;
 			retval &= (~pmask) ;
@@ -520,10 +463,10 @@ void dio_write(int port, int pmask, int pval)
 			lbuf[2] = (retval>>8) & 0xff ;
 //			printf("set tw2 to 0x%04x\n", retval ) ;
 			TWI_send(PCAL9555A_ADDR2, lbuf, 3) ;
-			//KS_unlock(TWIPORT) ;        // we trust with
 		}
 		break ;
 #endif // USE_PCAL9555A_TW2
+
 #ifdef PORT_PUPTW2
 	case PORT_PUPTW2:
 		TWI_txrx(PCAL9555A_ADDR2, 0x46, &lcc[0], 2) ; // Read actual status

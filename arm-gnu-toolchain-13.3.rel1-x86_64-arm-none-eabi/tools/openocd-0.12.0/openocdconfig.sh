@@ -2,8 +2,8 @@
 # libftdi is required
 #
 # SEGGER J-Link
-# sudo src/openocd -f tcl/interface/ftdi/RF_ft2232.cfg -f tcl/target/stm32f4x.cfg
-# openocd -f tcl/interface/ftdi/swd-resistor-hack2.cfg -f tcl/target/nrf52.cfg
+# sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/gd32f30x.cfg
+# sudo openocd -f tcl/interface/ftdi/swd-resistor-hack2.cfg -f tcl/target/nrf52.cfg
 #
 # reset halt
 # flash write_image erase /home/name/ncs/app/BlueNor_240123/Source/BLE-MTS06/build/zephyr/zephyr.elf

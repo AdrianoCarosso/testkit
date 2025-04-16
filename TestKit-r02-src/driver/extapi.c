@@ -2275,21 +2275,6 @@ long i ;
         case SD_STDBYRINGCH     :	// standby mode with battery charge end GSM int standby
         case SD_SLEEPRINGCH     :	// turn off mode with battery charge end GSM int standby
 
-//            // disable serials
-//            dio_write(PORT_PIOB, PIOB_SRV_ON, 0) ;
-//
-//            if ((sd_mode==SD_STDBYCH) || (sd_mode==SD_TURNOFFCH)) {
-//                // Charge on
-//                dio_write(PORT_TW2, (1<<0), (0<<0)) ;
-//                // Ext alim on
-//                dio_write(PORT_TW1, (1<<3), (0<<3)) ;
-//            } else {
-//                // Charge off
-//                dio_write(PORT_TW2, (1<<0), (1<<0)) ;
-//                // Ext alim off
-//                dio_write(PORT_TW1, (1<<3), (1<<3)) ;
-//            }
-//
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DEBUG
 
             // Shutdown
@@ -2299,32 +2284,6 @@ long i ;
             for( ; ; ) ;    // just t be sure
 #endif // defined(USE_AT91SAM7A3)
 #ifndef USE_LOW_POWER
-#if defined(USE_LPC17XX)
-//			GPIO2->FIOCLR = (1<<9) ; // LED ON
-			SCB->SCR |= 4 ;			 // SLEEPDEEP enabled
-			SC->PCON = (0x2 | 0x1) ;   // deep power down mode at WFI with brown out
-    	    while (!(SC->PCON & 0x400)){
-				__WFI() ; // Not needed
-				
-			}
-//			GPIO2->FIOSET = (1<<9) ; // LED OFF
-			
-//            DISABLE ;       // no more interrupts
-            for( ; ; ) ;    // just t be sure
-#endif	// defined(USE_LPC17XX) || defined(USE_LPC1788)
-#if defined(USE_LPC1788)
-//			GPIO2->FIOCLR = (1<<9) ; // LED ON
-			SCB->SCR |= 4 ;			 // SLEEPDEEP enabled
-			LPC_SC->PCON = 0x2 | 0x1 ;   // NO-BOD, deep sleep mode at WFI
-    	    while (!(LPC_SC->PCON & 0x400)){
-				__WFI() ; // Not needed
-				
-			}
-//			GPIO2->FIOSET = (1<<9) ; // LED OFF
-			
-//            DISABLE ;       // no more interrupts
-            for( ; ; ) ;    // just t be sure
-#endif	// defined(USE_LPC17XX) || defined(USE_LPC1788)
             break ;
 #endif // ifndef USE_LOW_POWER
 
@@ -2332,6 +2291,7 @@ long i ;
         case SD_LOWPOWER :
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ DEBUG
 #if defined(USE_AT91SAM7A3)
+#error
             // disable serials
             dio_write(PORT_PIOB, PIOB_SRV_ON, 0) ;
 
