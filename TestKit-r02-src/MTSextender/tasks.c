@@ -139,19 +139,16 @@ void tk0extender(void){
     dio_write(PORT_TW2, 0xe37f, 0) ;
     dio_write(PORT_TW2, 0x1c80, 0x1c80) ;
     #else
-    dio_write(PORT_TW2, 0xe37f, 0) ;
-    dio_write(PORT_TW2, 0x1c80, 0x1c80) ;
-
     dio_write(PORT_TW2, 0xFF00, (0xA1<<8) );
+    //dio_write(PORT_TW2, 0xFF00, (0xA0<<8) );    // no
+    //dio_write(PORT_TW2, 0xFF00, (0x20<<8) );    // no
     /*
     ftdi layout_init 0x0a08 0x0ffb
     #0x0a08 = 0b0001001 00001000 -- data
     #0x0ffb = 0b0001111 11111011 -- direction
-    #ftdi layout_signal name [-data|-ndata data_mask] [-input|-ninput input_mask] [-oe|-noe oe_mask] [-alias|-nalias name]
-
-    #ftdi layout_init 0x0248 0x0ffb
-    #0x0e08 = 0b0000010 01001000
-
+    
+    ftdi layout_init 0x0218 0x0ffb
+    
     # DLP2232M              pin Signal    Data    Direction       Notes
     # ADBUS0                TCK           0       1 (out)
     # ADBUS1                TDI           0       1 (out)
