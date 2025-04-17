@@ -87,7 +87,7 @@
 // who we are
 
 #define SOFTREL         2       // current release.subrel
-#define SUBSREL         3
+#define SUBSREL         4
 
 // ****************************************************************************
 // who we are
