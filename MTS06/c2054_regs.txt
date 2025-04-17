@@ -1,0 +1,52 @@
+#define	APB1_BUS_BASE				((uint32_t)0x40000000U)		   /*!<	apb1 base address				*/
+#define	PMU_BASE					(APB1_BUS_BASE + 0x00007000U)  /*!<	PMU	base address				*/
+0x40007000
+0x00007000
+
+#define	APB2_BUS_BASE				((uint32_t)0x40010000U)		   /*!<	apb2 base address				*/
+
+#define	EXTI_BASE					(APB2_BUS_BASE + 0x00003C00U)  /*!<	EXTI base address				*/
+#define EXTI_PD					REG32(EXTI + 0x14U)				/*!< pending register */
+
+0x40013C14
+0x00003C00
+
+
+#define	SYSCFG_BASE					(APB2_BUS_BASE + 0x00003800U)  /*!<	SYSCFG base	address				*/
+#define	SYSCFG_EXTISS0			REG32(SYSCFG + 0x08U)		/*!< EXTI sources selection register 0	*/
+#define	SYSCFG_EXTISS1			REG32(SYSCFG + 0x0CU)		/*!< EXTI sources selection register 1	*/
+#define	SYSCFG_EXTISS2			REG32(SYSCFG + 0x10U)		/*!< EXTI sources selection register 2	*/
+#define	SYSCFG_EXTISS3			REG32(SYSCFG + 0x14U)		/*!< EXTI sources selection register 3	*/
+
+0x40013800
+0x00003800
+
+#define	AHB1_BUS_BASE				((uint32_t)0x40020000U)		   /*!<	ahb1 base address				*/
+#define	RCU_BASE					(AHB1_BUS_BASE + 0x00003800U)  /*!<	RCU	base address				*/
+#define RCU_APB2EN				REG32(RCU + 0x44U)			/*!< APB2 enable register */
+
+0x40023844
+
+PIOD
+0x40020c10
+
+BC
+mww 0x40020c28
+
+BOP
+mww 0x40020c18 0x2000
+D13
+
+bp 0x08000b5c 2 hw                GD_dsleep
+bp 0x0803d838 2 hw               diostart
+bp 0x0803d954 2 hw              dio_read
+                
+
+#define	APB1_BUS_BASE				((uint32_t)0x40000000U)		   /*!<	apb1 base address				*/
+#define	RTC_BASE					(APB1_BUS_BASE + 0x00002800U)  /*!<	RTC	base address				*/
+#define BKP_DATA0_9(number)		REG32((RTC) + 0x50U + (number) * 0x04U)
+
+0x40002850
+0x00002800
+		50
+		
