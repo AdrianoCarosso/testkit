@@ -13,12 +13,6 @@ case "$1" in
 
     -s)
 	cd ~/test_kit/MTS06
-	cp $2 code.gd32f3.bin
-	sudo openocd -f ./SendOOCD.gd32f3.cfg $3
-	;;
-
-    -r)
-	cd ~/test_kit/MTS06
 	if [ "$2" != "" ] ; then
 		cp $2 code.gd32f4.bin
 	fi
@@ -33,8 +27,7 @@ case "$1" in
     *)
       echo "usage: $0	-b open sw session to nrf52 (use <adapter assert srst> command when test-kit connected "
       echo "		-o open jtag session to stm32"
-      echo "		-s <firmware.bin> send firmware to GD32F407 cpu"
-      echo "		-r send code.gd32f4.bin to GD32F407 cpu"
+      echo "		-s send code.gd32f4.bin to GD32F407 cpu"
       echo "		-p send zephyr.hex to nrf52832 cpu"
       exit 0
 	;;

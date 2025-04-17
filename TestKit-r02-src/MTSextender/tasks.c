@@ -139,8 +139,8 @@ void tk0extender(void){
     dio_write(PORT_TW2, 0xe37f, 0) ;
     dio_write(PORT_TW2, 0x1c80, 0x1c80) ;
     #else
-    dio_write(PORT_TW2, 0xFF00, (0xA1<<8) );
-    //dio_write(PORT_TW2, 0xFF00, (0xA0<<8) );    // no
+    //dio_write(PORT_TW2, 0xFF00, (0xA1<<8) );      // ok 
+    dio_write(PORT_TW2, 0xFF00, (0xA0<<8) );    // no
     //dio_write(PORT_TW2, 0xFF00, (0x20<<8) );    // no
     /*
     ftdi layout_init 0x0a08 0x0ffb

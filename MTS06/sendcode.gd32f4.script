@@ -9,8 +9,10 @@ stm32f4x mass_erase 0
 reset halt
 sleep 10
 flash write_bank 0 code.gd32f4.bin 0x0
-echo "Code sended"
+echo "---------"
+echo "Code sent"
+echo "---------"
 sleep 10
 flash protect 0 0 11 on
-reset halt
+reset run
 
