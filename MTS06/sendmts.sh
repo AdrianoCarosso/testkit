@@ -8,6 +8,7 @@ case "$1" in
 
     -o)
 	cd ~/test_kit/MTS06
+	#sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/stm32f4x.cfg -c init -c "reset init" -c "adapter assert srst"
 	sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/stm32f4x.cfg
 	;;
 
