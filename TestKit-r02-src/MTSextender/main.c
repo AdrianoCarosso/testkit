@@ -178,12 +178,10 @@ volatile unsigned long perf_last ;
 // AT91F_Console_Init
 
 #ifdef USE_DIRECT_USART
-void AT91F_Console_Init(unsigned long baud_rate)
-{
+void AT91F_Console_Init(unsigned long baud_rate) {
     AT91PS_USART UART_BASE ;
     unsigned long baud_value ;
 
-#ifdef USE_REAL_BOARD
     AT91C_BASE_PMC->PMC_PCER = (1 << (AT91C_ID_US1)) ;  // enable
 
     UART_BASE = AT91C_BASE_US1 ;        // base address
@@ -191,16 +189,6 @@ void AT91F_Console_Init(unsigned long baud_rate)
     AT91C_BASE_PIOA->PIO_ASR = (unsigned long)(AT91C_PA7_RXD1 | AT91C_PA8_TXD1) ;
     // PIO A: disable register
     AT91C_BASE_PIOA->PIO_PDR = (unsigned long)(AT91C_PA7_RXD1 | AT91C_PA8_TXD1) ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    UART_BASE = AT91C_BASE_DBGU ;        // base address
-    // PIO A: Peripheral A select register
-    AT91C_BASE_PIOA->PIO_ASR = (unsigned long)(AT91C_PA31_DTXD | AT91C_PA30_DRXD) ;
-    // PIO A: disable register
-    AT91C_BASE_PIOA->PIO_PDR = (unsigned long)(AT91C_PA31_DTXD | AT91C_PA30_DRXD) ;
-#endif // USE_EVALUATION_BOARD
-
     // Disable interrupts
     UART_BASE->US_IDR = (unsigned int) -1 ;
 
@@ -230,16 +218,11 @@ void AT91F_Console_Init(unsigned long baud_rate)
 
 //----------------------------------------------------------------------------
 
-void maintask(void)
-{
-    int i ;
+void maintask(void){
+  int i ;
     
-    //AT91F_LowLevelInit() ;
 	LowLevelInit() ;
-
-
-    AT91F_CLOCKinit(48000000) ;
-	
+  AT91F_CLOCKinit(48000000) ;	
 
 #ifdef USE_DIRECT_USART
     AT91F_Console_Init(19200) ;
@@ -266,8 +249,6 @@ void maintask(void)
 #endif // USE_CAN_ON_ARM
 
     EKS_init(LU_TOT) ;	// Extended functions init
-
-#ifdef USE_REAL_BOARD
     // GSM
     uartstart(/* com = */ 0, /* baud_rate = */ 9600 /* test rs485 115200 */ /*38400*/ /*57600*/,
               /* mode =  AT91C_US_USMODE_HWHSH | */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
@@ -285,8 +266,6 @@ void maintask(void)
     // GPS
     uartstart(/* com = */ 3, /* baud_rate = */ 9600,
               /* mode = */ AT91C_US_NBSTOP_1_BIT | AT91C_US_PAR_NONE | AT91C_US_CHRL_8_BITS) ;
-#endif // USE_REAL_BOARD
-
 
 // -----------------------------------------------------------------------
 // Are we ready? Let's the dance open!
@@ -336,16 +315,9 @@ void maintask(void)
 
 //----------------------------------------------------------------------------
 
-int putchar(int c)
-{
+int putchar(int c) {
 #ifdef USE_DIRECT_USART
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
-
     while (!(UART_BASE->US_CSR & AT91C_US_TXRDY)) ;
     UART_BASE->US_THR = c & 0x1ff ;
 #else // USE_DIRECT_USART
@@ -356,16 +328,9 @@ int putchar(int c)
 
 //----------------------------------------------------------------------------
 
-int getchar(void)
-{
+int getchar(void) {
 #ifdef USE_DIRECT_USART
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
-
     while (!(UART_BASE->US_CSR & AT91C_US_RXRDY)) ;
     return(UART_BASE->US_RHR) ;
 #else // USE_DIRECT_USART

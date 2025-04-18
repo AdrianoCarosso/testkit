@@ -623,15 +623,6 @@ void usbtask(void)
     // Install interrupt handler
     AT91F_AIC_Configure(AT91C_ID_UDP, USB_INTERRUPT_LEVEL, AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL/*AT91C_AIC_SRCTYPE_INT_POSITIVE_EDGE*/, usbdrv) ;
 
-#ifdef USE_EVALUATION_BOARD
-    // Enable UDP PullUp (USB_DP_PUP) : enable & Clear of the corresponding PIO
-    // Set in PIO mode and Configure in Output
-    AT91C_BASE_PIOB->PIO_PER = AT91C_PIO_PB1 ; // Set in PIO mode
-    AT91C_BASE_PIOB->PIO_OER = AT91C_PIO_PB1 ; // Configure in Output
-    // Clear for set the Pullup resistor
-    AT91C_BASE_PIOB->PIO_CODR = AT91C_PIO_PB1 ;
-#endif // USE_EVALUATION_BOARD
-
 	// Main loop
 
     // pdebugt(1,SELFTASK, "Main loop") ;

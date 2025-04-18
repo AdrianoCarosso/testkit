@@ -18,17 +18,28 @@ case "$1" in
 	fi
 	sudo openocd -f SendOOCD.gd32f4.cfg $3
 	;;
-    -p)
+    -k)
 	cd ~/test_kit/MTS06
 	sudo openocd -f tcl/interface/ftdi/MTS16_BLE.cfg -f tcl/target/nrf52.cfg -c init -c "reset init" -c halt -c "nrf5 mass_erase" -c "program zephyr.hex verify" -c reset -c exit
 	;;
 
+    -z)
+	cd ~/test_kit/MTS06
+	sudo openocd -f tcl/interface/ftdi/MTS16_BLE.cfg -f tcl/target/nrf52.cfg -c init -c "reset init" -c halt -c "nrf5 mass_erase" -c "program Button0832.hex verify" -c reset -c exit
+	;;
+
+    -p)
+	cd ~/test_kit/MTS06
+	sudo openocd -f tcl/interface/ftdi/MTS16_BLE.cfg -f tcl/target/nrf52.cfg -c init -c "reset init" -c halt -c "nrf5 mass_erase" -c "program merged.hex verify" -c reset -c exit
+	;;
 
     *)
-      echo "usage: $0	-b open sw session to nrf52 (use <adapter assert srst> command when test-kit connected "
-      echo "		-o open jtag session to stm32"
+      echo "usage: $0	-b open sw session to nrf52"
+      echo "		-o open jtag session to stm32 (use <adapter assert srst> command before program nrf52)"
       echo "		-s send code.gd32f4.bin to GD32F407 cpu"
-      echo "		-p send zephyr.hex to nrf52832 cpu"
+      echo "		-k send zephyr.hex to nrf52832 cpu"
+      echo "		-z send Button0832.hex to nrf52832 cpu"
+      echo "		-p send merged.hex to nrf52832 cpu"
       exit 0
 	;;
 esac

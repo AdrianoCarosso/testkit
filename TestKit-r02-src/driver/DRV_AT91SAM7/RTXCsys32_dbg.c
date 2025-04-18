@@ -44,15 +44,9 @@ void AT91F_WATCHDOGinit(void)
 // Show essential data at Data Abort
 
 //#ifdef CBUG
-static void PrintHeader(const char *p)
-{
+static void PrintHeader(const char *p) {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address
@@ -64,15 +58,9 @@ static void PrintHeader(const char *p)
     }
 }
 
-static void PrintHex(unsigned long v)
-{
+static void PrintHex(unsigned long v){
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address
@@ -95,20 +83,14 @@ static void PrintHex(unsigned long v)
 //unsigned long lastirq ;
 unsigned long regcopy[15] ;
 
-void AT91F_DataAbort(int apc, int type)
-{
+void AT91F_DataAbort(int apc, int type){
     const char *p1 = "\r\n*** Abort " ;
     const char *p2 = ": PC=" ;
     const char *p3 = ", MC_ASR=" ;
     const char *p4 = ", MC_AASR=" ;
     const char *p5 = " ***\r\n" ;
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address

@@ -1994,10 +1994,8 @@ unsigned long EKS_FlashFree(void)
 
 #endif // ( defined(USE_SPI_ON_ARM) && defined(USE_SERIALFLASH_ON_ARM) )
 
-//#ifdef NOT_IMPLEMENTED
 // Check Flash checksum
-unsigned short EKS_FlashCheckSum(void)
-{
+unsigned short EKS_FlashCheckSum(void) {
         unsigned long faddr ;
         unsigned short chk ;
 
@@ -2010,11 +2008,9 @@ unsigned short EKS_FlashCheckSum(void)
 
         return(chk) ;
 }
-//#endif // NOT_IMPLEMENTED
 
 #if defined(USE_PKTMEMBUF) || defined(CBUG)
-struct PKTMEMBUF * EKS_PktBufMyTime(time_t giventime, char type)
-{
+struct PKTMEMBUF * EKS_PktBufMyTime(time_t giventime, char type){
 struct PKTMEMBUF * ppm ;
 char * p ;
 char mtot ; // , c_crc ;
@@ -2165,8 +2161,7 @@ void EKS_AskShutdown(unsigned char mode)
 
 //----------------------------------------------------------------------------
 // Task agrees shutdown
-void EKS_AgreeShutdown(void)
-{
+void EKS_AgreeShutdown(void) {
 long i ;
 //time_t time_wd ;
 

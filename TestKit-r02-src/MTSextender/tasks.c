@@ -99,30 +99,10 @@ void tk0extender(void){
 	
     lastm = monidx = 0  ;
 #endif
-
-    // Peripheral Clock Enable Register for PIO: already done in extapi.c EKS_init()
-
-//#ifdef USE_REAL_LEDS
-//    // configure the PIO Lines corresponding to LED1 to LED4 to be outputs
-//    // no need to set these pins to be driven by the PIO because it is GPIO pins only.
-//    AT91C_BASE_PIOA->PIO_PER = LED_MASK ; // Set in PIO mode
-//    AT91C_BASE_PIOA->PIO_OER = LED_MASK ; // Configure in Output
-//    AT91C_BASE_PIOA->PIO_PPUDR = LED_MASK ;// no pull up
-//
-//    // set at 1 (turn led off)
-//    //AT91C_BASE_PIOA->PIO_SODR = LED_MASK ;
-//    // set at 0 (turn led on)
-//    AT91C_BASE_PIOA->PIO_CODR = LED_MASK ;
-//#endif // USE_REAL_LEDS
-
-    //printf("Start: 0x%x\n", AT91C_BASE_RSTC->RSTC_RSR) ;
-
-    //KS_signal(CBUGSEMA) ;        // wake up debugger now
-
-        // settling time
+    // settling time
 
     KS_delay(SELFTASK, ((TICKS)200*CLKRATE/1000)) ;     // skip time
-    Set_LedBlinker(0, 0x0f0f0f0f, 50) ;
+    Set_LedBlinker(0, 0x08080808, 50) ;
 
 #ifdef PORT_TW1_CNF
 	dioconfTW() ;

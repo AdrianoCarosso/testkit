@@ -87,18 +87,11 @@
 // who we are
 
 #define SOFTREL         2       // current release.subrel
-#define SUBSREL         4
+#define SUBSREL         5
 
 // ****************************************************************************
 // who we are
 #include "_AT91SAM7A3.h"
-
-#define USE_REAL_BOARD
-#undef  USE_EVALUATION_BOARD
-
-#if defined(USE_EVALUATION_BOARD) && defined(USE_REAL_BOARD)
-#error "Only one BOARD must be defined"
-#endif
 
 // -----------------------------------------------------------------------
 // Performance options
@@ -115,16 +108,12 @@
 
 // ----------------------------------------------------------------------------
 // LED options
-#if defined(USE_REAL_BOARD)
 #define USE_LED_BLINKER
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // SPI options
-#if defined(USE_REAL_BOARD)
 #define USE_SPI_ON_ARM
 #define USE_PARAMETERS_ON_FLASH
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // USB options
@@ -135,7 +124,6 @@
 // TWI options
 // This definition is also used in csema.c/h
 
-#ifdef USE_REAL_BOARD
 #define USE_TWI_ON_ARM
 #undef  USE_PARAMETERS_ON_TWI
 
@@ -174,8 +162,6 @@
 #define PORT_TW3_PUP	0x00000000	// Reg. 49h 48h 47h 46h
 #endif // USE_PCAL9555A_TW3
 
-#endif // USE_REAL_BOARD
-
 #define CNT_PPS         0
 #define CNT_ODOMETER    1
 
@@ -183,10 +169,8 @@
 // ADC options
 // This definition is also used in csema.c/h
 
-#ifdef USE_REAL_BOARD
 #undef USE_ADC_FAST_ON_ARM
 #undef USE_ADC_MUX_ON_ARM
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 // CAN options
@@ -200,19 +184,11 @@
 // CLOCK options
 
 // Master Clock
-#ifdef USE_REAL_BOARD
 #define EXTERNAL_CLOCK          16000000   // Exetrnal oscillator MAINCK
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-#define EXTERNAL_CLOCK          18432000   // Exetrnal oscilator MAINCK
-#endif // USE_EVALUATION_BOARD
 
 // ----------------------------------------------------------------------------
 // EXTAPI options
-#ifdef USE_REAL_BOARD
 #define USE_PKTMEMBUF
-#endif // USE_REAL_BOARD
 
 // ----------------------------------------------------------------------------
 //	I/O port definition
@@ -323,29 +299,13 @@ aa
 #define PIO_GYRO 	0          // no present
 #endif                         
 
-
-#ifdef USE_EVALUATION_BOARD
-#define LED1            0x1000000
-#define LED2            0x2000000
-#define LED3            0x0100000
-#define LED4            0x0200000
-
-#define PIOA_LED        (LED1)          // Led
-
-#define PIOA_MASK       (LED1 | LED2 | LED3 | LED4)
-#define PIOA_PMASK		PIOA_MASK
-#define PIOB_MASK       (0)
-#define PIOB_PMASK		PIOB_MASK
-#endif // USE_EVALUATION_BOARD
-
-#ifdef USE_REAL_BOARD
 #define LED1            0x00000010
 #define LED2            0x00000010
 #define LED3            0x00000010
 #define LED4            0x00000010
 #define LED_MASK        (LED1 | LED2 | LED3 | LED4)
 
-#define PIOA_LED        (1<<4)          // Led
+#define PIOA_LED        (1<<4)          // green Led
 #define BPIOA_LEDR      18
 #define PIOA_LEDR       (1<<BPIOA_LEDR) // red led
 #define PIOA_TTL		(1<<22)
@@ -409,8 +369,6 @@ aa
                           AT91C_PIO_PB17 | AT91C_PIO_PB18 | AT91C_PIO_PB19 | AT91C_PIO_PB20 | \
                           AT91C_PIO_PB21 | AT91C_PIO_PB22 | AT91C_PIO_PB23 | AT91C_PIO_PB24 | AT91C_PIO_PB25 | \
                           AT91C_PIO_PB26 | AT91C_PIO_PB27 | AT91C_PIO_PB28 | AT91C_PIO_PB29 )
-#endif // USE_REAL_BOARD
-
 
 #if defined(USE_NANDFLASH_ON_ARM) || defined(USE_SPI_ON_ARM)
 #define USE_FLASH_DATA

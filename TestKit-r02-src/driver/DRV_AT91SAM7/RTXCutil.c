@@ -219,13 +219,7 @@ void AT91F_CLOCKinit(unsigned long desired_clock)
 void ProgramCopy(void)
 {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_SPI const pSPI = AT91C_BASE_SPI ;
@@ -252,14 +246,8 @@ void ProgramCopy(void)
     for(pg=0 ; pg<AT91C_IFLASH_NB_OF_PAGES ; pg++) {
 
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
         // NPCS0 --\__
         AT91C_BASE_PIOA->PIO_CODR = AT91C_PA11_SPI0_NPCS0 ;
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-        // NPCS3 --\__
-        AT91C_BASE_PIOA->PIO_CODR = AT91C_PA7_SPI1_NPCS3 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
         // NPCS0 --\__
@@ -320,14 +308,8 @@ void ProgramCopy(void)
         }
 
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
         // NPCS0 __/--
         AT91C_BASE_PIOA->PIO_SODR = AT91C_PA11_SPI0_NPCS0 ;
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-        // NPCS3 __/--
-        AT91C_BASE_PIOA->PIO_SODR = AT91C_PA7_SPI1_NPCS3 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
         // NPCS0 __/--

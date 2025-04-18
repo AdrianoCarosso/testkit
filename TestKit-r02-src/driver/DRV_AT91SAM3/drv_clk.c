@@ -56,8 +56,7 @@ void RTT_IrqHandler(void)
 
 //----------------------------------------------------------------------------
 // Tick Interrupt routine
-void xPortSysTickHandler(void)
-{
+void xPortSysTickHandler(void){
 
     if (!(--ratecnt)) {
         rtctime++ ;             // update second counter
@@ -109,8 +108,7 @@ void xPortSysTickHandler(void)
 // LowLevelInit
 // This function performs very low level HW initialization
 
-void LowLevelInit(void)
-{
+void LowLevelInit(void){
     DISABLE ;
     //__disable_irq();
 
@@ -141,8 +139,7 @@ void clkstart(int lowpowermode)
 // -----------------------------------------------------------------------------
 // tick wait function
 
-void tickwait(int udelay)
-{
+void tickwait(int udelay){
     long tstart, tnow, tdelay ;
 
     tdelay = (udelay * (current_clock / 1000000)) ;
@@ -200,8 +197,7 @@ int random(void)
 // -----------------------------------------------------------------------------
 // terminate function
 
-void clkstop(void)
-{
+void clkstop(void){
     // stop system tick
     SysTick->CTRL = 0 ;
 
@@ -217,8 +213,7 @@ void clkstop(void)
 // -----------------------------------------------------------------------------
 // Led Blinker
 
-void Set_LedBlinker(int led, unsigned long mask, int period)
-{
+void Set_LedBlinker(int led, unsigned long mask, int period) {
     led &= (MAX_NUMOFLEDS-1) ;          // only power of 2 num of leds
 
     DISABLE ;   // critical region
@@ -233,12 +228,10 @@ void Set_LedBlinker(int led, unsigned long mask, int period)
 
 // -----------------------------------------------------------------------------
 // tick timer functions
-time_t KS_inqtime(void)
-{
+time_t KS_inqtime(void) {
     return(rtctime) ;
 }
-void KS_deftime(time_t t)
-{
+void KS_deftime(time_t t) {
     rtctime = t ;               // system timer
     RTC_WriteTime_t(t) ;        // store in RTC
 }

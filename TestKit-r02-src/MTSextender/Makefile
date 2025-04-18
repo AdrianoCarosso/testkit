@@ -104,8 +104,6 @@ LD_FILE=_$(CPU)-ROM.ld
 # HEX file
 OCFLAGS= --srec-len 32
 
-# assign include files
-#INCLUDE_ASSIGN= assign.h assign_$(CPU).h
 INCLUDE_ASSIGN= assign.h
 
 ######################################################

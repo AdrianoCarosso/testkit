@@ -23,8 +23,7 @@ void AT91F_DataAbort(int apc, int type) ;
 // AT91F_WATCHDOGinit
 // This function performs very low level HW WATCHDOG initialization
 
-void AT91F_WATCHDOGinit(void)
-{
+void AT91F_WATCHDOGinit(void) {
 #ifdef USE_WATCHDOG
     // Enable Watchdog (write once register)
     // Max time: 16 sec., Reset all
@@ -51,12 +50,7 @@ void AT91F_WATCHDOGinit(void)
 static void PrintHeader(const char *p)
 {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address
@@ -71,12 +65,7 @@ static void PrintHeader(const char *p)
 static void PrintHex(unsigned long v)
 {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address
@@ -107,12 +96,7 @@ void AT91F_DataAbort(int apc, int type)
     const char *p4 = ", MC_AASR=" ;
     const char *p5 = " ***\r\n" ;
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_USART UART_BASE = AT91C_BASE_US1 ;   // base address
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_USART UART_BASE = AT91C_BASE_DBGU ;  // base address
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_USART UART_BASE = AT91C_BASE_US0 ;   // base address

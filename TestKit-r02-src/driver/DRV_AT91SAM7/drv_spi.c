@@ -52,13 +52,7 @@ FRAME *spidrv(FRAME * frame) ;
 FRAME *spidrv(FRAME * frame)
 {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
     AT91PS_SPI const pSPI = AT91C_BASE_SPI ;
@@ -83,21 +77,14 @@ FRAME *spidrv(FRAME * frame)
 //----------------------------------------------------------------------------
 // SPI initializer
 
-void spistart(void)
-{
+void spistart(void) {
     volatile unsigned char buf ;
 
 	spi0err++ ;
 	spi0start++ ;
 	
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
@@ -105,7 +92,6 @@ void spistart(void)
 #endif // defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
 
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     // PIO A: Peripheral A select register
     AT91C_BASE_PIOA->PIO_ASR = (unsigned long)(AT91C_PA15_SPI0_MISO  | AT91C_PA16_SPI0_MOSI  |
                                                AT91C_PA17_SPI0_SPCK) ;
@@ -199,98 +185,6 @@ void spistart(void)
 
     // NPCS0 __/--
     AT91C_BASE_PIOA->PIO_SODR = AT91C_PA11_SPI0_NPCS0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    // PIO A: Peripheral B select register
-    AT91C_BASE_PIOA->PIO_BSR = (unsigned long)(AT91C_PA8_SPI1_MISO | AT91C_PA9_SPI1_MOSI |
-                                               AT91C_PA10_SPI1_SPCK  /*| AT91C_PA7_SPI1_NPCS3*/ ) ;
-    // PIO A: disable register
-    AT91C_BASE_PIOA->PIO_PDR = (unsigned long)(AT91C_PA8_SPI1_MISO | AT91C_PA9_SPI1_MOSI |
-                                               AT91C_PA10_SPI1_SPCK  /*| AT91C_PA7_SPI1_NPCS3*/ ) ;
-
-    // configure the PIO Lines corresponding to AT91C_PA7_SPI1_NPCS3 to be outputs
-    // no need to set these pins to be driven by the PIO because it is GPIO pins only.
-    // set at 1
-    AT91C_BASE_PIOA->PIO_SODR = AT91C_PA7_SPI1_NPCS3 ;
-    AT91C_BASE_PIOA->PIO_PER = AT91C_PA7_SPI1_NPCS3 ; // Set in PIO mode
-    AT91C_BASE_PIOA->PIO_OER = AT91C_PA7_SPI1_NPCS3 ; // Configure in Output
-
-    // Peripheral Clock Enable Register
-    AT91C_BASE_PMC->PMC_PCER = (1 << AT91C_ID_SPI1) ;
-
-    // enable
-    pSPI->SPI_CR = AT91C_SPI_SPIEN ;
-
-    // AT45DB321C timings: up to 33MHz
-    //  NOUSB: 60MHz -> T=16.7ns ; SPICLK = 60MHz / 3 = 20MHz
-    //  USB:   48MHz -> T=20.8ns ; SPICLK = 48MHz / 2 = 24MHz
-    //         30MHz -> T=33.3ns ; SPICLK = 30MHz / 2 = 15MHz
-    //         16MHz -> T=62.5ns ; SPICLK = 16MHz / 1 = 16MHz
-    //          8MHz -> T=125 ns ; SPICLK =  8MHz / 1 =  8MHz
-#define SPI_SCBR        ((current_clock/30000000)+1)
-
-    // DLYBCS (delay between CS) = Tcs = 250 ns
-    //  NOUSB: 60MHZ --> 267 = 16.7ns * 16
-    //  USB:   48MHZ --> 271 = 20.8ns * 13
-    //         30MHz --> 267 = 33.3ns * 8
-    //         16MHz --> 375 = 62.5ns * 5 -> 6
-    //          8MHz --> 750 = 125 ns * 3 -> 6
-#define SPI_DLYBCS      (MAX(1+((250*(current_clock/1000000))/1000),6))
-
-    // DLYBS (delay from CS to CLK) = Tcss = 100 ns
-    //  NOUSB: 60MHZ --> 117 = 16.7ns * 7
-    //  USB:   48MHZ --> 104 = 20.8ns * 5
-    //         30MHz --> 133 = 33.3ns * 4
-    //         16MHz --> 125 = 62.5ns * 2 -> 3
-    //          8MHz --> 125 = 125 ns * 1 -> 3
-#define SPI_DLYBS       (MAX(1+((100*(current_clock/1000000))/1000),3))
-
-    // DLYBCT (delay between bytes) = 0 ns = 0
-#define SPI_DLYBCT      ((0*(current_clock/1000000))/1000)
-
-    // mode: master, DLYBCS, FixPeriphSelect=7
-    pSPI->SPI_MR = AT91C_SPI_MSTR | (7 << 16) | (SPI_DLYBCS << 24) ;
-
-    // CSx register: mode 3 (CPOL=1, NCPHA=0), 8 bit
-//    pSPI->SPI_CSR[3] = AT91C_SPI_CPOL   |
-    // CSx register: mode 0 (CPOL=0, NCPHA=1), 8 bit
-    pSPI->SPI_CSR[3] = AT91C_SPI_NCPHA  |
-                       AT91C_SPI_BITS_8 |
-                                (SPI_SCBR << 8)   |     // SCBR
-                                (SPI_DLYBS << 16) |     // DLYBS
-                                (SPI_DLYBCT << 24) ;    // DLYBCT
-
-    AT91F_AIC_Configure(AT91C_ID_SPI1, SPI_INTERRUPT_LEVEL, AT91C_AIC_SRCTYPE_INT_HIGH_LEVEL, spidrv) ;
-
-    // first activity 'by hand', ask dummy SR
-
-    // NPCS3 --\__
-    AT91C_BASE_PIOA->PIO_CODR = AT91C_PA7_SPI1_NPCS3 ;
-
-    // tx
-    pSPI->SPI_TDR = 0xd7 ;      // SR request
-
-    // wait for rx
-    while(!(pSPI->SPI_SR & AT91C_SPI_RDRF))
-        ;
-
-    // rx
-    buf = pSPI->SPI_RDR ;
-
-    // tx
-    pSPI->SPI_TDR = 0 ;         // dummy
-
-    // wait for rx
-    while(!(pSPI->SPI_SR & AT91C_SPI_RDRF))
-        ;
-
-    // rx
-    buf = pSPI->SPI_RDR ;
-
-    // NPCS3 __/--
-    AT91C_BASE_PIOA->PIO_SODR = AT91C_PA7_SPI1_NPCS3 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
@@ -400,13 +294,7 @@ void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
 #endif // CBUG
 
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
@@ -415,14 +303,8 @@ void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
 
     for( ; ; ) {
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
         // NPCS0 --\__
         AT91C_BASE_PIOA->PIO_CODR = AT91C_PA11_SPI0_NPCS0 ;
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-        // NPCS3 --\__
-        AT91C_BASE_PIOA->PIO_CODR = AT91C_PA7_SPI1_NPCS3 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
         // NPCS0 --\__
@@ -449,14 +331,8 @@ void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
         waitval = KS_waitt(SPISEM, ((TICKS)2000/CLKTICK)) ;
         
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
         // NPCS0 __/--
         AT91C_BASE_PIOA->PIO_SODR = AT91C_PA11_SPI0_NPCS0 ;
-#endif // USE_REAL_BOARD
-#ifdef USE_EVALUATION_BOARD
-        // NPCS3 __/--
-        AT91C_BASE_PIOA->PIO_SODR = AT91C_PA7_SPI1_NPCS3 ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
         // NPCS0 __/--
@@ -483,44 +359,16 @@ void SPI_rtx2(unsigned char *buf1tx, unsigned char *buf1rx, int len1,
 // No Interrupt, No PDC
 
 #ifdef NOT_IMPLEMENTED
-void SPI_rtx(unsigned char *buftx, unsigned char *bufrx, int len)
-{
-#ifdef USE_REAL_BOARD
+void SPI_rtx(unsigned char *buftx, unsigned char *bufrx, int len) {
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
-#endif // USE_REAL_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-#endif // USE_EVALUATION_BOARD
-
-#ifdef USE_EVALUATION_BOARD
-    while(len--) {
-        // wait for tx
-        while(!(pSPI->SPI_SR & AT91C_SPI_TDRE))
-            ;
-
-        // tx
-        pSPI->SPI_TDR = *buftx++ ;
-
-        // wait for rx
-        while(!(pSPI->SPI_SR & AT91C_SPI_RDRF))
-            ;
-
-        // rx
-        //printf("R=0x%08x'0x%08x\n", AT91C_BASE_SPI1->SPI_RDR, AT91C_BASE_SPI1->SPI_SR) ;
-        *bufrx++ = pSPI->SPI_RDR ;
-    }
-#endif // USE_EVALUATION_BOARD
 }
 #endif // NOT_IMPLEMENTED
 
 //----------------------------------------------------------------------------
 // SPI terminator
 
-void spistop(void)
-{
+void spistop(void){
 #if defined(USE_AT91SAM7A3)
-#ifdef USE_REAL_BOARD
     AT91PS_SPI const pSPI = AT91C_BASE_SPI0 ;
 
     // Disable
@@ -528,17 +376,7 @@ void spistop(void)
 
     // Disable clock
     AT91C_BASE_PMC->PMC_PCDR = (1 << AT91C_ID_SPI0) ;
-#endif // USE_REAL_BOARD
 
-#ifdef USE_EVALUATION_BOARD
-    AT91PS_SPI const pSPI = AT91C_BASE_SPI1 ;
-
-    // Disable
-    pSPI->SPI_CR = AT91C_SPI_SPIDIS ;
-
-    // Disable clock
-    AT91C_BASE_PMC->PMC_PCDR = (1 << AT91C_ID_SPI1) ;
-#endif // USE_EVALUATION_BOARD
 #endif // defined(USE_AT91SAM7A3)
 
 #if defined(USE_AT91SAM7S256) || defined(USE_AT91SAM7S512)
