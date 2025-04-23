@@ -4,65 +4,47 @@
 //   T.E.S.T. srl
 //
 
-// 0.10 06/07/10		Grafica Ok, inizio inserimento codice
-// 2.03 23/07/15		Aggiunto gestione protocolli
-// 2.04 24/02/16		Aggiunto controllo porte
-// 2.05 20/06/18		Aggiunto porta USB MTS 
-// 2.06 10/07/18		Gestito DiaG12
-// 2.07 04/03/19    Aggiunto cancellazione parametri 
-// 2.08 10/04/19    Aggiunto attesa canstart 
-// 2.09 15/04/19    Aggiunto invio codice da seriale
-// 2.10 03/09/19    Modificato tempi richiesta parametri
-// 2.11 07/07/20    Aggiunti gestione TAG CAN
-// 2.12 16/11/21    Aggiunto doSetProtocolComunication per cambio protocollo
-// 2.13 25/05/23    Aggiunta variabile globale 'leveldebug' per regolare output di debug
-//#define MTSTESTKIT
+// 0.10   06/07/10		Grafica Ok, inizio inserimento codice
+// 2.03   23/07/15		Aggiunto gestione protocolli
+// 2.04   24/02/16		Aggiunto controllo porte
+// 2.05   20/06/18		Aggiunto porta USB MTS 
+// 2.06   10/07/18		Gestito DiaG12
+// 2.07   04/03/19    Aggiunto cancellazione parametri 
+// 2.08   10/04/19    Aggiunto attesa canstart 
+// 2.09   15/04/19    Aggiunto invio codice da seriale
+// 2.10   03/09/19    Modificato tempi richiesta parametri
+// 2.11   07/07/20    Aggiunti gestione TAG CAN
+// 2.12   16/11/21    Aggiunto doSetProtocolComunication per cambio protocollo
+// 2.13   25/05/23    Aggiunta variabile globale 'leveldebug' per regolare output di debug
+// 2.13.1 18/12/23    Non toglie nei parametri il carattere '"'
+
+// prevent re-include
+#ifndef _MTSTESTKIT_H
+#define _MTSTESTKIT_H
 
 #define VER 2
 #define SUBVER 13
-#define REVISION 00
+#define REVISION 01
 
 #define BANNER    "MTS TestKit"
 #define TEXT_BOX  " - Diagnostic box"
 
-// for LINUX
-#ifdef FR_LINUX
 #define USB_DIR	        "/dev/serial/by-id"
-#define TK_PORTNAME 	"usb-03eb_6124"  // "usb-03eb_6124-if01-port0"
+#define TK_PORTNAME 	"usb-03eb_6124"
+//#define TK_PORTNAME 	"usb-03eb_6124-if00"
 #define TK_PORTNAME2 	"03eb_6124"  // "pci-03eb_6124-if01-port0"
 #define MTS_PORTPREFIX	"usb-FTDI_DLP2232M_"
-#define MTS_PORTPREFIXNEW "usb-T.E.S.T._TestKit_9014001"
-#define MTS_PORTPREFIXNEW2 "T.E.S.T._TestKit_9014001"
+#define MTS_PORTPREFIXNEW "usb-T.E.S.T._TestKit_9014006"
+#define MTS_PORTPREFIXNEW2 "T.E.S.T._TestKit_9014006"
 #define MTS_PORTSUFFIX	"-if01-port0"
 #define MTS_USB_PORTPREFIX "usb-1a86" //"usb-1a86_USB2.0-Serial-if00-port0"
 
 #define CLEAR_MEM(_A, _B)   bzero(_A, _B)
-#endif
 
 typedef unsigned long ulong ;
-int curtest;
-int waithuman;
-int MTS_current_PORT;
-
-// for WINDOWS
-#ifdef FR_WIN32
-#include <windows.h>
-#include <sys/timeb.h>
-#include <time.h>
-#include <memory.h>
-
-#include <stdio.h>
-
-#define TK_PORTNAME 	"TestKitEXTCom"
-#define MTS_PORTNAME	"TestKitFTDIbar_mseCom"
-
-#define CLEAR_MEM(_A, _B)   FillMemory(_A, _B, 0 ) 
-#define srandom(_A) srand(_A)
-#define random		rand
-#define ftime		_ftime
-#define timeb 		_timeb
-#define timegm      mktime
-#endif
+extern int curtest;
+extern int waithuman;
+extern int MTS_current_PORT;
 
 #define SLEEP(_A) usleep(_A*1000)
 
@@ -100,22 +82,10 @@ PORT_MAX
 
 // STRUCTURE for sequence
 struct _SEQUENCE{
-#ifdef FR_WIN32
-	PROCESS_INFORMATION pi;
-	HANDLE hInputRead ; 
-	HANDLE hInputWrite ;	// Send answer to script
-	HANDLE hOutputRead ;	// Read Command from scrpit
-	HANDLE hOutputWrite ; 
-	HANDLE hErrorWrite ;
-	HANDLE hStdIn ;
-	HANDLE threadHandle; // Thread input
-#endif
-#ifdef FR_LINUX
     pid_t 		pid;
     int	 		cgi_output[2];
     int	 		cgi_input[2];
 	pthread_t	thr_p ;
-#endif
 	int 		BufferedMode ;
 	int			NewCommand ;
 	char		Command[MAX_STRING] ;
@@ -571,7 +541,7 @@ extern void Stop_sequence(void) ;
 extern int  Check_sequence(void) ;
 extern void Send_sequence_answer(char *answer) ;
 extern int Start_command(int argc, char *argv[]) ;
-extern int  com_baud(int port, int brate)  ;
+extern int com_baud(int port, int brate)  ;
 
 extern char* TimeDB(const time_t* loctime, char *aa ) ;
 extern char* rem_duble_slash(char *name, char *mom) ;
@@ -602,3 +572,4 @@ extern int GetSelData(void) ;
 extern int  Start_sequence(void) ;
 extern void Get_sequence_command(void) ;
 extern void Check_sequence_timeout(void) ;
+#endif

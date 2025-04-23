@@ -38,14 +38,11 @@
 #include "MTScu.h"
 #endif
 
-#ifdef MTSTESTKIT
-#include "MtsTestKit.h"
+#include "mtsTestKit.h"
 #define  SEQUENCE_DEBUG
-#endif
 
 
-
-#include "MtsGTK.h"
+#include "mtsGTK.h"
 
 #include "protocol.h"
 #define MAX_UDPTX       1400    // Max UDP packet len in TX
@@ -59,12 +56,12 @@ struct _COMSDATA{
 
 static int GetGprsData(int mlen, char *lbuf) ;
 
-#ifdef MTSTESTKIT
 char* rem_duble_slash(char *stringo,char *stringd) ;
 
+extern char *strcasestr(const char *haystack, const char *needle);
+
 // from sequence
-int Low_Init(int repeat)
-{
+int Low_Init(int repeat) {
 int i, ret_val ;
 DIR *ldir ; 
 struct dirent  *afile ;
@@ -243,14 +240,12 @@ char msg[100] ;
 	
     return( 0 );
 }
-#endif // MTSTESTKIT
 
 // *********************************************************************
 // Function for COMs
 // *********************************************************************
 
-int baud_select(int bval)
-{
+int baud_select(int bval) {
 int retb ;
 	
 	switch(bval){
@@ -835,12 +830,9 @@ printf("\nSending UDP (%s,%d)\n",Gdata.mts_ip, Gdata.mts_socket) ;
 // *********************************************************************
 // Function for SEQUENCE
 // *********************************************************************
-#ifdef MTSTESTKIT
-//FILE *list_cmd ; // for debug
 
 // Check if sequence is running
-int Check_sequence(void)
-{
+int Check_sequence(void) {
 int status, retcode ;
 
 	retcode = waitpid(Gsequence.pid, &status, WNOHANG) ;
@@ -869,8 +861,7 @@ int status, retcode ;
 }
 
 
-static void * ThreadProc(void * arg)
-{
+static void * ThreadProc(void * arg) {
 //char c ;
 int i ;
 //int ll, i ;
@@ -951,8 +942,7 @@ unsigned long dwRead ;
 }
 
 // Start sequence
-int run_sequence(void)
-{
+int run_sequence(void) {
 char name[2*MAX_STRING];
 int retcode;
 char *p = NULL;
@@ -1047,8 +1037,7 @@ char *p = NULL;
 }
 
 // Terminate sequence
-void Stop_sequence(void)
-{
+void Stop_sequence(void) {
 int status ;
 
 #ifdef USE_MONITORING
@@ -1085,8 +1074,7 @@ void Send_sequence_answer(char *answer)
 
 // Start command
 // 0 = Path, 1 = program, 2.. = args
-int Start_command(int argc, char *argv[])
-{
+int Start_command(int argc, char *argv[]) {
 char name[SIZE_BUFFS];
 int retcode;
 char *p = NULL;
@@ -1126,7 +1114,6 @@ char *p = NULL;
 	return(retcode);
 }
 
-#endif // MTSTESTKIT
 // *********************************************************************
 // End Function for SEQUENCE
 // *********************************************************************

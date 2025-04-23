@@ -24,13 +24,11 @@
 #include "MTScu.h"
 #endif
 
-#ifdef MTSTESTKIT
-#include "MtsTestKit.h"
+#include "mtsTestKit.h"
 extern int ActCsec(void);
-#endif
 
-#include "MtsGTK.h"
-#include "../commons/protocol.h"
+#include "mtsGTK.h"
+#include "protocol.h"
 
 #ifdef SW_MTSCU
 extern void UpdateScreen(void) ;
@@ -3126,7 +3124,7 @@ int fp ;    // field pointer
 #ifdef SW_MTSCU
 int  k ;
 FILE * l_fd ;
-char free_msg[DEF_STRING] ;
+char free_msg[DEF_STRING2] ;
 #endif
 char ldir_data[DATALEN],ss[1] ;
 char aux[MAX_STRING];

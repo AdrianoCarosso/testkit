@@ -23,8 +23,8 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include "MtsTestKit.h" 
-#include "MtsGTK.h"
+#include "mtsTestKit.h" 
+#include "mtsGTK.h"
 
 #include "video_def.h"
 #include "logotest.h"
@@ -45,10 +45,6 @@
 #define NO_BLOCKING
 
 #define QUOTE   34      // char: "
-
-//#ifdef NO_BLOCKING
-//short run_loop ;
-//#endif
 
 //########################################################################################################
 //##############################Aggiunto installazione automatica#########################################
@@ -79,6 +75,11 @@ int timewaitstop=0;
 int timeteststart=0;
 int timetestold=0;
 
+int curtest;
+int waithuman;
+int MTS_current_PORT;
+
+
 #define D_RADIUS 14 // 3
 #define OFF_CENTER 5
 
@@ -92,15 +93,11 @@ struct _SEQUENCE Gsequence ;
 
 
 void choice_click( GtkWidget *buttonitem, gpointer  data ) ;
+//void Stop_sequence(void);
 void PopupDestroy(GtkWidget * aa, gpointer  data ) ;
 int RefreshUSB(void);
 int get_my_IP(void);
 
-#ifdef FR_WIN32
-#include <wingdi.h>
-void set_app_font (const char *fontname) ;
-static void try_to_get_windows_font (void) ;
-#endif
 
 gboolean confirm_inputbox( GtkWidget * aa, gpointer  data )
 {

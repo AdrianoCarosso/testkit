@@ -206,7 +206,6 @@ extern unsigned short usberr ;
 #undef USE_TASK0_SERIAL
 
 #ifdef USE_TASK0_SERIAL
-
 #define TK0IPORT COM2IQ 	// Task 0 Input port
 #define TK0OPORT COM2OQ 	// Task 0 Output port (monitor)
 #define TK0ISEM  PORT2SEM	// Task 0 input port semaphore

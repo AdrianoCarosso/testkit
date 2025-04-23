@@ -208,8 +208,6 @@ void tk0extender(void){
 
         case TK0ISEM :                // data from serial input (monitor)
             KS_dequeue(TK0IPORT, &c) ;
-            //KS_enqueue(COM1OQ, &c) ;
-            //KS_enqueue(TK0OPORT, &c) ;
             usbdata[usbidx] = c ;
             if (usbidx < (sizeof(usbdata) - 1))
                 usbidx++ ;

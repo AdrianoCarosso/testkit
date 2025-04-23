@@ -23,8 +23,8 @@
 
 #include "cmdpslave.h"
 
-#include "MtsTestKit.h" 
-#include "MtsGTK.h"
+#include "mtsTestKit.h" 
+#include "mtsGTK.h"
 #include "../commons/protocol.h"
 
 //for eth

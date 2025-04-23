@@ -9,17 +9,8 @@
 #include <unistd.h>
 #include <string.h>
 
-#include "MtsTestKit.h"
-#include "MtsGTK.h"
-
-// For ListClassDevices
-// typedef struct
-// {
-//   gchar *product;
-// } Item;
-
-//static GArray *allmts = NULL;
-// For ListClassDevices
+#include "mtsTestKit.h"
+#include "mtsGTK.h"
 
 
 #define QUOTE   34      // char: "
@@ -82,8 +73,8 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 											case -1: // Get old selection
 												strcpy(lastsel,"LastSelection_");
 												//strcat(lastsel,Gdata.localIP);
-												trcat(lastsel,Gdata.hostname);
-												trcat(lastsel,"=");
+												strcat(lastsel,Gdata.hostname);
+												strcat(lastsel,"=");
 												lastsellen=strlen(lastsel);
 												if (!strncasecmp(cnfbuf,lastsel,lastsellen)){
 													strcpy(Gdata.deviceClass, &cnfbuf[lastsellen]) ;

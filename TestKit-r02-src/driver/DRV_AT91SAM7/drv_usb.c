@@ -377,8 +377,7 @@ void USB_SendStall(void)
 //----------------------------------------------------------------------------
 // USB_RxSetup
 
-void USB_RxSetup(void)
-{
+void USB_RxSetup(void){
     unsigned char bmRequestType, bRequest ;
     unsigned short wValue, wIndex, wLength, wStatus ;
 
@@ -525,8 +524,7 @@ void USB_RxSetup(void)
 //----------------------------------------------------------------------------
 // USB_Receive
 
-void USB_Receive(void)
-{
+void USB_Receive(void){
     int packetSize ;
     unsigned char pData ;
     
@@ -555,8 +553,7 @@ void USB_Receive(void)
 //----------------------------------------------------------------------------
 // USB_Transmit
 
-int USB_Transmit(int first)
-{
+int USB_Transmit(int first){
     int i ;
     unsigned char pData ;
 
@@ -588,8 +585,7 @@ int USB_Transmit(int first)
 //----------------------------------------------------------------------------
 // USB task
 
-void usbtask(void)
-{
+void usbtask(void){
     // Item n.3 is modified according to queue wake-up or not
     SEMA semalist[5] = {USBSEM0, USBSEM2, USBSEM1, /*->*/USBQSEM/*<-*/, 0} ;
     SEMA cause ;

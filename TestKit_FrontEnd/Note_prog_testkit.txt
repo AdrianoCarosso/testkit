@@ -22,3 +22,4 @@ aggiungere una funzione:
 	SetLevelDebug in vbinterface.c ( come SetINIKeyVal)
 e	l'analoga doSetLevelDebug	in sequence.c (come doSetINIKeyVal)
 	che setta 'Gdata.leveldebug' con il valore di 'leveldebug'
+
