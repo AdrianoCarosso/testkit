@@ -25,7 +25,7 @@
 
 #include "mtsTestKit.h" 
 #include "mtsGTK.h"
-#include "../commons/protocol.h"
+#include "protocol.h"
 
 //for eth
 #include <arpa/inet.h>

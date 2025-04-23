@@ -76,21 +76,15 @@ char msg[100] ;
 	
 	if (ldir!=NULL){
 		while (( afile=readdir(ldir))!=NULL){
-#ifdef USE_MONITORING
 			printf("\nNew file %s\n", afile->d_name) ;
-#endif // USE_MONITORING
 			// search for TK_PORT
 			if (!strncmp( afile->d_name, TK_PORTNAME, strlen(TK_PORTNAME)) ){
 				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-#ifdef USE_MONITORING
-				printf("\nFounded TK port (%s)\n", Gdata.portname[PORT_TK]) ;
-#endif // USE_MONITORING
+				printf("\nTK port found(%s)\n", Gdata.portname[PORT_TK]) ;
 			}
 			if (strcasestr( afile->d_name, TK_PORTNAME2) != NULL ){
 				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-#ifdef USE_MONITORING
 				printf("\nFounded TK port (%s)\n", Gdata.portname[PORT_TK]) ;
-#endif // USE_MONITORING
 			}
 			
 			// search for MTS_PORT old
@@ -101,10 +95,8 @@ char msg[100] ;
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
 						Gdata.TKTYPE=0;
-#ifdef USE_MONITORING
-						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
-						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
-#endif // USE_MONITORING
+						printf("\nMTS port found(%s)\n", Gdata.portname[PORT_MTS]) ;
+						printf("\nTK TYPE found(%d)\n", Gdata.TKTYPE) ;
 					}
 				}
 			}
@@ -116,10 +108,8 @@ char msg[100] ;
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
 						Gdata.TKTYPE=1;
-#ifdef USE_MONITORING
 						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
 						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
-#endif // USE_MONITORING
 					}
 				}
 			}
@@ -130,27 +120,21 @@ char msg[100] ;
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
 						Gdata.TKTYPE=1;
-#ifdef USE_MONITORING
 						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
                                                 MTS_current_PORT=PORT_MTS;
 						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
-#endif // USE_MONITORING
 					}
 				}
 			}
 			if (!strncmp( afile->d_name, MTS_USB_PORTPREFIX, strlen(MTS_USB_PORTPREFIX)) ){
 				strcpy(Gdata.portname[PORT_MTSUSB], afile->d_name) ;
-#ifdef USE_MONITORING
 				printf("\nFounded MTSUSB port (%s)\n", Gdata.portname[PORT_MTSUSB]) ;
 				printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
-#endif // USE_MONITORING
 			}	
 		}
 		closedir(ldir) ;
-#ifdef USE_MONITORING
 	}else{
 		printf("\nError opening %s\n", USB_DIR) ;
-#endif // USE_MONITORING
 	}
 
 	free_msg[0] = '\0' ;
@@ -183,9 +167,7 @@ char msg[100] ;
 	// OPEN PORTs
 	ret_val= com_open(PORT_TK, B115200, 0 ) ;
 	if (ret_val){		// ERROR
-#ifdef USE_MONITORING
 		printf("\nError opening TK port (%d,%s)\n", ret_val, strerror(ret_val)) ;
-#endif // USE_MONITORING
 		Gdata.menu_choice = 1 ;
 		sprintf(free_msg, ERRPORT_TK , ret_val ) ;
 		Popup("INIZIALIZZAZIONE",free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
@@ -204,9 +186,7 @@ char msg[100] ;
 	
         ret_val = com_open(MTS_current_PORT, B9600, 0 ) ;
 	if (ret_val){		// ERROR
-#ifdef USE_MONITORING
 		printf("\nError opening MTS port (%d)\n", ret_val) ;
-#endif // USE_MONITORING
 		Gdata.menu_choice = 1 ;
 		sprintf(free_msg, ERRPORT_MTS , ret_val ) ;
 		Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
@@ -221,9 +201,7 @@ char msg[100] ;
 	if (strlen(Gdata.portname[PORT_MTSUSB])){
             ret_val = com_open(PORT_MTSUSB, B9600, 0 ) ;
             if (ret_val){		// ERROR
-                #ifdef USE_MONITORING
                 printf("\nError opening MTS USB port (%d)\n", ret_val) ;
-                #endif // USE_MONITORING
                 Gdata.menu_choice = 1 ;
                 sprintf(free_msg, ERRPORT_MTS , ret_val ) ;
                 Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
@@ -307,9 +285,7 @@ struct ifreq freq ;
 		
 		D_ports[port].fd = socket(AF_INET, SOCK_DGRAM, 0) ;
 		if (D_ports[port].fd < 0) {
-#ifdef USE_MONITORING
 			printf("\nSocket Port NOT opened\n") ;
-#endif // USE_MONITORING
 			return(errno) ;                // some error
 		}
 	
@@ -324,9 +300,7 @@ struct ifreq freq ;
 				(short)(((unsigned char *)freq.ifr_addr.sa_data)[4]),
 				(short)(((unsigned char *)freq.ifr_addr.sa_data)[5])) ;
 
-#ifdef USE_MONITORING
 			printf("\nLocal IP is %s\n", Gdata.local_ip ) ;
-#endif // USE_MONITORING
 #endif
 
 		my_name.sin_family = AF_INET ;
@@ -338,9 +312,7 @@ struct ifreq freq ;
 			D_ports[port].fd = -1 ;           // free it
 		}
 		if (D_ports[port].fd < 0) {
-#ifdef USE_MONITORING
 			printf("\nTCP/IP Port NOT opened\n") ;
-#endif // USE_MONITORING
 			return(errno) ;        // some error
 		}
 		fcntl(D_ports[port].fd, F_SETFL, O_NONBLOCK) ;
@@ -368,14 +340,10 @@ struct ifreq freq ;
 		
 		D_ports[port].fd = open(lbuf, O_RDWR | O_NOCTTY ) ;
 		if (D_ports[port].fd < 0) {
-#ifdef USE_MONITORING
 			printf("\nPort %s NOT opened\n", lbuf) ;
-#endif // USE_MONITORING
 			return(errno) ;                // some error
 		}
-#ifdef USE_MONITORING
 		printf("\nPort %s opened (%d)\n", lbuf, port) ;
-#endif // USE_MONITORING
 
 		tcgetattr(D_ports[port].fd, poldtio ) ;        // save current port settings
 
@@ -473,9 +441,7 @@ void com_close(int port)
 #ifdef MTSTESTKIT
 	Gdata.portopened[port] = 0 ;
 #endif
-#ifdef USE_MONITORING
 	printf("\nComPortclosed \n") ;
-#endif // USE_MONITORING
 }
 
 // *********************************************************************
@@ -486,7 +452,6 @@ int sl ;
 
 	if (len==-1) sl=strlen(msg) ;
 	else sl = len ;
-#ifdef USE_MONITORING
 	{
 		int aa = 0;
 		while(aa<sl){
@@ -494,7 +459,6 @@ int sl ;
 		}
 		printf("\n") ;
 	}
-#endif
 	write(D_ports[port].fd, msg, sl) ;
 }
 
@@ -512,9 +476,7 @@ int i, bytes,  nrx, totrx ;
 	if ((bytes) && (i>-1)){
 		//do{
 			nrx = ((totrx+bytes<maxlen)? bytes:(maxlen-totrx)) ;
-#ifdef USE_MONITORING_
 		printf ("\ncom_read: COM%d recv %d(%d) bytes\n", port, bytes,nrx) ;
-#endif // USE_MONITORING
 			if (port==PORT_UDP){
 				totrx = GetGprsData(nrx, buf) ;
 				return(totrx) ;
@@ -538,9 +500,7 @@ int  com_inlen(int port)
 int bytes ;
 
 	if (ioctl(D_ports[port].fd , FIONREAD, &bytes)>-1){
-#ifdef USE_MONITORING_
 		if (bytes) printf ("\ncom_inlen: COM%d recv %d bytes\n", port, bytes) ;
-#endif // USE_MONITORING
 		return(bytes) ;
 	}
 	return(0) ;
@@ -596,9 +556,7 @@ char recv_ip[DEF_STRING] ;
 	if (!nrecv) return(0) ;
 	
 	recv_ip[0]='\0' ;
-#ifdef USE_MONITORING
 	printf("\nrecv UDP from %s:%d len(%d)\n", inet_ntoa(cli_name.sin_addr), htons(cli_name.sin_port), mlen); 
-#endif
 
 #ifdef SW_MTSCU
 	if (Gdata.bridge_ip[0]){ // if the bridge defined
@@ -837,7 +795,6 @@ int status, retcode ;
 
 	retcode = waitpid(Gsequence.pid, &status, WNOHANG) ;
 	if (retcode == Gsequence.pid) {
-#ifdef USE_MONITORING
 		if (WIFEXITED(status))
 			if( ( WIFEXITED(status) == 0 ) )
 				printf("\nSequence terminated OK\n") ;
@@ -845,7 +802,6 @@ int status, retcode ;
 				printf("\nSEQUENCE terminated 0x%X\n", WEXITSTATUS(status)) ;
 		else
 			printf("\nSEQUENCE terminated (abort1)\n") ;
-#endif	// USE_MONITORING
 		Gsequence.pid = -1 ;
 		kill(Gsequence.thr_p, SIGTERM) ;
 	}else
@@ -853,7 +809,6 @@ int status, retcode ;
 
 	Gdata.sequence_status = SEQ_ENDED ;
 /*	fclose(list_cmd) ;
-#ifdef USE_MONITORING_
 	printf("\nCLOSED list_cmd\n") ;
 #endif
 */		
@@ -870,30 +825,23 @@ unsigned long dwRead ;
 
 //	ll = 0 ;
 	while (Gdata.sequence_status != SEQ_ENDED) {
-#ifdef USE_MONITORING_
 		printf("\nWait Command\n") ;
-#endif
 		//i = read(Gsequence.cgi_output[0], &c, 1) ;
 		i = read(Gsequence.cgi_output[0], cnfbuf, MAX_STRING) ;
 //		switch(read(Gsequence.cgi_output[0], &c, 1)){
-#ifdef USE_MONITORING_
 			printf("\nThread SEQUENCE: %d\n",i) ;
-#endif
 		switch(i){
 			case -1: // Error
  			Gdata.sequence_status = SEQ_ENDED ;
 //			fclose(list_cmd) ;
-#ifdef USE_MONITORING
 //			printf("\nCLOSED list_cmd\n") ;
 			printf("\nSEQUENCE terminated (abort2)\n") ;
-#endif
 
 			pthread_exit(NULL) ;        // terminate thread
 			return(NULL) ;
 			break ;
 			
 // 			case 0:
-// #ifdef USE_MONITORING
 // 			printf("\nSEQUENCE no data\n") ;
 // #endif
 // 			if (ll){
@@ -911,17 +859,13 @@ unsigned long dwRead ;
 			CLEAR_MEM(&Gsequence.Command, sizeof(Gsequence.Command)) ;
 			strncpy(Gsequence.Command, cnfbuf, dwRead);
 			Gsequence.NewCommand = 1 ;
-#ifdef USE_MONITORING_
 			//printf("\nrecv %lu\n", dwRead) ;
 			printf("\nRecv:<%s>\n", Gsequence.Command) ;
 
 //			i = fprintf(list_cmd, "%s\r\n",Gsequence.Command) ;
 			//printf("Wroted %d bytes\n", i ) ;
-#endif // USE_MONITORING
 
-// #ifdef USE_MONITORING
 // 			printf("SEQUENCE char <%x,%c>\n", c, c) ;
-// #endif
 // 			Gsequence.Command[ll++] = c ;
 // 			if (c=='\0') {
 // 				ll = 0 ;
@@ -929,14 +873,10 @@ unsigned long dwRead ;
 // 			}
 		}
 		//SLEEP(1) ;
-#ifdef USE_MONITORING_
 		printf("\nSsat %d Command\n", i) ;
-#endif
 		
 	}
-#ifdef USE_MONITORING
 	printf("\nSEQUENCE thread end\n") ;
-#endif
 	pthread_exit(NULL) ;        // terminate thread
 	return(NULL) ;
 }
@@ -959,28 +899,20 @@ char *p = NULL;
 	
 	rem_duble_slash(name,name);
 		
-#ifdef USE_MONITORING
 	printf("\nStarting %s\n", name );
-#endif // USE_MONITORING
 
 	if (pipe(Gsequence.cgi_output) < 0) {
-#ifdef USE_MONITORING
 		printf("\nStdout pipe creation failed (%d)\n", errno );
-#endif // USE_MONITORING
 		return 1;
 	}
 	
 	if (pipe(Gsequence.cgi_input) < 0) {
-#ifdef USE_MONITORING
 		printf("\nStdin pipe creation failed (%d)\n", errno );
-#endif // USE_MONITORING
 		return 1;
 	}
 
 	if ( (Gsequence.pid = fork()) < 0 ) {
-#ifdef USE_MONITORING
 		printf("\nSequence start failed (%d)\n", errno );
-#endif // USE_MONITORING
 		return 1;
 	}
 	if (Gsequence.pid == 0) { // child: CGI script
@@ -999,9 +931,7 @@ char *p = NULL;
 #else
 		if (execl(name, name, NULL)){ // Starting sequence
 #endif
-#ifdef USE_MONITORING
 			printf( "AA Sequence exe failed (%d)\n", errno );
-#endif // USE_MONITORING
 		}
 		return(0);
 		
@@ -1011,25 +941,19 @@ char *p = NULL;
 	}
 
 
-#ifdef USE_MONITORING_
 	printf( "Sequence %s  started\n", name) ;
-#endif
 	// Is running
 	Gdata.sequence_status = SEQ_WAITCOMMAND ;
 
 	// Now start thread for get sequence command
 /*	list_cmd = fopen("list_command.txt", "a") ;         // configuration file
-#ifdef USE_MONITORING
 	if (!list_cmd)
 		printf("\nerror create list_command.txt file\n") ;
-#endif
 */
 	// create sequence IN/OUT thread
 	retcode = pthread_create(&Gsequence.thr_p, NULL, ThreadProc, NULL) ;
 	if (retcode != 0) {
-#ifdef USE_MONITORING
 		printf("\nUTIL: thread error (%d)\n", retcode) ;
-#endif
 		return(1) ;
 	}
 
@@ -1040,14 +964,10 @@ char *p = NULL;
 void Stop_sequence(void) {
 int status ;
 
-#ifdef USE_MONITORING
 	printf("\nClosing sequence\n") ;
-#endif
 	if  (Gsequence.pid != (pid_t)(0)) {        // close needed
 		if (kill(Gsequence.pid, SIGTERM)) {      // or SIGINT
-#ifdef USE_MONITORING
 			printf("\nKill error\n") ;
-#endif
 		} else {
 			SLEEP(1000) ;
 		}
@@ -1056,9 +976,7 @@ int status ;
 	close(Gsequence.cgi_input[1]) ;
 	waitpid(Gsequence.pid, &status, 0) ;
 
-#ifdef USE_MONITORING
     printf("\nSequence terminated OK\n") ;
-#endif	
 }
 
 void Send_sequence_answer(char *answer)
@@ -1100,16 +1018,12 @@ char *p = NULL;
 	
 	rem_duble_slash(name,name);
 	
-#ifdef USE_MONITORING
 	printf("\nStarting %s\n", name );
-#endif // USE_MONITORING
 
 	retcode = 0 ;
 	if (system(name)==-1){
 		retcode = errno ;
-#ifdef USE_MONITORING
 			printf( "AA Sequence exe failed (%d)\n", errno );
-#endif // USE_MONITORING
 	}
 	return(retcode);
 }
