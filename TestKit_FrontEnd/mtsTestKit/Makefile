@@ -1,7 +1,7 @@
 TARGET=mtsTestKit
 
 CC = gcc 
-CFLAGS = -std=gnu99 -m64 -DMYNAME=\"$(TARGET)\" -DUSE_GDB -Wno-unused-function -Wno-deprecated-declarations -Wall -I./ 
+CFLAGS = -std=gnu99 -m64 -DMYNAME=\"$(TARGET)\" -g -Wno-unused-function -Wno-deprecated-declarations -Wall -I./ 
 SRC = forlinux.c $(TARGET).c listClassDevices.c sequence.c cmdpslave.c mts_tk_man.c
 # library path and names    
 LIBS=-L/usr/lib/x86_64-linux-gnu -ldl -lm

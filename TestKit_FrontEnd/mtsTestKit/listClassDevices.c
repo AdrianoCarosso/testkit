@@ -251,50 +251,38 @@ if (!flock(0)) {
 		flock(1);
 
 		// Debug info
-	#ifdef USE_MONITORING
 		printf("SELECTED [%s]\n", Gdata.deviceClass ) ;
 		printf("workingPath=%s\n",Gdata.workingPath) ;
 		printf("MtsName=%s\n",Gdata.MtsName) ;
 		printf("FileImpostazioni=%s\n",Gdata.FileImpostazioni) ;
 		printf("prgFileRadix=%s\n",Gdata.prgFileRadix) ;
 		printf("ProgramFile=%s\n",Gdata.ProgramFile) ;
-	#endif // USE_MONITORING
 	}
 	return(0);
 }
 
 
-
-void class_program( GtkWidget * button, gpointer  data )
-{
+void class_program( GtkWidget * button, gpointer  data ){
 //GtkWidget *pInfo;
 //GtkWidget *pWindow;
 //GSList *pList;
 const gchar *sLabel;
 
 	sLabel = gtk_button_get_label(GTK_BUTTON(button));	
-#ifdef USE_MONITORING
 	printf ("changed class: <%s>\n", sLabel);
-#endif // USE_MONITORING
 	CreateListClassDevices(0) ;
 }
 
-void class_taverniti( GtkWidget * button, gpointer  data )
-{
+void class_taverniti( GtkWidget * button, gpointer  data ){
 const gchar *sLabel;
 
 	sLabel = gtk_button_get_label(GTK_BUTTON(button));
-#ifdef USE_MONITORING
 	printf ("changed class: <%s>\n", sLabel);
-#endif // USE_MONITORING
 	CreateListClassDevices(1) ;
 }
 
-gboolean close_selection( GtkWidget * aa, gpointer  data )
-{
-#ifdef USE_MONITORING
+gboolean close_selection( GtkWidget * aa, gpointer  data ) {
 	printf("close_selection\n") ;
-#endif // USE_MONITORING
 	gtk_widget_hide(Scrn.device_sel) ;
 	//gtk_window_set_skip_taskbar_hint(GTK_WINDOW(Scrn.main),FALSE) ;
 	gtk_widget_set_sensitive(Scrn.main,TRUE) ;
@@ -302,16 +290,13 @@ gboolean close_selection( GtkWidget * aa, gpointer  data )
 	// If start end program
 	if (strlen(Gdata.deviceClass)==0){
 		Gdata.run_loop = MAIN_END ;
-#ifdef USE_MONITORING
 		printf("End prog\n") ;
-#endif // USE_MONITORING
 	}
 	StatusIcon(FALSE);
 	return(TRUE) ;
 }
 
-void set_selection( GtkWidget * aa, gpointer  data )
-{
+void set_selection( GtkWidget * aa, gpointer  data ) {
 GtkTreeIter iter;
 GValue selection_item = {0,};
 const char *str_sel ;

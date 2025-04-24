@@ -299,9 +299,7 @@ int TO_VOLT;
 
 
 #include "vbInterface.h"
-#include "testkitcomune.h"
-#include "testkitold.h"
-#include "testkitnew.h"
+#include "testkit.h"
 
 //#define DEBUG_P71 // Se valido P71=1 se remmato P71=0
 #define DEBUG_P71
@@ -707,8 +705,7 @@ int SK_TestEmeLink(void);
 
 char SCRREL[MAXSIZE] ;
 
-char* LastcharDel(char* name)
-{
+char* LastcharDel(char* name){
     int i = 0;
     while(name[i] != '\0')
     {
@@ -1149,7 +1146,7 @@ int main(void)
 		SK_CheckId();							// Controllo di Identità MTS e Presenza
 	
 		SK_Set_MTS();							// Si settano nell'MTS i parametri e/o la Macch.Stati per il collaudo
-// Imposta valori per Vbat
+  // Imposta valori per Vbat
 	if (strncmp(TkIni.mName, "MTS", 3)) {
 		MtsTK.VbatMAX =  4.3 ;
 		MtsTK.VbatMIN =  3.5 ;
@@ -1369,8 +1366,7 @@ int main(void)
 	return 0 ;
 }
 
-void call_exit(int error, char * cc)
-{
+void call_exit(int error, char * cc){
 	if (error) COLOR_STEP(MtsTK.steptest, C_RED) ;
 #ifdef DEBUG_1FR
 	Repeat = 0 ;
@@ -1382,8 +1378,7 @@ void call_exit(int error, char * cc)
 #endif
 }
 
-int SK_GetIniInfo(void)
-{
+int SK_GetIniInfo(void){
 #ifndef SENDFW
 	int i ;
 #endif

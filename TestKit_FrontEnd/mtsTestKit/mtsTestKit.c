@@ -1168,8 +1168,8 @@ int setinival(char *bloc,char *par,char *con){
 
 	if (!flock(0)) {
 		lp=strlen(par);
-		strcat(fileini,"./"MYNAME".ini");
-		strcat(filenew,"./"MYNAME".new");
+		strcpy(fileini,"./"MYNAME".ini");
+		strcpy(filenew,"./"MYNAME".new");
 
 		fini = fopen(fileini, "r") ;         // open configuration file
 		if (!fini){ 
@@ -1390,21 +1390,14 @@ int flock(int finito) {
 	return(0);
 }
 
-
-
-
-
-
  
-int get_my_IP(void)
-{
+int get_my_IP(void) {
 	//Returns the IP address of this host.
 	//- if host have more than 1 IP, only 1 (the first) is returned.
 	//- return is in network byte order
 	//return: 1 if unsuccessful, the IP otherwise
 
 	//have you ever seen a hostname longer than a screen (80cols)?
-	
 	
 
 	char name[81]; // store my hostname

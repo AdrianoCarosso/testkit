@@ -55,9 +55,7 @@
 #include <stdint.h>
 
 #include "vbInterface.h"
-#include "testkitcomune.h"
-#include "testkitold.h"
-#include "testkitnew.h"
+#include "testkit.h"
 #include <ctype.h>
 
 #undef DBG_MAP

@@ -1,7 +1,7 @@
 
 CC = gcc -m64 -Wno-unused-function -Wno-format-overflow -Wno-deprecated-declarations
 
-CFLAGS =-Wall -DCBUG -lintl 
+CFLAGS =-Wall -DCBUG -lintl -g
 
 SRC = collaudo.o vbInterface.o
 
