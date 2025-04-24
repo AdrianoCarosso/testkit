@@ -1,4 +1,7 @@
 // Global definition
+#ifndef _VBINTERFACE_H
+#define _VBINTERFACE_H
+
 
 #define KMAX_EXT_ANALOGS 32
 #define KMAX_EXT_COUNTERS 10
@@ -192,3 +195,5 @@ int hex_to_ascii(char c, char d);
 int hex_to_int(char c);
 void replacespace(char *msg);
 int64_t stringascii_to_hex(char *is_ascii_string);
+
+#endif

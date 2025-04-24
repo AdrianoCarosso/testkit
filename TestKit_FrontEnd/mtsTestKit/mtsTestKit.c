@@ -48,12 +48,12 @@
 
 //########################################################################################################
 //##############################Aggiunto installazione automatica#########################################
-//##																									##
-//##  To get FTDI device read link into '/dev/serial/by-id'												##
-//##  To enable TestKit serial insert into  /etc/modules  ('sudo gedit /etc/modules')					##
-//##  the follow line 'usbserial'																		##
+//##													##
+//##  To get FTDI device read link into '/dev/serial/by-id'						##
+//##  To enable TestKit serial insert into  /etc/modules  ('sudo gedit /etc/modules')			##
+//##  the follow line 'usbserial'									##
 //##  And add into '/etc/modprobe.d/options' the line 'options usbserial vendor=0x03eb product=0x6124'  ##
-//##																								    ##
+//##												    ##
 //########################################################################################################
 //########################################################################################################
 
@@ -99,8 +99,7 @@ int RefreshUSB(void);
 int get_my_IP(void);
 
 
-gboolean confirm_inputbox( GtkWidget * aa, gpointer  data )
-{
+gboolean confirm_inputbox( GtkWidget * aa, gpointer  data ) {
 const gchar *twidget;
 	
 	twidget = gtk_entry_get_text(GTK_ENTRY(Scrn.ib_val)) ;
@@ -168,10 +167,7 @@ static gboolean key_press_inputbox( GtkWidget * aa, GdkEventKey *event, gpointer
 
 }
 
-
-
-void init_Struct(void)
-{
+void init_Struct(void) {
 	CLEAR_MEM(&Scrn, sizeof(struct _SCRN) ) ;
 	CLEAR_MEM(&Gdata, sizeof(struct _TKGDATA) ) ;
 	CLEAR_MEM(&Val_amp, sizeof(struct _AMPDATA) ) ;
@@ -180,16 +176,14 @@ void init_Struct(void)
 	CLEAR_MEM(&Gsequence, sizeof(struct _SEQUENCE) ) ;
 }
 
-void get_widget( GtkWidget ** gg, char *name )
-{
+void get_widget( GtkWidget ** gg, char *name ) {
 	*gg =  GTK_WIDGET(gtk_builder_get_object( builder, name ) );
 #ifdef USE_MONITORING
 	if (*gg==NULL) printf (free_msg, name );
 #endif // USE_MONITORING
 }
 
-void populate_Scrn(void)
-{
+void populate_Scrn(void) {
 	int i ;
 	char buff[50] ;
 
@@ -438,8 +432,7 @@ char buf[10] ;
  	gdk_gc_set_line_attributes (locgc, 2, GDK_LINE_SOLID, 0, 0);
 
  	gdk_draw_arc(w, locgc, FALSE, // style->black_gc, FALSE, 
- 				 (centerX-radius), (sizeh-radius),
- 				 radius*2, radius*2, (20*64), (140*64) ) ;
+ 				 (centerX-radius), (sizeh-radius), radius*2, radius*2, (20*64), (140*64) ) ;
 				 
 	iter = 1986 ;
 	pross = 0 ;
@@ -474,9 +467,7 @@ char buf[10] ;
 			gdk_gc_set_line_attributes (locgc, 2, GDK_LINE_SOLID, 0, 0);
 			gdk_gc_set_foreground (locgc, lcolors+0); /* Red */
 			//gdk_gc_set_rgb_bg_color(locgc, &red_color) ;
-			gdk_draw_line(w, locgc, 
-									(gint) (centerX + x * radius), 
-									(gint) (centerY + y * radius),
+			gdk_draw_line(w, locgc, (gint) (centerX + x * radius), (gint) (centerY + y * radius),
 									(gint) (centerX + x * (radius - (nradius * 2))),
 									(gint) (centerY + y * (radius - (nradius * 2))) ) ;
 			pross = pross + 140 ;
@@ -588,9 +579,7 @@ int i ;
 // 	}
 }
 
-void close_application( GtkWidget *widget,
-                        gpointer   data )
-{
+void close_application( GtkWidget *widget, gpointer   data ) {
 #ifdef NO_BLOCKING
 	//if (Scrn.popup) PopupDestroy(Scrn.popup,NULL);
 	//flock(1);
@@ -637,8 +626,7 @@ void choice_click( GtkWidget *buttonitem, gpointer  data )
 }
 
 
-void PopupDestroy(GtkWidget * aa, gpointer  data )
-{
+void PopupDestroy(GtkWidget * aa, gpointer  data ) {
 		gtk_widget_destroy(Scrn.popup) ;
 		//gtk_window_set_skip_taskbar_hint(GTK_WINDOW(Scrn.main),FALSE) ;
 		gtk_widget_set_sensitive(Scrn.main,TRUE) ;
@@ -647,8 +635,7 @@ void PopupDestroy(GtkWidget * aa, gpointer  data )
 		Scrn.popup = NULL  ;
 }
 
-void Popup(char *title, char* message, GtkMessageType type, GtkMessageType buttons, int deletable)
-{
+void Popup(char *title, char* message, GtkMessageType type, GtkMessageType buttons, int deletable) {
 GtkDialogFlags dialog;
 GtkMessageType button;
 	
@@ -809,14 +796,9 @@ GtkTextMark *mark ;
 	}
 }
 
-#ifdef FR_WIN32
-static char appfontname[128] = "tahoma 8"; /* fallback value */
-#else
 static char appfontname[128] = "Sans 10";
-#endif
 
-void set_app_font (const char *fontname)
-{
+void set_app_font (const char *fontname) {
     GtkSettings *settings;
 
     if (fontname != NULL && *fontname == 0) return;
@@ -846,63 +828,8 @@ void set_app_font (const char *fontname)
     }
 }
 
-#ifdef FR_WIN32
-char *default_windows_menu_fontspec (void)
-{
-    gchar *fontspec = NULL;
-    NONCLIENTMETRICS ncm;
 
-    memset(&ncm, 0, sizeof ncm);
-    ncm.cbSize = sizeof ncm;
-
-    if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, ncm.cbSize, &ncm, 0)) {
-	HDC screen = GetDC(0);
-	double y_scale = 72.0 / GetDeviceCaps(screen, LOGPIXELSY);
-	int point_size = (int) (ncm.lfMenuFont.lfHeight * y_scale);
-
-	if (point_size < 0) point_size = -point_size;
-	fontspec = g_strdup_printf("%s %d", ncm.lfMenuFont.lfFaceName,
-				   point_size);
-	ReleaseDC(0, screen);
-    }
-
-    return fontspec;
-}
-
-static void try_to_get_windows_font (void)
-{
-    gchar *fontspec = default_windows_menu_fontspec();
-
-    if (fontspec != NULL) {
-		int match = 0;
-		PangoFontDescription *pfd;
-		PangoFont *pfont;
-		PangoContext *pc;
-		GtkWidget *w;
-
-#ifdef USE_MONITORING
-		printf("Default font is %s\n", fontspec) ;
-#endif // USE_MONITORING
-		pfd = pango_font_description_from_string(fontspec);
-
-		w = gtk_label_new(NULL);
-		pc = gtk_widget_get_pango_context(w);
-		pfont = pango_context_load_font(pc, pfd);
-		match = (pfont != NULL);
-
-		pango_font_description_free(pfd);
-		g_object_unref(G_OBJECT(pc));
-		gtk_widget_destroy(w);
-
-		if (match) set_app_font(fontspec);
-		g_free(fontspec);
-    }
-}
-
-#endif /* FR_WIN32 */
-
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
      MTS_current_PORT=0;
         int i,len;
         char free_msg[2*MAX_STRING];
@@ -941,22 +868,13 @@ int main(int argc, char *argv[])
 					case 'H':	// "-H<path>         define start path"
 					strcpy(Gdata.lpath, &argv[i][2]) ;
 					len=strlen(Gdata.lpath) ;
-#ifdef FR_LINUX
 					if (Gdata.lpath[len-1]!=47) 
 					//sprintf(Gdata.lpath,"%s/",Gdata.lpath) ;  // 47='/' //
 					strcat(Gdata.lpath,"/");
 					
-#endif
-#ifdef FR_WIN32
-					if (Gdata.lpath[len-1]!=92) sprintf(Gdata.lpath,"%s%c",Gdata.lpath,92) ; // 92='\' //
-#endif
-#ifdef USE_MONITORING						
 					printf("\nCurrent dir <%s>\n", Gdata.lpath) ;
-#endif // USE_MONITORING
 					c=setinival("general","WorkSpace",Gdata.lpath);
-#ifdef USE_MONITORING						
 					printf("\nCurrent dir <%s>\n", Gdata.lpath) ;
-#endif // USE_MONITORING
 					if (c){
 						Gdata.menu_choice = 1 ;	
 						sprintf(free_msg,"Path '%s' non trovata\n", Gdata.lpath) ;
@@ -984,13 +902,11 @@ int main(int argc, char *argv[])
 		}
 	}
 
-#ifdef FR_LINUX
 	char comm[3*MAX_STRING];
 	sprintf(comm,"%sApplicativi/killMtsTestKit.sh %s",Gdata.lpath,Gdata.upass);
 	printf("Kill All!,%s",comm);
 	SLEEP(1000);
 	system(comm);
-#endif
 		
 	Gdata.pkt_offset = 0 ;
 	// Get Local IP
@@ -1012,9 +928,6 @@ int main(int argc, char *argv[])
 	gtk_disable_setlocale() ;
 	gtk_init( &argc, &argv );
 
-#ifdef FR_WIN32
-	try_to_get_windows_font() ;
-#endif
 	// Create new GtkBuilder object 
 	builder = gtk_builder_new();
 	// Load UI from file. If error occurs, report it and quit application.
@@ -1026,7 +939,7 @@ int main(int argc, char *argv[])
 	}
 
 	// Get main window pointer from UI 
-	strcpy(free_msg, "Widget '%s' not founded\n") ;
+	strcpy(free_msg, "Widget '%s' not found\n") ;
 	get_widget(&Scrn.main, "window1" );
 
 	
@@ -1066,6 +979,7 @@ int main(int argc, char *argv[])
 	Gdata.GTK_START = 1 ; // GTK is START
 	
 	i= Low_Init(0) ;
+#if 1
 	if (i){
 		if (i<2){
 			Popup("INIZIALIZZAZIONE", "Attendere Ripristino porte USB", GTK_MESSAGE_INFO,GTK_BUTTONS_NONE,0) ;
@@ -1085,10 +999,8 @@ int main(int argc, char *argv[])
 		gtk_label_set_text( GTK_LABEL(Scrn.lbl_extname), Gdata.portdev[PORT_TK]) ;
                 gtk_label_set_text( GTK_LABEL(Scrn.lbl_protname), Gdata.portdev[MTS_current_PORT]) ;
 	}
-
-#ifdef USE_MONITORING
+#endif
 	printf("init ok (%s),Gdata.run_loop=(%d),Gdata.menu_choice=(%d)\n", Gdata.lpath,Gdata.run_loop,Gdata.menu_choice) ;
-#endif // USE_MONITORING
 #ifdef NO_BLOCKING
 	// Alternative use
 	t_old = time(NULL) ;
@@ -1130,9 +1042,7 @@ int main(int argc, char *argv[])
 		 
 		// If choosed a menu
 		if (Gdata.menu_choice){
-#ifdef USE_MONITORING
 			printf ("choosed %d\n", Gdata.menu_choice);
-#endif // USE_MONITORING
 			
 			switch(Gdata.menu_choice){
 				case 1:
@@ -1204,9 +1114,7 @@ int main(int argc, char *argv[])
 			if ((bar_newtime.millitm - Gdata.bar_oldmsec)>Gdata.bar_msec){
 				if (Gdata.sequence_status!=SEQ_USERANSWER){
 					Gdata.bar_perc += 0.01 ;
-#ifdef USE_MONITORING_
-	printf("\n!!Gdata.bar_perc=%f!!\n", Gdata.bar_perc) ;
-#endif // USE_MONITORING
+					printf("\n!!Gdata.bar_perc=%f!!\n", Gdata.bar_perc) ;
 					if (Gdata.bar_perc>0.995) Gdata.bar_perc = 1.0 ;
 					gtk_progress_bar_set_fraction( GTK_PROGRESS_BAR(Scrn.progress_bar), Gdata.bar_perc) ;
 				}
@@ -1317,10 +1225,10 @@ int valid_data,data_valid,i,l,lp,ls; // lc
 		lp=strlen(par);
 		//lc=strlen(con);
 		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,"MtsTestKit.ini");
+		strcat(fileini,MYNAME".ini");
 
 		strcpy(filenew,Gdata.lpath);
-		strcat(filenew,"MtsTestKit.new");
+		strcat(filenew,MYNAME".new");
 
 		fini = fopen(fileini, "r") ;         // open configuration file
 		if (!fini){ 
@@ -1420,13 +1328,11 @@ int valid_data,i,l,lp;
 	if (!flock(0)) {
 		lp=strlen(par);
 		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,"MtsTestKit.ini");
+		strcat(fileini,MYNAME".ini");
 
 		fini = fopen(fileini, "r") ;         // open configuration file
 		if (!fini){ 
-		#ifdef USE_MONITORING
 			printf("\nFile '%s' non trovato\n", fileini) ;
-		#endif // USE_MONITORING
 			flock(1);
 			return(p);
 		}
@@ -1473,9 +1379,8 @@ int valid_data,i,l,lp;
 	return(stringd);
 }
 
-int RefreshUSB(void)
-{
-char *argv[3],applicativi[MAX_STRING],file[MAX_STRING];
+int RefreshUSB(void) {
+char *argv[3], applicativi[MAX_STRING], file[MAX_STRING];
 int esito,i;
 	
 	Gdata.refresh_USB=0;
@@ -1489,7 +1394,7 @@ int esito,i;
 	i=2;
 	printf("\nGdata.upass=<%s>\n",Gdata.upass) ;
 	if (Gdata.upass[0]!='\0') {
-		//printf("\nPassato da Gdata.upass\n") ;
+		printf("\nPassato da Gdata.upass\n") ;
 		argv[2]=Gdata.upass;
 		i=i+1;
 	 }
@@ -1503,14 +1408,13 @@ int esito,i;
 	return(esito);
 }
 
-int flock(int finito)
-{
+int flock(int finito) {
 int r;
 char filelock[MAX_STRING];
 	
 	// Cerca di lockare .ini.lck
 	strcpy(filelock,Gdata.lpath);
-	strcat(filelock,"MtsTestKit.lck");
+	strcat(filelock,MYNAME".lck");
 	if (!finito) {
 		Gdata.filock = tmpfile ();
 		Gdata.filock = fopen(filelock,"wx");
@@ -1518,13 +1422,13 @@ char filelock[MAX_STRING];
 			return(0);
 		}else{
 			srand(time(0)); /* n is random number in range of 0 - 1 */
-			//sprintf(free_msg,"In attesa di accesso esclusivo al file MtsTestkit.ini",r);	
+			//sprintf(free_msg,"In attesa di accesso esclusivo al file "MYNAME".ini",r);	
 			//if (Gdata.GTK_START) Popup("ATTESA", free_msg, GTK_MESSAGE_INFO,GTK_BUTTONS_NONE,0) ;
 			while (1) {
 				Gdata.filock = fopen(filelock,"wx");
 				if ( Gdata.filock!=NULL ) break;
 				r=1000+(rand() % 100) ;  
-				sprintf(free_msg,"In attesa di accesso esclusivo al file MtsTestkit.ini-Random:%d",r);
+				sprintf(free_msg,"In attesa di accesso esclusivo al file "MYNAME".ini-Random:%d",r);
 				printf("\n%s\n",free_msg);
 				if (Gdata.GTK_START) Add_txt_mts(Scrn.boxtxt_mts, free_msg) ;
 				SLEEP(r); // 0.001 sec
@@ -1533,7 +1437,7 @@ char filelock[MAX_STRING];
 			/*
 			do{
 				r=1000+(rand() % 100) ;  
-				sprintf(free_msg,"In attesa di accesso esclusivo al file MtsTestkit.ini-Random:%d",r);
+				sprintf(free_msg,"In attesa di accesso esclusivo al file "MYNAME".ini-Random:%d",r);
 				printf("\n%s\n",free_msg);
 				if (Gdata.GTK_START) Add_txt_mts(Scrn.boxtxt_mts, free_msg) ;
 				SLEEP(r); // 0.001 sec

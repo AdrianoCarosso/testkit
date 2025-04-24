@@ -12,7 +12,7 @@ Rel. 1.05 - 08/06/09 - Non si controlla più la freq di 1KHz (Tone decoder)
 Rel. 1.06 - 09/06/09 - Inserito codice scheda servizi nel file di abbinamento
 										 - Inizializzato lo stato dei relè (sia MTS che T-K) prima del test dei Relè
 Rel. 1.07b1 - 09/06/09 - Ottimizzazione di Test inDig, outDig e inAnal
-											 - Compressione e sintesi dei report di taverniti
+											 - Compressione e sintesi dei report di collaudo
 Rel. 1.07b2 - 11/06/09 - Inseriti controlli su input di operatore (Codici prodotto e schede)
 Rel. 1.07b3 - 12/06/09 - File di abbinamenti creati con cadenza giornaliera
 Rel. 1.07b4 - 15/06/09 - Implementata la taratura del Reference Analogico
@@ -30,7 +30,7 @@ Rel. 1.09 - 27/10/09 - Aggiunto controllo alimentazione Console
 										 - Aggiunto controllo di Famiglia MTS
 Rel. 1.09b1 - 28/10/09 - Integrato errore di Alim COM secondaria come bloccante
 Rel. 1.09b2 - 28/10/09 - Invertite le impostazioni di T-K su COM1 e COM2 per FTDI (param 24 e 28)
-Rel. 1.09b3 - 28/10/09 - Aggiunta l'indicazione dei Failed durante il taverniti
+Rel. 1.09b3 - 28/10/09 - Aggiunta l'indicazione dei Failed durante il collaudo
 Rel. 1.10   - 29/10/09 - Adeguato Output di 3008 da DOUT5 a DOUT2
 										 - Aumento tolleranza Input Analogico a 4%
 								RESTA DA AGGIUNGERE
@@ -86,14 +86,14 @@ Rel  2.36 - 03/10/11	Rimossi pre taratura analogico,modificato tempo attesa risv
 Rel  2.37 - 27/10/11	Invertiti PRODUZ e DEBUG in mgsbox
 Rel  2.38 - 02/11/11	Migliorato check MODEM
 Rel  2.39 - 03/11/11	progressbar programmazione portato a 40sec
-Rel  2.41 - 04/11/11	Modificato taverniti Laser Scanner 
+Rel  2.41 - 04/11/11	Modificato collaudo Laser Scanner 
 
 - ROVERA -
 Rel  2.42 - 02/12/11	Sistemato cancellazione Terzista, aggiunto MB e SUB-MOD file log
 - TAVERNITI
 Rel  2.43 - 19/01/12	Inserito 2023 e 2305
 Rel  2.44 - 20/01/12	Abilita il bk dei dati del MTS (Macchina Stati e parametri)
-Rel  2.45 - 26/01/12	Modificato il taverniti per 2023
+Rel  2.45 - 26/01/12	Modificato il collaudo per 2023
 Rel  2.46 - 01/02/12	Aggiunto controllo S/N lunghezza di 9 caratteri
 Rel  2.47 - 21/02/12	Rimosso Terzista Aggiunto hostname al suo posto
 Rel  2.48 - 21/02/12	Aggiunto funzione WriteAbbin
@@ -111,7 +111,7 @@ Rel  2.59 - 14/11/12	Aggiunto controllo parametri e spostato assegnazione s/n
 Rel  2.60 - 26/11/12	Modificato numero quantita cifre NUM TEL
 Rel  2.61 - 10/01/13	Inserito 2106C(New NoCHARGE)
 Rel  2.62 - 15/01/13	Modificato chiusura colllaudo parametri e macchina stati
-Rel  2.63 - 22/01/13	Aggiunto attesa per blocco Jtag e taverniti DUALSIM
+Rel  2.63 - 22/01/13	Aggiunto attesa per blocco Jtag e collaudo DUALSIM
 Rel	 2.64 - 24/01/13	Aggiunto attesa reboot macchina stati
 Rel  2.65 - 26/02/13	Aggiunto parametro 75 per 2023 nuovi
 Rel  2.66 - 17/05/13	Modificato riconoscimento dual-sim se VER 2.10 richiesta CDHW
@@ -135,23 +135,84 @@ Rel  3.14 - 11/12/13	Swappate uscite 2-3 con 7-8 sul 3025 come su 3208
 Rel	 3.15 - 18/12/13	Modificato EmergencyLink per 3025
 Rel	 3.16 - 27/01/14    Aggiunto ripeti per EmergencyLink e CAN
 Rel  3.17 - 28/01/14	Modificato check parametri
-Rel  3.18 - 14/04/15	Aggiunto taverniti 2034
+Rel  3.18 - 14/04/15	Aggiunto collaudo 2034
 Rel  3.19 - 13/05/15	Modificato Test Ingressi
 Rel  3.20 - 01/07/15	Aggiunto Possibilità disabilitazione Test Tamper
-Rel  3.21 - 23/07/15	Aggiunto Pre-taverniti 3033
+Rel  3.21 - 23/07/15	Aggiunto Pre-collaudo 3033
 Rel  3.22 - 08/09/15	Aumentato Tempi Collaudo dual-sim
 Rel  3.23 - 21/12/15	Aggiunto Collaudo 3035-3036
 Rel  3.24 - 07/01/16	Aggiornato Collaudo 3035-3036
 Rel  3.25 - 08/01/16	Aggiunto cansel
 Rel  3.26 - 11/01/16	Modificato Collaudo 3035-3036
-Rel  3.27 - 12/01/16    Modificato Collaudo RTC
-Rel  3.28 - 21/03/16    Aggiunto Collaudo 4037
+Rel  3.27 - 12/01/16  Modificato Collaudo RTC
+Rel  3.28 - 21/03/16  Aggiunto Collaudo 4037
+Rel  3.29 - 13/04/17	Aggiunto Collaudo 2039
+Rel  3.30 - 24/05/17	Aggiunto Collaudo 2040
+Rel  3.31 - 14/11/17	Aggiunto Collaudo 3036 v02
+Rel  3.32 - 23/01/18	Modificato Collaudo HTL
+Rel  3.33 - 24/01/18	Modificato Collaudo Counter
+Rel  3.34 - 25/01/18	Dimmezzato Tempi CAN
+Rel  3.35 - 20/02/18	Aumentato tempo com secondaria e introdotto diverse ripetizione test
+Rel  3.36 - 23/05/18	Aggiornato gestione WSPACE
+Rel  3.37 - 20/06/18	Aggiunto Collaudo 2046 + Gestione Porta USB MTS
+Rel  3.38 - 10/07/18	Cambio Gestione Diag 12
+Rel  3.39 - 27/09/18	Aggiunto Collaudo 2044
+Rel  3.40 - 28/09/18	Aggiunto Collaudo CANLOGISTIC
+Rel  3.41 - 10/01/19	Modificato controllo esecuzione Collaudo CANLOGISTIC
+Rel  3.42 - 17/01/19	Modificato controllo esecuzione Collaudo CANLOGISTIC
+Rel  3.43 - 21/01/19	Modificato collaudo CAN
+Rel  3.44 - 22/01/19	Aggiunto collaudo 3048 
+Rel  3.45 - 24/01/19	Riordinato dimensioni buffer e modificato collaudo Uscita 
+Rel  3.46 - 05/02/19	Aggiunto collaudo 2047
+Rel  3.47 - 19/02/19	Regolato buffer
+Rel  3.48 - 04/03/19  Aggiunto Cancellazione Parametri
+Rel  3.49 - 01/04/19  Aggiunto Cancellazione Parametri
+Rel  3.50 - 12/04/19  Aggiunto/Modificato Invio Codice su Seriale 
+Rel  3.51 - 15/04/19  Aggiunto Funziona caricamento Macchina Stati e Can 
+Rel  3.52 - 16/04/19  Verificato e migliorato Funziona caricamento Macchina Stati e Can
+Rel  3.53 - 23/04/19  Aggiunto Collaudo 2405 
+Rel  3.54 - 20/05/19  Modificato controllo Blocco Jtag Diag3
+Rel  3.55 - 19/06/19  Aggiunto controllo invio conf can e par e sm 
+Rel  3.56	- 10/07/19	New version 2047 TTL SERIAL
+Rel  3.57	- 03/09/19	Update GetIniInfo for SERIAL Programing
+Rel  3.58	- 17/02/20	Update Param 105 for HTL
+Rel  3.59 - 22/06/20	Aggiunto collaudo 2051
+Rel  3.60 - 07/07/20	Aggiunto Debug Invio Configurazione CAN
+Rel  3.61 - 22/07/20	Aggiunto Collaudo 2052
+Rel  3.62 - 14/10/20  Aggiunto Gestione Parametri_Sim_Nome_Esterno
+Rel	 3.63 - 16/12/20  Aggiunto paremetro 188 ha tablePIN
+Rel	 3.64 - 02/07/21  Aggiunto Collaudo 2046_M4 Cortex LPC4078
+Rel	 3.65 - 05/07/21  Modificato Collaudo Cambio Assetto Ribaltamento
+Rel	 3.66 - 06/07/21  Aumentato Tempo CanBus
+Rel	 3.67 - 13/07/21  Modificato indirizzo canBus in f004 e cambiato baudrate
+Rel  3.68 - 15/07/21  Aggiunto parametro maschera Ingressi MaskDigInDn e MaskDigInUp
+Rel  3.69 - 16/07/21  Aggiunto localmillisDelay e modificato timeoutCAN
+Rel  3.70 - 19/07/21  Modificato Lettura Parametri File INI
+Rel	 3.71 - 19/07/21  Aggiunto Collaudo 2044_M4 2047_M4 2051_M4 Cortex LPC4078
+Rel	 3.72 - 21/09/21  Aggiunto Rimozione Caratteri non alfanumerici quando scrive i parametri.
+Rel  3.73 - 16/11/21  Aggiunto Ribatezzamento Codice
+- ROVERA -
+Rel  3.75 - 17/05/23  Aggiunto Rimozione Caratteri non alfanumerici in lettura file ASCII
+Rel  3.76 - 26/05/23  Aggiunta gestione (e divulgazione) valore flag di debug 
+					 (chiave "leveldebug=" nel file di collaudo del tipo MTS)
+Rel  3.77 - 03/03/25  Aggiunti 2054 e 3055
 */ 
+
 //Delay in decimi di secondo 
 
 #define VER 3
-#define SUBVER 28   
-#define VERDATE "21/03/16"
+#define SUBVER 77
+#define VERDATE "03/03/25"
+
+// Funzioni di visualizzazione per "Collaudo.c"
+// MsgWindow -> (definita in vbInterface.c)
+//				visualizza su MtsTestKit finestra messaggi (trace) tramite sequence.c che chiama Add_txt_answer() in MtsTestKit.c
+//				e stampa su terminal (directToConsole)
+
+// non esiste funzione richiamabile da "Collaudo" per scrivere su MtsTestKit finestra dati MTS
+//	ci scrive solo "mts_tk_man.c" ( chiamare funzione Add_txt_mts() in MtsTestKit.c )
+
+// MsgFile	 -> scrive su file di log
 
 //Variabili Globali RTC
 int deltak=0;
@@ -206,6 +267,10 @@ int TO_VOLT;
 #include <time.h>
 #include <errno.h>
 
+#include <time.h>
+#include <sys/time.h>
+#include <sys/timeb.h>
+
 #ifdef FR_WIN32
 #include <windows.h>
 #include <sys/stat.h>
@@ -216,7 +281,6 @@ int TO_VOLT;
 
 #endif
 
-#ifdef FR_LINUX
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -231,7 +295,6 @@ int TO_VOLT;
 			/*rem_duble_slash(_AA,_AA);*/						\
 		}											
 
-#endif	// #ifdef FR_LINUX
 
 
 
@@ -240,7 +303,8 @@ int TO_VOLT;
 #include "testkitold.h"
 #include "testkitnew.h"
 
-// #define DEBUG_P71 // Se valido P71=1 se remmato P71=0
+//#define DEBUG_P71 // Se valido P71=1 se remmato P71=0
+#define DEBUG_P71
 //#define DEBUG_FR
 //#define DEBUG_1FR
 #ifdef DEBUG_1FR
@@ -282,6 +346,9 @@ void COLOR_STEP(int _N, int _C);
 
 //#define PATH_FW "..\\\\..\\\\"		// Percorso da path del programma al FW
 //--------------------------------------------------------------------------------------------------------------
+unsigned int TKTYPE; // Tipo di TestKit se 0 vecchio se 1 nuovo con SN maggiore di 901400100
+char PathTK[NRMSIZE] ; 			// Path per gli Applicativi del TestKit (Wspace[]+Applicativi)
+uint32_t leveldebug ;		// Added from 2.13 (25/05/23) same name as Gdata into MTScu
 
 _InternalAnalogData DatoMTS;
 _HwVers RevHW;
@@ -308,6 +375,16 @@ struct {
 } Arca[100] ;
 int QtaArca = 0;
 
+// Struttura con i codici della tabella PIN
+struct {
+	char snmts[MINSIZE] ;		// snMTS
+	char extname[MINSIZE] ;		// ext mts
+	char ICCID[MINSIZE] ;   // ICCID
+	char PIN[MINSIZE] ; // PIN
+	char centoottantacinquepar[MINSIZE*4]; //185 Parametro APN
+} TablePIN[10000] ;
+int QtaRow = 0;
+
 // Struttura con i dati digitati di abbinamento: codice MTS, codice Motherboard (e s/n), codice scheda servizi (e s/n)
 // Solo per produzione
 struct {
@@ -322,16 +399,17 @@ struct {
 struct {
 	char NamTyp[MAXSIZE] ;		// workingPath
 	char mName[MINSIZE] ;		// MtsName
-	char FileImp[NRMSIZE] ;		// FileImpostazioni (di taverniti)
+	char FileImp[NRMSIZE] ;		// FileImpostazioni (di collaudo)
 	char NamFile[MINSIZE] ; 	// prgFileRadix
 	char NewNum[MINSIZE] ; 		// next S/N
-								// ProgramFile (non necessario)
+	char NamFW[MAXSIZE] ;		// ProgramFile (non necessario)
 	char NamSM[MAXSIZE] ;		// StateMachine
 	char NamPar[MAXSIZE] ;		// Parameter File
 	char NamCANConf[MAXSIZE]; 	// CanConfigure
+	char Protocol[MAXSIZE];
 } TkIni ;
 
-// Struttura con definite le impostazioni del taverniti
+// Struttura con definite le impostazioni del collaudo
 struct {
 // Stringhe
 	char  Terzista[NRMSIZE] ;	// S Nome del costruttore (per inserirlo nel report di abbinamento)
@@ -343,6 +421,8 @@ struct {
 	int   QtaOD ;				// I Numero di uscite OpenDrain
 	int   QtaRL ;				// I Numero di uscite Rele'
 	int   QtaIn ;				// I Numero di ingressi digitali
+	int   MaskDigInDn ; // I Mask per Ingressi digitali con PullDown
+	int   MaskDigInUp ; // I Mask per Ingressi digitali con PullUp
 	int   QtaInA ;				// I Numero di ingressi Analogici in CORRENTE
 	int   QtaInV ;				// I Numero di ingressi Analogici in TENSIONE
 	int   QtaCAN ;				// I Numero di porte CAN
@@ -356,7 +436,7 @@ struct {
 // Logici
 	int   AnlTaratura ;			// L Permette di memorizzare il coefficiente di calibrazione del convertitore AD
 	int   EnTrm ;				// L Abilita la COM della porta di sevizio
-	int   EnPres ;				// L Nel taverniti si prevede la gestione della presenza
+	int   EnPres ;				// L Nel collaudo si prevede la gestione della presenza
 	int   EnRTC ;				// L Abilita il test del RTC
 	int   EnDigInDn ;			// L Abilita il test degli Input Digitali con Pull-Down (o su TRIS tastierino)
 	int   EnDigInUp ;			// L Abilita il test degli Input Digitali con Pull-Up (o su TRIS tastierino)
@@ -370,6 +450,7 @@ struct {
 	int   EnGSM ;				// L Abilita il test del GSM
 	int   EnFonia ;				// L Abilita il test della Fonia GSM
 	int   EnCOM2 ;				// L Abilita il test della COM secondaria
+	int   EnCANLOGISTIC;			// L Abilita il test del CANLOGISTIC
 	int   EnVcns ;				// L Abilita il test della Tensione a Console
 	int   EnRS485 ;				// L Abilita il test della porta 485
 	int   EnHTL ;				// L Abilita il test della porta HTL
@@ -379,6 +460,8 @@ struct {
 	int   EnExtLED ; 			// L Abilita il test del LED esterno (su 2202)
 	int   EnEmeLink ; 			// L Abilita il test dell'emergency link (su 3208 e 2202)
 	int   EnBKdata ; 			// L Abilita il bk dei dati del MTS (Macchina Stati e parametri)
+	int   EnSendFW;				// L Abilita caricamento FW
+	int	  ASKFW;					// L Abilita domanda tipo FW
 	int   EnSMset ; 			// L Abilita caricamento Macchina Stati e parametri impostati nel ini
 	int   EnCANConf ;           // L Abilita caricamento Configurazione CAN impostato nel file ini
 	int   EnSIMdata ;           // L Abilita salvataggio dati SIM 
@@ -392,7 +475,10 @@ struct {
 	float CurrMax ;				// F Valore soglia di Massima Corrente in ingresso prevista
 	int   An_Perc ;             // Percentuale Analogico 
 	int   CAN_Term_Perc;        // Percentuale convalida
-	
+	int EnPIN_Param;			// L Abilita gestione File PIN
+	int EnFormat;					// L Abilita formattazione con SN -1
+	int EnBaptismo;				// L Abilita Assegnazione SN
+  char  StartProtocol[NRMSIZE] ;		// S Protocollo iniziale di comunicazione
 } TestSet ;
 
 // Variabile x LaserScanner
@@ -405,9 +491,9 @@ struct _LASER{
 struct {
 	int mSerial ;
 	int mSign ;					// Famiglia MTS fornita da MTS (da verificare con mTipo)
-	int ERRTest ;				// Errori totali durante il taverniti
-	int AlimFail ;				// Risultato del test (inizio e metà taverniti) della Vconsole
-	int oldtime ;				// Data/ora dell'MTS prima di inviare SM di taverniti
+	int ERRTest ;				// Errori totali durante il collaudo
+	int AlimFail ;				// Risultato del test (inizio e metà collaudo) della Vconsole
+	int oldtime ;				// Data/ora dell'MTS prima di inviare SM di collaudo
 	unsigned int TKcntStart ; 	// Old TK counter value
 	unsigned int SMflags ;		// (Ronly)
 	int ValoreCSQ ;
@@ -420,7 +506,7 @@ struct {
 	unsigned int HSrvVer;
 } MTSdata ;
 
-// Variabili di taverniti con valori dipendenti dal tipo di MTS
+// Variabili di collaudo con valori dipendenti dal tipo di MTS
 struct {
 	int nuovo ;					// Se s/n = -1
 	int firstRun ;				// Se senza codice
@@ -431,11 +517,12 @@ struct {
 	int pres2ON ;				//
 	int mTipo ;					// Famiglia di MTS attesa (da tabella MtsFam[]) 
 	int ArcaPos ; 				// Indice in dati Arca
+	int PinPos ; 				// Indice in dati PIN
 	int WTastiera ;				// MTS con tastiera (e non ingressi esterni)
 	int MonoPiastra ;			// MTS senza scheda servizi
 	int mCOM ;					// Unità logica con cui la 'COM1' del TK dialoga
 	int tCOM ;					// Unità logica con cui la 'COM2' del TK dialoga
-	time_t oldtime ;			// Data/ora del PC prima di inviare SM di taverniti
+	time_t oldtime ;			// Data/ora del PC prima di inviare SM di collaudo
 
 	float VextTK ;
 	// Dipendenti dal tipo di batteria (se left(TkIni.mName,3) = "MTS" -> Ni-MH
@@ -450,7 +537,7 @@ struct {
 #define DELTA_AN_V   	2.8			// +/- DELTA_AN: variazione in V ammessa nella lettura degli input analogici liberi
 #define DELTA_AN_VHC12  2.8			// +/- DELTA_AN: per HC12
 //#define AN_DELTAPERC    4			// +/- DeltaAn: variazione in % ammessa nella lettura degli input analogici
-#define MIN_CSQ		 	10			// Minimo valore di CSQ di accettazione
+#define MIN_CSQ		 	8			// Minimo valore di CSQ di accettazione
 #define COM_OFF     	"10"		// Settaggio FTDI per disattivare sia COM1 che COM2
 
 // Define per la funzione IDCMD_DIAG
@@ -472,10 +559,10 @@ struct {
 	
 //*********************************************
 // Variabili di "Macchina"
-	int NamOut[10]; 					// Ordine di sequenza di Uscite O.D. e Rele'	
+	int NamOut[18]; 					// Ordine di sequenza di Uscite O.D. e Rele'	
 	int tbar_time ; 					// Tempo da inpostare per 
 	
-// inizio e fine taverniti
+// inizio e fine collaudo
 	time_t TimeDUT, TimeNOW;
 //*********************************************
 
@@ -485,9 +572,9 @@ struct {
 
 	char PathFwUp[MAXSIZE] ;		// Path per gli Applicativi di invio FW per la CPU dell'MTS (Wspace[]+Applicativi+'cpu')
 	
-	char mRoot[MAXSIZE] ;			// Path per i file dell'MTS in taverniti (Wspace[]+'workingPath')
-	char mAppl[MAXSIZE] ; 			// Path per gli Applicativi dell'MTS in taverniti (mRoot[]+'Applicativi')
-	char mVer[MAXSIZE];				// Path con i file di FW dell'MTS in taverniti (mRoot[]+'Versioni')
+	char mRoot[MAXSIZE] ;			// Path per i file dell'MTS in collaudo (Wspace[]+'workingPath')
+	char mAppl[MAXSIZE] ; 			// Path per gli Applicativi dell'MTS in collaudo (mRoot[]+'Applicativi')
+	char mVer[MAXSIZE];				// Path con i file di FW dell'MTS in collaudo (mRoot[]+'Versioni')
 
 	
 // Nomi dei file con path nella dir dell'MTS in oggetto
@@ -500,16 +587,17 @@ struct {
 
 // File di SM e parametri (con Path per gli Applicativi del TestKit)
 	char SMachVoid[MAXSIZE] ; 		// SM vuota
-	char SMachColl[MAXSIZE] ;		// SM per il taverniti
-	char SMachTest[MAXSIZE] ; 		// SM da inviare a fine taverniti se MTS di produzione
-	char SMachFile[MAXSIZE] ;		// SM presente prima del taverniti (per ripristinarla)
-	char ParamFile[MAXSIZE] ;		// File con i parametri presenti prima del taverniti (per ripristinarli)
+	char SMachColl[MAXSIZE] ;		// SM per il collaudo
+	char SMachTest[MAXSIZE] ; 		// SM da inviare a fine collaudo se MTS di produzione
+	char SMachFile[MAXSIZE] ;		// SM presente prima del collaudo (per ripristinarla)
+	char ParamFile[MAXSIZE] ;		// File con i parametri presenti prima del collaudo (per ripristinarli)
+	char FWSel[MAXSIZE] ;				// FW scelto	
 	char SMachSel[MAXSIZE] ;		// SM scelta
 	char ParamSel[MAXSIZE] ;		// PM scelti
-	char CANConfSel[MAXSIZE] ;		// CAN Conf scelta
+	char CANConfSel[MAXSIZE*2] ;		// CAN Conf scelta
 	
 // Stringhe scratch
-char buflog[MAXSIZE];
+char buflog[MAXSIZE*4];
 char bufabb[MAXSIZE];
 char bufSIM[MAXSIZE];
 char bufmsg[MAXSIZE];
@@ -547,8 +635,10 @@ int  SK_TK_PreInit(void);
 void GetDate(char *data);
 void GetYear(char *data);
 void LoadFamTab(void);
+void LoadTabPINAssociative(void);
 int  ReadMTSType(char *dutM);
 int ReadMTSArca(char *dutM);
+int ReadMTSPIN(int dutM);
 void TesterMTS(void);
 
 char * loc_fgets(char * a1, int nn, FILE * abc);
@@ -556,17 +646,25 @@ void RemoveComment(char *testo);
 int  GetIntStr(char *Delim, char *sInput,  unsigned int order, char *sOut);
 void UpperAlfaNum(char *testo);
 void RLTrimm(char *testo);
+void RLTrimmwithplace(char *testo);
 void LoadProdTab(void);
 
 char hostname[128];
 
+int SK_ParamSet(void);
+int SK_ParamSetCheck(void);
+int SK_SM_StateSet(void);
+int SK_SM_StateSetCheck(void);
+int SK_CanConfSet(void);
+void togliCR(char *msg);
+void LoggaStampa(char *msg);
+
 #ifdef SENDFW
-void SK_SendCode(void);
+int64_t SK_SendCode(void);
 #else
 
 float ReadAnalog(int channelId);
-void togliCR(char *msg);
-void LoggaStampa(char *msg);
+
 void LoggaStampaCR(char *msg);
 
 int SK_PowerOn(void);
@@ -574,8 +672,13 @@ int SK_CheckId(void);
 int SK_Set_MTS(void);
 int SK_SaveParam(void);
 int SK_RestoreParam(void);
+/*
 int SK_ParamSet(void);
 int SK_ParamSetCheck(void);
+int SK_SM_StateSet(void);
+int SK_SM_StateSetCheck(void);
+int SK_CanConfSet(void);
+*/
 int SK_Test_RTC(void);
 int SK_Test_DigIn(void);
 int SK_Test_DigOut(void);
@@ -587,6 +690,7 @@ int SK_Test_GPS(void);
 int SK_Test_GSM(void);
 int SK_Test_CAN(void);
 int SK_Test_COM2(void);
+int SK_Test_CANLOGISTIC(void);
 int SK_Test_RS485(void);
 int SK_Test_HTL(void);
 int SK_Test_COMAUX(void);
@@ -604,10 +708,122 @@ int SK_TestEmeLink(void);
 
 char SCRREL[MAXSIZE] ;
 
+char* LastcharDel(char* name)
+{
+    int i = 0;
+    while(name[i] != '\0')
+    {
+        i++;
+         
+    }
+    name[i-1] = '\0';
+    return name;
+}
+
+int countBits(unsigned char byte){
+    int count = 0;
+    for(int i = 0; i < 8; i++)
+        count += (byte >> i) & 0x01; // Shift bit[i] to the first position, and mask off the remaining bits.
+    return count;
+}
+
+void localmillisDelay(int timeout){
+	struct timeb loc_time ;
+	ftime(&loc_time) ;
+	//long starttime=(loc_time.time*1000+loc_time.millitm);
+	
+	while (((loc_time.time*1000+loc_time.millitm)-timeout)<timeout){
+		ftime(&loc_time) ;
+	}
+}
+
+
+/* function prototypes */
+int ascii (const unsigned char c);
+ 
+int ascii_ext (const unsigned char c);
+ 
+unsigned char* strip(unsigned char* str, const size_t n, int ext );
+ 
+ 
+/* check a character 
+   return 1 for true
+          0 for false
+*/ 
+int ascii (const unsigned char c) 
+{  
+  unsigned char min = 32;   /* <space> */
+  unsigned char max = 126;  /* ~ tilde */
+ 
+  if ( c>=min && c<=max ) return 1;
+ 
+  return 0;
+} 
+ 
+ 
+/* check if extended character 
+   return 1 for true
+          0 for false
+*/ 
+int ascii_ext (const unsigned char c) 
+{  
+  unsigned char min_ext = 128;   
+  unsigned char max_ext = 255;
+ 
+  if ( c>=min_ext && c<=max_ext )
+       return 1;
+ 
+  return 0;
+} 
+ 
+ 
+/* fill buffer with only ASCII valid characters
+   then rewrite string from buffer
+   limit to n < MAX chars
+*/
+ #define MAXBUF 256  /* limit */
+unsigned char* strip( unsigned char* str, const size_t n, int ext) 
+{ 
+ 
+  unsigned char buffer[MAXBUF] = {'\0'};
+ 
+  size_t i = 0;  // source index
+  size_t j = 0;  // dest   index
+ 
+  size_t max = (n<MAXBUF)? n : MAXBUF -1;  // limit size
+ 
+  memset(buffer, 0, MAXBUF) ;		// FR 3.75 - 17/05/23: added
+ 
+  while (i < max )
+    {
+      if ( (ext && ascii_ext(str[i]) ) ||  (ascii(str[i]) ) )    // check
+	{
+	  buffer[j++] = str[i]; // assign
+	}      
+      i++;
+    }
+ 
+  memset(str, '\0', max); // wipe string 
+ 
+  i = 0;               // reset count
+ 
+  while( i < j)
+    {
+      str[i] = buffer[i]; // copy back
+      i++;
+    }
+ 
+  str[j] = '\0';  // terminate properly
+ 
+  return str;  
+}
+
+enum {ASCII=0, EXT=1}; /* enumeration makes easier reading */
+
 int main(void)
 {
 //	==================================================================================
-// 								Versione dello Script di taverniti
+// 								Versione dello Script di collaudo
 //	==================================================================================
 	sprintf (SCRREL , "Script %d.%02d - %s", VER, SUBVER, VERDATE ) ; 
 //	==================================================================================
@@ -626,17 +842,19 @@ int main(void)
 	nr_mtspars = sizeof(mtspars) / sizeof(int) ;
 
  	GetWorkSpace(WSpace);
+	if (WSpace[strlen(WSpace)-1]=='/') LastcharDel(WSpace); 
  	// Path per gli Applicativi
 	sprintf(PathTK, "%s\\Applicativi", WSpace);
 	CONVERTPATH(PathTK);
 	
 #ifdef CHECK_TESTTIME
 	strcpy(WSpace,"--------------------------------------------------") ;
-	MsgFile(0, "tempi_taverniti.txt", WSpace) ;
+	MsgFile(0, "tempi_collaudo.txt", WSpace) ;
 #endif
 
 	// MTS in test
 	GetINIKeyVal("MtsName", TkIni.mName);
+	togliCR(TkIni.mName);
 // ==================== Verifica Versione TK =====================
 	SK_TK_CheckVersion();
 //	======================================================================
@@ -665,11 +883,22 @@ int main(void)
 	MtsTK.steptest = 0 ;				// Inizializza contatore dei test eseguiti
 	i = 0 ;	
 	VrtSt = 0 ;
+
+	SK_GetIniInfo();					// Carica i riferimenti dal file TestKit.INI
+	
+	//_FR - Rel 3.76 - 26/05/23
+	SetLevelDebug(leveldebug) ;
 	
 #ifdef SENDFW
 	// Inizializza scritte degli step
 	LABEL_STEP(i++, "Connessione MTS") ;
-	LABEL_STEP(i++, "Invio codice") ;
+	if ( TestSet.EnSendFW == YES ) LABEL_STEP(i++, "Invio codice") ;
+	if ( TestSet.EnCANConf == YES) LABEL_STEP(i++, "Configurazione CAN") ;
+	if ( TestSet.EnSMset == YES) {
+		LABEL_STEP(i++, "Parametri") ;
+		LABEL_STEP(i++, "Macchina Stati") ;
+	}
+
 	LABEL_STEP(i++, "Verifica versione") ;	
 	tbar_time = 100 ; // 10 sec
 #else
@@ -679,17 +908,135 @@ int main(void)
 	LABEL_STEP(i++, "-- INIZIO COLLAUDO --") ;
 	tbar_time = 400 ; // 30 sec
 #endif
-	SK_GetIniInfo();					// Carica i riferimenti dal file TestKit.INI
+	
 #ifdef SENDFW
+	int k,r;
+	char start_number[4];
+	strncpy(start_number,TkIni.mName,4);
 	SK_TK_PreInit();
 	T_Led(MSK_PRES, FRQ_PRES);				// Il LED lampeggia per indicare "Presenza abilitata"
 	sprintf(bufwindow,"\r---->   VERSIONE di PROGRAMMAZIONE %s: %s   <----\r", TkIni.mName, SCRREL);
 	MsgWindow(bufwindow);
+	if (!strncmp(TestSet.StartProtocol,"WAY",3)) SetProtocolComunication(0);	// Setta Protocollo WAY
+	if (!strncmp(TestSet.StartProtocol,"TEST",4)) SetProtocolComunication(1);	// Setta Protocollo TEST
+	Delay(10);
+	T_Output (PON_, 0);
+	Delay(10);
+	T_Output (PON_, 0);
+	Delay(10);
+	T_Output (PON_, 0);
+	Delay(10);
 	T_Output (PRES_, 0);											// Si accende l'MTS ... attivando la Presenza ...
-	T_Output (PON_, 0);	
-	SK_SendCode() ;
+	Delay(10);
+	T_Output (PRES_, 0);											// Si accende l'MTS ... attivando la Presenza ...
+	Delay(10);
+	T_Output (PRES_, 0);											// Si accende l'MTS ... attivando la Presenza ...
+	Delay(10);
+	if (TestSet.EnFormat){
+		sprintf(bufwindow,"\rCANCELLAZIONE SERIAL NUMBER\r");
+		MsgWindow(bufwindow);
+		if (T_SetFTDI(MtsTK.COM1)){							// si abilita la COM1 del T-K
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+		}
+		M_SetSourceId(MtsTK.mCOM);						// si imposta la COM di protocollo primario
+		Delay(5);
+		for (k=0;k<150;k++){
+			r = M_GetSerNum() ;
+			if (r!=0) break;
+		}	
+		M_Diag(250,0,dDg);                   	//Sblocco Scrittura S/N
+		Delay(5);
+		for (i=1; i<=4; i++) {
+			M_SetPar(255,"-1");				   		//Scrivo S/N -1
+			Delay(10);
+			k = M_GetSerNum();								// si rilegge il Serial-Number
+			if (k==-1) break;
+		}
+		if (k!=-1) call_exit(YES, "Errore cancellazione Serial NUMBER");
+		sprintf(Bmom, "s/n Assegnato = %d",k);
+		OuputText(1,Bmom,0,0,1,7);				// ... scrivo il Serial Number nella Output Text
+		//Cancello Parametri
+		M_SetPar(255,"N.D.");  //Cancello Tutti i Parametri
+		//Cancello Macchina Stati
+		//Cancello CanBus
+	}
+  int64_t Status;	
+	Status=SK_SendCode() ;
+	if (Status == -1){
+		sprintf(bufwindow, "Invio codice E R R A T O ---> MTS tipo %d, s.n. %d (Ver.%5.2f) CheckSum(0x%lX)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer,Status);
+		COLOR_STEP(MtsTK.steptest, C_RED ) ;
+	}
+	MsgWindow(" ");
+	MsgWindow(bufwindow);
+	MsgFile(0, LogCollaudo, bufwindow);
+	if (Status == -1) call_exit(NO, bufwindow) ;
+
+	if (TestSet.EnBaptismo){
+		char LogCollaudoNew[MAXSIZE] ;
+		unsigned int NextNum ;
+		for (i=1; i<=4; i++) {
+				GetINIKeyVal(nextip, TkIni.NewNum);
+				togliCR(TkIni.NewNum);
+				StampaDB("NewNum", TkIni.NewNum);
+				M_SetPar(255, TkIni.NewNum);					// ... si inizializza il Serial Number    
+				Delay(10);
+				k = M_GetSerNum();								// si rilegge il Serial-Number
+				if (k!=-1) break;
+		}
+		sprintf(Bmom, "s/n Assegnato = %d",k);
+		OuputText(1,Bmom,0,0,1,7);				// ... scrivo il Serial Number nella Output Text
+		if(k==-1){
+			call_exit(YES, "Errore assegnazione S/N Serial NUMBER");
+		}else{
+				sprintf(LogCollaudoNew, "%s\\Logs\\Log%s.txt", mRoot,TkIni.NewNum);
+				CONVERTPATH(LogCollaudoNew);
+				PrintDB(LogCollaudoNew);
+				NextNum = atoi(TkIni.NewNum) + 1;
+				sprintf(TkIni.NewNum,"%d",NextNum);
+				PrintDB(TkIni.NewNum);
+				SetINIKeyVal(nextip, TkIni.NewNum);
+				srand(time(0)); /* n is random number in range of 0 - 1 */
+				char NumSet[MAXSIZE];
+				unsigned int NumSetn;
+				int r;
+				while (1) {
+					GetINIKeyVal(nextip, NumSet);
+					togliCR(NumSet);
+			   		NumSetn = atoi(NumSet);
+			   		if ( NumSetn==NextNum ) break;
+					PrintDB("Attesa incrementazione numero\n") ;
+					sprintf(TkIni.NewNum,"%d",NextNum);
+					PrintDB(TkIni.NewNum);
+					SetINIKeyVal(nextip, TkIni.NewNum);
+					sprintf(NumSet,"0");
+					r=100+(rand() % 100) ; 
+					Delay(r);
+				}
+				rename(LogCollaudo,LogCollaudoNew);					// si rinomina il file di log del collaudo
+				sprintf(LogCollaudo,"%s",LogCollaudoNew);			// ed il nome che lo identifica
+				MTSdata.mSerial = k ;
+		}
+	}
+
+	sprintf(bufwindow, "Aggiornamento completato ---> MTS tipo %d, s.n. %d (Ver.%5.2f) CheckSum(0x%lX)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer,Status);
+	COLOR_STEP(MtsTK.steptest, C_GREEN ) ;
+	MsgWindow(" ");
+	MsgWindow(bufwindow);
+	MsgFile(0, LogCollaudo, bufwindow);
+	call_exit(NO, bufwindow) ;
 #else
 	SK_TK_Init();													// Inizializza il T-K perchè sia invisibile all'inserimento dei connettori  
+
+
+	if ( (TestSet.EnCANLOGISTIC) && (
+				(!strcmp(TkIni.mName, "2046")) ||
+				(!strcmp(TkIni.mName, "2044	")) ||
+				(!strcmp(TkIni.mName, "2046_M4")) ||		
+				(!strcmp(TkIni.mName, "2044_M4"))
+	) ) TestSet.EnCANLOGISTIC=YES;
+
 	// Controlla che non si siano impostati Ingressi sia in Corrente che in Tensione
 	if (TestSet.EnAnlIn){
 		if ((TestSet.QtaInV>0) && (TestSet.QtaInA>0) && (strcmp(TkIni.mName, "3025")) ){
@@ -706,7 +1053,7 @@ int main(void)
 	
 	if (TestSet.EnVext)		LABEL_STEP(i++,"Alimentazione") ;
 	if (TestSet.EnVbat)		LABEL_STEP(i++,"Batteria") ;
-	if ( ((TestSet.EnDigInDn) && (TestSet.EnDigInUp))>0){
+	if ( ((TestSet.EnDigInDn) || (TestSet.EnDigInUp))>0){
 		if (MtsTK.WTastiera){
 			if ((TestSet.EnDigInDn) && (TestSet.EnDigInUp)) LABEL_STEP(i++, "Pulsanti + Switch" ) ;
 		}else{
@@ -715,6 +1062,7 @@ int main(void)
 	}
 	if (TestSet.EnDigOut)	LABEL_STEP(i++,"Uscite digitali") ;
 	if (TestSet.EnAnlIn)	LABEL_STEP(i++,"Ingressi analogici") ;
+	if (TestSet.EnHTL)	LABEL_STEP(i++,"Porta HTL") ;
 // Counter e LED esterno
 	if (TestSet.QtaCnt){
 		if (TestSet.EnExtLED)
@@ -732,8 +1080,8 @@ int main(void)
 	}else if (TestSet.EnVcns){
 		LABEL_STEP(i++,"Alimentazione Console") ;
 	}
+	if (TestSet.EnCANLOGISTIC) LABEL_STEP(i++,"CANLOGISTIC") ;
 	if (TestSet.EnRS485)	LABEL_STEP(i++,"Porta RS485") ;
-	if (TestSet.EnHTL)		LABEL_STEP(i++,"Porta HTL") ;
 	if (TestSet.EnCOMAUX)	LABEL_STEP(i++,"Porta COMAUX") ;
 	if (TestSet.NetIP)		LABEL_STEP(i++,"Rete TCP/IP") ;
 	if (TestSet.QtaUSB)		LABEL_STEP(i++,"Porte USB") ;
@@ -748,7 +1096,7 @@ int main(void)
 		LABEL_STEP(i++,"Verifiche GSM") ;
 		if (TestSet.EnFonia)	LABEL_STEP(i++,"Collaudo Fonia") ;
 	}
-	LABEL_STEP(i++, "Impostazioni di fine taverniti") ;
+	LABEL_STEP(i++, "Impostazioni di fine collaudo") ;
 	
 // ==================== Definizione delle Porte =====================
 // Porte di T-K (Test-Kit):
@@ -801,7 +1149,7 @@ int main(void)
 
 		SK_CheckId();							// Controllo di Identità MTS e Presenza
 	
-		SK_Set_MTS();							// Si settano nell'MTS i parametri e/o la Macch.Stati per il taverniti
+		SK_Set_MTS();							// Si settano nell'MTS i parametri e/o la Macch.Stati per il collaudo
 // Imposta valori per Vbat
 	if (strncmp(TkIni.mName, "MTS", 3)) {
 		MtsTK.VbatMAX =  4.3 ;
@@ -818,13 +1166,33 @@ int main(void)
 	Delay(20);
 	MTSdata.ERRTest += SK_Test_Vext();			// Si testa la lettura dell'MTS della Tensione Esterna
 	MTSdata.ERRTest += SK_Test_Vbat();			// Si testa la lettura della Batteria dell'MTS
-	MTSdata.ERRTest += SK_Test_DigIn();		    // Si testano gli Ingressi dell'MTS
-	MTSdata.ERRTest += SK_Test_DigOut();		// Si testano le Uscite dell'MTS
+	//MTSdata.ERRTest += SK_Test_DigIn();		// Si testano gli Ingressi dell'MTS
+	if ( SK_Test_DigIn() ) {
+		MSGBOXCALL("ATTENZIONE INGRESSI IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_DigIn();			// Si testano gli Ingressi dell'MTS
+		}
+	}
+	//MTSdata.ERRTest += SK_Test_DigOut();		// Si testano le Uscite dell'MTS
+	if ( SK_Test_DigOut() ) {
+		MSGBOXCALL("ATTENZIONE USCITE IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_DigOut();		// Si testano le Uscite dell'MTS
+		}
+	}
 	
 //	Preparazione x Test di Vibrazione
 	M_Diag(2, 0, dDg); 					// Legge lo stato del sensore di vibrazione e ...
 	VrtSt = atoi(dDg);					// ... fa pulizia del buffer per test vibrazione
-	M_SetPar(70, "10240");				// soglia più dura
+	M_SetPar(70, "10240");			// soglia più dura
 		
 	if ( !strcmp(TkIni.mName, "3025") ) {
 		int momQtaInV=TestSet.QtaInV;
@@ -835,13 +1203,43 @@ int main(void)
 		MtsTK.steptest--;
 		MTSdata.ERRTest += SK_Test_AnlIn();			// Si testano gli Ingressi Analogici Tensione dell'MTS 3025
 	}else{
-		MTSdata.ERRTest += SK_Test_AnlIn();			// Si testano gli Ingressi Analogici dell'MTS
+		//MTSdata.ERRTest += SK_Test_AnlIn();			// Si testano gli Ingressi Analogici dell'MTS
+		if ( SK_Test_AnlIn() ) {
+			MSGBOXCALL("ATTENZIONE ANALOGICI IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+			if (strcmp(bufresponse,"#!")==0) {
+				MTSdata.ERRTest +=1;
+			}else{
+				MtsTK.steptest--;
+				COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+				MTSdata.ERRTest += SK_Test_AnlIn();			// Si testano gli Ingressi Analogici dell'MTS
+			}
+		}
 	}
-	
+
+	if ( SK_Test_HTL() ) {
+		MSGBOXCALL("ATTENZIONE HTL IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_HTL();		// Si testa l'interfaccia HTL (per 3025)
+		}
+	}
 #ifdef DEBUG_1FR
 	Repeat=1 ; while(Repeat)
 #endif
-	MTSdata.ERRTest += SK_Test_Cnt();			// Si testano gli ingressi Counter dell'MTS
+	//MTSdata.ERRTest += SK_Test_Cnt();			// Si testano gli ingressi Counter dell'MTS
+	if ( SK_Test_Cnt() ) {
+		MSGBOXCALL("ATTENZIONE COUTER IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_Cnt();			// Si testano gli ingressi Counter dell'MTS
+		}
+	}
 	//MTSdata.ERRTest += SK_Test_CAN();			// Si testa il CAN dell'MTS
 	if ( SK_Test_CAN() ) {
 		MSGBOXCALL("ATTENZIONE CAN IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
@@ -853,7 +1251,27 @@ int main(void)
 			MTSdata.ERRTest += SK_Test_CAN();			// Si testa il CAN dell'MTS
 		}
 	}
-	MTSdata.ERRTest += SK_Test_COM2();			// Si testa la seconda seriale dell'MTS (e/o Vcns)
+	//MTSdata.ERRTest += SK_Test_COM2();			// Si testa la seconda seriale dell'MTS (e/o Vcns)
+	if ( SK_Test_COM2() ) {
+		MSGBOXCALL("ATTENZIONE COM SECONDARIA IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_COM2();			// Si testa la seconda seriale dell'MTS (e/o Vcns)
+		}
+	}
+	if ( SK_Test_CANLOGISTIC() ) {
+		MSGBOXCALL("ATTENZIONE CANLOGISTIC IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_CANLOGISTIC();			// Si testa CANLOGISTIC
+		}
+	}
 #ifdef DEBUG_1FR
 	Repeat=1 ; while(Repeat)
 #endif
@@ -862,7 +1280,7 @@ int main(void)
 #ifdef DEBUG_1FR
 	Repeat=1 ; while(Repeat)
 #endif
-	MTSdata.ERRTest += SK_Test_HTL();			// Si testa l'interfaccia HTL (per 3025)
+
 #ifdef DEBUG_1FR
 	Repeat=1 ; while(Repeat)
 #endif
@@ -892,8 +1310,28 @@ int main(void)
 		}
 	}
 	
-	MTSdata.ERRTest += SK_Test_Vibro();			// Si testa il sensore di Vibrazione dell'MTS
-	MTSdata.ERRTest += SK_Test_Accel();			// Si testa il sensore Accelerometro dell'MTS
+	//MTSdata.ERRTest += SK_Test_Vibro();			// Si testa il sensore di Vibrazione dell'MTS
+	if ( SK_Test_Vibro() ) {
+		MSGBOXCALL("ATTENZIONE TEST VIBRAZIONE IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_Vibro();			// Si testa il sensore di Vibrazione dell'MTS
+		}
+	}
+	//MTSdata.ERRTest += SK_Test_Accel();			// Si testa il sensore Accelerometro dell'MTS
+	if ( SK_Test_Accel() ) {
+		MSGBOXCALL("ATTENZIONE TEST RIBALTAMENTO IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		if (strcmp(bufresponse,"#!")==0) {
+			MTSdata.ERRTest +=1;
+		}else{
+			MtsTK.steptest--;
+			COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+			MTSdata.ERRTest += SK_Test_Accel();			// Si testa il sensore Accelerometro dell'MTS
+		}
+	}
 	MTSdata.ERRTest += SK_Test_LCD();			// Si testa il sensore Accelerometro dell'MTS
 	MTSdata.ERRTest += SK_TestLaserS();			// Si testa il Laser Scanner dell'MTS
 	if ( SK_Test_GPS() ) {
@@ -908,7 +1346,7 @@ int main(void)
 	}
 	
 	if ( SK_Test_GSM() ) {
-			MSGBOXCALL("ATTENZIONE GSM IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+		MSGBOXCALL("ATTENZIONE GSM IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
 		if (strcmp(bufresponse,"#!")==0) {
 			MTSdata.ERRTest +=1;
 		}else{
@@ -922,7 +1360,7 @@ int main(void)
 		}
 	}
 	COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;
-	SK_EndChk();									// conclusione del taverniti
+	SK_EndChk();									// conclusione del collaudo
 	COLOR_STEP(MtsTK.steptest, C_GREEN ) ;
 	
 	//call_exit(NO, "MTestEnd");
@@ -956,6 +1394,7 @@ int SK_GetIniInfo(void)
 	FILE *fimpo ;
 
 	GetINIKeyVal("workingPath", TkIni.NamTyp);		// Legge da dir di lavoro
+	togliCR(TkIni.NamTyp);
 	
 	// unità in produzione con tastiera, non hanno presenza e hanno le 3 uscite in ordine diverso da altri MTS
 	MtsTK.WTastiera = (TkIni.mName[0]=='1') ; // Famiglia "1" ha la tastiera
@@ -976,27 +1415,75 @@ int SK_GetIniInfo(void)
 		// Configura porta 2 CMOS tra T-K e MTS
 		sprintf(MtsTK.COM2, "%s", "24");
 		
-		// Macch.Stati per il taverniti di tastiera
+		// Macch.Stati per il collaudo di tastiera
 		sprintf(SMachColl, "%s\\TastControl.smk", PathTK);
 		CONVERTPATH(SMachColl);
 		
-		// Macch.Stati di MTS Testato da inviare alla fine del taverniti
+		// Macch.Stati di MTS Testato da inviare alla fine del collaudo
 		sprintf(SMachTest, "%s\\TastTested.smk", PathTK);
 		CONVERTPATH(SMachTest);
 	} else {
 		if (TkIni.mName[0]=='2'){ // Famiglia '2' ha 1 seriale
-			if (!strcmp(TkIni.mName, "2034")) {
+			if ( 
+						( !strcmp(TkIni.mName, "2034")) || 
+						( !strcmp(TkIni.mName, "2039")) || 
+						( !strcmp(TkIni.mName, "2040")) || 
+						( !strcmp(TkIni.mName, "2046")) || 
+						( !strcmp(TkIni.mName, "2044")) || 
+						( !strcmp(TkIni.mName, "2047")) || 
+						( !strcmp(TkIni.mName, "2045")) || 
+						( !strcmp(TkIni.mName, "2405")) || 
+						( !strcmp(TkIni.mName, "2051")) || 
+						( !strcmp(TkIni.mName, "2052")) || 
+						(!strcmp(TkIni.mName, "2046_M4")) || 
+						(!strcmp(TkIni.mName, "2044_M4")) 
+			) {
 				// Configura porta 1 RS232 tra T-K e MTS
 				sprintf(MtsTK.COM1, "%s", "130");
 			
 				// Configura porta 2 RS232 tra T-K e MTS
 				sprintf(MtsTK.COM2, "%s", "194");	
 			}else{
-				// Configura porta 1 RS232 tra T-K e MTS
-				sprintf(MtsTK.COM1, "%s", "28");
+				if (!strcmp(TkIni.mName, "2046USB")) { //Pre Versione con USB
+					// Configura porta 1 RS232 tra T-K e MTS
+					sprintf(MtsTK.COM1, "%s","USB");
 			
-				// Configura porta 2 RS232 tra T-K e MTS
-				sprintf(MtsTK.COM2, "%s", "130");
+					// Configura porta 2 RS232 tra T-K e MTS
+					sprintf(MtsTK.COM2, "%s", "28");
+				}else{
+					if ( 
+							( !strcmp(TkIni.mName, "2047TTL")) || 
+							( !strcmp(TkIni.mName, "2051TTL")) ||
+							( !strcmp(TkIni.mName, "2047_M4TTL")) || 
+							( !strcmp(TkIni.mName, "2051_M4TTL"))
+					  ) {
+						if ( !strcmp(TkIni.mName, "2047TTL") ) {
+							StampaDB("Change mName 2047TTL to 2047", TkIni.mName);
+							sprintf(TkIni.mName,"%s","2047");
+							StampaDB("Change mName 2047TTL to 2047", TkIni.mName);
+						}
+						if ( !strcmp(TkIni.mName, "2051TTL") ) {
+							StampaDB("Change mName 2051TTL to 2051", TkIni.mName);
+							sprintf(TkIni.mName,"%s","2051");
+							StampaDB("Change mName 2051TTL to 2051", TkIni.mName);
+						}
+						if ( !strcmp(TkIni.mName, "2047_M4TTL") ) {
+							StampaDB("Change mName 2047_M4TTL to 2047_M4", TkIni.mName);
+							sprintf(TkIni.mName,"%s","2047_M4");
+							StampaDB("Change mName 2047_M4TTL to 2047_M4", TkIni.mName);
+						}
+						if ( !strcmp(TkIni.mName, "2051_M4TTL") ) {
+							StampaDB("Change mName 2051_M4TTL to 2051_M4", TkIni.mName);
+							sprintf(TkIni.mName,"%s","2051_M4");
+							StampaDB("Change mName 2051_M4TTL to 2051_M4", TkIni.mName);
+						}
+						// Configura porta 1 RS232 tra T-K e MTS
+						sprintf(MtsTK.COM1, "%s", "28");
+					}else{
+						// Configura porta 2 RS232 tra T-K e MTS
+						sprintf(MtsTK.COM2, "%s", "130");
+					}
+				}
 			}
 		}else {
 			if (!strcmp(TkIni.mName,"MTS02")){
@@ -1009,11 +1496,11 @@ int SK_GetIniInfo(void)
 			// Configura porta 2 RS232 tra T-K e MTS
 			sprintf(MtsTK.COM2, "%s", "194");
 		}
-		// Macch.Stati per il taverniti (sarà una 'void')
+		// Macch.Stati per il collaudo (sarà una 'void')
 		sprintf(SMachColl, "%s\\MTS-Control.smk", PathTK);
 		CONVERTPATH(SMachColl);
 		
-		// Macch.Stati di MTS Testato da inviare alla fine del taverniti
+		// Macch.Stati di MTS Testato da inviare alla fine del collaudo
 		sprintf(SMachTest, "%s\\MTS-Tested.smk", PathTK);
 		CONVERTPATH(SMachTest);
 	}
@@ -1022,6 +1509,7 @@ int SK_GetIniInfo(void)
 	StampaDB("workingPath", mRoot);						// Su finestra DOS di Debug 
 	
 	GetINIKeyVal("prgFileRadix", TkIni.NamFile);
+	togliCR(TkIni.NamFile);
 	StampaDB("prgFileRadix", TkIni.NamFile);					// Su finestra DOS di Debug 
 	
 	sprintf(mVer, "%s\\Versioni", mRoot);                  //Versione 
@@ -1035,6 +1523,7 @@ int SK_GetIniInfo(void)
 #endif ///#ifdef SENDFW
 #ifndef SENDFW	
 	GetINIKeyVal(nextip, TkIni.NewNum);
+	togliCR(TkIni.NewNum);
 	//Aggiunto controllo su SN lughezza di 9 caratteri
 	if ((strlen(TkIni.NewNum) != LEN_NUM) && (strcmp(TestSet.Cpu,"HC12")) && (strcmp(TkIni.mName,"MTS40A-B")) && (strcmp(TkIni.mName,"MTS40C")) ){
 			sprintf(bufmsg, "Attenzione! Nel File ini per %s impostato Serial Number diverso da 9 caratteri ", TkIni.mName);
@@ -1044,7 +1533,7 @@ int SK_GetIniInfo(void)
 //#endif // ifndef SENDFW
 //#ifndef SENDFW
 	
-// 	IMPOSTAZIONI per il taverniti
+// 	IMPOSTAZIONI per il collaudo
 //--------------------------------------------------------------------------------------------------------
 //	fissaggio delle impostazioni dei default
 
@@ -1055,6 +1544,8 @@ int SK_GetIniInfo(void)
 	TestSet.QtaOD = 3 ;
 	TestSet.QtaRL = 0 ;
 	TestSet.QtaIn = 3 ;
+	TestSet.MaskDigInDn = 0;
+	TestSet.MaskDigInUp = 0;
 	TestSet.QtaInA = 1 ;
 	TestSet.QtaInV = 0 ;
 	TestSet.QtaCAN = 0 ;
@@ -1082,6 +1573,7 @@ int SK_GetIniInfo(void)
 	TestSet.EnGSM = YES ;
 	TestSet.EnFonia = YES ;
 	TestSet.EnCOM2 = NO ; // Cambiato default da 2.00
+	TestSet.EnCANLOGISTIC = NO ;
 	TestSet.EnVcns = NO ;
 	TestSet.EnRS485 = NO ;
 	TestSet.EnHTL = NO ;
@@ -1093,8 +1585,19 @@ int SK_GetIniInfo(void)
 	TestSet.EnExtLED = NO ;
 	TestSet.EnEmeLink = NO ;
 	TestSet.EnBKdata = NO ;
+#endif ///#ifdef SENDFW
+	
+	TestSet.EnSendFW = YES;
+	TestSet.ASKFW = NO;
 	TestSet.EnSMset = NO ;
 	TestSet.EnCANConf = NO;
+	TestSet.EnPIN_Param= NO;
+	TestSet.EnFormat= NO;
+	TestSet.EnBaptismo= NO;
+	TestSet.StartProtocol[0] ='\0';
+	leveldebug = 0 ;
+
+#ifndef SENDFW	
 	TestSet.EnSIMdata = NO ;
 	TestSet.EnNoAnt = YES;
 		
@@ -1108,22 +1611,29 @@ int SK_GetIniInfo(void)
 //--------------------------------------------------------------------------------------------------------
 #endif //#ifndef SENDFW	
 	GetINIKeyVal("FileImpostazioni", TkIni.FileImp);
-	sprintf(NewRiga, "%s\\Script\\%s", mRoot, TkIni.FileImp);		// File con le impostazioni di taverniti
+	togliCR(TkIni.FileImp);
+	sprintf(NewRiga, "%s\\Script\\%s", mRoot, TkIni.FileImp);		// File con le impostazioni di collaudo
 	CONVERTPATH(NewRiga) ;
 	
 	fimpo = fopen(NewRiga, "r");				// Apertura del file di impostazioni
 	if (fimpo==NULL) {							// Se il file non esiste
-#ifndef SENDFW	
 		QtaLog++;
-		sprintf(LogBuffer[QtaLog], "\r------ Collaudo eseguito con impostazioni di DEFAULT -------");
-		MsgWindow(LogBuffer[QtaLog]);
-#endif //#ifndef SENDFW	
-	} else {								   // si leggono le chiavi per il settaggio del taverniti
-		// il file è già aperto !!!!!!
 #ifndef SENDFW	
-		QtaLog++; 
-		sprintf(LogBuffer[QtaLog], "\r------ Collaudo eseguito con impostazioni di %s ----", NewRiga);
+		sprintf(LogBuffer[QtaLog], "\r------ Collaudo eseguito con impostazioni di DEFAULT -------");
+#else
+		sprintf(LogBuffer[QtaLog], "\r------ Programmazione eseguita con impostazioni di DEFAULT -------");
+#endif //#ifndef SENDFW	
 		MsgWindow(LogBuffer[QtaLog]);
+	} else {								   // si leggono le chiavi per il settaggio del collaudo
+		// il file è già aperto !!!!!!
+		QtaLog++;
+#ifndef SENDFW	
+		sprintf(LogBuffer[QtaLog], "\r------ Collaudo eseguito con impostazioni di %s ----", NewRiga);
+#else
+		sprintf(LogBuffer[QtaLog], "\r------ Programmazione eseguita con impostazioni di %s ----", NewRiga);
+#endif //#ifndef SENDFW	
+		MsgWindow(LogBuffer[QtaLog]);
+#ifndef SENDFW
 		QtaLog++; 
 		sprintf(LogBuffer[QtaLog], "\rTerzista:<%s>", hostname); //TestSet.Terzista);
 		MsgWindow(LogBuffer[QtaLog]);
@@ -1131,6 +1641,7 @@ int SK_GetIniInfo(void)
 		while (!feof(fimpo)) {								// fino alla fine del file
 			NewRiga[0] = '\0' ;
 			loc_fgets(NewRiga, MAXSIZE-1, fimpo);			// Legge una nuova riga (Massimo di 511 caratteri)
+			togliCR(NewRiga);
 			Valore[0] = '\0' ;
 			if (NewRiga[0]){
 				if (isalpha(NewRiga[0])) {						// se inizia con una lettera può essere una chiave
@@ -1142,23 +1653,33 @@ int SK_GetIniInfo(void)
 						sprintf(bufwindow,"Chiave %s senza valore valido!", Chiave);
 						MsgWindow(bufwindow);
 					} else {
+						togliCR(Valore);
 						UpperAlfaNum(Valore);			// si converte tutto in maiuscolo
 						RLTrimm(Valore);				// e si tolgono eventuali caratteri non alfanumerici prima e dopo
+						RLTrimmwithplace(Valore); // e si tolgono eventuali caratteri non alfanumerici prima e dopo
+#ifdef SENDFW
+						if ( (!strcmp(Chiave,"EnSendFW")) || (!strcmp(Chiave,"EnSMset")) || (!strcmp(Chiave,"EnCANConf")) || (!strcmp(Chiave,"EnFormat")) || (!strcmp(Chiave,"EnBaptismo")) || (!strcmp(Chiave,"StartProtocol"))  )	{
+#endif //#ifdef SENDFW
 						QtaLog++;
 						// si registrano in buffer le impostazioni incontrate
 						sprintf(LogBuffer[QtaLog], "<%s>---> Impostato: <%s>=<%s>", NewRiga, Chiave, Valore);
-#ifndef SENDFW
+//#ifndef SENDFW
 						MsgWindow(LogBuffer[QtaLog]);
-#endif // #ifdef CBUG
+//#endif // #ifdef CBUG
+#ifdef SENDFW
+						}
+#endif //#ifdef SENDFW	
 	
 	//				decodifica della chiave !!!!!!!!! 
 						if (!strcmp(Chiave,"CPU"))					strcpy(TestSet.Cpu,	Valore);
 #ifndef SENDFW							 
 						else if (!strcmp(Chiave,"BootTime"))		TestSet.BootTime = atoi(Valore);
 						else if (!strcmp(Chiave,"SisCOM"))			TestSet.SisCOM = atoi(Valore);
-						else if (!strcmp(Chiave,"QtaOD"))			TestSet.QtaOD = atoi(Valore);
-						else if (!strcmp(Chiave,"QtaRL"))			TestSet.QtaRL = atoi(Valore);
-						else if (!strcmp(Chiave,"QtaIn"))			TestSet.QtaIn = atoi(Valore);
+						else if (!strcmp(Chiave,"QtaOD"))			  TestSet.QtaOD = atoi(Valore);
+						else if (!strcmp(Chiave,"QtaRL"))			  TestSet.QtaRL = atoi(Valore);
+						else if (!strcmp(Chiave,"QtaIn"))			  TestSet.QtaIn = atoi(Valore);
+						else if (!strcmp(Chiave,"MaskDigInDn"))	TestSet.MaskDigInDn = atoi(Valore);
+						else if (!strcmp(Chiave,"MaskDigInUp"))	TestSet.MaskDigInUp = atoi(Valore);
 						else if (!strcmp(Chiave,"QtaInA"))			TestSet.QtaInA = atoi(Valore);
 						else if (!strcmp(Chiave,"QtaInV"))			TestSet.QtaInV = atoi(Valore);
 						else if (!strcmp(Chiave,"QtaCAN"))			TestSet.QtaCAN = atoi(Valore);
@@ -1174,41 +1695,51 @@ int SK_GetIniInfo(void)
 						else if (!strcmp(Chiave,"QtaUSB"))			TestSet.QtaUSB = atoi(Valore);
 
 
-						else if (!strcmp(Chiave,"AnlTaratura")) 	TestSet.AnlTaratura = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnTrm"))			TestSet.EnTrm = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnPres"))			TestSet.EnPres = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnRTC"))			TestSet.EnRTC = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnDigInDn"))		TestSet.EnDigInDn = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnDigInUp"))		TestSet.EnDigInUp = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnDigOut"))		TestSet.EnDigOut = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnTamper"))		TestSet.EnTamper = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnAnlIn"))			TestSet.EnAnlIn = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnVext"))			TestSet.EnVext = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnVbat"))			TestSet.EnVbat = (!strcmp(Valore,"SI")) ; 
+						else if (!strcmp(Chiave,"AnlTaratura")) 	TestSet.AnlTaratura = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnTrm"))			TestSet.EnTrm = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnPres"))			TestSet.EnPres = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnRTC"))			TestSet.EnRTC = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnDigInDn"))		TestSet.EnDigInDn = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnDigInUp"))		TestSet.EnDigInUp = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnDigOut"))		TestSet.EnDigOut = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnTamper"))		TestSet.EnTamper = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnAnlIn"))			TestSet.EnAnlIn = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnVext"))			TestSet.EnVext = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnVbat"))			TestSet.EnVbat = (!strncmp(Valore,"SI",2)) ; 
 						else if (!strcmp(Chiave,"EnCnt")) {		
 																	if ( TestSet.QtaCnt <= 1) {
-																		TestSet.QtaCnt = (!strcmp(Valore,"SI")) ;
+																		TestSet.QtaCnt = (!strncmp(Valore,"SI",2)) ;
 																	}
 						}
-						else if (!strcmp(Chiave,"EnGPS"))			TestSet.EnGPS = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnGSM"))			TestSet.EnGSM = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnFonia"))			TestSet.EnFonia = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnCOM2"))			TestSet.EnCOM2 = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnVcns"))			TestSet.EnVcns = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnRS485"))			TestSet.EnRS485 = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnHTL"))			TestSet.EnHTL = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnCOMAUX"))		TestSet.EnCOMAUX = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnChBat"))			TestSet.EnChBat = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnVibro"))			TestSet.EnVibro = (!strcmp(Valore,"SI")) ; 
-						else if (!strcmp(Chiave,"EnAccel"))			TestSet.EnAccel = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnLCD"))			TestSet.EnLCD = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnExtLED"))		TestSet.EnExtLED = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnEmeLink"))		TestSet.EnEmeLink = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnBKdata"))		TestSet.EnBKdata = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnSMset"))			TestSet.EnSMset = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnCANConf"))		TestSet.EnCANConf = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnSIMdata"))		TestSet.EnSIMdata = (!strcmp(Valore,"SI")) ;
-						else if (!strcmp(Chiave,"EnNoAnt"))			TestSet.EnNoAnt = (!strcmp(Valore,"SI")) ;
+						else if (!strcmp(Chiave,"EnGPS"))			TestSet.EnGPS = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnGSM"))			TestSet.EnGSM = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnFonia"))			TestSet.EnFonia = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnCOM2"))			TestSet.EnCOM2 = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnCANLOGISTIC")) TestSet.EnCANLOGISTIC = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnVcns"))			TestSet.EnVcns = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnRS485"))			TestSet.EnRS485 = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnHTL"))			TestSet.EnHTL = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnCOMAUX"))		TestSet.EnCOMAUX = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnChBat"))			TestSet.EnChBat = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnVibro"))			TestSet.EnVibro = (!strncmp(Valore,"SI",2)) ; 
+						else if (!strcmp(Chiave,"EnAccel"))			TestSet.EnAccel = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnLCD"))			TestSet.EnLCD = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnExtLED"))		TestSet.EnExtLED = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnEmeLink"))		TestSet.EnEmeLink = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnBKdata"))		TestSet.EnBKdata = (!strncmp(Valore,"SI",2)) ;
+#endif //#ifndef SENDFW	
+						else if (!strcmp(Chiave,"EnSendFW"))		TestSet.EnSendFW = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"ASKFW"))				TestSet.ASKFW = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnSMset"))			TestSet.EnSMset = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnCANConf"))		TestSet.EnCANConf = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnPIN_Param")) TestSet.EnPIN_Param = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnFormat")) 		TestSet.EnFormat = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnBaptismo")) 		TestSet.EnBaptismo = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"StartProtocol"))	strcpy(TestSet.StartProtocol,	Valore);
+						else if (!strcmp(Chiave,"LevelDebug"))	leveldebug = strtol(Valore,NULL,0);
+#ifndef SENDFW
+						else if (!strcmp(Chiave,"EnSIMdata"))		TestSet.EnSIMdata = (!strncmp(Valore,"SI",2)) ;
+						else if (!strcmp(Chiave,"EnNoAnt"))			TestSet.EnNoAnt = (!strncmp(Valore,"SI",2)) ;
 						
 						else if (!strcmp(Chiave,"VextMin"))			TestSet.VextMin = atof(Valore);
 						else if (!strcmp(Chiave,"VextMax"))			TestSet.VextMax = atof(Valore);
@@ -1253,6 +1784,25 @@ int SK_GetIniInfo(void)
 	} else {
 		MtsTK.mCOM = 2;							// predispone il T-K a comunicare coll'MTS con LU2
 		MtsTK.tCOM = 11;
+		if (
+					( !strcmp(TkIni.mName, "2034")) || 
+					( !strcmp(TkIni.mName, "2039")) || 
+					( !strcmp(TkIni.mName, "2040")) || 
+					( !strcmp(TkIni.mName, "2046")) || 
+					( !strcmp(TkIni.mName, "2044")) || 
+					( !strcmp(TkIni.mName, "2047")) || 
+					( !strcmp(TkIni.mName, "2045")) || 
+					( !strcmp(TkIni.mName, "2405")) || 
+					( !strcmp(TkIni.mName, "2051")) || 
+					( !strcmp(TkIni.mName, "2052")) || 
+					( !strcmp(TkIni.mName, "2046_M4")) || 
+					( !strcmp(TkIni.mName, "2044_M4")) || 
+					( !strcmp(TkIni.mName, "2047_M4")) ||
+					( !strcmp(TkIni.mName, "2051_M4"))
+			) {
+					MtsTK.mCOM = 11;							// predispone il T-K a comunicare coll'MTS con LU11
+					MtsTK.tCOM = 2;
+		}
 	}
 	return 0 ; // No more needed 
 #endif // ifdef SENDFW
@@ -1362,6 +1912,25 @@ int SK_GetIniInfo(void)
 		NamOut[i] = 6; i++;
 		NamOut[i] = 7; i++;
 		NamOut[i] = 8; i++;
+	}
+	if ( (!strcmp(TkIni.mName, "3048"))  ) {
+		i = 0;
+		NamOut[i] = 0; i++;
+		NamOut[i] = 1; i++;
+		NamOut[i] = 2; i++;
+		NamOut[i] = 3; i++;		
+		NamOut[i] = 4; i++;								
+		NamOut[i] = 5; i++;
+		NamOut[i] = 6; i++;
+		NamOut[i] = 7; i++;
+		NamOut[i] = 8; i++;
+		NamOut[i] = 9; i++;
+		NamOut[i] = 10; i++;
+		NamOut[i] = 11; i++;		
+		NamOut[i] = 12; i++;								
+		NamOut[i] = 13; i++;
+		NamOut[i] = 14; i++;
+		NamOut[i] = 15; i++;
 	}
 
 // Già presente in alto
@@ -1515,7 +2084,7 @@ int SK_TK_CheckVersion(void)
 int  SK_TK_PreInit(void)
 {
 	// Il T-K è impostato perchè all'avvio non fornisca tensione all'MTS, ed inoltre 
-// tutti gli script di taverniti prevedono che alla fine la tensione venga tolta.
+// tutti gli script di collaudo prevedono che alla fine la tensione venga tolta.
 //
 //	Si presuppone, inoltre che, l'MTS sia già stato "battezzato".
 //
@@ -1574,7 +2143,7 @@ int SK_TK_Init(void)
 	char tkver[255] ;
 	
 	// avvia la ProgressBar con il tempo desiderato
-	ProgressBar(BAR_TIME, tbar_time) ; // 100s x sendcode, 200s x taverniti
+	ProgressBar(BAR_TIME, tbar_time) ; // 100s x sendcode, 200s x collaudo
 	SK_TK_PreInit();
 	sprintf(bufwindow,"\r---->   VERSIONE di COLLAUDO %s: %s   <----\r", TkIni.mName, SCRREL);
 	MsgWindow(bufwindow);
@@ -1592,8 +2161,7 @@ int SK_TK_Init(void)
 	strcpy(LogBuffer[QtaLog], bufwindow ) ;
 	
 	//retryOnError(2);					// imposta a 2 tentativi di richieste vs MTS
-	//Impostato retry a 1 percè gestito direttamente in MTSTESTKIT
-	retryOnError(1);					// imposta a 1 tentativi di richieste vs MTS
+	retryOnError(4);					// imposta a 4 tentativi di richieste vs MTS
 	return 0;
 }
 
@@ -1654,8 +2222,26 @@ void LoadFamTab(void)
 	strcpy(MtsFam[i].mts,"2034");		MtsFam[i++].famcode = 204;		// CORTEX
 	strcpy(MtsFam[i].mts,"3033");		MtsFam[i++].famcode = 28;		// CORTEX
 	strcpy(MtsFam[i].mts,"3035");		MtsFam[i++].famcode = 33;		// CORTEX
-	strcpy(MtsFam[i].mts,"3036");		MtsFam[i++].famcode = 33;		// CORTEX
+	strcpy(MtsFam[i].mts,"3036");		MtsFam[i++].famcode = 36;		// CORTEX
 	strcpy(MtsFam[i].mts,"4037");		MtsFam[i++].famcode = 41;		// CORTEX A8
+	strcpy(MtsFam[i].mts,"2039");		MtsFam[i++].famcode = 209;		// CORTEX
+	strcpy(MtsFam[i].mts,"2040");		MtsFam[i++].famcode = 240;		// CORTEX
+	strcpy(MtsFam[i].mts,"2046");		MtsFam[i++].famcode = 26;		// CORTEX
+	strcpy(MtsFam[i].mts,"2044");		MtsFam[i++].famcode = 26;		// CORTEX
+	strcpy(MtsFam[i].mts,"3048");		MtsFam[i++].famcode = 48;		// CORTEX
+	strcpy(MtsFam[i].mts,"2047");		MtsFam[i++].famcode = 47;		// CORTEX
+	strcpy(MtsFam[i].mts,"2045");		MtsFam[i++].famcode = 45;		// CORTEX  //47
+	strcpy(MtsFam[i].mts,"2405");		MtsFam[i++].famcode = 47;		// CORTEX
+	strcpy(MtsFam[i].mts,"2051");		MtsFam[i++].famcode = 51;		// CORTEX
+	strcpy(MtsFam[i].mts,"2052");		MtsFam[i++].famcode = 52;		// CORTEX
+	strcpy(MtsFam[i].mts,"2046_M4");		MtsFam[i++].famcode = 46;		// CORTEX 
+	strcpy(MtsFam[i].mts,"2044_M4");		MtsFam[i++].famcode = 46;		// CORTEX
+	strcpy(MtsFam[i].mts,"2047_M4");		MtsFam[i++].famcode = 147;		// CORTEX
+	strcpy(MtsFam[i].mts,"2051_M4");		MtsFam[i++].famcode = 151;		// CORTEX
+
+	strcpy(MtsFam[i].mts,"2054");		MtsFam[i++].famcode = 54;		// CORTEX	// Added 03/03/25
+	strcpy(MtsFam[i].mts,"3055");		MtsFam[i++].famcode = 55;		// CORTEX	// Added 03/03/25
+
 //	QtaFam = i-1;
 	QtaFam = i ;
 }
@@ -1686,6 +2272,7 @@ int ReadMTSType(char *dutM)
 	return trovato;
 }
 
+
 int ReadMTSArca(char *dutM)
 {
 	int i;
@@ -1694,6 +2281,21 @@ int ReadMTSArca(char *dutM)
 		if (strncmp(Arca[i].mts, dutM, 4) == 0) return(i+1) ;
 	}
 	sprintf(bufwindow,">>>>>>> ATTENZIONE: per l'MTS %s manca definizione in Arca!!", dutM);
+	MsgWindow(bufwindow);
+
+	return 0;
+}
+
+int ReadMTSPIN(int dutM)
+{
+	int i;
+	char buf[10];
+	snprintf(buf, sizeof buf, "%d", dutM);
+	
+	for (i=1; i<=QtaRow; i++) {
+		if (strncmp(TablePIN[i].snmts, buf, 9) == 0) return(i+1) ;
+	}
+	sprintf(bufwindow,">>>>>>> ATTENZIONE: per l'MTS %s manca parametri in file Ass_PIN!!", buf);
 	MsgWindow(bufwindow);
 
 	return 0;
@@ -1863,9 +2465,13 @@ int Cortex_Reset(void)
 	else
 		return 0;
 }
-void SK_SendCode()
+
+int64_t SK_SendCode()
 {
-	int tutOK, k, nuovo,r,kk;
+	int JTAG_SEND=0; //JTAG_SEND 1 send fw to JTAG
+	int tutOK, k, nuovo,r,kk,Errore_INVIO,swvermts;
+	char checksum[64];
+	int64_t check_checksum;
 	long fsize ;
 	double tsend ;
 	char pgrPar[NRMSIZE] ;
@@ -1874,7 +2480,13 @@ void SK_SendCode()
 
 	COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
 	
-	T_SetFTDI(MtsTK.COM1);							// si abilita la COM1 del T-K
+	retryOnError(2);					// imposta a 2 tentativi di richieste vs MTS
+	
+	if (T_SetFTDI(MtsTK.COM1)){							// si abilita la COM1 del T-K
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+	}
 	M_SetSourceId(MtsTK.mCOM);						// si imposta la COM di protocollo primario
 	Delay(5);	
 	nuovo=0;
@@ -1895,34 +2507,89 @@ void SK_SendCode()
 	}
 	if (nuovo==1) {
 		MTSdata.mSerial = -1 ;
-		k = 0;
+		swvermts = 0;
 		MTSdata.mSign = ReadMTSType(TkIni.mName) ;
 		sprintf(bufwindow,"        Connessione stabilita con unità NUOVA");
 		MsgWindow(bufwindow);
 	}
 	else {
-		k=M_GetSwVers();													// si legge la Versione Software
+		swvermts=M_GetSwVers();													// si legge la Versione Software
 		if (TKERROR!=0) {
-			k = 0;
+			swvermts = 0;
 		}
 		MTSdata.mSign = M_GetFamily();
 		if (TKERROR!=0) {
 			MTSdata.mSign = 0;
 		}
-		MTSdata.SVer = (float)k/1000;
+		MTSdata.SVer = (float)swvermts/1000;
 		sprintf(bufwindow,"        Connessione stabilita con MTS tipo %d, s.n. %d (Ver.%5.2f)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer);
 		MsgWindow(bufwindow);
+		if (TestSet.EnPIN_Param == YES) {
+			LoadTabPINAssociative();
+			MtsTK.PinPos = ReadMTSPIN(MTSdata.mSerial);
+			if(MtsTK.PinPos>0){
+				if (TablePIN[MtsTK.PinPos-1].ICCID[0]!='\0'){
+					//Spengo Modem
+					M_Action(32,4,"") ; 	// Spengo Modem
+					//Controllo ICCID
+					int valido = 0; 
+					sprintf(bufmsg, "Inserire ICCID x %s",TablePIN[MtsTK.PinPos-1].extname); 
+					while (valido == 0) {
+						// richiesta codice ICCID (es. 8939010001362772051)
+						INPUTBOXCALL(bufmsg, "ICCID",2,"Continua","Ferma", HwSN.codICCID) ;		// richiesta codice ICCID
+						if (strcmp(HwSN.codICCID,"#!")==0) {
+							//COLOR_STEP(MtsTK.steptest, C_RED) ;
+							call_exit(YES, "C_NO_ICCID");
+						}
+						sprintf(bufmsg , "ERRORE:\r Reinserire ICCID.");
+						UpperAlfaNum(HwSN.codICCID);					// si rende Maiuscolo e solo AlfaNumerico (oltre '_')
+						RLTrimm(HwSN.codICCID);						// toglie i caratteri non alfanumerici prima e dopo !
+						if (strlen(HwSN.codICCID) == LEN_ICCID) {		// a questo punto DEVE essere di lunghezza == di'LEN_ICCID'
+							StampaDB("ICCID inserito",HwSN.codICCID);		// Su finestra DOS di Debug 
+							StampaDBn("valido",valido);			// Su finestra DOS di Debug 
+							strcpy(Bmom, HwSN.codICCID);							// Bmom (cioè ICCID) deve avere ...
+							if (strspn(Bmom, NUMCHAR) == strlen(HwSN.codICCID)){		// ... solo cifre  ...
+									// si controlla che il codice Arca corrisponda al tipo di MTS selezionato per il test
+									if (strncmp(TablePIN[MtsTK.PinPos-1].ICCID, HwSN.codICCID,LEN_ICCID) != 0) {
+										sprintf(bufmsg, "ATTENZIONE:\r la SIM inserita non corrisponde nel DB!");
+										MSGBOXCALL(bufmsg,0,1,"ATTENZIONE",0,bufresponse);
+										call_exit(YES, "C_NO_ICCID");
+									}else{
+										valido++;
+									}
+								StampaDB("codICCID",HwSN.codICCID);			// Su finestra DOS di Debug 
+							}
+						}
+					}
+					sprintf(MyDebB, "codICCID inserito:<%s>", HwSN.codICCID);
+					MsgFile(0, LogCollaudo, MyDebB);
+					MsgWindow (MyDebB);
+				}
+
+				sprintf(bufmsg, "ATTENZIONE:\r Etichettare MTS con NOME %s",TablePIN[MtsTK.PinPos-1].extname);
+				MSGBOXCALL(bufmsg,0,1,"ATTENZIONE",0,bufresponse);	
+			}
+		}
 	}
-	sprintf (buflog,"\n-----------------  Invio Codice  ------------ %s --", SCRREL);
-	MsgFile(1, LogCollaudo, buflog);
-	MsgFile(0, LogCollaudo, bufwindow); 
-	T_Led(MSK_OFF, FRQ_OFF);													// Si spegne il LED per indicare "NO test"
-	if (MTSdata.mSign != ReadMTSType(TkIni.mName)){
-		sprintf(bufmsg,"MTS diverso da %s", TkIni.mName) ;
-		MSGBOXCALL(bufmsg, "INVIO CODICE",2, "Invio codice", "STOP", bufresponse);
-		if (strcmp(bufresponse,"#!")==0) 	call_exit(YES, "NO_Prog");
+	if (TestSet.EnSendFW == YES) {
+		sprintf (buflog,"\n-----------------  Invio Codice  ------------ %s --", SCRREL);
+		MsgFile(1, LogCollaudo, buflog);
+		MsgFile(0, LogCollaudo, bufwindow); 
+		T_Led(MSK_OFF, FRQ_OFF);													// Si spegne il LED per indicare "NO test"
+		if (MTSdata.mSign != ReadMTSType(TkIni.mName)){
+			sprintf(bufmsg,"MTS diverso da %s", TkIni.mName) ;
+			MSGBOXCALL(bufmsg, "INVIO CODICE",2, "Invio codice", "STOP", bufresponse);
+			if (strcmp(bufresponse,"#!")==0) 	call_exit(YES, "NO_Prog");
+		}
+		sprintf(MyDebB, "Check FW VER:%d[%d]", (atoi(MtsTK.mFwVer)*10),swvermts);
+		MsgWindow (MyDebB);
+		if ((atoi(MtsTK.mFwVer)*10)==swvermts){
+				TestSet.EnSendFW = NO;
+				sprintf(MyDebB, "Firmware is Update");
+				MsgFile(0, LogCollaudo, MyDebB);
+				MsgWindow (MyDebB);
+		}
 	}
-	
 	COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;
 
 //	======================================================================
@@ -1930,95 +2597,251 @@ void SK_SendCode()
 //	======================================================================
 
 
-	COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+	
 	
 	T_Led(MSK_FW, FRQ_FW) ;									// Lampeggia il LED + in fretta per indicare "Programmazione in corso"
-	if (nuovo==0) TesterMTS();
-	MSGBOXCALL("Versione di Produzione o Debug ", "Tipo di CODICE",2, "PRODUZ", "DEBUG", bufresponse);
-	if (strcmp(bufresponse,"##")==0) {
-		sprintf(Bmom, "%s", "PROD");
-	}else{
-		sprintf(Bmom, "%s", "CBUG");
-	}														//   "3008\\Versioni\\", 
-	// Legge la dimensione del file
-	sprintf(pgrPar, "%s/%s%s.%s.bin", mVer, TkIni.NamFile, MtsTK.mFwVer, Bmom);			
-	CONVERTPATH(pgrPar) ;
-	StampaDB("file stat", pgrPar) ;
-	stat(pgrPar, &dstat ) ;
-	fsize = dstat.st_size ;
-	
-	// Avvia la progress bar
-	tsend = 0.003175 * ((double)(fsize)) ;
-	k = (tsend +15) ;
-	ProgressBar(BAR_TIME, k) ;
+	if (TestSet.EnSendFW == YES) {
+		COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+		if (nuovo==0) TesterMTS();
+		if (TestSet.ASKFW == YES) {
+			MSGBOXCALL("Versione di Produzione o Debug ", "Tipo di CODICE",2, "PRODUZ", "DEBUG", bufresponse);
+			if (strcmp(bufresponse,"##")==0) {
+				sprintf(Bmom, "%s", "PROD");
+			}else{
+				sprintf(Bmom, "%s", "CBUG");
+			}														//   "3008\\Versioni\\", 
+		}else{
+			sprintf(Bmom, "%s", "PROD");
+		}
+		// Legge la dimensione del file
 
-	// ! Path relativa !           //Prima PATH_FW
-	sprintf(pgrPar, "%s%s%s%s%s %s", WSpace, TkIni.NamTyp, "\\\\Versioni\\\\", TkIni.NamFile, MtsTK.mFwVer, Bmom);
-	CONVERTPATH(pgrPar) ;
-	StampaDB("Sorgente:", pgrPar) ;
-	sprintf(buflog,"Inizio invio di %s%s %s  . . .", TkIni.NamFile, MtsTK.mFwVer, Bmom);
-	MsgFile(0, LogCollaudo, buflog);
-	sprintf(Bmom, "sendver%sTK%d.bat", TestSet.Cpu,TKTYPE ) ;
-	//INVIO CODICE
-	if (TKTYPE==1) T_SetFTDI("160");                // Per settare NewTK su JTAG
-	tutOK = DoProgram(PathFwUp, Bmom, pgrPar);		// si invia il codice all'MTS
-	//INVIO CODICE
-	//tutOK = 1;
-	if ( (TKERROR != 0) || tutOK ) {
-		StampaDB("Invio - TK-Error", "NO good");
-		MsgFile(0, LogCollaudo, "   . . . Errore invio Codice");
-		k=0;
-		MTSdata.mSign = ReadMTSType(TkIni.mName) ;
-	}else{
-		ProgressBar(BAR_TIME, 400) ; // 40 sec
-		COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;
-		MsgFile(0, LogCollaudo, "   . . . Codice inviato");
-		TesterMTS();
-		COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;		
-
-		T_SetFTDI(MtsTK.COM1);										// si abilita la COM1 del T-K
-		M_SetSourceId(MtsTK.mCOM);									// si imposta la COM di protocollo primario
-
-		for (kk=0;kk<15;kk++){	
-			r = M_GetSerNum() ;
-			if (r==MTSdata.mSerial) break ;
+		char extfilename[10] = "hex";
+		
+		if(JTAG_SEND==1) {
+			strcpy(extfilename,"bin");
 		}
 		
-		// Aggiunta per CORTEX: tolgo 3.3v alla CPU
-		if (Cortex_Reset()){
-			T_Output (CPU_OFF, CPU_OFF);
-			Delay(20);
-			T_Output (CPU_OFF, 0);
-			StampaDB("Reset 3.3v CPU", "per 2 sec");
-			MsgFile(0, LogCollaudo, "Reset 3.3v CPU per 2 sec");
-			T_Output(PON_, PON_);										// Si toglie presenza all'MTS 
-			for (kk=0;kk<15;kk++){	
-			r = M_GetSerNum() ;
-			if (r!=MTSdata.mSerial) break ;
+		sprintf(pgrPar, "%s/%s%s.%s.%s", mVer, TkIni.NamFile, MtsTK.mFwVer, Bmom,extfilename);			
+		CONVERTPATH(pgrPar) ;
+		StampaDB("FW Send", pgrPar) ;
+		stat(pgrPar, &dstat ) ;
+		fsize = dstat.st_size ;
+		
+		// Avvia la progress bar
+		tsend = 0.003175 * ((double)(fsize)) ;
+		k = (tsend +15) ;
+		ProgressBar(BAR_TIME, k) ;
+
+		if(JTAG_SEND==1) {
+			// ! Path relativa !           //Prima PATH_FW
+			sprintf(pgrPar, "%s%s%s%s%s %s", WSpace, TkIni.NamTyp, "\\\\Versioni\\\\", TkIni.NamFile, MtsTK.mFwVer, Bmom);
+			CONVERTPATH(pgrPar) ;
+			StampaDB("Sorgente:", pgrPar) ;
+		}
+		sprintf(buflog,"Inizio invio di %s%s %s  . . .", TkIni.NamFile, MtsTK.mFwVer, Bmom);
+		MsgFile(0, LogCollaudo, buflog);
+		//INVIO CODICE
+		if(JTAG_SEND==1) {
+			sprintf(Bmom, "sendver%sTK%d.bat", TestSet.Cpu,TKTYPE ) ;
+			if (TKTYPE==1) T_SetFTDI("160");                // Per settare NewTK su JTAG
+			tutOK = DoProgram(PathFwUp, Bmom, pgrPar);		// si invia il codice all'MTS
+		}else{
+			//GetINIKeyVal("FWFile", TkIni.NamFW);
+			//togliCR(TkIni.NamFW);
+			sprintf(FWSel, "%s", pgrPar);
+			CONVERTPATH(FWSel);
+			StampaDB("FW_FILE:",FWSel);	
+			//fcode = fopen(FWSel, "r");	
+			M_PutFWFile(FWSel,checksum);		// si invia il codice all'MTS via Seriale
+			sprintf(Bmom, "Receive CheckSum_String 0x%s",checksum);
+			PrintDB(Bmom);
+			check_checksum=stringascii_to_hex(checksum);
+			if (check_checksum != 0) {
+				//TKERROR=0; 
+				tutOK=1;
+				sprintf(Bmom, "Receive CheckSum_OK 0x%lx",check_checksum);
+				PrintDB(Bmom);
+			};
+		}
+
+		//INVIO CODICE
+		//tutOK = 1;
+		if ( (TKERROR != 0) || ( tutOK != 1)  ) {
+			StampaDB("Invio - TK-Error", "NO good");
+			MsgFile(0, LogCollaudo, "   . . . Errore invio Codice");
+			k=0;
+			MTSdata.mSign = ReadMTSType(TkIni.mName) ;
+			Errore_INVIO=1;
+		}else{
+			ProgressBar(BAR_TIME, 400) ; // 40 sec
+			COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;
+			MsgFile(0, LogCollaudo, "   . . . Codice inviato");
+			Errore_INVIO=0;
+			TesterMTS();	
+			if(JTAG_SEND==1) {
+				if (T_SetFTDI(MtsTK.COM1)){							// si abilita la COM1 del T-K
+					sprintf(Bmom, "Errore durante aperturta COM MTS");
+					PrintDB(Bmom);
+					call_exit(YES, Bmom);
+				}
+				
 			}
-			T_Output(PON_, 0);											// Si rida' presenza all'MTS 
-			Delay(15);
+			GetINIKeyVal("Protocol", TkIni.Protocol);
+			togliCR(TkIni.Protocol);
+			UpperAlfaNum(TkIni.Protocol);			// si converte tutto in maiuscolo
+			RLTrimm(TkIni.Protocol);				// e si tolgono eventuali caratteri non alfanumerici prima e dopo
+			RLTrimmwithplace(TkIni.Protocol); // e si tolgono eventuali caratteri non alfanumerici prima e dopo
+			sprintf(Bmom, "INI PROTOCOL:[%s]",TkIni.Protocol);
+			PrintDB(Bmom);
+			if (!strncmp(TkIni.Protocol,"TEST",4)) 
+				SetProtocolComunication(1);	// Setta Protocollo TEST
+			else
+				SetProtocolComunication(0);	// Setta Protocollo WAY
+			Delay(10);
+
+			M_SetSourceId(MtsTK.mCOM);									// si imposta la COM di protocollo primario
+
 			for (kk=0;kk<15;kk++){	
 				r = M_GetSerNum() ;
 				if (r==MTSdata.mSerial) break ;
 			}
+			
+			// Aggiunta per CORTEX: tolgo 3.3v alla CPU
+			if (Cortex_Reset()){
+				T_Output (CPU_OFF, CPU_OFF);
+				Delay(20);
+				T_Output (CPU_OFF, 0);
+				StampaDB("Reset 3.3v CPU", "per 2 sec");
+				MsgFile(0, LogCollaudo, "Reset 3.3v CPU per 2 sec");
+				T_Output(PON_, PON_);										// Si toglie presenza all'MTS 
+				for (kk=0;kk<15;kk++){	
+				r = M_GetSerNum() ;
+				if (r!=MTSdata.mSerial) break ;
+				}
+				T_Output(PON_, 0);											// Si rida' presenza all'MTS 
+				Delay(15);
+				for (kk=0;kk<15;kk++){	
+					r = M_GetSerNum() ;
+					if (r==MTSdata.mSerial) break ;
+				}
+			}
+			// Aggiunta per CORTEX: tolgo 3.3v alla CPU
 		}
-		// Aggiunta per CORTEX: tolgo 3.3v alla CPU
-		MTSdata.mSerial = M_GetSerNum();							// si rilegge il Serial-Number
-		if (TKERROR == 0) {
-			tutOK = 0;												// s/n letto correttamente
-			k=M_GetSwVers();										// si rilegge la Versione Software
-			MTSdata.mSign = M_GetFamily();
+	}else{
+		Errore_INVIO=0;
+		TKERROR=0;
+	}
+	//Invio CAN-BUS
+	if (TestSet.EnCANConf == 1) {
+		COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;
+		SK_CanConfSet();
+		COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;
+	}
+
+	
+	if (TestSet.EnSMset == YES) {
+		COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;
+		//Invio Parametri
+		SK_ParamSet();
+		COLOR_STEP(MtsTK.steptest, C_RED ) ;
+		Delay(20);
+		SK_ParamSetCheck();
+		COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;
+
+		if (TestSet.EnPIN_Param == YES) {
+				//Setto Parametro PIN MTS
+				if (MtsTK.PinPos!=0) {
+					if (TablePIN[MtsTK.PinPos-1].PIN[0]!='\0'){
+						M_SetPar(169,TablePIN[MtsTK.PinPos-1].PIN);
+					}
+					if (TablePIN[MtsTK.PinPos-1].centoottantacinquepar[0]!='\0'){
+						M_SetPar(185,TablePIN[MtsTK.PinPos-1].centoottantacinquepar);
+					}
+				}
+		}
+
+		//Invio Macchina-Stati
+		COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;
+		SK_SM_StateSet();
+		Delay(20);
+		if (T_SetFTDI(MtsTK.COM1)){							// si abilita la COM1 del T-K
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+		}
+		Delay(10);
+		if (T_SetFTDI(MtsTK.COM1)){							// si abilita la COM1 del T-K
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+		}
+		/*
+		if(SK_SM_StateSetCheck())	{ 
+			Errore_INVIO=1;
+			COLOR_STEP(MtsTK.steptest++, C_RED ) ;
 		}else{
-			MTSdata.mSerial = 0 ;
-			k=0;
-			MTSdata.mSign = ReadMTSType(TkIni.mName) ;
+		*/
+			COLOR_STEP(MtsTK.steptest++, C_GREEN ) ;		
+		//}
+	}
+	
+	COLOR_STEP(MtsTK.steptest, C_YELLOW ) ;	
+	for (kk=0;kk<15;kk++){	
+			r = M_GetSerNum() ;
+			if (r==MTSdata.mSerial) break ;
+	}
+
+	if(r!=MTSdata.mSerial) Errore_INVIO=1;
+
+	MTSdata.mSerial = M_GetSerNum();							// si rilegge il Serial-Number
+	if (TKERROR == 0) {
+		tutOK = 0;												// s/n letto correttamente
+		k=M_GetSwVers();										// si rilegge la Versione Software
+		MTSdata.mSign = M_GetFamily();
+		MTSdata.SVer = (float)k/1000;
+		if (TestSet.EnSendFW == YES) {
+			M_Diag(3, 0, dDg); //Leggo CheckSum
+			int64_t diag3;
+			diag3=stringascii_to_hex(dDg);
+			sprintf(Bmom, "Diag 3 CheckSum 0x%lX",(diag3>>8));
+			PrintDB(Bmom);
+			if ( check_checksum != (diag3>>8) ) Errore_INVIO =1;
+			sprintf(MyDebB, "Check FW VER:%d[%d]", (atoi(MtsTK.mFwVer)*10),k);
+			MsgWindow (MyDebB);
+			if ((atoi(MtsTK.mFwVer)*10)==k) Errore_INVIO =0;
+		}
+	}else{
+		MTSdata.mSerial = 0 ;
+		k=0;
+		MTSdata.mSign = ReadMTSType(TkIni.mName) ;
+	}
+
+	if (TestSet.EnPIN_Param == YES) {
+			//Si Legge CSQ per Verifica PIN
+			if (MtsTK.PinPos!=0){
+				if (TablePIN[MtsTK.PinPos-1].PIN[0]!='\0'){
+					DatoMTS = M_ReadIntAD();
+					Delay(10);
+					MTSdata.ValoreCSQ = DatoMTS.csq ;	
+#ifdef CBUG
+					sprintf(MyDebB,"CSQ = %d", MTSdata.ValoreCSQ ) ;
+					MsgWindow(MyDebB);
+#endif // #ifdef CBUG
+		
+				if ( MTSdata.ValoreCSQ == 99 ){	
+					sprintf(bufmsg, "ATTENZIONE:\r Modem Non Registrato!");
+					MSGBOXCALL(bufmsg,0,1,"ATTENZIONE",0,bufresponse);
+					call_exit(YES, "NO_PIN");
+				}
+			}
 		}
 	}
-	MTSdata.SVer = (float)k/1000;
+
 	ProgressBar(BAR_PERC, 100) ;
-	if (tutOK == 0){
-		sprintf(bufwindow, "Aggiornamento completato ---> MTS tipo %d, s.n. %d (Ver.%5.2f)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer);
+	
+	if (Errore_INVIO == 0){
+		return check_checksum;
+		sprintf(bufwindow, "Aggiornamento completato ---> MTS tipo %d, s.n. %d (Ver.%5.2f) CheckSum(0x%lX)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer,check_checksum);
 		COLOR_STEP(MtsTK.steptest, C_GREEN ) ;
 	}else{
 		sprintf(bufwindow, "Invio codice E R R A T O ---> MTS tipo %d, s.n. %d (Ver.%5.2f)", MTSdata.mSign, MTSdata.mSerial, MTSdata.SVer);
@@ -2029,9 +2852,9 @@ void SK_SendCode()
 	MsgFile(0, LogCollaudo, bufwindow);
 	
 	//MSGBOXCALL(bufwindow, "Esito Invio",1, "OK", 0, bufresponse);
-	
-	call_exit(NO, bufwindow) ;
+	return(0);
 }
+
 
 #else
 
@@ -2047,7 +2870,7 @@ float ReadAnalog(int channelId)
 	return Valore;									// ritorna il valore analogico da 0 a 1023 !!!!!!!
 }
 
-
+#endif // ifndef SENDFW
 void LoggaStampa(char *msg)
 {
 	char LocalStr[MAXSIZE];
@@ -2068,7 +2891,7 @@ void togliCR(char *msg)
 		}
 	}
 }
-
+#ifndef SENDFW
 
 //	======================================================================
 //	INIZIO del Collaudo
@@ -2086,14 +2909,19 @@ int SK_PowerOn(void)
 	}
 	
 	
-	ProgressBar(BAR_TIME, TestSet.BootTime+tbar_time) ; // 100s x sendcode, 200s x taverniti
+	ProgressBar(BAR_TIME, TestSet.BootTime+tbar_time) ; // 100s x sendcode, 200s x collaudo
 
 	COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
 	
 	if (!strcmp(TkIni.mName,"MTS02")) T_Output(PRES_, 0);		// Si accende l'MTS02 ... attivando la Presenza ...
 
 	T_Led(MSK_TEST, FRQ_TEST);					// pulsa il LED per indicare "test iniziato"
-	T_SetFTDI(MtsTK.COM1);						// si inizia ad abilitare la COM1 del T-K
+
+	if (T_SetFTDI(MtsTK.COM1)){							// si inizia ad abilitare la COM1 del T-K
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+	}
 	T_Output(PON_, 0);							// Si da' tensione all'MTS
 	Delay(3);
 	M_SetSourceId(MtsTK.mCOM);					// si imposta la COM di protocollo primario
@@ -2119,7 +2947,12 @@ int SK_PowerOn(void)
 	T_Output(PRES_, 0);								// Si accende l'MTS ... attivando la Presenza ...
 	Delay(15);
 	for (k=0;k<150;k++){							// ... ed attendo che finisca il bootstrap
+		T_Output(PRES_, 0);								// Si accende l'MTS ... attivando la Presenza ...
+		Delay(1);
+		T_Output(PON_, 0);							// Si da' tensione all'MTS
+		Delay(1);
 		r = M_GetSerNum() ;
+		Delay(1);
 		if (r != '\0') break ;
 	}
 	//Delay(TestSet.BootTime-15);						// ... ed attendo che finisca il bootstrap
@@ -2134,6 +2967,31 @@ int SK_PowerOn(void)
 	//Test Presenza Secondo Connettore:
 	MtsTK.pres2OFF = 1;
 	MtsTK.pres2ON = 1;
+	if (!strcmp(TkIni.mName, "3048")) {
+		//Disabilito uscita 1 TestKit
+		T_Output(TOD1,0);
+		//Leggo Presenza prima di settare
+		Delay(10);
+		DatoMTS = M_ReadIntAD();
+		Delay(10);
+		StampaDBn("Ingressi extin (0x00)", DatoMTS.extin);
+		MtsTK.pres2OFF=(!((DatoMTS.extin & 0x20) == 0x20)); // si considera "pres2OFF" un booleano
+		//Setto uscita 1 del TeskKit per asserrire massa a Presenza
+		//Abilito uscita 1 TestKit
+		T_Output(TOD1,TOD1);
+		Delay(10);
+		DatoMTS = M_ReadIntAD();
+		Delay(10);
+		StampaDBn("Ingressi extin (0x00)", DatoMTS.extin);
+		MtsTK.pres2ON= ((DatoMTS.extin & 0x20) == 0x20); // si considera "pres2ON" un booleano
+		//Disabilito uscita 1 TestKit
+		T_Output(TOD1,0);
+		////////////////////////////////////////////////
+		/////////FORZATO A UNO MANCA GESTIONE IN MTS3048
+		MtsTK.pres2OFF = 1;
+		MtsTK.pres2ON = 1;
+		////////////////////////////////////////////////
+	}
 	/*
 	if ( (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) ) {
 		//Disabilito uscita 4 TestKit
@@ -2368,7 +3226,7 @@ int SK_CheckId(void)
 		CONVERTPATH(LogCollaudo);
 	}
 	StampaDB("File di Log", LogCollaudo);				// Su finestra DOS di Debug 
-	for (i=1; i<=QtaLog; i++) {							// copia il buffer nel file di log di taverniti definito
+	for (i=1; i<=QtaLog; i++) {							// copia il buffer nel file di log di collaudo definito
 		MsgFile(1, LogCollaudo, LogBuffer[i]);
 	}
 	k = M_GetSwVers();										// si legge la Versione Software
@@ -2488,6 +3346,8 @@ int SK_Set_MTS(void)
 		M_SetPar(8, "2");					// si imposta Trace a 2
 	}else{
 		if (!MtsTK.nuovo) {											 // se NON è un MTS nuovo (cioè s/n <> da "-1")
+			M_SetPar(104,"N.D.");     //si cancella parametro 104
+			M_DelPar(104);            //si cancella parametro 104
 			Delay(15); 
 			TesterMTS();
 			if (TestSet.EnBKdata == 1){	//	Salvataggio parametri e Macchina a Stati
@@ -2520,7 +3380,7 @@ int SK_Set_MTS(void)
 ////		Si esegue un reboot (tramite invio di S.M.) per rendere operativi tutti i parametri
 //		Delay(5); 
 //		TesterMTS();
-//		sprintf(Bmom, "(%d) ATTENDERE: invio Macchina-Stati per taverniti", MTSdata.mSerial );
+//		sprintf(Bmom, "(%d) ATTENDERE: invio Macchina-Stati per collaudo", MTSdata.mSerial );
 //		OuputText(1,Bmom,0,0,0,0);
 //		M_PutSmFile(SMachColl);				// Carica la Macchina a Stati per il Collaudo (sarà void o p.e. x la tastiera)
 //	}else{
@@ -2529,14 +3389,14 @@ int SK_Set_MTS(void)
 		M_SetPar(79, "22588");				// = 0x583C Abilita gli analogici (interni,esterni) e counter
 		M_SetPar(96, "1028");				// Imposto a 4 (0x404) il volume Fonia (sia Mic che Spk)
 #ifdef DEBUG_P71
-		M_SetPar(71, "1");
+		M_SetPar(71, "128");
 #else
 		M_SetPar(71, "0"); //0
 #endif
 		M_SetPar(69, "0");					// Imposta tutti gli ingressi con Pull-DOWN ed accensione con Fronte di Salita
+		if ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3048")) ) M_SetPar(62, "0");
 		if ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036"))) {
 			//Aggiungere controllo flash 4037
-			if (!strcmp(TkIni.mName, "3025")) M_SetPar(62, "0");
 			char bmhex[512];
 			char llb[20] ;
 			M_Diag(25,0,dDg);
@@ -2565,6 +3425,7 @@ int SK_Set_MTS(void)
 	//}
 	if (MTSdata.mSerial==-1)  M_SetPar(8, "2");					// si imposta Trace a 2
 	M_SetPar(81,"2") ;
+	if (TestSet.EnHTL == YES) M_SetPar(105,"256");     //si setta parametro 105 a 0x100 (per bloccare l'HTL come VDO a 10400)	
 
 	//if ((MtsTK.nuovo) && (!(strcmp(TkIni.mName, "2023")))) M_SetPar(75, "0");     // si imposta parametro 75 a zero per 2023 per inex3
 	if(!(strcmp(TkIni.mName, "2023"))) M_SetPar(75, "0");     // si imposta parametro 75 a zero per 2023 per inex3
@@ -2594,7 +3455,7 @@ int SK_Set_MTS(void)
 		}
 		
 	}
-	// Qui  prima parte di taverniti RTC
+	// Qui  prima parte di collaudo RTC
 	int ki,k0,k1,t0,t1;
 	if (TestSet.EnRTC == YES) {
 		if (MTSdata.mSign == 40){
@@ -2619,10 +3480,10 @@ int SK_Set_MTS(void)
 		}
 	}
 	
-	sprintf(Bmom, "(%d) ATTENDERE: invio Macchina-Stati per taverniti", MTSdata.mSerial );
+	sprintf(Bmom, "(%d) ATTENDERE: invio Macchina-Stati per collaudo", MTSdata.mSerial );
 	OuputText(1,Bmom,0,0,0,0);
 	M_PutSmFile(SMachColl);					// Carica la Macchina a Stati per il Collaudo (sarà void o p.e. x la tastiera)
-	sprintf(Bmom, "(%d) ATTENDERE: riavvio MTS per inizio taverniti", MTSdata.mSerial );
+	sprintf(Bmom, "(%d) ATTENDERE: riavvio MTS per inizio collaudo", MTSdata.mSerial );
 	OuputText(1,Bmom,0,0,0,0);
 	int k,r ;
 	for (k=0;k<150;k++){	
@@ -2675,14 +3536,17 @@ int SK_SaveParam(void)
 	}
 	return 1;
 }
-
+#endif // ifndef SENDFW
 int SK_ParamSet(void)
 {
+	M_SetPar(255,"N.D.");  //Cancello Tutti i Parametri
 	FILE *fpar ;
 	char M_Par[MAXSIZE] ;
 	char Valore[NRMSIZE] ;
 	char Parametro[NRMSIZE] ;
+	
 	GetINIKeyVal("ParamFile", TkIni.NamPar);
+	togliCR(TkIni.NamPar);
 	sprintf(ParamSel, "%s\\%s",mRoot, TkIni.NamPar);
 	CONVERTPATH(ParamSel);
 	StampaDB("Parametri:",ParamSel);
@@ -2699,102 +3563,18 @@ int SK_ParamSet(void)
 			togliCR(M_Par);
 			GetIntStr("=", M_Par, 1, Parametro);
 			GetIntStr("=", M_Par, 2, Valore); 
+			RLTrimmwithplace(Valore);						// toglie i caratteri non alfanumerici prima e dopo !
+// Aggiunto per debug			
+		sprintf(Bmom, "Invio par %d a <%s>\n",atoi(Parametro), Valore);
+	  	PrintDB(Bmom);
+// Aggiunto per debug			
 			M_SetPar(atoi(Parametro), Valore);
 		}
 		fclose(fpar);
 	}                                              
 	return 0;
 }
-
-int SK_ParamSetCheck(void)
-{
-	int i, y ;
-	FILE *fpar ;
-	char M_Par[MAXSIZE] ;
-	char Valore[NRMSIZE] ;
-	char *p;
-	char Parametro[NRMSIZE] ;
-	char momErrorepar[MAXSIZE] ;
-	char Errorepar[MAXSIZE] ;
-	char Valoresave[NRMSIZE] ;
-	int diverso;
-	
-
-	i=1;
-	sprintf(Errorepar,"0");
-	
-	GetINIKeyVal("ParamFile", TkIni.NamPar);
-	sprintf(ParamSel, "%s\\%s",mRoot, TkIni.NamPar);
-	CONVERTPATH(ParamSel);
-	StampaDB("Controllo Parametri Caricati.","");
-	fpar = fopen(ParamSel, "r");
-	if (fpar == NULL) {			// Se il file di Parametri non esiste ...
-		fclose(fpar);
-		sprintf(Bmom, "Errore durante la lettura del file: %s\n",ParamSel);
-	  	PrintDB(Bmom);
-	  	call_exit(YES, Bmom);
-	}else{
-		while (!feof(fpar)) { // si leggono parametri fino alla fine del file
-			loc_fgets(M_Par, 256, fpar);
-			if (strlen(M_Par)==0) break ;
-			diverso=0;
-			togliCR(M_Par);
-			GetIntStr("=", M_Par, 1, Parametro);
-			GetIntStr("=", M_Par, 2, Valore);
-			strcpy(Valoresave,"N.D.");
-			M_GetPar(atoi(Parametro), Valoresave);
-			//sprintf(Bmom, "ValoreSaveget[%s]: %s\n",Parametro,Valoresave);
-	  		//MsgWindow(Bmom);
-			//strcpy(momValore1,strchr (Valore, '('));
-			p = strchr (Valore, '(') ;
-			if ( p != NULL) {
-				p++ ;
-				//GetIntStr("(", Valore, 2, momValore1)
-				y=strlen(p);
-				y--;
-				p[y]='\0';
-				//PrintDB(p);
-				//strncpy(Valore,p,y);
-				//strcpy(momValore1,strrchr (Valore, '0'));
-				//strcpy(Valore,momValore1);
-			}else{
-			    p = Valore ;
-		    }
-			//sprintf(Bmom, "Diversopre[%s]: %d\n",Parametro,diverso);
-			//MsgWindow(Bmom);
-			if (strcmp(p,Valoresave)) diverso++; // se i valori sono diversi
-			//sprintf(Bmom, "Diversopost[%s]: %d\n",Parametro,diverso);
-			//MsgWindow(Bmom);
-			if ( diverso > 0 ) {
-				sprintf(Bmom, "0x%s",p);
-				if ( !(strcasecmp(Bmom,Valoresave)) ) diverso=0;
-			}
-			//sprintf(Bmom, "Diversopost2[%s]: %d\n",Parametro,diverso);
-			//MsgWindow(Bmom);
-			if ( diverso > 0 ) {
-				sprintf(momErrorepar, "Parametro %s letto [%s] differente da quello impostato [%s]\n",Parametro,Valoresave,p);
-				if (i==1) {
-					sprintf(Errorepar,"%s\r",momErrorepar);
-					i++;
-				}else{
-					sprintf(Errorepar,"%s%s\r",Errorepar,momErrorepar);
-				}
-		    }
-		}
-		fclose(fpar);
-	}
-	if (strcmp(Errorepar,"0")) { // se c'e errore
-		PrintDB(Errorepar);
-	  	call_exit(YES, Errorepar);
-	}
-	StampaDB("Controllo Parametri Caricati Esito:","Positivo");
-	return 0;
-}
-
-
-
-
-
+#ifndef SENDFW
 int SK_RestoreParam(void)
 {
 	int i ;
@@ -2815,6 +3595,221 @@ int SK_RestoreParam(void)
 	}                                              
 	return 0;
 }
+#endif // ifndef SENDFW
+
+int SK_ParamSetCheck(void)
+{
+	int y; // ,i ;
+	FILE *fpar ;
+	char M_Par[MAXSIZE] ;
+	char Valore[NRMSIZE] ;
+	char *p;
+	char Parametro[NRMSIZE] ;
+	char momErrorepar[MAXSIZE] ;
+	char Errorepar[MAXSIZE] ;
+	char Valoresave[NRMSIZE] ;
+	int diverso;
+	//char *goodstring;
+	//char *M_Par_ASCII;
+
+	//i=1;
+	Errorepar[0] = '\0';
+	
+	GetINIKeyVal("ParamFile", TkIni.NamPar);
+	togliCR(TkIni.NamPar);
+	sprintf(ParamSel, "%s\\%s",mRoot, TkIni.NamPar);
+	CONVERTPATH(ParamSel);
+	StampaDB("Controllo Parametri Caricati.","");
+	fpar = fopen(ParamSel, "r");
+	if (fpar == NULL) {			// Se il file di Parametri non esiste ...
+		fclose(fpar);
+		sprintf(Bmom, "Errore durante la lettura del file: %s\n",ParamSel);
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+	}else{
+		while (!feof(fpar)) { // si leggono parametri fino alla fine del file
+			loc_fgets(M_Par, 256, fpar);
+			if (strlen(M_Par)==0) break ;
+			diverso=0;
+			togliCR(M_Par);
+			GetIntStr("=", M_Par, 1, Parametro);
+			//RLTrimm(Parametro);						// toglie i caratteri non alfanumerici prima e dopo !
+			GetIntStr("=", M_Par, 2, Valore);
+			RLTrimmwithplace(Valore);						// toglie i caratteri non alfanumerici prima e dopo !
+			sprintf(Bmom, "Parametro %d [%s]\n",atoi(Parametro),Valore);
+			MsgWindow(Bmom);
+
+			// No needed
+//			p = (char *) strip( (unsigned char*)Valore , sizeof(Valore), EXT); /* remove non-extended and non-ascii */
+//
+			p = strchr (Valore, '(') ;
+			if ( p != NULL) {
+				p++ ;
+				y=strlen(p);
+				y--;
+				p[y]='\0';
+			}else{
+				y = strlen(Valore) ;
+				p = Valore ;
+				p[y] = '\0' ;
+		    }
+		
+
+			sprintf(Bmom, "Parametro POST %d [%s]\n",atoi(Parametro),p);
+			MsgWindow(Bmom);
+
+			strcpy(Valoresave,"N.D.");
+			M_GetPar(atoi(Parametro), Valoresave);
+			togliCR(Valoresave);
+			//goodstring = strip(Valoresave , sizeof(Valoresave), EXT); /* remove non-extended and non-ascii */
+
+			if (strncmp(p,Valoresave,strlen(Valoresave))) diverso++; // se i valori sono diversi
+			sprintf(Bmom, "Diversopost[%s]: <%s> %d\n",Parametro, Valoresave, diverso);
+			MsgWindow(Bmom);
+			if ( diverso > 0 ) {
+				sprintf(Bmom, "0x%s",p);	// sprintf(Bmom, "0x%s",p);
+				if ( !(strncasecmp(Bmom,Valoresave,strlen(Valoresave))) ) diverso=0;
+			}
+			//sprintf(Bmom, "Diversopost2[%s]: %d\n",Parametro,diverso);
+			//MsgWindow(Bmom);
+			if ( diverso > 0 ) {
+				sprintf(momErrorepar, "Parametro %s letto [%s] differente da quello impostato [%s]\n",Parametro,Valoresave,p);
+				strcat(Errorepar, momErrorepar ) ;
+				//if (i==1) {
+				//	sprintf(Errorepar,"%s\r",momErrorepar);
+				//	i++;
+				//}else{
+				//	sprintf(Errorepar,"%s%s\r",Errorepar,momErrorepar);
+				//}
+		  }
+		}
+		fclose(fpar);
+	}
+	if (strlen(Errorepar)) { // se c'e errore
+		PrintDB(Errorepar);
+	  	call_exit(YES, Errorepar);
+	}
+	sprintf(Bmom, "Parametri Caricati: %s",ParamSel);
+	MsgFile(0, LogCollaudo, Bmom);
+	MsgWindow (Bmom);
+	sprintf(Bmom, "Controllo Parametri Caricati Esito: Positivo");
+	MsgFile(0, LogCollaudo, Bmom);
+	MsgWindow (Bmom);
+	StampaDB("Controllo Parametri Caricati Esito:","Positivo");
+	return 0;
+}
+
+int SK_SM_StateSet(void)
+{
+	FILE *fmacs ;
+	GetINIKeyVal("StateMachine", TkIni.NamSM);
+	togliCR(TkIni.NamSM);
+	sprintf(SMachSel, "%s\\%s", mRoot,TkIni.NamSM);
+	CONVERTPATH(SMachSel);
+	StampaDB("Macchina Stati:",SMachSel);	
+	fmacs = fopen(SMachSel, "r");	
+	if (fmacs == NULL) {			// Se il file di Macchina Stati non esiste ...
+		fclose(fmacs);
+		sprintf(Bmom, "Errore durante la lettura del file: %s\n",SMachSel);
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+	}else{ // si invia macchina stati
+		fclose(fmacs);									// si chiude il file prima di passarlo all'atra funzione				
+		sprintf(Bmom, "(%d_E:%d) ATTENDERE: caricamento Macchina-Stati: %s ", MTSdata.mSerial, MTSdata.ERRTest,TkIni.NamSM);
+		OuputText(1,Bmom,0,0,0,0);
+		M_PutSmFile(SMachSel);
+	} 
+	int k,r ;
+	for (k=0;k<150;k++){	
+		r = M_GetSerNum() ;
+		if (r!=MTSdata.mSerial) break ;
+	}
+	Delay(15);
+	for (k=0;k<150;k++){	
+		r = M_GetSerNum() ;
+		if (r==MTSdata.mSerial) break ;
+	}                                            
+	return 0;
+}
+
+int SK_SM_StateSetCheck(void)
+{
+	int error=0;
+	sprintf(SMachFile, "%s\\Logs\\%s_%d.smk", mRoot,hostname ,MTSdata.mSerial);
+	CONVERTPATH(SMachFile) ;
+	M_GetSmFile(SMachFile);
+	sprintf(Bmom, "Richiesta macchina stati per confronto: %s",SMachFile);
+	MsgFile(0, LogCollaudo, Bmom);
+	MsgWindow (Bmom);
+	unsigned int bufcomp;
+	bufcomp=0;
+	// Compare File
+	//Delay(300); //messo per cambiare file a mano
+	FileCompare(SMachSel,SMachFile,&bufcomp);
+	sprintf(Bmom, "Bufcomp: %d",bufcomp);
+	PrintDB(Bmom);
+	if(!bufcomp) {
+		SK_SM_StateSet();
+		// Delay(400); Prima per ATTENDERE RISVEGLIO MTS
+		M_GetSmFile(SMachFile);
+		sprintf(Bmom, "Richiesta macchina stati per confronto: %s",SMachFile);
+		MsgFile(0, LogCollaudo, Bmom);
+		MsgWindow (Bmom);
+		unsigned int bufcomp;
+		bufcomp=0;
+		// Compare File
+		//Delay(300); //messo per cambiare file a mano
+		FileCompare(SMachSel,SMachFile,&bufcomp);
+		sprintf(Bmom, "Bufcomp: %d",bufcomp);
+		PrintDB(Bmom);
+		if(!bufcomp) {
+				call_exit(YES, "File diversi");
+				error=1;
+		}
+	}			
+	sprintf(Bmom, "Macchina-Stati Caricata: %s",SMachSel);
+	MsgFile(0, LogCollaudo, Bmom);
+	MsgWindow (Bmom);
+	return error;
+}
+
+int SK_CanConfSet(void)
+{
+	sprintf(buflog, "Inizio Configurazione CAN");
+	LoggaStampa(buflog);
+	int error=0;
+	GetINIKeyVal("CanConf", TkIni.NamCANConf);
+	togliCR(TkIni.NamCANConf);
+	sprintf(buflog, "Configurazione CAN_INI:%s",TkIni.NamCANConf);
+	LoggaStampa(buflog);
+	sprintf(CANConfSel, "%s\\%s", mRoot,TkIni.NamCANConf);
+	sprintf(buflog, "Configurazione CAN:%s",CANConfSel);
+	LoggaStampa(buflog);
+	CONVERTPATH(CANConfSel);
+	sprintf(buflog, "Configurazione CAN:%s",CANConfSel);
+	LoggaStampa(buflog);
+	Delay(50); //100		
+	int cantype;
+	if (MTSdata.mSign==40) 
+		cantype=0;
+	else
+		cantype=1;
+	if ( M_SENDCANCONF(cantype,CANConfSel) ) {
+			sprintf(bufmsg, "Attenzione: errore nel caricare file configurazione CAN");
+			LoggaStampa(bufmsg);
+			MSGBOXCALL(bufmsg,0,2,"Continua","Ferma",bufresponse); 
+			if (strcmp(bufresponse,"#!")==0) {
+				call_exit(YES, "Errore Conf CAN");
+			}
+			error=1;
+	}else{
+		sprintf(buflog, "--> Configurazione CAN O.K.");
+		LoggaStampa(buflog);
+	}
+	Delay(25); //50		
+	return error;
+}
+#ifndef SENDFW
 
 //	======================================================================
 //					Test Orologio     (Test superfluo per gli MTS con ARM7)
@@ -2863,8 +3858,8 @@ int SK_Test_DigIn(void)
 	int i,k, MaskIn, finito ; //,j;
 	unsigned int ktest;
 	char M_Par[NRMSIZE] ;
-	unsigned int in_Letti, inr, lett1, lett2;
-	unsigned char confl, inOK_, matc;//, cnf ;
+	unsigned short in_Letti, inr, lett1, lett2;
+	unsigned short confl, inOK_, matc;//, cnf ;
 	
 	T_Output(EN_CNT, 0);						// Disattivo il timer di T-K di 1 KHz
 	if (TKTYPE==0) 
@@ -2873,7 +3868,7 @@ int SK_Test_DigIn(void)
 		T_SetPull( 0xFFFFFFFF , 0);
 	
 	MTSdata.TKcntStart = T_Cnt(1) ; 				// Leggo il CNT1 del TK (nel caso ci sia il  LED esterno)
-	if ((TestSet.EnDigInDn == NO) || (TestSet.EnDigInUp == NO)) {
+	if ((TestSet.EnDigInDn == NO) && (TestSet.EnDigInUp == NO)) {
 		COLOR_STEP(MtsTK.steptest++, ( (Failed)? C_RED: C_GREEN)) ;
 		return Failed;
 	}
@@ -3016,6 +4011,11 @@ int SK_Test_DigIn(void)
 			MaskIn <<= 1;
 			MaskIn++;
 		}
+
+		if (TestSet.MaskDigInDn>0) {
+			MaskIn=TestSet.MaskDigInDn;
+			TestSet.QtaIn=countBits(MaskIn);
+		}
 //
 //	======================================================================
 //					Test INPUT con PULL_DOWN
@@ -3031,7 +4031,7 @@ int SK_Test_DigIn(void)
 			//Delay(30);							    // Attesa per il risveglio 
 			M_GetPar(69, M_Par);						// Se risponde è SVEGLIO !!!!!!!!!!
 			StampaDB("Parametro 69 prima", M_Par);		// Su finestra DOS di Debug
-			if( (!strcmp(TkIni.mName, "3025")) && (TKTYPE==1) ) {
+			if( (!strcmp(TkIni.mName, "3025") || (!strcmp(TkIni.mName, "3048")) ) && (TKTYPE==1) ) {
 				M_GetPar(62, M_Par);
 				StampaDB("Parametro 62 prima", M_Par);
 			}
@@ -3040,7 +4040,7 @@ int SK_Test_DigIn(void)
 			M_SetPar(70, "255");				        // Imposta Wake-UP da tutti gli ingressi
 			  
 			MsgWindow(" ");
-			// -> Tutte le uscite del T-K sono state poste come "flottanti" all'avvio del taverniti
+			// -> Tutte le uscite del T-K sono state poste come "flottanti" all'avvio del collaudo
 			LoggaStampa("TEST INPUT con Pull-DOWN");	
 			Delay(10);										// .. ed attendo che sia tutto a posto
 			lett1 = MaskIn & (M_Input() & 0xFF);			// lett1 sarà '0' per ogni bit di maschera
@@ -3089,11 +4089,11 @@ int SK_Test_DigIn(void)
 				StampaDBn("Ingressi lett2 (0xFFFF)", lett2);	// Su finestra DOS di Debug 
 				T_Output(NEWFLOAT_ , 0);					    // Fa cambiare tutti gli ingressi dell'MTS che vanno da VEXT a 0PD("0" con Pull-Down)
 			}
-			Delay(15);										// .. ed attendo che sia tutto a posto (0608 era 0.5 sec)
+			Delay(50);										// .. ed attendo che sia tutto a posto (0608 era 0.5 sec)
 			in_Letti = MaskIn & (M_Input() & 0xFF);					// in_Letti sarà '0' per ogni bit di maschera
-			if (TKTYPE==0)
+			if (TKTYPE==0){
 				StampaDBn("Ingressi in_letti (0x00)", in_Letti);	// Su finestra DOS di Debug 
-			else
+			}else{
 				if (TestSet.QtaIn>8){
 					DatoMTS = M_ReadIntAD();
 					Delay(10);
@@ -3103,10 +4103,12 @@ int SK_Test_DigIn(void)
 					in_Letti=( in_Letti | (DatoMTS.extin<<8));
 				}
 				StampaDBn("Ingressi in_letti (0x0000)", in_Letti);	// Su finestra DOS di Debug 
-				unsigned int test;
-				test=(~(lett1) & lett2 & ~(in_Letti));
-				StampaDBn("Ingressi test (0x0000)", test);		// Su finestra DOS di Debug
-				StampaDBn("Ingressi MASK (0x0000)", MaskIn);	// Su finestra DOS di Debug
+			}
+			unsigned int test;
+			test=(~(lett1) & lett2 & ~(in_Letti));
+			StampaDBn("Ingressi test (0x0000)", test);		// Su finestra DOS di Debug
+			StampaDBn("Ingressi MASK (0x0000)", MaskIn);	// Su finestra DOS di Debug
+
 			if ((~(lett1) & lett2 & ~(in_Letti)) == MaskIn) {
 				sprintf(MyDebB,"--> INEX0..INEX%d O.K. (con Pull-Down)", TestSet.QtaIn-1);
 				LoggaStampa(MyDebB);
@@ -3228,6 +4230,10 @@ int SK_Test_DigIn(void)
 //					Test INPUT con PULL_UP
 //	======================================================================
 		if (TestSet.EnDigInUp) {							// se il test con il pull-Up è abilitato
+			if (TestSet.MaskDigInUp>0) {
+				MaskIn=TestSet.MaskDigInUp;
+				TestSet.QtaIn=countBits(MaskIn);
+			}
 			SetProtocolMode(KPROTOCOLOMODE_QUERYANSWER);			
 			if (TKTYPE==0){
 				T_Output(SET_IN, IN_TOFLOAT);				// pone tutte le uscite del T-K come "flottanti"
@@ -3238,7 +4244,7 @@ int SK_Test_DigIn(void)
 			}
 			Delay (25);	
 			M_SetPar(69, "255");						// Imposta tutti gli ingressi MTS con Pull-PU ed accensione con Fronte di Salita
-			if ( (!strcmp(TkIni.mName, "3025")) && (TKTYPE==1) ) {
+			if ( ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3048")) ) && (TKTYPE==1) ) {
 				Delay (25);
 				M_SetPar(62, "255");
 			}
@@ -3275,7 +4281,7 @@ int SK_Test_DigIn(void)
 			}
 			M_GetPar(69, M_Par);						// Se risponde è SVEGLIO !!!!!!!!!!
 			StampaDB("Parametro 69 prima", M_Par);		// Su finestra DOS di Debug
-			if ( (!strcmp(TkIni.mName, "3025"))  && (TKTYPE==1) ) {
+			if ( ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3048")) )  && (TKTYPE==1) ) {
 				Delay(10);
 				M_GetPar(62, M_Par);
 				StampaDB("Parametro 62 prima", M_Par);
@@ -3336,7 +4342,7 @@ int SK_Test_DigIn(void)
 				// -> Tutte le uscite del T-K sono state poste come "flottanti"
 				M_GetPar(69, M_Par);						// Se risponde è SVEGLIO !!!!!!!!!!
 				StampaDB("Parametro 69 adesso:", M_Par);		// Su finestra DOS di Debug
-				if ( (!strcmp(TkIni.mName, "3025"))  && (TKTYPE==1) ) {
+				if ( ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3048")) )  && (TKTYPE==1) ) {
 					Delay(10);
 					M_GetPar(62, M_Par);
 					StampaDB("Parametro 62 adesso:", M_Par);
@@ -3381,7 +4387,7 @@ int SK_Test_DigIn(void)
 				StampaDBn("Ingressi lett2 (0x0000)", lett2);		// Su finestra DOS di Debug 
 				T_Output(NEWFLOAT_ , 0);							// Fa cambiare tutti gli ingressi dell'MTS che vanno da GND a 1PU("1" con Pull-Up)
 				T_Output(NEWALLTOVFG , NEWALLTOVFG );				// Per Flottante
-				Delay(15);											// .. ed attendo che sia tutto a posto (0608 era 0.5 sec)
+				Delay(50);											// .. ed attendo che sia tutto a posto (0608 era 0.5 sec)
 				in_Letti = MaskIn & (M_Input() & 0xFF);				// in_Letti sarà '1' per ogni bit di maschera
 				if (TestSet.QtaIn>8){
 					DatoMTS = M_ReadIntAD();
@@ -3450,12 +4456,28 @@ int SK_Test_DigIn(void)
 				}
 			}
 		}
-	}	
-if ( ( (!strcmp(TkIni.mName, "3025")) || ( !strcmp(TkIni.mName, "2034") || (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) || (!strcmp(TkIni.mName, "4037")) ) ) && TestSet.EnTamper ) {	
+	}
+	if ( ( 
+			(!strcmp(TkIni.mName, "3025")) || 
+			(!strcmp(TkIni.mName, "2034")) || 
+			(!strcmp(TkIni.mName, "2039")) || 
+			(!strcmp(TkIni.mName, "2040")) || 
+			(!strcmp(TkIni.mName, "3035")) || 
+			(!strcmp(TkIni.mName, "3036")) || 
+			(!strcmp(TkIni.mName, "4037")) ||
+  		(!strcmp(TkIni.mName, "2046")) ||
+			(!strcmp(TkIni.mName, "2044")) ||
+			(!strcmp(TkIni.mName, "2046_M4")) ||
+			(!strcmp(TkIni.mName, "2044_M4"))
+		 ) && TestSet.EnTamper  ) 
+	{
+		int ritenta;
+		for (ritenta=0;ritenta<2; ritenta ++){	
 			SetProtocolMode(KPROTOCOLOMODE_QUERYANSWER);
-			int Tamper;
+			int Tamper,OkTamper;
 			OuputText(9,"",4,"ALARM",1,5);
 			MsgWindow("TEST TAMPER\r");
+			Delay(20);
 			if ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) || (!strcmp(TkIni.mName, "4037")) ) {
 				DatoMTS = M_ReadIntAD();
 				Delay(10);
@@ -3463,67 +4485,54 @@ if ( ( (!strcmp(TkIni.mName, "3025")) || ( !strcmp(TkIni.mName, "2034") || (!str
 			}else{
 				Tamper= ( M_Input() & 0x40 );
 			}
-			StampaDBn("Ingresso Tamper (0)", Tamper);
+			StampaDBn("Ingresso Tamper >=", Tamper);
+			OkTamper=0;
 			int tentativi=0;
-			while (Tamper != 0) {
-				if (Tamper==1) {
-					MSGBOXCALL("Non Premere lo switch interno", 0, 1, 0, 0, bufresponse);
-					ProgressBar(BAR_TIME, 200 ) ; // 20s
-				}
+			int notcurstatus=Tamper ;
+			MSGBOXCALL("Premere e tener Premuto lo switch interno", 0, 1, 0, 0, bufresponse);
+			ProgressBar(BAR_TIME, 200 ) ; // 20s
+			tentativi=0;
+			while (OkTamper==0) { //0
 				if ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) || (!strcmp(TkIni.mName, "4037")) ) {
 					DatoMTS = M_ReadIntAD();
 					Delay(10);
-					Tamper= (DatoMTS.extin & 0x10);
+					if ((DatoMTS.extin & 0x10)!=notcurstatus) OkTamper=1;
 				}else{
-					Tamper= ( M_Input() & 0x40 );
+					if ((M_Input() & 0x40)!=notcurstatus) OkTamper=1;
 				}
-				int Tamp;
-				if (Tamper==0) 
-					Tamp=0;
-				else
-					Tamp=1;
-				if (tentativi>2) {
-					sprintf(MyDebB,"Tamper Premuto a <%d>\r", Tamp);	// si mostrano tutti gli ingressi individuati
-					MsgWindow(MyDebB);
-					MSGBOXCALL(MyDebB,0,2,"Continua","Ferma",bufresponse);		// (0609) aggiunto per permettere uscita
+				Delay(20);
+				tentativi ++;
+				if (tentativi>3) Tamper=-1;
+			}
+			if (OkTamper==1){
+				OuputText(9,"OK",5,"ALARM",0,0);
+				sprintf(MyDebB,"Test Tamper OK");
+				LoggaStampa(MyDebB);
+				MsgWindow(MyDebB);
+				//MSGBOXCALL("Rilasciare lo switch", 0, 1, 0, 0, bufresponse);
+				ProgressBar(BAR_TIME, 200 ) ; // 20s
+				ritenta=2; // per uscire dal ciclo for
+			}else{
+				//Failed++;
+				sprintf(MyDebB,"Tamper Bloccato");
+				LoggaStampa(MyDebB);
+				MsgWindow(MyDebB);
+				if (!ritenta) {
+					MSGBOXCALL("ATTENZIONE TAMPER IN AVARIA" ,0,2,"Ripeti","Continua",bufresponse);
+					if (strcmp(bufresponse,"##")==0) {
+						Failed++;
+						ritenta=2; // per uscire dal ciclo for
+					}
+				}else{
+					Failed++;
+					MSGBOXCALL(MyDebB,0,2,"Continua","Ferma",bufresponse);			// (0609) aggiunto per permettere uscita
 					if (strcmp(bufresponse,"#!")==0) {
 						call_exit(YES, "Errore Tamper");
 					}
 				}
-				tentativi++;
 			}
-			MSGBOXCALL("Premere e tener Premuto lo switch interno", 0, 1, 0, 0, bufresponse);
-			ProgressBar(BAR_TIME, 200 ) ; // 20s
-			tentativi=0;
-			while (Tamper == 0) {
-				if ( (!strcmp(TkIni.mName, "3025")) || (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) || (!strcmp(TkIni.mName, "4037")) ) {
-					DatoMTS = M_ReadIntAD();
-					Delay(10);
-					if ((DatoMTS.extin & 0x10)==0x10) Tamper=1;
-				}else{
-					if ((M_Input() & 0x40)==0x40) Tamper=1;
-				}
-				if (Tamper==0) {
-					Delay(10);
-					tentativi ++;
-				}
-				if (tentativi>3) Tamper=-1;
-			}
-			if (Tamper==1){
-				OuputText(9,"OK",5,"ALARM",0,0);
-				MSGBOXCALL("Rilasciare lo switch", 0, 1, 0, 0, bufresponse);
-				ProgressBar(BAR_TIME, 200 ) ; // 20s
-			}else{
-				Failed++;
-				sprintf(MyDebB,"Tamper Bloccato a <0>");
-				LoggaStampa(MyDebB);
-				MsgWindow(MyDebB);
-				
-				MSGBOXCALL(MyDebB,0,2,"Continua","Ferma",bufresponse);			// (0609) aggiunto per permettere uscita
-				if (strcmp(bufresponse,"#!")==0) {
-					call_exit(YES, "Errore Tamper");
-				}
-			}
+		ritenta++;
+		}
 	}
 	COLOR_STEP(MtsTK.steptest++, ( (Failed)? C_RED: C_GREEN)) ;	
 	
@@ -3542,8 +4551,8 @@ int SK_Test_DigOut(void)
 	int Failed = 0;
 	int i, k, Lett, MaskOut, MaskRl ; //,j;
 	int ExCh, ExTmp, ToSt;
-	unsigned int out_Letti ;
-	unsigned char confl, outOK_, matc;//, cnf ;
+	unsigned short out_Letti ;
+	unsigned short confl, outOK_, matc;//, cnf ;
 	
 	if (TestSet.EnDigOut == NO) return Failed;			// esci senza far nulla se il test non è richiesto  
 
@@ -3609,25 +4618,29 @@ int SK_Test_DigOut(void)
 		OuputText(1,Bmom,0,0,0,0);
 		MsgWindow(" ");
 		LoggaStampa("TEST degli OUTPUT");
-		M_Output(ALLOUT, NOOUT);									// Disattiva tutte le uscite dell'MTS (0609)
+		if (!strcmp(TkIni.mName, "3048")) {
+			M_Output(0xFFFF, 0x0000 );								// Disattiva tutte le uscite dell'MTS 
+		}else{ 
+			M_Output(ALLOUT, NOOUT);								// Disattiva tutte le uscite dell'MTS (0609)
+		}
 		if (TKTYPE==0) 
 			T_Output(OLDTIN_PUP, OLDTIN_PUP);					// tutti gli ingressi di Board-T-K sono configurati con Pull-UP (0609)
 		else
 			T_SetPull(0xFFFFFFFF, 0xFFFFFFFF);
 		Delay(3);													// attesa di 0.3 sec. (14/09/11 era 2 sec.) (0609 era 0 sec.)
 		i = 0; matc = 0x01;											// A partire dalla 1ª Uscita ...
-		while (i < TestSet.QtaOD) {									// ... per tutte le Uscite MTS in Open Drain
-			if ( (!strcmp(TkIni.mName, "MTS05")) && (i==2))
-				matc = 1<<5 ;
+		sprintf(MexAll, "%s", ""); sprintf (separ, "%s", "");  // Si prepara stringa per messaggio errore
+		while (i < TestSet.QtaOD) {							// ... per tutte le Uscite MTS in Open Drain
+			if ( (!strcmp(TkIni.mName, "MTS05")) && (i==2)) matc = 1<<5 ;
 			M_Output(matc, matc);									// Attiva l'i-esima uscita di MTS
-			Delay(3);												// attesa di 0.3 sec. (14/09/11 era 2 sec.) (0608 era 0.5 sec.)
-			out_Letti = T_Input();									// si leggono gli INPUT di T-K
+			Delay(3);															// attesa di 0.3 sec. (14/09/11 era 2 sec.) (0608 era 0.5 sec.)
+			out_Letti = T_Input();								// si leggono gli INPUT di T-K
 			// Old (1-4-5-6-7-8)
 			//if ( (!strcmp(TkIni.mName, "3208")) && (i>0))
 			//	out_Letti >>= 2 ;
 			// New (1-7-8-4-5-6)
 			if ( (!strcmp(TkIni.mName, "3025")))
-			    out_Letti = ((out_Letti & 0xff39) | ((out_Letti & 0xc0)>>5) | ((out_Letti & 0x6)<<5) );
+			  out_Letti = ((out_Letti & 0xff39) | ((out_Letti & 0xc0)>>5) | ((out_Letti & 0x6)<<5) );
 			if (!strcmp(TkIni.mName, "3208"))
 				out_Letti = ((out_Letti & 0x39) | ((out_Letti & 0xc0)>>5) );
 			outOK_ = MaskOut & (out_Letti & matc);					// outOK_ è "0" se i-esima uscita MTS è OK
@@ -3640,8 +4653,11 @@ int SK_Test_DigOut(void)
 				Failed++;
 				if (outOK_ != 0) {									// se l'uscita testata NON è a "0"
 					sprintf(MyDebB,"OUTEX%d in Avaria: letta DISATTIVA)", NamOut[i]);
-				}else
+				}else{
 					sprintf(MyDebB,"OUTEX%d 0x%x 0x%x", NamOut[i],confl,MaskOut);
+					sprintf(&MexAll[strlen(MexAll)], "%sOUTEX%d(%d)", separ, NamOut[i], i);
+					sprintf(separ,", ");
+				}
 				/*
 				if (confl != MaskOut) {								// ed inoltre si segnalano quali altre uscite risultano Attive
 					StampaDBn("confl", confl);					    // Su finestra DOS di Debug 
@@ -3659,10 +4675,6 @@ int SK_Test_DigOut(void)
 				}
 				*/
 				LoggaStampa(MyDebB);
-				MSGBOXCALL(MyDebB,0,2,"Continua","Ferma",bufresponse);	// (0609) aggiunto (è come Test Pull_Down) per permettere uscita
-				if (strcmp(bufresponse,"#!")==0) {
-					call_exit(YES, "Errore INEX");
-				}
 				sprintf(MyDebB,"OUTEX%d K.O.", NamOut[i]);	//	.. segnala anonalia
 				LoggaStampa(MyDebB);
 			}
@@ -3670,13 +4682,21 @@ int SK_Test_DigOut(void)
 			i++; matc <<= 1;										// ... e si passa all'uscita successiva
 		}
 		M_Output(ALLOUT, NOOUT);									// Disattiva tutte le uscite dell'MTS
+		//OUT ERROR
+		if ( strlen(MexAll)>0) {
+			sprintf(&MexAll[strlen(MexAll)], " K.0.");
+			MSGBOXCALL(MexAll,0,2,"Continua","Ferma",bufresponse);	// (0609) aggiunto (è come Test Pull_Down) per permettere uscita
+			if (strcmp(bufresponse,"#!")==0) {
+				call_exit(YES, "Errore INEX");
+			}
+		}		
 		
 	//	======================================================================
 	//	TEST dell'uscita RELE' dell'MTS
 	//	======================================================================
 
 #ifdef CHECK_TESTTIME
-		MsgFile(0, "tempi_taverniti.txt", "Test Relé") ;
+		MsgFile(0, "tempi_collaudo.txt", "Test Relé") ;
 #endif		
 		
 		MaskOut += REL1*(TestSet.QtaRL*2-1);						// aggiorno la Maschera delle uscite aggiungendo anche i Rele'
@@ -4452,14 +5472,14 @@ int SK_Test_Cnt(void)
 			MsgWindow(" ");
 			LoggaStampa("TEST del Counter");
 			k = M_Cnt(cnt_id);							// lettura iniziale del Counter dell'MTS
-			sprintf(MyDebB,"Counter(%d) sec prima: %d|", cnt_id, k);
+			sprintf(MyDebB,"Counter(%d) sec prima: %d|\r", cnt_id, k);
 			StampaDB(MyDebB,"");						// Su finestra DOS di Debug 
-			Delay(10);									// Attesa di un secondo: il contatore NON deve aumentare
+			Delay(50);									// Attesa di un secondo: il contatore NON deve aumentare
 			k0 = M_Cnt(cnt_id);							// lettura del Counter dell'MTS dopo 1 sec.
-			if (k0>k+1){ // Un impulso è accettabile ?
+			if (k0>k+TestSet.CntToller){ // Un impulso è accettabile ?
 				sprintf(MyDebB,"ATTENZIONE: Counter(%d): incrementato SENZA segnale (da %d a %d)", cnt_id, k,k0);
 				LoggaStampa(MyDebB);
-				Failed++;
+				if (strcmp(TkIni.mName, "3036")) Failed++; // se non è 3036
 			}
 			at1 = 3;									// sec della finestra di controllo del Counter
 			Efreq = FREQ * TICK / 100;
@@ -4468,9 +5488,9 @@ int SK_Test_Cnt(void)
 			T_Output(EN_CNT, 0);						// Disattivo il timer di T-K di 1 KHz
 			Delay(30);									// Attendo 3 sec.
 			k1 = M_Cnt(cnt_id);							// Leggo il contatore
-			sprintf(MyDebB,"Counter(%d) con Gen. abilitato: %d|", cnt_id, k0);
+			sprintf(MyDebB,"Counter(%d) con Gen. abilitato: %d|\r", cnt_id, k0);
 			StampaDB(MyDebB,"");						// Su finestra DOS di Debug 
-			sprintf(MyDebB,"Counter(%d) dopo %dsec: %d|", cnt_id, at1, k1);
+			sprintf(MyDebB,"Counter(%d) dopo %dsec: %d|\r", cnt_id, at1, k1);
 			StampaDB(MyDebB,"");						// Su finestra DOS di Debug 
 			cntr = k1 - k0 ;							// delta contatore
 			// Su 4004 conta solo i fronti di salita
@@ -4531,7 +5551,9 @@ int GPS_Extern(void)
 	    (TkIni.mName[0]=='4') || 
 	    (!(strncmp(TkIni.mName, "MTS",3))) || 
 	    (!(strcmp(TkIni.mName,"2202"))) || 
-		(!(strcmp(TkIni.mName,"2034"))) || 
+			(!(strcmp(TkIni.mName,"2034"))) || 
+			(!(strcmp(TkIni.mName,"2039"))) ||
+			(!(strcmp(TkIni.mName,"2040"))) ||
 	    (!(strcmp(TkIni.mName,"2015"))) || 
 	    (!(strcmp(TkIni.mName,"2020"))) || 
 	    (!(strcmp(TkIni.mName,"2003"))) || 
@@ -4830,7 +5852,8 @@ int SK_Test_GSM(void)
 				MTSdata.ValoreCSQ = atoi(nStart) ;
 			}
 			Delay(10);
-			if ((MTSdata.GsmModel!='\0')&&( MTSdata.ValoreCSQ > MIN_CSQ )){	// OK
+			//if ((MTSdata.GsmModel!='\0')&&( MTSdata.ValoreCSQ > MIN_CSQ )){	// OK
+			if ((MTSdata.GsmModel!=NULL)&&( MTSdata.ValoreCSQ > MIN_CSQ )){	// OK
 				break ;
 			}
 			Delay(10);
@@ -5293,14 +6316,20 @@ int SK_Test_CAN(void)
 	int Failed = 0;
 	int FailedS, FailedF, FailCAN[3],cansel;
 	int i, k;
-	
+	struct timeb loc_time ;
+	int test_CAN = -1;				
+	long starttime = 0;
+	long starttime2 = 0;
+	long timeout= 0;
+	/*
 	if (TestSet.EnCANConf == 1) {
 			GetINIKeyVal("CanConf", TkIni.NamCANConf);
+			togliCR(TkIni.NamCANConf);
 			sprintf(CANConfSel, "%s\\%s", mRoot,TkIni.NamCANConf);
 			CONVERTPATH(CANConfSel);
 			sprintf(buflog, "Configurazione CAN:%s",CANConfSel);
 			LoggaStampa(buflog);	
-	}
+	}*/
 	if (TestSet.QtaCAN != 0) {
 
 		// "CAN"
@@ -5326,112 +6355,133 @@ int SK_Test_CAN(void)
 		OuputText(1,Bmom,0,0,0,0);
 		MsgWindow(" ");
 		for(i=1; i<=TestSet.QtaCAN; i++) {
+			//cansel=i+1;
+			//if(cansel>TestSet.QtaCAN) cansel=i-1;
 			cansel=i;
-			/*
-			if ( (!strcmp(TkIni.mName, "3035")) || (!strcmp(TkIni.mName, "3036")) ){
-				if (i==1) cansel=2;
-				if (i==2) cansel=1;
-			}*/
 			FailedS = 0 ; 
 			FailedF = 0 ;
-			sprintf(buflog, "TEST della porta CAN%d di %d", i, TestSet.QtaCAN);
+			sprintf(buflog, "TEST della porta CAN%d di %d", cansel, TestSet.QtaCAN);
 			LoggaStampa(buflog);
-			M_CanClear( ((MTSdata.mSign==40)? i+1: i-1), 50001); // Vecchio o nuovo tipo di CAN
-			M_CanAdd(i-1, 20, 0x1c030, 0x800fffff);
-			M_CanStart(i-1);
-			//MSGBOXCALL("Controllare Configurazione Can LOW", 0, 1, 0, 0, bufresponse);
-			Delay(20);  //20
-			//extension commands
-			T_SetCanBaudrate(cansel-1, 50000);					// imposta CAN di T-K: baudrate = 50000 kbit/sec
-			T_SetCanMailbox(cansel-1, 1, 0xFFFFFFFF, 0x1c030, 'E', 0);
-			Delay(30);
-			M_CanClearBuffer(i-1);
-			MsgWindow("In corso invio di dati all'MTS (Low Baudrate) ...");
-			for (k=0; k<8; k++) { // 8
-				Delay(10);
-				T_EmitCanFrame(cansel-1, 1, "aa5566");		// " Frame aa5566
-			}
-			#ifdef DEBUG_FR
-			sprintf(bufmsg, "Stop per CAN%d",i);
-			MSGBOXCALL(bufmsg,0,2,"Continua","Ferma",bufresponse); 
-			if (strcmp(bufrespone,"#!")==0) {
-				call_exit(YES, "Stop CAN");
-			}
-			#endif // DEBUG_FR		
-			k = M_CanCheck(i-1, 0x1c030, "aa5566");
-			if (k != 0) FailedS++;								// la prima risposta deve essere a '0'
-			Delay(20); //20
-			k = M_CanCheck(i-1, 0x1c030, "aa5567");
-			if (k != 1) FailedS++;								// la seconda risposta deve essere a '1'
-			if (FailedS == 0) {										// si valuta il test a bassa velocità (Slow)
-				LoggaStampa("--> Low Baud-Rate O.K.");
-			}else{
-				sprintf(buflog, "ATTENZIONE: CAN%d (Low Baudrate) NON riceve",i);
-				LoggaStampa(buflog);
-			}
-
-			if ((strncmp(TkIni.mName, "MTS", 3)) || (i<2)){
-				Delay(80);//40
-				M_CanClear(((MTSdata.mSign==40)? i+1: i-1), 100001);		// Cancella Conf precedente e predispopne baudrate = 100000 kbit/sec
-				M_CanAdd(i-1, 20, 0x1C020, 0x8fffffff);		// imposta canale 'i' di monitoraggio
-				M_CanStart(i-1);											// inizia a monitorare
-				Delay(80);//40
-				//MSGBOXCALL("Controllare Configurazione Can HIGH", 0, 1, 0, 0, bufresponse);
-				T_SetCanBaudrate(cansel-1, 100000);				// imposta CAN di T-K: baudrate = 100000 kbit/sec
-				T_SetCanMailbox(cansel-1, 1, 0xFFFFFFFF, 0x1C020, 'E', 0); // " : in TX, Indirizzo 1, Esteso
-				M_CanClearBuffer(i-1);
-				MsgWindow("In corso invio di dati all'MTS (High Baudrate) ...");
-				for (k=0; k<16; k++) { // 8
-					Delay(15);//10																		// (0609) L'attesa prima era -20-
-					T_EmitCanFrame(cansel-1, 1, "55AA55");							// " : Frame 55AA55
+			int CAN_LOW=0;
+			if (CAN_LOW){
+				//RESET TKCAN
+				T_SetCanBaudrate(cansel-1, 0);					// imposta CAN di T-K: baudrate = 0 kbit/sec
+				Delay(80);//80
+				M_CanClear( ((MTSdata.mSign==40)? cansel+1: cansel-1), 50001); // Vecchio o nuovo tipo di CAN
+				M_CanAdd(cansel-1, 20, 0x1c030, 0x800fffff);
+				M_checkcanstart(cansel-1);
+				
+				//MSGBOXCALL("Controllare Configurazione Can LOW", 0, 1, 0, 0, bufresponse);
+				Delay(10);  //20
+				//extension commands
+				T_SetCanBaudrate(cansel-1, 50000);					// imposta CAN di T-K: baudrate = 50000 kbit/sec
+				T_SetCanMailbox(cansel-1, 1, 0xFFFFFFFF, 0x1c030, 'E', 0);
+				Delay(15);  //30
+				M_CanClearBuffer(cansel-1);
+				MsgWindow("In corso invio di dati all'MTS (Low Baudrate) ...");
+				for (k=0; k<8; k++) { // 8
+					Delay(5); //5
+					T_EmitCanFrame(cansel-1, 1, "aa5566");		// " Frame aa5566
 				}
-				k=M_CanCheck(i-1, 0x1C020, "55AA55");
-		
-				if (k != 0) {																		// la risposta deve essere a '0'
-					sprintf(buflog, "ATTENZIONE: CAN%d (High Baudrate) NON riceve",i);
+				#ifdef DEBUG_FR
+				sprintf(bufmsg, "Stop per CAN%d",cansel);
+				MSGBOXCALL(bufmsg,0,2,"Continua","Ferma",bufresponse); 
+				if (strcmp(bufrespone,"#!")==0) {
+					call_exit(YES, "Stop CAN");
+				}
+				#endif // DEBUG_FR		
+				k = M_CanCheck(cansel-1, 0x1c030, "aa5566");
+				if (k != 0) FailedS++;								// la prima risposta deve essere a '0'
+				Delay(10); //20
+				k = M_CanCheck(cansel-1, 0x1c030, "aa5567");
+				if (k != 1) FailedS++;								// la seconda risposta deve essere a '1'
+				if (FailedS == 0) {										// si valuta il test a bassa velocità (Slow)
+					LoggaStampa("--> Low Baud-Rate O.K.");
+				}else{
+					sprintf(buflog, "ATTENZIONE: CAN%d (Low Baudrate) NON riceve",cansel);
+					LoggaStampa(buflog);
+				}
+			}
+				
+			if ((strncmp(TkIni.mName, "MTS", 3)) || (cansel<2)){
+				if (CAN_LOW) Delay(40);//80
+				//RESET TKCAN
+				T_SetCanBaudrate(cansel-1, 0);					// imposta CAN di T-K: baudrate = 0 kbit/sec
+				//Delay(80);//80
+				localmillisDelay(1000); //wait 1sec
+				if(cansel>1){
+					M_CanClear(((MTSdata.mSign==40)? cansel+1: cansel-1), 100001);		// Cancella Conf precedente e predispopne baudrate = 100000 kbit/sec
+				}else{
+					M_CanClear(((MTSdata.mSign==40)? cansel+1: cansel-1), 250001);		// Cancella Conf precedente e predispopne baudrate = 250000 kbit/sec
+				}
+				M_CanAdd(cansel-1, 20, 0x00F00400, 0x8fffffff);		// imposta canale 'cansel' di monitoraggio
+				M_checkcanstart(cansel-1);											// inizia a monitorare
+				//Delay(40);//80
+				localmillisDelay(500); //wait 0.5sec
+				//MSGBOXCALL("Controllare Configurazione Can HIGH", 0, 1, 0, 0, bufresponse);
+				if(cansel>1){
+					T_SetCanBaudrate(cansel-1, 100000);				// imposta CAN di T-K: baudrate = 100000 kbit/sec
+				}else{
+					T_SetCanBaudrate(cansel-1, 250000);				// imposta CAN di T-K: baudrate = 250000 kbit/sec
+				}
+				T_SetCanMailbox(cansel-1, 1, 0xFFFFFFFF, 0x00F00400, 'E', 0); // " : in TX, Indirizzo 1, Esteso
+				M_CanClearBuffer(cansel-1);
+				MsgWindow("In corso invio di dati all'MTS (High Baudrate)[Bazooka] ...");
+				test_CAN=-1;				
+				ftime(&loc_time) ;
+				starttime=(loc_time.time*1000+loc_time.millitm);
+				starttime2=starttime;
+				timeout=starttime;
+
+				while (((loc_time.time*1000+loc_time.millitm)-timeout)<60000){ //per un minuto
+				//for (k=0;k<150;k++){
+					ftime(&loc_time) ;
+					if(((loc_time.time*1000+loc_time.millitm)-starttime)>1000){
+						sprintf(MyDebB,"time[%ld]starttime{%ld}TestKit Invio Trasmissione to CAN%d from address 0x00F00400 send data: AA BB DD EE FF 55 AA 55\r", (loc_time.time*1000+loc_time.millitm),starttime,cansel);
+						MsgWindow(MyDebB);
+						T_EmitCanFrame(cansel-1, 1, "AABBDDEEFF55AA55");
+						starttime=(loc_time.time*1000+loc_time.millitm);
+					}
+				  if(((loc_time.time*1000+loc_time.millitm)-starttime2)>5000){
+						sprintf(MyDebB,"time[%ld]starttime2{%ld}Check CAN%d Ricezione MTS\r", (loc_time.time*1000+loc_time.millitm),starttime2,cansel);
+						test_CAN=M_CanCheck(cansel-1, 0x00F00400, "AABBDDEEFF55AA55");
+						starttime2=(loc_time.time*1000+loc_time.millitm);
+						if (test_CAN==0) break ;         // CAN OK
+					}
+				}
+
+				if (test_CAN != 0) {																		// la risposta deve essere a '0'
+					sprintf(buflog, "ATTENZIONE: CAN%d (High Baudrate) NON riceve",cansel);
 					LoggaStampa(buflog);
 					FailedF++;
 				}
 			}
+			
+			//MSGBOXCALL("Controllare Configurazione Can HIGH", 0, 1, 0, 0, bufresponse);
 			// Cancella configurazione CAN
-			//Da rispristinare 2 GTGTGTGTGTGT
-			//M_CanClear(((MTSdata.mSign==40)? i+1: i-1), 50000);	// Cancella Conf precedente
-			//M_CanStart(i-1);									// (Per 4004 necessario per eseguire la cancellazione della conf.)
+			M_CanClear(((MTSdata.mSign==40)? cansel+1: cansel-1), 250000);	// Cancella Conf precedente
+			M_checkcanstart(cansel-1);									// (Per 4004 necessario per eseguire la cancellazione della conf.)
 		
-			FailCAN[i] = (FailedS) || (FailedF);
-			if (FailCAN[i]) {
-				sprintf(bufmsg, "Attenzione: CAN%d non riceve",i);
+			FailCAN[cansel] = (FailedS) || (FailedF);
+			if (FailCAN[cansel]) {
+				sprintf(bufmsg, "Attenzione: CAN%d non riceve",cansel);
 				MSGBOXCALL(bufmsg,0,2,"Continua","Ferma",bufresponse); 
 				if (strcmp(bufresponse,"#!")==0) {
 					call_exit(YES, "Errore CAN");
 				}
 			}else {
-				sprintf(buflog, "--> CAN%d port O.K.",i);
+				sprintf(buflog, "--> CAN%d port O.K.",cansel);
 				LoggaStampa(buflog);
 			}
 		}
 		Failed= FailCAN[1] + FailCAN[2];
 	}
-	if (TestSet.EnCANConf == 1) {
-		Delay(100);		
-		int cantype;
-		if (MTSdata.mSign==40) 
-			cantype=0;
-		else
-			cantype=1;
-		if ( M_SENDCANCONF(cantype,CANConfSel) ) {
-				sprintf(bufmsg, "Attenzione: errore nel caricare file configurazione CAN");
-				LoggaStampa(bufmsg);
-				MSGBOXCALL(bufmsg,0,2,"Continua","Ferma",bufresponse); 
-				if (strcmp(bufresponse,"#!")==0) {
-					call_exit(YES, "Errore Conf CAN");
-					Failed++;
-				}
-		}else{
-			sprintf(buflog, "--> Configurazione CAN O.K.");
-			LoggaStampa(buflog);
-		}
-		Delay(50);	
+	if ( ( (TestSet.EnCANConf == 1) || (TestSet.QtaCAN != 0) ) && Failed == 0) {
+		sprintf(buflog, "Invio Configurazione CAN");
+		LoggaStampa(buflog);
+		if (SK_CanConfSet()) Failed++;
+		sprintf(buflog, "Invio Configurazione CAN %s",(Failed)? "Fallito": "Riuscito");
+		LoggaStampa(buflog);
 	}
 	// TEST Resistenza Terminale da 120 Ohm
 	// TEST DISABILITATO MODIFICATO CAVO
@@ -5523,12 +6573,26 @@ int SK_Test_CAN(void)
 		Delay(20);
 		M_Action(33,14,0); 
 	}*/
-
+	//RESET TKCAN
+	T_SetCanBaudrate(cansel-1, 0);					// imposta CAN di T-K: baudrate = 0 kbit/sec
+	//Delay(80);//80
+	localmillisDelay(1000); //wait 1sec
 	if ((TestSet.EnCANConf == 1) || (TestSet.QtaCAN != 0)) COLOR_STEP(MtsTK.steptest++, ( (Failed)? C_RED: C_GREEN)) ;
 	return Failed;
 }
+
+unsigned int M_checkcanstart(unsigned int ch){
+	unsigned int k;
+	for (k=0;k<15;k++){	
+		M_CanStart(ch,bufresponse);
+		if (strcmp(bufresponse,"OKCANCONF")==0) break;  // Attesa per settaggio CAN
+		Delay(10);		   
+	}
+	return(0) ;
+}
+
 //	======================================================================
-//					TEST HTL			(Da Fare per 3025)
+//					TEST HTL	
 //	======================================================================
 /* la funzione torna, in uscita, un valore :
 					-  0 (zero) non ci sono stati errori
@@ -5537,9 +6601,9 @@ int SK_Test_CAN(void)
 int SK_Test_HTL(void)
 {
 	
-#define HTL_LOOP 8
+#define HTL_LOOP 5
 	
-	int i, Failed = 0;
+	int i,x, Failed = 0;
 	
 	if (TestSet.EnHTL == NO) return Failed;			// esci senza far nulla se il test non è richiesto  
 
@@ -5553,44 +6617,40 @@ int SK_Test_HTL(void)
 	
 	T_Output(NEWHTLORTTL | TRL2_ , NEWHTLORTTL | TRL2_ );   // Seriale in HTTL e Rele su NC sul TK
 	T_SetComPort(3, 10400,'N', 8, 1, '0') ; // 9600,N,8,1 RSHTL
-		
+	char Bmomhexcheck[MAXSIZE];
+	char bufresponsehex[MAXSIZE];
+	char bufmommom[MAXSIZE];
+	int nCheck;
+	sprintf(Bmomhexcheck,"45573434384347"); //454454434f Prima	
 	//TEST SERIALE + TEST CTS E RTS
 	for (i=0;i<HTL_LOOP;i++){
 		///FACCIO INVIARE AL TK
-		//sprintf(Bmom,"HTLTK A MTS il SN è:%d", MTSdata.mSerial );
-		char Bmomhexcheck[MAXSIZE]; 
-		char Bmomhex[MAXSIZE];
-		char Bmompack[MAXSIZE];
-		//int len,lenpre;
-		//lenpre=strlen(Bmom);
-		//text_to_hex(Bmom,Bmomhex);
-		sprintf(Bmomhexcheck,"454454434f");
-		sprintf(Bmomhex,"4454434f00801d0505711e7d7f0010c0c00000be57500164575001b414ffff");
-		//len=strlen(Bmomhex);
-		sprintf(Bmompack,"55%s",Bmomhex);
-		//hex_to_text(Bmompack2,Bmompack);
-		T_ComSendHex(3,Bmompack);
-		sprintf(Bmomhex,"500111595632585a5830413645423639363339390e014557343438434720202020202000009f");
-		T_ComSendHex(3,Bmomhex);
-		//sprintf(Bmompack,"%02X%s",lenpre,Bmomhex);
-		//strcpy(Bmomhex,Bmompack);
+		for (x=0;x<HTL_LOOP;x++){			
+			T_ComSendHex(3,"554454434f00801d0505711e7d7f0010c0");
+			Delay(5);
+			T_ComSendHex(3,"c00000be57500164575001b414ffff5001");
+			Delay(5);
+			T_ComSendHex(3,"11595632585a5830413645423639363339");
+			Delay(5);
+			T_ComSendHex(3,"390e014557343438434720202020202000009f");
+			Delay(5);
+		}
 		/// Controllo che ha ricevuto MTS
-		Delay(20);
-		M_Diag(12,0,bufresponse);
-		char bufresponsehex[MAXSIZE];
-		text_to_hex(bufresponse,bufresponsehex);
-		char bufmommom[MAXSIZE];
-		sprintf(bufmommom,"\rRicevuto da MTS:{%s Hex:[%s] Check:[%s] strncasecmp:[%d]}\r",bufresponse,bufresponsehex,Bmomhexcheck,strncasecmp(bufresponsehex,Bmomhexcheck,10));
+		bufresponsehex[0]='\0';
+		bufresponse[0]='\0';
+		Delay(40);
+		M_Diag(12,0,bufresponsehex);
+		hex_to_text(bufresponsehex,bufresponse);
+		nCheck = (strstr( bufresponsehex , Bmomhexcheck )!=NULL)?1:0;
+		sprintf(bufmommom,"\r %d Ricevuto da MTS:{%s Hex:[%s] Check:[%s] strstr:[%d]}\r",i,bufresponse,bufresponsehex,Bmomhexcheck,nCheck);
 		MsgWindow(bufmommom);
-		if (strncasecmp(bufresponsehex,Bmomhexcheck,10)==0){
+		if (nCheck){
 			sprintf(buflog,"HTL O.K. (%d)", i) ;
 			LoggaStampa(buflog);
 			break ;
 		}
 	}
 
-	
-	
 	if (i>=HTL_LOOP){
 		LoggaStampa("HTL in AVARIA");
 		MSGBOXCALL("HTL IN AVARIA",0,2,"Continua","Ferma",bufresponse);
@@ -5605,7 +6665,7 @@ int SK_Test_HTL(void)
 	return Failed;
 }
 //	======================================================================
-//					TEST COMAUX			(Da Fare per 3025)
+//					TEST COMAUX		
 //	======================================================================
 /* la funzione torna, in uscita, un valore :
 					-  0 (zero) non ci sono stati errori
@@ -5757,7 +6817,7 @@ int SK_Test_COMAUX(void)
 }
 
 //	======================================================================
-//					TEST RS485			(Da Fare per MTS40B-C e 4004)
+//					TEST RS485			
 //	======================================================================
 /* la funzione torna, in uscita, un valore :
 					-  0 (zero) non ci sono stati errori
@@ -5791,7 +6851,7 @@ int SK_Test_RS485(void)
 			T_SetComPort(0, 9600,'N', 8, 1, 'R') ; // 9600,N,8,1 Rs485
 		 }
 	COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
-//	Seguiranno le operazioni da eseguire per il taverniti della porta RS485 40 4004
+//	Seguiranno le operazioni da eseguire per il collaudo della porta RS485 40 4004
 	if ( 
 	    !(strcmp(TkIni.mName, "4004"))    || 
 	    !(strcmp(TkIni.mName,"MTS40A-B")) || 
@@ -5892,11 +6952,17 @@ int SK_Test_COM2(void)
 		OuputText(1,Bmom,0,0,0,0);
 		MsgWindow(" ");
 		LoggaStampa("TEST COM Secondaria");
-		T_SetFTDI(MtsTK.COM2);												// si commuta T-K su COM secondaria	
-		M_SetSourceId(MtsTK.tCOM);											// si imposta la COM di protocollo primario
-		Delay(20);																// attendo ancora 25 sec
+		T_SetFTDI(MtsTK.COM2);										// si commuta T-K su COM secondaria
+		if (T_SetFTDI(MtsTK.COM2)){							// si commuta T-K su COM secondaria
+			sprintf(Bmom, "Errore durante aperturta COM2 MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+		}	
+		M_SetSourceId(MtsTK.tCOM);								// si imposta la COM di protocollo primario
+		Delay(40);																// prima era 20
 	
-		for (j=0;j<4;j++){	
+		for (j=0;j<4;j++){
+			Delay(20);	//aggiunto  delay controllo
 			i = M_GetSerNum() ;
 			if (i==MTSdata.mSerial) break ;
 		}
@@ -5911,8 +6977,13 @@ int SK_Test_COM2(void)
 		}else{
 			LoggaStampa("--> COM Secondaria O.K.");
 		}
-		M_SetSourceId(MtsTK.mCOM);											// si re-imposta la COM di protocollo primario
-		T_SetFTDI(MtsTK.COM1);												// si ri-commuta T-K su COM primaria
+		M_SetSourceId(MtsTK.mCOM);															// si re-imposta la COM di protocollo primario
+		T_SetFTDI(MtsTK.COM1);																	// si ri-commuta T-K su COM primaria
+		if (T_SetFTDI(MtsTK.COM1)){															// si ri-commuta T-K su COM primaria
+			sprintf(Bmom, "Errore durante aperturta COM MTS");
+	  	PrintDB(Bmom);
+	  	call_exit(YES, Bmom);
+		}	
 		M_SetPar(76, "0");													// Imposta il protocollo BCS su COM1 (dopo il reboot)
 		TestSet.EnVcns=1;
 	}
@@ -5959,6 +7030,54 @@ int SK_Test_COM2(void)
 	return Failed;
 }
 
+
+
+//	======================================================================
+//					TEST CANLOGISTIC -
+//	======================================================================
+/* la funzione torna, in uscita, un valore :
+					-  0 (zero) non ci sono stati errori
+					-  # (numero) numero di errori incontrati
+*/
+int SK_Test_CANLOGISTIC(void)
+{
+	int Failed = 0;
+	int i;
+	
+	// esci senza far nulla se il test non è richiesto
+	  
+	if ( TestSet.EnCANLOGISTIC == NO ) return Failed;
+
+	COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
+	
+	ProgressBar(BAR_TIME, 4 ) ;
+	i=0;
+	M_Diag(2,30, dDg); 									// Legge lo stato del sensore di vibrazione
+	i = (atoi(dDg) & 15);
+	sprintf(Bmom, "DIAG 2 30:%s {%d}", dDg, i);
+	MsgWindow(Bmom);
+	sprintf(Bmom, "(%d_E:%d) TEST CANLOGISTIC", MTSdata.mSerial, MTSdata.ERRTest);
+	OuputText(1,Bmom,0,0,0,0);
+	MsgWindow (" ");
+	LoggaStampa("TEST CANLOGISTIC");
+
+	if (i<3) {
+		LoggaStampa("ATTENZIONE: CANLOGISTIC in Avaria");
+		MSGBOXCALL("ATTENZIONE: CANLOGISTIC in Avaria",0,2,"Continua","Ferma",bufresponse);	
+		if (strcmp(bufresponse,"#!")==0) {
+			call_exit(YES, "Errore CANLOGISTIC");
+		}
+		Failed++;
+	}else{
+		LoggaStampa("--> CAN LOGISTIC O.K.");
+	}
+
+	
+	COLOR_STEP(MtsTK.steptest++, ( (Failed)? C_RED: C_GREEN)) ;
+	
+	return Failed;
+}
+
 //	======================================================================
 //					Test CARICA BATTERIA
 //	======================================================================
@@ -5986,7 +7105,27 @@ int SK_Test_ChBat(void)
 	while (i<5) {
 		Delay(20); 																				// (0609) era 30
 		float batt;
-		if ( ( !strcmp(TkIni.mName, "3025") ) || ( !strcmp(TkIni.mName, "2034") ) || ( !strcmp(TkIni.mName, "3035") ) || ( !strcmp(TkIni.mName, "3036") || (!strcmp(TkIni.mName, "4037")) ) )
+		if (
+				(!strcmp(TkIni.mName, "3025")) ||
+				(!strcmp(TkIni.mName, "2034")) || 
+				(!strcmp(TkIni.mName, "2039")) || 
+				(!strcmp(TkIni.mName, "2040")) || 
+				(!strcmp(TkIni.mName, "3035")) || 
+				(!strcmp(TkIni.mName, "3036")) || 
+				(!strcmp(TkIni.mName, "4037")) ||
+				(!strcmp(TkIni.mName, "2046")) ||
+				(!strcmp(TkIni.mName, "2044")) ||
+				(!strcmp(TkIni.mName, "3048")) ||
+				(!strcmp(TkIni.mName, "2047")) ||
+				(!strcmp(TkIni.mName, "2045")) ||
+				(!strcmp(TkIni.mName, "2405")) ||
+				(!strcmp(TkIni.mName, "2051")) ||
+				(!strcmp(TkIni.mName, "2052")) ||
+				(!strcmp(TkIni.mName, "2046_M4")) || 				 
+				(!strcmp(TkIni.mName, "2044_M4")) ||
+				(!strcmp(TkIni.mName, "2047_M4")) ||
+				(!strcmp(TkIni.mName, "2051_M4"))
+			 )
 			batt=4.20;
 		else
 			batt=4.10;
@@ -6058,14 +7197,16 @@ int SK_Test_Vibro(void)
 	
 //	VrtSt = M_Diag (2,0);
 	M_Diag(2, 0, dDg); 									// Legge lo stato del sensore di vibrazione
-	svibra = atoi(dDg);
+	//svibra = atoi(dDg);
 	sprintf(Bmom, "(%d_E:%d) TEST VIBRAZIONE", MTSdata.mSerial, MTSdata.ERRTest);
 	OuputText(1,Bmom,0,0,0,0);
 	MsgWindow (" ");
+	/*
 	if (svibra!=0){
 		MSGBOXCALL("ATTENZIONE VIBRAZIONE NON ATTESA",0,2,0,0,bufresponse);
 		MsgWindow("ATTENZIONE VIBRAZIONE NON ATTESA");
 	}
+	*/
 	MSGBOXCALL("Effettuare una vibrazione e poi cliccare su OK",0,2,0,0,bufresponse);
 //	VrtSt = M_Diag (2,0);
 	M_Diag(2, 0, dDg); 									// Legge lo stato del sensore di vibrazione
@@ -6125,10 +7266,15 @@ int SK_Test_Accel(void)
 //	VrtSt = M_Diag (2,1);
 	M_Diag(2, 1, dDg); 							// Legge lo stato del sensore accelerometrico
 	VrtSt = atoi(dDg);
-	if (VrtSt==65537) {
+	sprintf(Bmom, "Ribaltamento (%d)", VrtSt);
+	MsgWindow(Bmom);
+	/*
+	if (VrtSt>=65536) {
+	//if (VrtSt==65537) {
 		MSGBOXCALL("ATTENZIONE CAMBIO ASSETTO NON ATTESO",0,2,0,0,bufresponse);
 		MsgWindow("ATTENZIONE CAMBIO ASSETTO NON ATTESO");
 	}
+	*/
 	MSGBOXCALL("Ruotare l'MTS di 90°.... poi cliccare su OK",0,2,0,0,bufresponse);
 	sprintf(Bmom, "(%d_E:%d) MANTENERE QUESTA POSIZIONE", MTSdata.mSerial, MTSdata.ERRTest);
 	OuputText(1,Bmom,0,0,0,0);
@@ -6136,7 +7282,10 @@ int SK_Test_Accel(void)
 //	VrtSt = M_Diag (2,1);
 	M_Diag(2, 1, dDg); 							// Legge lo stato del sensore accelerometrico
 	VrtSt = atoi(dDg);
-	if (VrtSt==65537) {
+	sprintf(Bmom, "Ribaltamento (%d)", VrtSt);
+	MsgWindow(Bmom);
+	if (VrtSt>=65536) {
+	//if (VrtSt==65537) {
 		MsgWindow("RIBALTAMENTO O.K.");
 		sprintf(Bmom, "(%d_E:%d) RIBALTAMENTO O.K.  ->  RIPOSIZIONARE MTS", MTSdata.mSerial, MTSdata.ERRTest);
 		OuputText(1,Bmom,0,0,0,0);
@@ -6152,7 +7301,10 @@ int SK_Test_Accel(void)
 //		VrtSt = M_Diag (2,1);
 		M_Diag(2, 1, dDg); 						// Legge lo stato del sensore accelerometrico
 		VrtSt = atoi(dDg);
-		if (VrtSt==65537) {
+		sprintf(Bmom, "Ribaltamento (%d)", VrtSt);
+		MsgWindow(Bmom);
+		if (VrtSt>=65536) {
+		//if (VrtSt==65537) {
 			MsgWindow("RIBALTAMENTO O.K.");
 			sprintf(Bmom, "(%d_E:%d) RIBALTAMENTO O.K.  ->  RIPOSIZIONARE MTS", MTSdata.mSerial, MTSdata.ERRTest);
 			OuputText(1,Bmom,0,0,0,0);
@@ -6329,10 +7481,13 @@ int SK_TestLAN(void)
 	LoggaStampa("TEST Rete TCP/IP");
 
 	ProgressBar(BAR_TIME, 100 ) ;
-
-	sprintf(Bmom,"exe ifconfig eth0 %s", TestSet.CnetIP ) ;
-	M_Action(0,0, Bmom) ;
-	Delay(40);
+	if (!strcmp(TkIni.mName, "3048")) {
+		//set ip on mts;
+	}else{
+		sprintf(Bmom,"exe ifconfig eth0 %s", TestSet.CnetIP ) ;
+		M_Action(0,0, Bmom) ;
+		Delay(40);
+	}
 	
 // VB: Visualizza messaggio di attesa LAN
 	MSGBOXCALL("Connettere il cavo di rete all'MTS\rCliccare su OK quando eseguito",0,2,0,0,bufresponse);
@@ -6718,7 +7873,7 @@ int SK_EndChk(void)
 	char LogCollaudoNew[MAXSIZE] ;
 	char MexShow[NRMSIZE];
 
-	// "Impostazioni di fine taverniti"
+	// "Impostazioni di fine collaudo"
 	//COLOR_STEP(MtsTK.steptest, C_YELLOW) ;
 	
 	ProgressBar(BAR_TIME, 400 ) ; // 40 s
@@ -6734,14 +7889,19 @@ int SK_EndChk(void)
 		if (!(strcmp(TkIni.mName, "2022")))  M_DelPar(75);            //si cancella parametro 75
 		if (!(strcmp(TkIni.mName, "2122")))  M_SetPar(75,"N.D.");     //si cancella parametro 75
 		if (!(strcmp(TkIni.mName, "2122")))  M_DelPar(75);            //si cancella parametro 75
-		if (TestSet.EnSMset == 1) {
+		M_SetPar(104,"N.D.");     //si cancella parametro 104
+		M_DelPar(104);            //si cancella parametro 104
+		if (TestSet.EnHTL == YES) M_SetPar(105,"N.D.");     //si setta parametro 105 a 0x100 (per bloccare l'HTL come VDO a 10400)	
+		if (TestSet.EnSMset == YES) {
+			//M_SetPar(255,"N.D.");  //Cancello Tutti i Parametri
 			SK_ParamSet();
 			SK_ParamSetCheck();
 			GetINIKeyVal("StateMachine", TkIni.NamSM);
+			togliCR(TkIni.NamSM);
 			sprintf(SMachSel, "%s\\%s", mRoot,TkIni.NamSM);
 			CONVERTPATH(SMachSel);
 			StampaDB("Macchina Stati:",SMachSel);	
-			fmacs = fopen(SMachSel, "r");	
+			fmacs = fopen(SMachSel, "r");
 		}else{
 			if ( MtsTK.nuovo ) {
 				M_SetPar(8,  "2");
@@ -6752,7 +7912,6 @@ int SK_EndChk(void)
 				M_SetPar(79, "22588");
 				M_SetPar(185, "ibox.tim.it"); 
 				M_SetPar(186, "88.32.160.199");
-				if (TestSet.EnHTL == YES) M_SetPar(105,"256");     //si setta parametro 105 a 0x100 (per bloccare l'HTL come VDO a 10400)	
 				fmacs= fopen(SMachTest, "r");
 			}else{
 				fmacs=NULL;
@@ -6768,17 +7927,16 @@ int SK_EndChk(void)
 						M_SetPar(79, "22588");
 						M_SetPar(185, "ibox.tim.it"); 
 						M_SetPar(186, "88.32.160.199");
-						if (TestSet.EnHTL == YES) M_SetPar(105,"256");     //si setta parametro 105 a 0x100 (per bloccare l'HTL come VDO a 10400)	
 				}
 				M_SetPar(8, "2");
 			}
 		}
 		if (fmacs!=NULL) {// Se è stato salvato il file di Macchina a Stati
 			fclose(fmacs);
-			if ( MtsTK.nuovo && (TestSet.EnSMset != 1) ) {
+			if ( MtsTK.nuovo && (TestSet.EnSMset != YES) ) {
 				sprintf(Bmom, "(%d_E:%d) ATTENDERE: invio Macchina-Stati di Fine-Collaudo", MTSdata.mSerial, MTSdata.ERRTest);
 				OuputText(1,Bmom,0,0,0,0);			
-				M_PutSmFile(SMachTest);																// Invia la Macchina a Stati di MTS Testato(fine taverniti)
+				M_PutSmFile(SMachTest);																// Invia la Macchina a Stati di MTS Testato(fine collaudo)
 				int k,r ;
 				for (k=0;k<150;k++){	
 					r = M_GetSerNum() ;
@@ -6812,10 +7970,14 @@ int SK_EndChk(void)
 				Delay(10);
 				remove(SMachFile);
 			}
-			if (TestSet.EnSMset == 1) {
-				sprintf(Bmom, "(%d_E:%d) ATTENDERE: caricamento Macchina-Stati: %s ", MTSdata.mSerial, MTSdata.ERRTest,TkIni.NamSM);
-				OuputText(1,Bmom,0,0,0,0);
-				M_PutSmFile(SMachSel);
+			if (TestSet.EnSMset == YES) {
+				SK_SM_StateSet();
+				if(SK_SM_StateSetCheck()) Failed++;
+				//sprintf(Bmom, "(%d_E:%d) ATTENDERE: caricamento Macchina-Stati: %s ", MTSdata.mSerial, MTSdata.ERRTest,TkIni.NamSM);
+				//OuputText(1,Bmom,0,0,0,0);
+				//M_PutSmFile(SMachSel);
+	
+				/*
 				int k,r ;
 				for (k=0;k<150;k++){	
 					r = M_GetSerNum() ;
@@ -6826,7 +7988,9 @@ int SK_EndChk(void)
 					r = M_GetSerNum() ;
 					if (r==MTSdata.mSerial) break ;
 				}
+				*/
 				// Delay(400); Prima per ATTENDERE RISVEGLIO MTS
+				/*
 				sprintf(SMachFile, "%s\\Logs\\%s_%d.smk", mRoot,hostname ,MTSdata.mSerial);
 				CONVERTPATH(SMachFile) ;
 				M_GetSmFile(SMachFile);
@@ -6872,6 +8036,7 @@ int SK_EndChk(void)
 				sprintf(Bmom, "Macchina-Stati Caricata: %s",SMachSel);
 				MsgFile(0, LogCollaudo, Bmom);
 				MsgWindow (Bmom);
+				*/
 			}
 		}else{
 			sprintf(Bmom, "(%d_E:%d) ATTENDERE: cancellazione Macchina-Stati", MTSdata.mSerial, MTSdata.ERRTest);
@@ -6905,6 +8070,7 @@ int SK_EndChk(void)
 			OuputText(1,Bmom,0,0,1,7);							// ... scrivo il Serial Number nella Output Text 
 			for (i=1; i<=4; i++) {
 				GetINIKeyVal(nextip, TkIni.NewNum);
+				togliCR(TkIni.NewNum);
 				StampaDB("NewNum", TkIni.NewNum);
 				M_SetPar(255, TkIni.NewNum);					// ... si inizializza il Serial Number    
 				Delay(10);
@@ -6914,6 +8080,8 @@ int SK_EndChk(void)
 					LoggaStampa(bufwindow);
 					PrintDB(bufwindow);
 					int nn,kk,rr ;
+					char diag3;
+					nn = 0 ;
 					for (kk=0;kk<150;kk++){	
 						rr = M_GetSerNum() ;
 						if (rr!=-10) break ;
@@ -6925,8 +8093,8 @@ int SK_EndChk(void)
 					}
 					k = M_GetSerNum();
 					M_Diag(3,0,dDg); 							// verifica Blocco diag 3 se a 1 bloccato
-					nn=atoi(dDg);
-					if (nn!=0){
+					diag3=(char) atoi(&dDg[4]);
+					if ((diag3 & 0xFF)!=0){
 						sprintf(Bmom,"Eseguito!");
 					}else{
 						M_Diag(250,0,dDg);                   	//Sblocco Scrittura S/N
@@ -6934,7 +8102,7 @@ int SK_EndChk(void)
 						k = M_GetSerNum();
 						sprintf(Bmom, "(%d_E:%d): s/n Assegnato = %d", MTSdata.mSerial, MTSdata.ERRTest, k);
 						OuputText(1,Bmom,0,0,1,7);				// ... scrivo il Serial Number nella Output Text
-						sprintf(Bmom,"Fallito!");
+						sprintf(Bmom,"Fallito! [%x]",diag3);
 					}
 					sprintf(bufwindow,"Blocco JTAG %s",Bmom);
 					LoggaStampa(bufwindow);
@@ -7049,6 +8217,7 @@ int SK_EndChk(void)
 				int r;
 				while (1) {
 					GetINIKeyVal(nextip, NumSet);
+					togliCR(NumSet);
 			   		NumSetn = atoi(NumSet);
 			   		if ( NumSetn==NextNum ) break;
 					PrintDB("Attesa incrementazione numero\n") ;
@@ -7059,24 +8228,24 @@ int SK_EndChk(void)
 					r=100+(rand() % 100) ; 
 					Delay(r);
 				}
-				rename(LogCollaudo,LogCollaudoNew);					// si rinomina il file di log del taverniti
+				rename(LogCollaudo,LogCollaudoNew);					// si rinomina il file di log del collaudo
 				sprintf(LogCollaudo,"%s",LogCollaudoNew);			// ed il nome che lo identifica
 				MTSdata.mSerial = k ;
 			}
 		}else { //se non nuovo
 			M_Diag(3,0,dDg); 							// verifica Blocco 5 byte di diag 3 se a 1 bloccato
-			int nn;
-			nn=atoi(dDg);
-			if (nn!=0){
+			char diag3;
+			diag3=(char) atoi(&dDg[4]);
+			if ((diag3 & 0xFF)!=0){
 				sprintf(Bmom,"Bloccato!");
 			}else{
-				sprintf(Bmom,"Non Bloccato!\rEseguire l'aggiornamento FW per abilitare blocco JTAG!");
+				sprintf(Bmom,"Non Bloccato!\rEseguire l'aggiornamento FW per abilitare blocco JTAG! [%x]",diag3);
 			}
-				sprintf(bufwindow,"JTAG %s",Bmom);
+			sprintf(bufwindow,"JTAG %s",Bmom);
 			MsgWindow(bufwindow);
 			MsgFile(0, LogCollaudo, bufwindow);
 			PrintDB(bufwindow);
-			if (nn==0){
+			if (diag3==0){
 				MSGBOXCALL(bufwindow,0,1,0,0,bufresponse);
 				//call_exit(NO, bufwindow);
 			}
@@ -7134,6 +8303,42 @@ void RLTrimm(char *testo)
 //				StampaDB("RLTrimm---> Stringa elaborata", testo);  // Su finestra DOS di Debug 
 }
 
+void RLTrimmwithplace(char *testo)
+{
+	char *pnome, stemp[MAXSIZE];
+	unsigned char c;
+	int lungh;
+
+//				StampaDB("RLTrimm---> Stringa da elaborare", testo); // Su finestra DOS di Debug 
+	
+	if (strlen(testo) > 0) {
+		strcpy(stemp, testo);
+		pnome = stemp;
+		c = pnome[0];
+		// FR 231218
+//		while ( ((!isalnum(c)) && (c!='!') && (c!='?') && (c!='+') ) || (c==182) ) { // ot tab char
+		while ( ((!isalnum(c)) && (c!='!') && (c!='?') && (c!='+') && (c!='"' ) )|| (c==182) ) {
+//				StampaDB ("pnome",pnome);					// Su finestra DOS di Debug 
+			pnome++;							// toglie i caratteri NON Alfanumerici prima
+			c = pnome[0];
+		}
+		lungh = strlen(pnome);
+		c = pnome[lungh-1];
+		// FR 231218
+//		while ( ((!isalnum(c)) && (c!='!') && (c!='?') && (c!='+') ) || (c==182) ) { // ot tab char
+		while ( ((!isalnum(c)) && (c!='!') && (c!='?') && (c!='+') && (c!='"' ) ) || (c==182) ) {
+//				StampaDB ("pnome",pnome);		// Su finestra DOS di Debug 
+			//pnome[lungh-1]='\0';
+			lungh--;							// toglie i caratteri NON Alfanumerici dopo
+			c=pnome[lungh-1];
+		}
+		pnome[lungh+1]='\0';
+		strcpy(testo, pnome);
+	}
+//				StampaDB("RLTrimm---> Stringa elaborata1", pnome); // Su finestra DOS di Debug 
+//				StampaDB("RLTrimm---> Stringa elaborata", testo);  // Su finestra DOS di Debug 
+}
+
 //OLD void UpperAlfaNum(unsigned char *testo)
 void UpperAlfaNum(char *testo)
 {
@@ -7156,7 +8361,7 @@ void UpperAlfaNum(char *testo)
 }
 
 
-
+/*
 int GetIntStr(char *Delim, char *sInput,  unsigned int order, char *sOut){
 	int i=0;
 	int OverLen=0;
@@ -7164,12 +8369,6 @@ int GetIntStr(char *Delim, char *sInput,  unsigned int order, char *sOut){
 
 // si cercano i token separati con >Delim<
 // order indica  quale token tornare indietro
-/*
-				StampaDB("---> Stringa da elaborare", sInput); // Su finestra DOS di Debug 
-
-				StampaDB("---> Delimitatore", Delim);	// Su finestra DOS di Debug 
-				StampaDBn("---> numero elemento", order); // Su finestra DOS di Debug 
-*/	
 	sprintf(cpIn,"%s%s%s", Delim, sInput, Delim);
 	//			StampaDB("---> cpIn", cpIn); // Su finestra DOS di Debug 
 	pStringa = strtok(cpIn,Delim);
@@ -7184,8 +8383,30 @@ int GetIntStr(char *Delim, char *sInput,  unsigned int order, char *sOut){
 			OverLen = i;						// indica quanti token sono stati individuati
 		}
 	}
+	return OverLen;
+}
+*/
 
-		//		StampaDB("---> Stringa elaborata", sOut);		// Su finestra DOS di Debug 
+int GetIntStr(char *Delim, char *sInput,  unsigned int order, char *sOut){
+	int i ;
+	int OverLen=0;
+	char cpIn[512], *pStringa;
+
+    memset(cpIn, 0, 512) ;		// FR 3.75 - 17/05/23: added
+	i = strlen(sInput) ;
+	strncpy(cpIn,sInput, ((i>511)? 511:i));	// FR 3.75 - 17/05/23: modified
+    char *inputstring=cpIn;
+    
+	i = 0 ;
+    while( (i<order) && (0 != (pStringa = strsep(&inputstring, Delim))) ) {
+        sprintf(sOut,"%s",pStringa);
+        if (0 == *pStringa) {
+            sOut[0] = '\0';
+        }
+        i++;
+    }
+    if (i> order) OverLen=i;
+    
 	return OverLen;
 }
 
@@ -7298,17 +8519,145 @@ void LoadProdTab(void)
 	}
 }
 
+void LoadTabPINAssociative(void)
+{
+	int qta ; // , nr_ss ;
+	char NewRiga[MAXSIZE], Valore[NRMSIZE] ;
+	char FilePIN[NRMSIZE] ; 		// path + nome del file PIN
+	FILE *fpin ;
+	sprintf(FilePIN, "%s\\Ass_PIN.txt", mRoot);		// File con le associazioni
+	CONVERTPATH(FilePIN) ;
+	fpin = fopen(FilePIN, "r");				// Apertura del file di associazioni ARCA
+//	StampaDBn("errore", errno);					// Su finestra DOS di Debug 
+	if (fpin==NULL) {							// Se il file non esiste
+		QtaLog++;
+		sprintf(LogBuffer[QtaLog], "\r\n------ Impossibile aprire Ass_PIN.txt -------");
+		MsgWindow(LogBuffer[QtaLog]);
+	} else {																													// si leggono i campi che descrivono i codici ARCA
+// il file è già aperto !!!!!!
+		while (!feof(fpin)) {					// fino alla fine del file
+// =================================================================
+// costruzione della tabella Prodotti
+			QtaRow++;
+			loc_fgets(NewRiga, 256, fpin);
+			if (strlen(NewRiga)==0) break ;
+#ifdef CBUG_
+			sprintf(bufwindow,"read:<%s>", NewRiga);
+			MsgWindow(bufwindow);
+#endif
+			// SN MTS 
+			qta = GetIntStr(";", NewRiga, 1, Valore);  
+			if (qta!=0) {
+				sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> SN MTS", QtaRow);
+				MsgWindow(bufwindow);
+			} else {
+				UpperAlfaNum(Valore);				// si converte tutto in maiuscolo
+				RLTrimm(Valore);					// e si tolgono eventuali carateri non alfanumerici prima e dopo
+				if (strlen(Valore) != LEN_NUM) {
+					sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> SN MTS", QtaRow);
+					MsgWindow(bufwindow);
+				}
+				strcpy(TablePIN[QtaRow].snmts, Valore);	// memorizza il SN MTS
+			}
+			// EXT_NAME
+			qta = GetIntStr(";", NewRiga, 2, Valore);
+			if (qta!=0) {
+				sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> Nome Esterno MTS", QtaRow);
+				MsgWindow(bufwindow);
+			} else {
+				UpperAlfaNum(Valore);				// si converte tutto in maiuscolo
+				RLTrimm(Valore);					// e si tolgono eventuali carateri non alfanumerici prima e dopo
+				if (strlen(Valore) < 0) {
+					sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> Nome Esterno MTS", QtaRow);
+					MsgWindow(bufwindow);
+				}
+				strcpy(TablePIN[QtaRow].extname, Valore);		// memorizza il nome Esterno MTS
+			}
+			// ICCID
+			qta = GetIntStr(";", NewRiga, 3, Valore);
+			if (qta!=0) {
+				TablePIN[QtaRow].ICCID[0] = '\0';
+				//sprintf(TablePIN[QtaRow].ICCID, '\0');
+				//sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> ICCID", QtaRow);
+				//MsgWindow(bufwindow);
+			} else {
+				UpperAlfaNum(Valore);				// si converte tutto in maiuscolo
+				RLTrimm(Valore);					// e si tolgono eventuali carateri non alfanumerici prima e dopo
+				if (strlen(Valore)>0){
+					if (strlen(Valore) != LEN_ICCID) {
+						sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> ICCID len[%ld]{%s}", QtaRow,strlen(Valore),Valore);
+						MsgWindow(bufwindow);
+					}
+					strcpy(TablePIN[QtaRow].ICCID, Valore);		// memorizza ICCID
+				}else{
+					TablePIN[QtaRow].ICCID[0] = '\0';
+					//sprintf(TablePIN[QtaRow].ICCID, '\0');
+				}
+			}
+			// PIN
+			qta = GetIntStr(";", NewRiga, 4, Valore);
+			if (qta!=0) {
+				TablePIN[QtaRow].PIN[0] = '\0';
+				//sprintf(TablePIN[QtaRow].PIN, '\0');
+				//sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> PIN", QtaRow);
+				//MsgWindow(bufwindow);
+			} else {
+				UpperAlfaNum(Valore);				// si converte tutto in maiuscolo
+				RLTrimm(Valore);					// e si tolgono eventuali carateri non alfanumerici prima e dopo
+				if (strlen(Valore)>0){
+					if (strlen(Valore) != LEN_IDHW) {
+						sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> PIN len[%ld]{%s}", QtaRow,strlen(Valore),Valore);
+						MsgWindow(bufwindow);
+					}
+					strcpy(TablePIN[QtaRow].PIN, Valore);		// memorizza PIN
+				}else{
+					TablePIN[QtaRow].PIN[0] = '\0' ;
+					//sprintf(TablePIN[QtaRow].PIN, '\0');
+				}
+			}
+			// Parametro 185
+			qta = GetIntStr(";", NewRiga, 5, Valore);
+			if (qta!=0) {
+				TablePIN[QtaRow].centoottantacinquepar[0] = '\0';
+				//sprintf(TablePIN[QtaRow].centoottantacinquepar, '\0');
+				//sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> 185", QtaRow);
+				//MsgWindow(bufwindow);
+			} else {
+				//UpperAlfaNum(Valore);				// si converte tutto in maiuscolo
+				RLTrimm(Valore);					// e si tolgono eventuali carateri non alfanumerici prima e dopo
+				/*
+				if (strlen(Valore) != LEN_IDHW) {
+					sprintf(bufwindow,"Errore in >> Ass_PIN.txt << riga %d -> 185", QtaRow);
+					MsgWindow(bufwindow);
+				}*/
+				strcpy(TablePIN[QtaRow].centoottantacinquepar, Valore);		// memorizza PIN
+			}
+			
+		}
+// =================================================================
+		fclose(fpin);								// Chiusura del file di associazioni PIN
+	}
+}
+
 
 char * loc_fgets(char * a1, int nn, FILE * abc)
 {
 char *aa ;
-int ii ;
+int ii, i ;
 	
 	aa = fgets(a1, nn, abc); 	
 	
 	if (aa==NULL) a1[0]='\0';
 		
-	ii = strlen(a1) ;	
+	ii = strlen(a1) ;
+// added FR 3.75 - 17/05/23
+	for(i=0;i<ii;i++){
+		if ((a1[i]<32) || (a1[i]>126)) {
+			a1[i] = '\0' ;
+			break ;
+		}
+	}
+	
 	if (a1[ii-1]==0xa){
 		a1[ii-1]='\0' ;
 	}
@@ -7323,7 +8672,7 @@ void LABEL_STEP(int _N, char * _T){
 char tmpstr[MAXSIZE] ;
 	
 	sprintf(tmpstr,"nr.%d, %s", _N, _T) ;
-	MsgFile(0, "tempi_taverniti.txt", tmpstr) ;
+	MsgFile(0, "tempi_collaudo.txt", tmpstr) ;
  	OuputText((_N+100), _T, 0, 0, 0, 0 ) ;
 
 }
@@ -7356,7 +8705,7 @@ char tmpstr[MAXSIZE] ;
 		default:
 		strcat(tmpstr, "No code" ) ; break ;		
 	}
-	MsgFile(0, "tempi_taverniti.txt", tmpstr) ;
+	MsgFile(0, "tempi_collaudo.txt", tmpstr) ;
 		
 	OuputText((_N+100), "", _C, 0, 0, 0 ) ;
 }
@@ -7369,10 +8718,10 @@ int i;
 
 	strcpy( tmpstr, "MSGBOXwait: " ) ;
 	strcat( tmpstr, text ) ;
-	MsgFile(0, "tempi_taverniti.txt", tmpstr ) ;
+	MsgFile(0, "tempi_collaudo.txt", tmpstr ) ;
 	for(i=0;i<MAXSIZE;i++) buf[i]='\0';
 	ii = MsgBox(text, label, ntasti, caption1, caption2, buf) ;
-	MsgFile(0, "tempi_taverniti.txt", "MSGBOXend") ;
+	MsgFile(0, "tempi_collaudo.txt", "MSGBOXend") ;
 	
 	return(ii) ;
 }
@@ -7384,9 +8733,9 @@ char tmpstr[MAXSIZE] ;
 
 	strcpy( tmpstr, "INPUTBOXwait: " ) ;
 	strcat( tmpstr, text ) ;
-	MsgFile(0, "tempi_taverniti.txt", tmpstr ) ;
+	MsgFile(0, "tempi_collaudo.txt", tmpstr ) ;
 	ii = InputBox(text, label, ntasti, caption1, caption2, buf) ;
-	MsgFile(0, "tempi_taverniti.txt", "INPUTBOXend") ;
+	MsgFile(0, "tempi_collaudo.txt", "INPUTBOXend") ;
 	
 	return(ii) ;
 	
@@ -7515,7 +8864,8 @@ void WriteSIMDATA(char * buf)
 #include <stdio.h>
 #include <stdlib.h>
 
-int FileCompare(char * file1, char * file2, unsigned int * same) {
+int FileCompare(char * file1, char * file2, unsigned int * same) 
+{
   FILE *fp1, *fp2;
   char ch1, ch2;
   unsigned long l;
@@ -7576,4 +8926,8 @@ int FileCompare(char * file1, char * file2, unsigned int * same) {
 
   return 0;
 }
+
+
+
+
 

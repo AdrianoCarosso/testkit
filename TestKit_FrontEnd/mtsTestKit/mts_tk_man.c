@@ -735,14 +735,11 @@ int32_t laddr ;
 		
 		// Send data
 		MTS_SendTransaction() ;
-#ifdef MTSTESTKIT
 		Gsequence.TimeoutAnswer = ActCsec() + TIMEOUT_MTS ;
-#endif
 	}
 }
 
-int start_fw(char *fname)
-{
+int start_fw(char *fname) {
     int ll ;
 //    int family_code, family_mts ;
     char ss[DEF_STRING], *p ;
@@ -775,12 +772,7 @@ int start_fw(char *fname)
     Gdata.item_sended = 0 ;
     fseek(Gdata.down_fw, 0L, SEEK_SET) ;
     
-    //#ifdef FR_LINUX
     p = strrchr(fname, '/') ;
-    //#endif
-    //#ifdef FR_WIN32
-    //p = strrchr(fname, '\\') ;
-    //#endif
     if (p==NULL){
         #ifdef USE_MONITORING
         printf("FW upgrade dir not founded\n") ;
@@ -2323,18 +2315,13 @@ FILE *ff ;
 // End Send pars
 #endif // #ifdef SW_MTSCU
 
-void ports_tick(int port)
-{
+void ports_tick(int port) {
 int i,  oldrxnum ; //, ret_val ;
 
 	//if ( (!Gdata.portopened) && (Gdata.LU_src!=LU8GPRS)) return ;
 #ifdef SW_MTSCU
 	if (!Gdata.LU_src) return ;
 #endif
-// #ifdef MTSTESTKIT
-// 	if (!Gdata.portopened[port]) return ;
-// #endif
-
 	// Check if data
 	if ((i=com_inlen(port))>0){
 		i = com_read(port, (SIZE_BUFFS-rxnum[port]), &buf_rx[port][rxnum[port]] ) ;
@@ -2344,7 +2331,6 @@ int i,  oldrxnum ; //, ret_val ;
 			rxnum[port] += i ;
 			
 			switch(port){
-#ifdef MTSTESTKIT
 			int j, lencmd ;
 			char cmd[MAX_STRING], buf[MAX_STRING], *p, *p1 ;
 			//int32_t old_count2 ;
@@ -2494,7 +2480,6 @@ int i,  oldrxnum ; //, ret_val ;
 						printf("\n%s\n",cmd) ;
 						Add_txt_answer(Scrn.boxtxt_answer, cmd) ;
 					}
-#endif
 				}
 				break ;
 #endif // PORT_TK
@@ -3619,9 +3604,7 @@ unsigned char *p ;
 						pmc->Data_fixtype[0] = '\0' ;
 					}
 #endif // #ifdef SW_MTSCU
-#ifdef MTSTESTKIT
 					sprintf(pmc->Data_fixtype,"%d",pmc->RxBuffer[fp+21]) ;
-#endif
 
 				} else {
 					strcpy(pmc->Data_falt, "0") ;
@@ -3658,10 +3641,8 @@ unsigned char *p ;
 				//strcpy(pmc->Hist_ioout, pmc->Data_ioout) ;
 				//strcpy(pmc->Data_iosrc, src) ;          // Source
 #endif
-#ifdef MTSTESTKIT
 				sprintf(pmc->Data_ioinp,"%d",*((unsigned short *)(&(pmc->RxBuffer[fp+6])))) ;
 				sprintf(pmc->Data_ioout,"%d",*((unsigned short *)(&(pmc->RxBuffer[fp+8])))) ;
-#endif
 				if (pmc->RxBuffer[fp+ 1] > 10) {
 					sprintf(pmc->Data_cnt1, "%i", *((int32_t *)(&(pmc->RxBuffer[fp+11]))) ) ;  //prima long "%lu"
 					sprintf(pmc->Data_cnt2, "%i", *((int32_t *)(&(pmc->RxBuffer[fp+15]))) ) ;  //prima long "%lu"
@@ -3727,9 +3708,7 @@ unsigned char *p ;
 						break ;
 					}
 #endif
-#ifdef MTSTESTKIT
 					sprintf(pmc->Data_ioad[j],"%d",anl) ;
-#endif
 					//strcpy(pmc->Hist_ioad[j], pmc->Data_ioad[j]) ;
 				}
 				sprintf(pmc->Data_iokm,"%.3f",(double)(*((int *)(&(pmc->RxBuffer[fp+22])))) / 1000.0) ;
@@ -3793,10 +3772,8 @@ unsigned char *p ;
 				//strcpy(pmc->Hist_iostat, pmc->Data_iostat) ;
 // ver 4.03 start
 #endif
-#ifdef MTSTESTKIT
 				sprintf(pmc->Data_ioflags,"%u",*((uint32_t *)(&(pmc->RxBuffer[fp+2])))) ;
 				sprintf(pmc->Data_iostat,"%u",*((uint32_t *)(&(pmc->RxBuffer[fp+6])))) ;
-#endif
 				if (pmc->RxBuffer[fp + 1]>8){
 					sprintf(pmc->canflags,"%08u",*((uint32_t *)(&(pmc->RxBuffer[fp+10])))) ;
 				}else
@@ -3823,7 +3800,6 @@ unsigned char *p ;
 			fprintf(l_fd, "can %lu|%lu\n",  canmask, canflag ) ;
 			fclose(l_fd) ;
 #endif
-#ifdef MTSTESTKIT
 if (Gdata.up_sm!=NULL) {
 	if (pmc->RxBuffer[fp + 1]) {
 	fwrite(&pmc->RxBuffer[fp],1,pmc->RxBuffer[fp+1]+2,Gdata.up_sm);
@@ -3832,7 +3808,6 @@ if (Gdata.up_sm!=NULL) {
 	Gdata.up_sm=NULL;
 	}
 }
-#endif
 			//canbuf = &(pmc->RxBuffer[fp + 2]) ;
 			break ;
 		// ver 4.01 end
@@ -3926,7 +3901,6 @@ if (Gdata.up_sm!=NULL) {
  			}
 			fclose(l_fd) ;
 #endif
-#ifdef MTSTESTKIT
 if (Gdata.up_sm!=NULL) {
 	if (pmc->RxBuffer[fp + 1]) {
 	fwrite(&pmc->RxBuffer[fp],1,pmc->RxBuffer[fp+1]+2,Gdata.up_sm);
@@ -3935,7 +3909,6 @@ if (Gdata.up_sm!=NULL) {
 	Gdata.up_sm=NULL;
 	}
 }
-#endif
 // 			canbuf = NULL ;
 			strcpy(comment,"IDGPS_SMADD") ;
 			break ;
@@ -4160,13 +4133,11 @@ if (Gdata.up_sm!=NULL) {
 							j++ ;
 							break ;
 #endif
-#ifdef MTSTESTKIT								
 							default :
 							sprintf(pmc->Data_intad[j], "%u", (unsigned int) anld ) ;
 							pmc->Id_intad[j]=idfield;
 							j++ ;
 							break ;
-#endif
 						}
 					}
 					ii += nbyte ;
@@ -4365,7 +4336,6 @@ static void ParseRepBuffer(struct _MTSVALS *pmc, int pp)
 //			if (!(pmc->DataReady & DATA_SWVER)) {       // resource free
 				sprintf(pmc->Data_swver, "%d.%02x", pmc->RxBuffer[fp + 10], pmc->RxBuffer[fp + 11]) ;
 #endif
-#ifdef MTSTESTKIT
 				char ver2nd[8];
 				int ver2;
 				sprintf(ver2nd,"%x",pmc->RxBuffer[fp + 11]);
@@ -4373,7 +4343,6 @@ static void ParseRepBuffer(struct _MTSVALS *pmc, int pp)
 				sprintf(pmc->Data_swver, "%d", ((pmc->RxBuffer[fp + 10]*1000)+ver2) ) ;
 				//printf("Software ver=|%s|",pmc->Data_swver);
 				//printf("\nHO SCRITTO SWVER\n");
-#endif
 				//pmc->DataReady |= MTS_DATA_SWVER ;
 //			}
 //			if (!(pmc->DataReady & DATA_REPORT)) {      // resource free
@@ -4418,10 +4387,8 @@ static void ParseRepBuffer(struct _MTSVALS *pmc, int pp)
 						sprintf(pmc->DRep_mtstype, "MTS%d", 10) ;
 					}
 #endif 
-#ifdef MTSTESTKIT
 					sprintf(pmc->DRep_mtstype, "%d", pmc->RxBuffer[fp + 31]) ;
 					//printf("\nHO SCRITTO FINO A MTSTYPE\n");
-#endif
 //				}
 				//sprintf(pmc->DRep_src, "%s", src) ;
 				pmc->DataReady |= MTS_DATA_REPORT ;
@@ -4548,7 +4515,6 @@ FILE * l_fd ;
 
 			Add_txt_mts(Scrn.boxtxt_mts, cdata ) ;
 #endif
-#ifdef MTSTESTKIT
 			switch(lusrc){
 				case LU13CAN:
 				MtsData.lastCan13Rx.tag = *((unsigned long *)(&(pmc->RxBuffer[fp+2])));  // Get tag
@@ -4579,7 +4545,6 @@ FILE * l_fd ;
 				strcpy(MtsData.lastCan14Rx.data,cdata);
 				break;	
 			}				
-#endif
 			strcpy(comment,"IDBIN_CDATA") ;
 			break ;
 
@@ -4717,7 +4682,6 @@ FILE * l_fd ;
 			// OLD CANBUS
 			case IDBIN_CCANBUS:
 			case IDBIN_BCANBUS:
-#ifdef MTSTESTKIT
 //		        switch(*((unsigned int *)(&(pmc->RxBuffer[fp+2])))){
 		        switch(pmc->RxBuffer[fp+2]){
 		      	        case 1:    // data
@@ -4773,7 +4737,6 @@ FILE * l_fd ;
 							}
 						break;
 				}
-#endif
 			break ;
 
 			default:

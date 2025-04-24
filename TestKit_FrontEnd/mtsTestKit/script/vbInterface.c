@@ -79,13 +79,7 @@ static void directToConsole(char out[]) { // _FR_
 	// the console that will not be redirected.
 	fp = NULL ;
 	
-#ifdef FR_WIN32
-	fp = fopen("CON", "w");
-#endif
-#ifdef FR_LINUX
 	fp = fopen("/dev/tty", "w");
-#endif
-	//"/dev/console"
 	if (!fp) {
 		printf("Error opening child console\n");
 		fflush(NULL);

@@ -17,8 +17,7 @@
 
 // Open MtsTestKit.ini and get all [DISPOSITIVI]
 // Type: -1 retrieve old value, 0 =Program, 1 = Collaudo
-void CreateListClassDevices(int type)
-{
+void CreateListClassDevices(int type) {
 //Item foo;
 GtkTreeIter iter;
 GtkTreeSelection *selection = gtk_tree_view_get_selection(Scrn.device_treeview) ;
@@ -31,12 +30,10 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 		if (!flock(0)) {
 			ctype = type ;
 			strcpy(fileini,Gdata.lpath);
-			strcat(fileini,"MtsTestKit.ini");
+			strcat(fileini,MYNAME".ini");
 			fin = fopen(fileini, "r") ;         // configuration file
 			if (!fin){                          // really exists ?
-#ifdef USE_MONITORING
 				printf("File '%s' non trovato\n", fileini) ;
-#endif // USE_MONITORING
 				flock(1);
 				return ;
 			}
@@ -82,9 +79,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 													valid_data = 1 ;
 													i = strlen(Gdata.deviceClass) ;
 													type = (strcasecmp(&Gdata.deviceClass[i-7], "Program"))? 1:0 ;
-#ifdef USE_MONITORING
 													printf("LS2: old sel <%d, %d, %s>\n", i, type, Gdata.deviceClass) ;
-#endif // USE_MONITORING		
 												}
 				  
 												if (type) { // Change default button
@@ -111,9 +106,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 													i = strlen(cnfbuf);
 													i = (strcasecmp(&cnfbuf[i-7], "Program"))? 1:0 ;
 													if(type==i){
-#ifdef USE_MONITORING
-														printf("LS1: <%s>\n", cnfbuf) ;
-#endif // USE_MONITORING
+														//printf("LS1: <%s>\n", cnfbuf) ;
 														gtk_list_store_append (GTK_LIST_STORE (Scrn.device_listmodel), &iter);
 														gtk_list_store_set (GTK_LIST_STORE (Scrn.device_listmodel), &iter, 0, cnfbuf, -1 ) ;
 														if (!strcmp(cnfbuf,Gdata.deviceClass)){
@@ -151,8 +144,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 		}
 }
 
-int GetSelData(void)
-{
+int GetSelData(void) {
 FILE *fin ;
 char cnfbuf[200], *p, *pp, fileini[MAX_STRING],nextip[MAX_STRING];
 int i, valid_data, parn ;
@@ -162,12 +154,10 @@ strcat(nextip,Gdata.hostname);
 		
 if (!flock(0)) {
 		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,"MtsTestKit.ini");
+		strcat(fileini,MYNAME".ini");
 		fin = fopen(fileini, "r") ;         // configuration file
 		if (!fin){                          // really exists ?
-	#ifdef USE_MONITORING
 			printf("File '%s' non trovato\n", fileini) ;
-	#endif // USE_MONITORING
 			flock(1);
 			return(1);
 		}

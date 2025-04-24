@@ -23,20 +23,17 @@
 #define _MTSTESTKIT_H
 
 #define VER 2
-#define SUBVER 13
-#define REVISION 01
+#define SUBVER 14
+#define REVISION 00
 
 #define BANNER    "MTS TestKit"
 #define TEXT_BOX  " - Diagnostic box"
 
-#define USB_DIR	        "/dev/serial/by-id"
-#define TK_PORTNAME 	"usb-03eb_6124"
-//#define TK_PORTNAME 	"usb-03eb_6124-if00"
-#define TK_PORTNAME2 	"03eb_6124"  // "pci-03eb_6124-if01-port0"
-#define MTS_PORTPREFIX	"usb-FTDI_DLP2232M_"
-#define MTS_PORTPREFIXNEW "usb-T.E.S.T._TestKit_9014006"
-#define MTS_PORTPREFIXNEW2 "T.E.S.T._TestKit_9014006"
-#define MTS_PORTSUFFIX	"-if01-port0"
+#define USB_DIR	      "/dev/serial/by-id"
+#define TK_PORTNAME 	"usb-03eb_6124-if00"
+#define MTS_PORTNAME	"usb-T.E.S.T._TestKit_901400106-if00-port0"
+
+#define MTS_PORTSUFFIX	"-if00-port0"
 #define MTS_USB_PORTPREFIX "usb-1a86" //"usb-1a86_USB2.0-Serial-if00-port0"
 
 #define CLEAR_MEM(_A, _B)   bzero(_A, _B)

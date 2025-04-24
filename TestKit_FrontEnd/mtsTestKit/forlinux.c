@@ -4,7 +4,6 @@
 //   T.E.S.T. srl
 //
 
-
 /*
  * Compile me with:
  *   gcc -o $(1) ($1).c $(pkg-config --cflags --libs gtk+-2.0 gmodule-2.0)
@@ -62,10 +61,10 @@ extern char *strcasestr(const char *haystack, const char *needle);
 
 // from sequence
 int Low_Init(int repeat) {
-int i, ret_val ;
-DIR *ldir ; 
-struct dirent  *afile ;
-char msg[100] ;
+	int i, ret_val ;
+	DIR *ldir ; 
+	struct dirent  *afile ;
+	char msg[100] ;
 
 	// Get current directory path
 	//getcwd(Gdata.lpath, (MAX_STRING-1));
@@ -75,22 +74,25 @@ char msg[100] ;
 	ldir = opendir(USB_DIR);
 	
 	if (ldir!=NULL){
-		while (( afile=readdir(ldir))!=NULL){
-			printf("\nNew file %s\n", afile->d_name) ;
+		while ( (afile=readdir(ldir))!=NULL ) {
+		  if (afile->d_name[0]=='.') { continue; }
+			printf("\nafile->d_name %s\n", afile->d_name) ;
 			// search for TK_PORT
 			if (!strncmp( afile->d_name, TK_PORTNAME, strlen(TK_PORTNAME)) ){
 				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-				printf("\nTK port found(%s)\n", Gdata.portname[PORT_TK]) ;
+				printf("TK port 1 found (%s)\n", Gdata.portname[PORT_TK]) ;
 			}
+      #if 0
 			if (strcasestr( afile->d_name, TK_PORTNAME2) != NULL ){
 				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-				printf("\nFounded TK port (%s)\n", Gdata.portname[PORT_TK]) ;
+				printf("TK port 2 found (%s)\n", Gdata.portname[PORT_TK]) ;
 			}
-			
+			#endif
+
 			// search for MTS_PORT old
-			if (!strncmp( afile->d_name, MTS_PORTPREFIX, strlen(MTS_PORTPREFIX)) ){
+			if (!strncmp( afile->d_name, MTS_PORTNAME, strlen(MTS_PORTNAME)) ){
 				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
-				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				printf("\nSearch old MTS port (%s)\n", &(afile->d_name[i])) ;
 				if (i>0){
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
@@ -99,39 +101,45 @@ char msg[100] ;
 						printf("\nTK TYPE found(%d)\n", Gdata.TKTYPE) ;
 					}
 				}
-			}
+			} else { printf("no MTS_PORTPREFIX %s\n", MTS_PORTNAME); }
+
+      #if 0
 			// search for MTS_PORT new
 			if (!strncmp( afile->d_name, MTS_PORTPREFIXNEW, strlen(MTS_PORTPREFIXNEW)) ){
 				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
-				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				printf("\nSearch new MTS port (%s)\n", &(afile->d_name[i])) ;
 				if (i>0){
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
 						Gdata.TKTYPE=1;
-						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
-						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+						printf("\nMTS port found (%s)\n", Gdata.portname[PORT_MTS]) ;
+						printf("\nTK TYPE found (%d)\n", Gdata.TKTYPE) ;
 					}
 				}
-			}
+			} else { printf("no MTS_PORTPREFIXNEW %s\n", MTS_PORTPREFIXNEW); }
+			
 			if (strcasestr( afile->d_name, MTS_PORTPREFIXNEW2) != NULL ){
 				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
-				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				printf("\nSearch new2 MTS port (%s)\n", &(afile->d_name[i])) ;
 				if (i>0){
 					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
 						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
 						Gdata.TKTYPE=1;
-						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
-                                                MTS_current_PORT=PORT_MTS;
-						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+						printf("\nMTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
+            MTS_current_PORT=PORT_MTS;
+						printf("\nTK TYPE (%d)\n", Gdata.TKTYPE) ;
 					}
 				}
-			}
+			} else { printf("no MTS_PORTPREFIXNEW2 %s\n", MTS_PORTPREFIXNEW2); }
+      #endif
+
 			if (!strncmp( afile->d_name, MTS_USB_PORTPREFIX, strlen(MTS_USB_PORTPREFIX)) ){
 				strcpy(Gdata.portname[PORT_MTSUSB], afile->d_name) ;
-				printf("\nFounded MTSUSB port (%s)\n", Gdata.portname[PORT_MTSUSB]) ;
-				printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+				printf("\nMTSUSB port (%s)\n", Gdata.portname[PORT_MTSUSB]) ;
+				printf("\nTK TYPE (%d)\n", Gdata.TKTYPE) ;
 			}	
-		}
+
+		}   //end while
 		closedir(ldir) ;
 	}else{
 		printf("\nError opening %s\n", USB_DIR) ;
@@ -141,16 +149,18 @@ char msg[100] ;
 	ret_val = 0  ;
 	if (!strlen(Gdata.portname[PORT_TK])){
 		ret_val = 1 ;
-		strcpy(free_msg, BADPORT_TK ) ; // "Porta TestKit non trovata\n"
+		strcpy(free_msg, BADPORT_TK ) ;
+		printf("\nPorta TestKit non trovata\n");
 	}
 	if (!strlen(Gdata.portname[PORT_MTS])){
 		ret_val = 1 ;
-		strcpy(msg, BADPORT_MTS) ;			// "Porta MTS non trovata\n"
+		strcpy(msg, BADPORT_MTS) ;
 		strcat(free_msg, msg) ;
+		printf("\nPorta MTS non trovata\n");
 	}
 	
 	if (ret_val){		// ERROR
-		//printf("\nErrore su com ret_val<'%d'> e repeat<'%d'>\n", ret_val,repeat);	
+		printf("\nErrore su com ret_val<'%d'> e repeat<'%d'>\n", ret_val,repeat);	
 		if(repeat){
 			Gdata.menu_choice = 1 ;
 			Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
@@ -321,7 +331,6 @@ struct ifreq freq ;
 #ifdef SW_MTSCU
 		sprintf(lbuf, "%s%s", DEV_PREFIX,  Gdata.portname ) ;
 #endif
-#ifdef MTSTESTKIT
 		sprintf(lbuf, "%s/%s", USB_DIR, Gdata.portname[port] ) ;
 		{
 			int i ;
@@ -336,7 +345,6 @@ struct ifreq freq ;
 				sprintf(Gdata.portdev[port], "/dev%s", msg) ;
 			}
 		}
-#endif
 		
 		D_ports[port].fd = open(lbuf, O_RDWR | O_NOCTTY ) ;
 		if (D_ports[port].fd < 0) {
@@ -409,9 +417,7 @@ struct ifreq freq ;
 		Gdata.portopened = 1 ;		// Only for RS232 port
 #endif
 	}
-#ifdef MTSTESTKIT
 	Gdata.portopened[port] = 1 ;	
-#endif
 	
 	D_ports[port].isopen = 1 ;
 
@@ -438,9 +444,7 @@ void com_close(int port)
 #ifdef SW_MTSCU
 	Gdata.portopened = 0 ;		// Only for RS232 port
 #endif
-#ifdef MTSTESTKIT
 	Gdata.portopened[port] = 0 ;
-#endif
 	printf("\nComPortclosed \n") ;
 }
 
@@ -825,11 +829,9 @@ unsigned long dwRead ;
 
 //	ll = 0 ;
 	while (Gdata.sequence_status != SEQ_ENDED) {
-		printf("\nWait Command\n") ;
-		//i = read(Gsequence.cgi_output[0], &c, 1) ;
+		//printf("\nWait Command\n") ;
 		i = read(Gsequence.cgi_output[0], cnfbuf, MAX_STRING) ;
-//		switch(read(Gsequence.cgi_output[0], &c, 1)){
-			printf("\nThread SEQUENCE: %d\n",i) ;
+		//printf("\nThread SEQUENCE: %d\n",i) ;
 		switch(i){
 			case -1: // Error
  			Gdata.sequence_status = SEQ_ENDED ;
@@ -859,8 +861,7 @@ unsigned long dwRead ;
 			CLEAR_MEM(&Gsequence.Command, sizeof(Gsequence.Command)) ;
 			strncpy(Gsequence.Command, cnfbuf, dwRead);
 			Gsequence.NewCommand = 1 ;
-			//printf("\nrecv %lu\n", dwRead) ;
-			printf("\nRecv:<%s>\n", Gsequence.Command) ;
+			//printf("\nRecv:<%s>\n", Gsequence.Command) ;
 
 //			i = fprintf(list_cmd, "%s\r\n",Gsequence.Command) ;
 			//printf("Wroted %d bytes\n", i ) ;
@@ -872,7 +873,7 @@ unsigned long dwRead ;
 // 				Gsequence.NewCommand = 1 ;
 // 			}
 		}
-		//SLEEP(1) ;
+		g_usleep(100000) ;
 		printf("\nSsat %d Command\n", i) ;
 		
 	}
