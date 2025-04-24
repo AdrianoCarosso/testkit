@@ -13,11 +13,8 @@
 #define QUOTE   27      // char: '
 #define DEC		'|' 	// delimiter char
 
-//#define USE_MONITORING
-
 // Use '|' as argv delimiter
-int cmdpslave(struct CMDSLAVE cmds[], char *line)
-{
+int cmdpslave(struct CMDSLAVE cmds[], char *line){
 //register int i ;
 struct CMDSLAVE *cmdp;
 char *argv[NARG],*cp ;
@@ -38,9 +35,7 @@ int argc,qflag;
 		//while(*line == ' ' || *line == '\t')	line++;
 		
 		argv[argc] = line ;
-#ifdef USE_MONITORING
 		printf("argv[%d]=%s\n", argc, line ) ;
-#endif // USE_MONITORING
 
 		if(*line == '\0')	break;
 		

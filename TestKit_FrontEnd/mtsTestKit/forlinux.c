@@ -8,7 +8,8 @@
  * Compile me with:
  *   gcc -o $(1) ($1).c $(pkg-config --cflags --libs gtk+-2.0 gmodule-2.0)
  */
-
+//#define __DEFAULT_SOURCE
+#define __USE_XOPEN
 #include <gtk/gtk.h>
 #include <unistd.h>
 #include <string.h>
@@ -884,22 +885,11 @@ unsigned long dwRead ;
 
 // Start sequence
 int run_sequence(void) {
-char name[2*MAX_STRING];
-int retcode;
-char *p = NULL;
+  char name[2*MAX_STRING+2];
+  int retcode;
 	
 	retcode = strlen(Gdata.ProgramFile) ; 
-	if (!strcasecmp(&Gdata.ProgramFile[retcode-4], ".exe")){
-		Gdata.ProgramFile[retcode-4]='\0' ; 
-	}
-	
-	sprintf(name, "%s\\%s", Gdata.lpath, Gdata.ProgramFile ) ;
-	while ((p = strchr(name,'\\'))!=NULL){
-		*p = '/';
-	}
-	
-	rem_duble_slash(name,name);
-		
+	sprintf(name, "./app/%s", Gdata.ProgramFile ) ;		
 	printf("\nStarting %s\n", name );
 
 	if (pipe(Gsequence.cgi_output) < 0) {
@@ -910,25 +900,18 @@ char *p = NULL;
 	if (pipe(Gsequence.cgi_input) < 0) {
 		printf("\nStdin pipe creation failed (%d)\n", errno );
 		return 1;
-	}
+	  }
 
 	if ( (Gsequence.pid = fork()) < 0 ) {
 		printf("\nSequence start failed (%d)\n", errno );
 		return 1;
-	}
+	  }
 	if (Gsequence.pid == 0) { // child: CGI script
-
 		dup2(Gsequence.cgi_output[1], 1);
 		dup2(Gsequence.cgi_input[0], 0);
-//#ifndef SEQUENCE_DEBUG
-//		close(Gsequence.cgi_output[0]);
-//		close(Gsequence.cgi_input[1]);
-//#endif
 
 #ifdef SEQUENCE_DEBUG // fnctl(oldfd, F DUPFD, newfd)
-		//if (execl(name, name, NULL)){ // Starting sequence
 		if (execlp("/bin/sh", "sh", "-c", name, (char *) 0)){
-		//if (execl(name, name, NULL)){ // Starting sequence
 #else
 		if (execl(name, name, NULL)){ // Starting sequence
 #endif
@@ -980,8 +963,7 @@ int status ;
     printf("\nSequence terminated OK\n") ;
 }
 
-void Send_sequence_answer(char *answer)
-{
+void Send_sequence_answer(char *answer) {
 	if (Check_sequence()) return;
 	
 	if (write(Gsequence.cgi_input[1], answer, strlen(answer))<0){ // Answer to sequence
@@ -996,26 +978,14 @@ void Send_sequence_answer(char *answer)
 int Start_command(int argc, char *argv[]) {
 char name[SIZE_BUFFS];
 int retcode;
-char *p = NULL;
 
 	retcode = strlen(argv[1]) ; 
-	if (!strcasecmp(&argv[1][retcode-4], ".exe")){
-		argv[1][retcode-4]='\0' ; 
-	}else if (!strcasecmp(&argv[1][retcode-4], ".bat")){
-		argv[1][retcode-3]='s' ; 
-		argv[1][retcode-2]='h' ; 
-		argv[1][retcode-1]='\0' ; 
-	}
-	
-	sprintf(name, "%s\\%s", argv[0], argv[1] ) ;
-	while ((p = strchr(name,'\\'))!=NULL){
-		*p = '/';
-	}
+	sprintf(name, "%s//%s", argv[0], argv[1] ) ;
 	
 	for(retcode=2;retcode<argc;retcode++) {
 		strcat(name, " ") ;
 		strcat(name, argv[retcode]) ;
-	}
+	  }
 	
 	rem_duble_slash(name,name);
 	
@@ -1024,8 +994,8 @@ char *p = NULL;
 	retcode = 0 ;
 	if (system(name)==-1){
 		retcode = errno ;
-			printf( "AA Sequence exe failed (%d)\n", errno );
-	}
+    printf( "AA Sequence exe failed (%d)\n", errno );
+  	}
 	return(retcode);
 }
 

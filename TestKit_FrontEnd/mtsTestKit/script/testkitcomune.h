@@ -111,5 +111,5 @@
 //
 extern unsigned int TKTYPE; // Tipo di TestKit se 0 vecchio se 1 nuovo con SN maggiore di 901400100
 extern uint32_t leveldebug ;		// Added from 2.13 (25/05/23) same name as Gdata into MTScu
-extern char PathTK[NRMSIZE] ; 			// Path per gli Applicativi del TestKit (Wspace[]+Applicativi)
+extern char PathTK[NRMSIZE] ; 			// Path per gli app del TestKit (Wspace[]+app)
 #endif

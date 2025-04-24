@@ -19,15 +19,10 @@
 
 #include <unistd.h>
 #include <string.h>
+#define __USE_XOPEN
 #include <math.h>
 #include <sys/types.h>
 #include <dirent.h>
-
-#include "mtsTestKit.h" 
-#include "mtsGTK.h"
-
-#include "video_def.h"
-#include "logotest.h"
 
 #include <sys/timeb.h>
 #include <sys/stat.h>
@@ -41,6 +36,11 @@
 #include <netdb.h>
 //Per System
 #include <stdlib.h>
+#include "mtsGTK.h"
+#include "video_def.h"
+#include "logotest.h"
+#include "mtsTestKit.h" 
+
 
 #define NO_BLOCKING
 
@@ -112,10 +112,7 @@ const gchar *twidget;
 	StatusIcon(FALSE);
 	//gtk_window_set_skip_taskbar_hint(GTK_WINDOW(Scrn.main),FALSE) ;
 	gtk_widget_set_sensitive(Scrn.main,TRUE) ;
-	
-#ifdef USE_MONITORING_
 	printf("close_form Gdata.ib_data=>%s<\n", Gdata.ib_data) ;
-#endif // USE_MONITORING
 
 // 	Gdata.old_menu_choice = MNU_NOTHING ;
 // 	Gdata.run_loop = MAIN_RUN ;
@@ -127,11 +124,8 @@ const gchar *twidget;
 	return(TRUE) ;
 }
 
-gboolean close_inputbox( GtkWidget * aa, gpointer  data )
-{
-#ifdef USE_MONITORING_
+gboolean close_inputbox( GtkWidget * aa, gpointer  data ){
 	printf("close_form\n") ;
-#endif // USE_MONITORING
 
 	gtk_widget_hide(Scrn.form_inputbox) ;
 	StatusIcon(FALSE);
@@ -139,12 +133,7 @@ gboolean close_inputbox( GtkWidget * aa, gpointer  data )
 	gtk_widget_set_sensitive(Scrn.main,TRUE) ;
 	
 	strcpy(Gdata.ib_data, "#!" ) ;
-#ifdef USE_MONITORING_
 	printf("close_form Gdata.ib_data=>%s<\n",Gdata.ib_data) ;
-#endif // USE_MONITORING
-// 	Gdata.old_menu_choice = MNU_NOTHING ;
-// 	Gdata.run_loop = MAIN_RUN ;
-// 	old_diag=-1 ;
 	ftime(&ltime);
 	timewaitstop=ltime.time;
 	timeteststart=timewaitstop;
@@ -152,12 +141,8 @@ gboolean close_inputbox( GtkWidget * aa, gpointer  data )
 	return(TRUE) ;
 }
 
-static gboolean key_press_inputbox( GtkWidget * aa, GdkEventKey *event, gpointer user_data) 
-{
+static gboolean key_press_inputbox( GtkWidget * aa, GdkEventKey *event, gpointer user_data) {
 
-#ifdef USE_MONITORING_
-	printf("!!INPUT BOX TASTO <%d>!!\n", event->keyval ) ;
-#endif // USE_MONITORING
 	if ((event->keyval==GDK_Return) || (event->keyval==GDK_KP_Enter) )
 		confirm_inputbox(aa, user_data ) ;
 	else if(event->keyval==GDK_Escape)
@@ -178,9 +163,7 @@ void init_Struct(void) {
 
 void get_widget( GtkWidget ** gg, char *name ) {
 	*gg =  GTK_WIDGET(gtk_builder_get_object( builder, name ) );
-#ifdef USE_MONITORING
 	if (*gg==NULL) printf (free_msg, name );
-#endif // USE_MONITORING
 }
 
 void populate_Scrn(void) {
@@ -195,15 +178,11 @@ void populate_Scrn(void) {
 	gtk_window_set_transient_for(GTK_WINDOW(Scrn.device_sel),GTK_WINDOW(Scrn.main)) ;
 
 	Scrn.device_treeview = GTK_TREE_VIEW(gtk_builder_get_object( builder, "treeview" ) );
-#ifdef USE_MONITORING
 	if (Scrn.device_treeview==NULL) printf (free_msg, "treeview");
-#endif // USE_MONITORING
 
 
 	Scrn.device_listmodel = GTK_TREE_MODEL(gtk_builder_get_object( builder,"liststore1")) ;
-#ifdef USE_MONITORING
 	if (Scrn.device_listmodel==NULL) printf (free_msg, "liststore1");
-#endif // USE_MONITORING
 
 
 	get_widget(&Scrn.rbutProgram, "radiobutton1" );
@@ -830,20 +809,20 @@ void set_app_font (const char *fontname) {
 
 
 int main(int argc, char *argv[]) {
-     MTS_current_PORT=0;
-        int i,len;
-        char free_msg[2*MAX_STRING];
+  MTS_current_PORT=0;
+  int i;
+  char free_msg[2*MAX_STRING];
 	Gdata.GTK_START = 0 ; // GTK not START
 	Gdata.RISP255 = 0; // No Risp per EXSM 255
 	Gdata.okcansend = 0; // No Risp per canconf
 	curtest=0;
+
 	// Clear all data struct
 	init_Struct();
 	// Parse argv
 	if (argc>1){
-		//char *sp[5] ;
 		char *line, *cp ; // Max sub pars
-		int nsp,c;
+		int nsp;
 
 		Gdata.upass[0]='\0';
 		
@@ -855,56 +834,27 @@ int main(int argc, char *argv[]) {
 				strcpy( free_msg, &argv[i][2] ) ;	// Skip '-?'
 				line = free_msg ;
 				for(nsp = 0;nsp < 5;){
-					//sp[nsp] = line ;
 					if (*line=='\0') break ;
-					//sp[nsp++] = line ;
 					if((cp = strchr(line,':')) == NULL) break ;
 					*cp++ = '\0';
 					line = cp;
 				}
 			
 				switch(argv[i][1]){
-					case 'h':	// Set working path
-					case 'H':	// "-H<path>         define start path"
-					strcpy(Gdata.lpath, &argv[i][2]) ;
-					len=strlen(Gdata.lpath) ;
-					if (Gdata.lpath[len-1]!=47) 
-					//sprintf(Gdata.lpath,"%s/",Gdata.lpath) ;  // 47='/' //
-					strcat(Gdata.lpath,"/");
-					
-					printf("\nCurrent dir <%s>\n", Gdata.lpath) ;
-					c=setinival("general","WorkSpace",Gdata.lpath);
-					printf("\nCurrent dir <%s>\n", Gdata.lpath) ;
-					if (c){
-						Gdata.menu_choice = 1 ;	
-						sprintf(free_msg,"Path '%s' non trovata\n", Gdata.lpath) ;
-						printf("Path '%s' non trovata\n", Gdata.lpath);	
-						Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
-						while (Gdata.menu_choice){
-							while (gtk_events_pending ()){
-									gtk_main_iteration ();
-							}
-						}
-						return(0);
-					}
-					break ;
-
 					case 'p':  //set Password User
 					case 'P': // -P<password>
 					strcpy(Gdata.upass, &argv[i][2]) ;
 					//sprintf(Gdata.upass,"%s%c",Gdata.upass,'\0');
-					#ifdef USE_MONITORING					
 					printf("\nPassword User <%s>\n", Gdata.upass) ;
-					#endif // USE_MONITORING
 					break ;
-				}
-			}
-		}
-	}
+          }
+        }
+      }
+    }
 
 	char comm[3*MAX_STRING];
-	sprintf(comm,"%sApplicativi/killMtsTestKit.sh %s",Gdata.lpath,Gdata.upass);
-	printf("Kill All!,%s",comm);
+	sprintf(comm,"./app/killMtsTestKit.sh %s",Gdata.upass);
+	printf("Kill All! (%s)",comm);
 	SLEEP(1000);
 	system(comm);
 		
@@ -916,8 +866,6 @@ int main(int argc, char *argv[]) {
 
 	time_t t_old ;
 	GError     *error = NULL;
-
-	
 
 	Gdata.run_loop = MAIN_RUN ;
 	Gdata.sequence_status = SEQ_ENDED ;
@@ -1000,7 +948,7 @@ int main(int argc, char *argv[]) {
                 gtk_label_set_text( GTK_LABEL(Scrn.lbl_protname), Gdata.portdev[MTS_current_PORT]) ;
 	}
 #endif
-	printf("init ok (%s),Gdata.run_loop=(%d),Gdata.menu_choice=(%d)\n", Gdata.lpath,Gdata.run_loop,Gdata.menu_choice) ;
+	printf("init ok Gdata.run_loop=(%d),Gdata.menu_choice=(%d)\n",Gdata.run_loop,Gdata.menu_choice) ;
 #ifdef NO_BLOCKING
 	// Alternative use
 	t_old = time(NULL) ;
@@ -1175,9 +1123,8 @@ int main(int argc, char *argv[]) {
     return( 0 );
 }
 
-void ProgressBar(int type, int value)
-{
-struct timeb bar_newtime ;
+void ProgressBar(int type, int value){
+  struct timeb bar_newtime ;
 
 
 	switch(type){
@@ -1199,8 +1146,7 @@ struct timeb bar_newtime ;
 		
 }
 
-void CenterForm(GtkWindow *form) 
-{
+void CenterForm(GtkWindow *form) {
 int x, y, width, height ;
 
 	gtk_window_get_position( GTK_WINDOW(Scrn.main), &x, &y ) ;
@@ -1215,35 +1161,26 @@ int x, y, width, height ;
 
 }
 
-int setinival(char *bloc,char *par,char *con)
-{
-FILE *fini,*fnew ;
-char cnfbuf[200],fileini[MAX_STRING],filenew[MAX_STRING],string[MAX_STRING],free_msg[MAX_STRING],st[0];
-int valid_data,data_valid,i,l,lp,ls; // lc 
+int setinival(char *bloc,char *par,char *con){
+  FILE *fini,*fnew ;
+  char cnfbuf[200],fileini[MAX_STRING],filenew[MAX_STRING],string[MAX_STRING],free_msg[MAX_STRING],st[0];
+  int valid_data,data_valid,i,l,lp,ls; // lc 
 
 	if (!flock(0)) {
 		lp=strlen(par);
-		//lc=strlen(con);
-		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,MYNAME".ini");
-
-		strcpy(filenew,Gdata.lpath);
-		strcat(filenew,MYNAME".new");
+		strcat(fileini,"./"MYNAME".ini");
+		strcat(filenew,"./"MYNAME".new");
 
 		fini = fopen(fileini, "r") ;         // open configuration file
 		if (!fini){ 
-		#ifdef USE_MONITORING
 			printf("\nFile '%s' non trovato\n", fileini) ;
-		#endif // USE_MONITORING
 			flock(1);
 			return(1);
 		}
 
 		fnew = fopen(filenew,"w") ;
 		if (!fnew){
-			#ifdef USE_MONITORING
 			printf("\nFile '%s' non creato\n", filenew) ;
-			#endif // USE_MONITORING
 			fclose(fini);
 			flock(1);
 			return(1);
@@ -1315,20 +1252,17 @@ int valid_data,data_valid,i,l,lp,ls; // lc
 	return(0);	
 }
 
-char * getinival(char *stringd,char *bloc,char *par)
-{
-FILE *fini;
-char cnfbuf[200], *p, *pp,fileini[MAX_STRING],free_msg[MAX_STRING];
-int valid_data,i,l,lp;
+char * getinival(char *stringd,char *bloc,char *par) {
+  FILE *fini;
+  char cnfbuf[200], *p, *pp,fileini[MAX_STRING],free_msg[MAX_STRING];
+  int valid_data,i,l,lp;
 
 	strcpy(stringd,"");
-
 	p=NULL;
 
 	if (!flock(0)) {
 		lp=strlen(par);
-		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,MYNAME".ini");
+		strcat(fileini,"./"MYNAME".ini");
 
 		fini = fopen(fileini, "r") ;         // open configuration file
 		if (!fini){ 
@@ -1380,16 +1314,14 @@ int valid_data,i,l,lp;
 }
 
 int RefreshUSB(void) {
-char *argv[3], applicativi[MAX_STRING], file[MAX_STRING];
-int esito,i;
+  char *argv[3], file[MAX_STRING];
+  int esito,i;
 	
 	Gdata.refresh_USB=0;
-	strcpy(applicativi,Gdata.lpath);
-	strcat(applicativi,"Applicativi/");
-	
+
 	strcpy(file,"ripristino_usb.sh");
 	
-	argv[0]=applicativi;
+	argv[0]="./app/";
 	argv[1]=file;
 	i=2;
 	printf("\nGdata.upass=<%s>\n",Gdata.upass) ;
@@ -1398,8 +1330,8 @@ int esito,i;
 		argv[2]=Gdata.upass;
 		i=i+1;
 	 }
-	printf("\nStart_Command <%s%s %s>\n",argv[0],argv[1],argv[2]) ;
-	if(Start_command(i,argv)!=0) {
+	printf("\nStart_Command <%s%s %s>\n",argv[0], argv[1],argv[2]) ;
+	if(Start_command(i, argv)!=0) {
 		esito=1;	
 	}else{
 		esito=0;
@@ -1409,12 +1341,11 @@ int esito,i;
 }
 
 int flock(int finito) {
-int r;
-char filelock[MAX_STRING];
+  int r;
+  char filelock[MAX_STRING];
 	
 	// Cerca di lockare .ini.lck
-	strcpy(filelock,Gdata.lpath);
-	strcat(filelock,MYNAME".lck");
+	strcpy(filelock,"./"MYNAME".ini.lck");
 	if (!finito) {
 		Gdata.filock = tmpfile ();
 		Gdata.filock = fopen(filelock,"wx");
@@ -1508,8 +1439,7 @@ int get_my_IP(void)
 		FILE *fip;
 		char fileip[MAX_STRING2],cnfbuf[3000],*p;
 		while(end==0){
-			sprintf(fileip,"%s%siplist%d",Gdata.lpath,"Applicativi/",i++);
-			//printf("\nfileip=<%s>",fileip);
+			sprintf(fileip, "./app/iplist%d", i++);
 			fip = fopen(fileip, "wx") ;
 			if (fip){
 				end=1;
@@ -1520,9 +1450,7 @@ int get_my_IP(void)
 		system(cnfbuf);
 		fip = fopen(fileip, "r") ;
 		if (!fip){ 
-			#ifdef USE_MONITORING
 				printf("\nFile '%s' non trovato\n", fileip) ;
-			#endif // USE_MONITORING
 				return(1);
 		}
 		valid_data=1;
@@ -1556,8 +1484,7 @@ int get_my_IP(void)
 	return(0);
 }
 
-void StatusIcon(int blink)
-{
+void StatusIcon(int blink) {
 char icona[MAX_STRING2];
 	GError     *error = NULL;
 	
@@ -1569,7 +1496,9 @@ char icona[MAX_STRING2];
 	switch(blink){
 		//printf("\nBlink:<%d>\n",blink);
 		case -1:
-			sprintf(icona,"%sTestIco.png",Gdata.lpath);
+			//sprintf(icona,"%sTestIco.png",Gdata.lpath);
+			sprintf(icona,"./mtsTestKit.png");
+
 			printf("\nStatusIcon=<%s>\n",icona);
 			trayIcon = gtk_status_icon_new_from_file (icona);
 			//gtk_status_icon_set_from_file(trayIcon,icona);
@@ -1577,20 +1506,18 @@ char icona[MAX_STRING2];
 			//Icona in taskbar e programma
 			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(icona, &error);
 			gtk_window_set_icon(GTK_WINDOW(Scrn.main),pixbuf);
-		break ;
-		case 0:
-			
+		  break ;
+		case 0:			
 			gtk_status_icon_set_blinking (trayIcon, FALSE);	
-		break ;
+		  break ;
 		case 1:
 			gtk_status_icon_set_blinking (trayIcon, TRUE);
-		break ;
+		  break ;
 
-	}
-
+	  }
 }
-void Reset_Screen(void)
-{
+
+void Reset_Screen(void){
 	Clear_txt(Scrn.boxtxt_mts);
 	Clear_txt(Scrn.boxtxt_answer);
 	gtk_widget_modify_bg( Scrn.bklbl_run, GTK_STATE_NORMAL, &vb_color[VB_LGRAY]) ;

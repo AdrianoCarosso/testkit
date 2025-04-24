@@ -347,7 +347,7 @@ void COLOR_STEP(int _N, int _C);
 //#define PATH_FW "..\\\\..\\\\"		// Percorso da path del programma al FW
 //--------------------------------------------------------------------------------------------------------------
 unsigned int TKTYPE; // Tipo di TestKit se 0 vecchio se 1 nuovo con SN maggiore di 901400100
-char PathTK[NRMSIZE] ; 			// Path per gli Applicativi del TestKit (Wspace[]+Applicativi)
+char PathTK[NRMSIZE] ; 			// Path per gli app del TestKit (Wspace[]+app)
 uint32_t leveldebug ;		// Added from 2.13 (25/05/23) same name as Gdata into MTScu
 
 _InternalAnalogData DatoMTS;
@@ -568,12 +568,11 @@ struct {
 
 // Nomi delle path
 	char WSpace[MAXSIZE] ; 			// Path di lavoro
-	//char PathTK[MAXSIZE] ; 			// Path per gli Applicativi del TestKit (Wspace[]+Applicativi)
-
-	char PathFwUp[MAXSIZE] ;		// Path per gli Applicativi di invio FW per la CPU dell'MTS (Wspace[]+Applicativi+'cpu')
+	
+	char PathFwUp[MAXSIZE] ;		// Path per gli app di invio FW per la CPU dell'MTS (Wspace[]+app+'cpu')
 	
 	char mRoot[MAXSIZE] ;			// Path per i file dell'MTS in collaudo (Wspace[]+'workingPath')
-	char mAppl[MAXSIZE] ; 			// Path per gli Applicativi dell'MTS in collaudo (mRoot[]+'Applicativi')
+	char mAppl[MAXSIZE] ; 			// Path per gli app dell'MTS in collaudo (mRoot[]+'app')
 	char mVer[MAXSIZE];				// Path con i file di FW dell'MTS in collaudo (mRoot[]+'Versioni')
 
 	
@@ -585,7 +584,7 @@ struct {
 	char LogBuffer[256][MAXSIZE] ; 
 	int QtaLog = 0;
 
-// File di SM e parametri (con Path per gli Applicativi del TestKit)
+// File di SM e parametri (con Path per gli app del TestKit)
 	char SMachVoid[MAXSIZE] ; 		// SM vuota
 	char SMachColl[MAXSIZE] ;		// SM per il collaudo
 	char SMachTest[MAXSIZE] ; 		// SM da inviare a fine collaudo se MTS di produzione
@@ -843,8 +842,8 @@ int main(void)
 
  	GetWorkSpace(WSpace);
 	if (WSpace[strlen(WSpace)-1]=='/') LastcharDel(WSpace); 
- 	// Path per gli Applicativi
-	sprintf(PathTK, "%s\\Applicativi", WSpace);
+ 	// Path per gli app
+	sprintf(PathTK, "%s\\app", WSpace);
 	CONVERTPATH(PathTK);
 	
 #ifdef CHECK_TESTTIME
@@ -1403,7 +1402,7 @@ int SK_GetIniInfo(void)
 	// Prepara le path con la dir dell'MTS
 	sprintf(mRoot, "%s\\%s", WSpace, TkIni.NamTyp);
 	CONVERTPATH(mRoot);
-	sprintf(mAppl, "%s\\Applicativi", mRoot);
+	sprintf(mAppl, "%s\\app", mRoot);
 	CONVERTPATH(mAppl);
 	sprintf(SMachVoid, "%s\\void.smk", PathTK);
 	CONVERTPATH(SMachVoid);
@@ -1771,7 +1770,7 @@ int SK_GetIniInfo(void)
 	
 #endif // #ifndef SENDFW
 	// Prepara la path con la dir dei programmi per tipi di CPU (ARM7, ARM9, ATMEGA, HC12)
-	sprintf(PathFwUp, "%s\\Applicativi\\%s", WSpace, TestSet.Cpu );
+	sprintf(PathFwUp, "%s\\app\\%s", WSpace, TestSet.Cpu );
 	CONVERTPATH(PathFwUp);
 
 	LoadFamTab();							// carica in una tabella delle famiglie MTS riconosciuti dal T-K (Signature)

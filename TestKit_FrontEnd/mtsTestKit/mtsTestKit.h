@@ -108,7 +108,7 @@ struct _TKGDATA{
 #define CHR_COMMA ','
 #define CHR_POINT '.'
 	int GTK_START ;   				// GTK is Start
-	char lpath[MAX_STRING] ;		// Path 
+	//char lpath[MAX_STRING] ;		// Path 
 	char upass[MAX_STRING] ;		// UserPass
 	char deviceClass[MAX_STRING] ;	// Device selection
 

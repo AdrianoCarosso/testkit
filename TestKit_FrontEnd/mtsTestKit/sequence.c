@@ -63,8 +63,7 @@ char dummy[DEF_STRING] ;
 // 	Gdata.lastSlaveCommandId = WSCMD_T_GETVER ;
 // 	return(CODE_WAIT_ANSWER);
 
-int hex_to_int(char c)
-{
+int hex_to_int(char c){
 
 	if(c >=97)
 		c=c-32;
@@ -880,17 +879,15 @@ int  doGetINIKeyVal(int argc, char *argv[])//_GT_//OK
 
 // *********************************************************************
 
-int  doGetWorkSpace(int argc, char *argv[])
-{
-	strcpy(NextAnswer, Gdata.lpath) ;
-	printf("\n%s\n", argv[0]) ;
+int  doGetWorkSpace(int argc, char *argv[]) {
+	//strcpy(NextAnswer, Gdata.lpath) ;
+	//printf("\n%s\n", argv[0]) ;
 	return(0);
 }
 
 // *********************************************************************
 
-int  doInputBox(int argc, char *argv[])
-{
+int  doInputBox(int argc, char *argv[]){
 int nkey ;
 char lcap[MIN_STRING], lkey1[MIN_STRING], lkey2[MIN_STRING] ;
 char ltitle[DEF_STRING] ;
@@ -1903,8 +1900,7 @@ int lval;
 // *********************************************************************
 // Start a shell and a thread waiting for end process
 // 1 = Path, 2 = program, 3.. = args
-int  doM_PROGRAM(int argc, char *argv[])
-{
+int  doM_PROGRAM(int argc, char *argv[]) {
 int i;//,c;
 //char free_buf[MAX_STRING],free_buf2[MAX_STRING];
 
@@ -1963,9 +1959,6 @@ int i;//,c;
 	//SLEEP(1000000);
 	
 	 
-	//i=Start_command( 1 ,&argv[0]) ;
-
-	//i=Start_command( (argc-1), &argv[1]) ;
 	//SLEEP(1000000) ;
 	
 	

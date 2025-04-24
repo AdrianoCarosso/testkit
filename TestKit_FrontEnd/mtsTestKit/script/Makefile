@@ -7,11 +7,11 @@ SRC = collaudo.o vbInterface.o
 
 all: doprogram collaudo
 
-doprogram: doProgram.o  vbInterface.o
-	$(CC) -Wall doProgram.o  vbInterface.o -o doprogram
+doprogram: doprogram.o  vbInterface.o
+	$(CC) -Wall doprogram.o  vbInterface.o -o doprogram
 
-doProgram.o: collaudo.c
-	$(CC) -c collaudo.c -o doProgram.o $(CFLAGS) -DSENDFW
+doprogram.o: collaudo.c
+	$(CC) -c collaudo.c -o doprogram.o $(CFLAGS) -DSENDFW
 
 collaudo: $(SRC)
 	$(CC) -Wall $(SRC) -o collaudo
@@ -23,5 +23,5 @@ vbInterface.o: vbInterface.c
 	$(CC) -c  vbInterface.c -o  vbInterface.o $(CFLAGS)
 
 clean: 
-	rm -f *.o collaudo doProgram
+	rm -f *.o collaudo doprogram
 

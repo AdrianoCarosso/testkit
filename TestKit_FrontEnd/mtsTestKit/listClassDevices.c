@@ -29,8 +29,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 
 		if (!flock(0)) {
 			ctype = type ;
-			strcpy(fileini,Gdata.lpath);
-			strcat(fileini,MYNAME".ini");
+			strcpy(fileini, MYNAME".ini");
 			fin = fopen(fileini, "r") ;         // configuration file
 			if (!fin){                          // really exists ?
 				printf("File '%s' non trovato\n", fileini) ;
@@ -153,8 +152,7 @@ strcpy(nextip,"next_");
 strcat(nextip,Gdata.hostname);
 		
 if (!flock(0)) {
-		strcpy(fileini,Gdata.lpath);
-		strcat(fileini,MYNAME".ini");
+		strcpy(fileini,MYNAME".ini");
 		fin = fopen(fileini, "r") ;         // configuration file
 		if (!fin){                          // really exists ?
 			printf("File '%s' non trovato\n", fileini) ;
