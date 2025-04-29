@@ -4,7 +4,6 @@
 //   T.E.S.T. srl
 //
 
-
 #include <gtk/gtk.h>
 #include <unistd.h>
 #include <string.h>
@@ -18,14 +17,13 @@
 // Open MtsTestKit.ini and get all [DISPOSITIVI]
 // Type: -1 retrieve old value, 0 =Program, 1 = Collaudo
 void CreateListClassDevices(int type) {
-//Item foo;
-GtkTreeIter iter;
-GtkTreeSelection *selection = gtk_tree_view_get_selection(Scrn.device_treeview) ;
-GtkTreeModel *fstore=gtk_tree_view_get_model(GTK_TREE_VIEW(Scrn.device_treeview));
+  GtkTreeIter iter;
+  GtkTreeSelection *selection = gtk_tree_view_get_selection(Scrn.device_treeview) ;
+  GtkTreeModel *fstore=gtk_tree_view_get_model(GTK_TREE_VIEW(Scrn.device_treeview));
 
-FILE *fin ;
-char cnfbuf[200],fileini[MAX_STRING],lastsel[MAX_STRING],lastsel2[MAX_STRING]; // , *p ;
-int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
+  FILE *fin ;
+  char cnfbuf[200],fileini[MAX_STRING],lastsel[MAX_STRING],lastsel2[MAX_STRING]; // , *p ;
+  int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 
 		if (!flock(0)) {
 			ctype = type ;
@@ -35,8 +33,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 				printf("File '%s' non trovato\n", fileini) ;
 				flock(1);
 				return ;
-			}
-
+			  }
 	
 			valid_data = 0 ;
 			cnt = 0 ;
@@ -51,9 +48,7 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 							if (!strncasecmp(cnfbuf,"[DISPOSITIVI]", 13 ) ) {
 								valid_data = 1 ;
 								if (type==-1) type = 1 ;
-							}else{
-								valid_data = 0 ;
-							}
+							  } else { valid_data = 0;	}
 						}
 					}else{
 						if (valid_data) {
@@ -83,17 +78,19 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 				  
 												if (type) { // Change default button
 													gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(Scrn.rbutCollaudo), TRUE) ;
-												}else{
+												  }
+                        else{
 													gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(Scrn.rbutProgram),TRUE) ;
-												}
+												  }
 												// Terzista
-												if (!strncasecmp(cnfbuf,"Terzista=",9)){
-													strcpy(Gdata.Terzista, &cnfbuf[9]) ;
-												}
-												// WorkSpace
-												//if (!strncasecmp(cnfbuf,"WorkSpace=",10)){
-												//strcpy(Gdata.WorkSpace, &cnfbuf[10]) ;
-												//}
+												if (!strncasecmp(cnfbuf,"Terzista=",9)){ strcpy(Gdata.Terzista, &cnfbuf[9]); }
+												// usb_dir
+												if (!strncasecmp(cnfbuf,"usb_dir=",8)) { strcpy(Gdata.usb_dir, &cnfbuf[8]); }
+												// tk_portname
+												if (!strncasecmp(cnfbuf,"tk_portname=",12)) { strcpy(Gdata.tk_portname, &cnfbuf[12]); }
+												// usb_dir
+												if (!strncasecmp(cnfbuf,"mts_portname=",13)) { strcpy(Gdata.mts_portname, &cnfbuf[13]); }
+
 											break ;
 											//case  0: // Program
 											//case  1: // Collaudo
@@ -144,12 +141,12 @@ int i, cnt , valid_data, ctype,lastsellen,lastsellen2;
 }
 
 int GetSelData(void) {
-FILE *fin ;
-char cnfbuf[200], *p, *pp, fileini[MAX_STRING],nextip[MAX_STRING];
-int i, valid_data, parn ;
+  FILE *fin ;
+  char cnfbuf[200], *p, *pp, fileini[MAX_STRING],nextip[MAX_STRING];
+  int i, valid_data, parn ;
 
-strcpy(nextip,"next_");
-strcat(nextip,Gdata.hostname);
+  strcpy(nextip,"next_");
+  strcat(nextip,Gdata.hostname);
 		
 if (!flock(0)) {
 		strcpy(fileini,MYNAME".ini");
@@ -274,7 +271,7 @@ const gchar *sLabel;
 }
 
 void class_taverniti( GtkWidget * button, gpointer  data ){
-const gchar *sLabel;
+  const gchar *sLabel;
 
 	sLabel = gtk_button_get_label(GTK_BUTTON(button));
 	printf ("changed class: <%s>\n", sLabel);
@@ -323,9 +320,7 @@ GtkTreeSelection *selection = gtk_tree_view_get_selection(Scrn.device_treeview) 
 	}
 	sprintf(free_msg , "%s%s", Gdata.deviceClass,  TEXT_BOX) ;
 	gtk_label_set_text( GTK_LABEL(Scrn.lbl_run), free_msg) ;
-#ifdef USE_MONITORING
 	printf ("closed selection: <%s>\n", Gdata.deviceClass);
-#endif // USE_MONITORING
 
 	gtk_widget_hide(Scrn.device_sel) ;
 	//gtk_window_set_skip_taskbar_hint(GTK_WINDOW(Scrn.main),FALSE) ;

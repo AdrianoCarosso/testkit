@@ -1,27 +1,32 @@
+TARGET1=collaudo
+TARGET2=doprogram
 
 CC = gcc -m64 -Wno-unused-function -Wno-format-overflow -Wno-deprecated-declarations
-
 CFLAGS =-Wall -DCBUG -lintl -g
 
 SRC = collaudo.o vbInterface.o
 
-all: doprogram collaudo
+all: $(TARGET1) $(TARGET2)
 
-doprogram: doprogram.o  vbInterface.o
-	$(CC) -Wall doprogram.o  vbInterface.o -o doprogram
+$(TARGET2): $(TARGET2).o  vbInterface.o
+	$(CC) -Wall $(TARGET2).o  vbInterface.o -o $(TARGET2)
+	@echo "cp $(TARGET2) ../app"
+	@cp $(TARGET2) ../app
 
-doprogram.o: collaudo.c
-	$(CC) -c collaudo.c -o doprogram.o $(CFLAGS) -DSENDFW
+$(TARGET2).o: $(TARGET1).c
+	$(CC) -c $(TARGET1).c -o $(TARGET2).o $(CFLAGS) -DSENDFW
 
-collaudo: $(SRC)
-	$(CC) -Wall $(SRC) -o collaudo
+$(TARGET1): $(SRC)
+	$(CC) -Wall $(SRC) -o $(TARGET1)
+	@echo "cp $(TARGET1) ../app"
+	@cp $(TARGET1) ../app
 
-collaudo.o: collaudo.c
-	$(CC) -c collaudo.c -o collaudo.o $(CFLAGS)
+$(TARGET1).o: $(TARGET1).c
+	$(CC) -c $(TARGET1).c -o $(TARGET1).o $(CFLAGS)
 
 vbInterface.o: vbInterface.c
 	$(CC) -c  vbInterface.c -o  vbInterface.o $(CFLAGS)
 
 clean: 
-	rm -f *.o collaudo doprogram
+	rm -f *.o $(TARGET1) $(TARGET2)
 

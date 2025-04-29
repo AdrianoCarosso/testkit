@@ -269,8 +269,7 @@ void populate_Scrn(void) {
 
 
 // Amperometer
-void upd_amp(void)
-{
+void upd_amp(void){
 GdkDrawable *w = Scrn.amperometer->window;
 GtkStyle *style = Scrn.amperometer->style;
 GtkAllocation *size = &Scrn.amperometer->allocation ;
@@ -493,31 +492,24 @@ char buf[10] ;
 
 }
 
-void init_Scrn(void)
-{
-int i ;
-//GtkStateType act_state ;
-//const GdkColor color = { 0, 45535, 45535, 45535 };
-
+void init_Scrn(void) {
+  int i ;
+  GtkTextBuffer *buffer;
+  GtkTextIter iter_m, iter_a;
 
 	sprintf(free_msg , "%s - Ver.%d.%02d.%02d", BANNER, VER, SUBVER, REVISION ) ;
 	gtk_label_set_text( GTK_LABEL(Scrn.lbl_header), free_msg) ;
 	
-	// For texts buffer
-	{
-		GtkTextBuffer *buffer;
-		GtkTextIter iter_m, iter_a;
-		
-		// boxtxt_mts
-		buffer = gtk_text_view_get_buffer ((GTK_TEXT_VIEW (Scrn.boxtxt_mts)));
-		gtk_text_buffer_get_end_iter (buffer, &iter_m);
-		gtk_text_buffer_create_mark (buffer, "end_m", &iter_m, FALSE);
+  // boxtxt_mts
+  buffer = gtk_text_view_get_buffer ((GTK_TEXT_VIEW (Scrn.boxtxt_mts)));
+  gtk_text_buffer_get_end_iter (buffer, &iter_m);
+  gtk_text_buffer_create_mark (buffer, "end_m", &iter_m, FALSE);
 
-		// boxtxt_answer
-		buffer = gtk_text_view_get_buffer ((GTK_TEXT_VIEW (Scrn.boxtxt_answer)));
-		gtk_text_buffer_get_end_iter (buffer, &iter_a);
-		gtk_text_buffer_create_mark (buffer, "end_a", &iter_a, FALSE);
-	}
+  // boxtxt_answer
+  buffer = gtk_text_view_get_buffer ((GTK_TEXT_VIEW (Scrn.boxtxt_answer)));
+  gtk_text_buffer_get_end_iter (buffer, &iter_a);
+  gtk_text_buffer_create_mark (buffer, "end_a", &iter_a, FALSE);
+
 //	act_state = gtk_widget_get_state(Scrn.lbl_header) ;
 //	printf("State is %d\n", act_state) ;
 	
@@ -563,17 +555,14 @@ void close_application( GtkWidget *widget, gpointer   data ) {
 	//if (Scrn.popup) PopupDestroy(Scrn.popup,NULL);
 	//flock(1);
 	Gdata.run_loop = MAIN_END ; 
-#ifdef USE_MONITORING
 	printf("request end\n") ;
-#endif // USE_MONITORING
 #else
 	gtk_main_quit ();
 #endif
 
 }
 
-void choice_click( GtkWidget *buttonitem, gpointer  data )
-{
+void choice_click( GtkWidget *buttonitem, gpointer  data ){
 	const gchar * label ;
 
 	label = gtk_button_get_label( GTK_BUTTON(buttonitem)) ;
@@ -811,7 +800,7 @@ void set_app_font (const char *fontname) {
 int main(int argc, char *argv[]) {
   MTS_current_PORT=0;
   int i;
-  char free_msg[2*MAX_STRING];
+  char free_msg[2*MAX_STRING], comm[3*MAX_STRING];
 	Gdata.GTK_START = 0 ; // GTK not START
 	Gdata.RISP255 = 0; // No Risp per EXSM 255
 	Gdata.okcansend = 0; // No Risp per canconf
@@ -852,7 +841,6 @@ int main(int argc, char *argv[]) {
       }
     }
 
-	char comm[3*MAX_STRING];
 	sprintf(comm,"./app/killMtsTestKit.sh %s",Gdata.upass);
 	printf("Kill All! (%s)",comm);
 	SLEEP(1000);
@@ -902,8 +890,6 @@ int main(int argc, char *argv[]) {
 	gtk_window_set_urgency_hint (GTK_WINDOW(Scrn.main),TRUE);
 	gtk_window_set_auto_startup_notification (TRUE);
 
-	
-
 	// Get object reference
 	populate_Scrn() ;
 
@@ -931,7 +917,7 @@ int main(int argc, char *argv[]) {
 	if (i){
 		if (i<2){
 			Popup("INIZIALIZZAZIONE", "Attendere Ripristino porte USB", GTK_MESSAGE_INFO,GTK_BUTTONS_NONE,0) ;
-			for(i=0;i<300;i++) gtk_main_iteration ();
+			for(i=0;i<300;i++) { gtk_main_iteration (); }
 			RefreshUSB();
 			if (Gdata.refresh_USB) PopupDestroy(Scrn.popup,NULL);
 			i=Low_Init(1);
@@ -945,7 +931,7 @@ int main(int argc, char *argv[]) {
 	}
 	if(!i){
 		gtk_label_set_text( GTK_LABEL(Scrn.lbl_extname), Gdata.portdev[PORT_TK]) ;
-                gtk_label_set_text( GTK_LABEL(Scrn.lbl_protname), Gdata.portdev[MTS_current_PORT]) ;
+    gtk_label_set_text( GTK_LABEL(Scrn.lbl_protname), Gdata.portdev[MTS_current_PORT]) ;
 	}
 #endif
 	printf("init ok Gdata.run_loop=(%d),Gdata.menu_choice=(%d)\n",Gdata.run_loop,Gdata.menu_choice) ;
@@ -990,8 +976,7 @@ int main(int argc, char *argv[]) {
 		 
 		// If choosed a menu
 		if (Gdata.menu_choice){
-			printf ("choosed %d\n", Gdata.menu_choice);
-			
+			printf ("choosed %d\n", Gdata.menu_choice);			
 			switch(Gdata.menu_choice){
 				case 1:
 				//sprintf(free_msg, "Gdata.menu_choiceScelto menu %d", Gdata.menu_choice) ;
@@ -1125,7 +1110,6 @@ int main(int argc, char *argv[]) {
 
 void ProgressBar(int type, int value){
   struct timeb bar_newtime ;
-
 
 	switch(type){
 		case 0 :		// set value
@@ -1269,7 +1253,7 @@ char * getinival(char *stringd,char *bloc,char *par) {
 			printf("\nFile '%s' non trovato\n", fileini) ;
 			flock(1);
 			return(p);
-		}
+		  }
 		
 		valid_data = 0 ;
 

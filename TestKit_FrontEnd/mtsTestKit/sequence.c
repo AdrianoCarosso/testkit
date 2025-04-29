@@ -835,8 +835,7 @@ char *p = NULL ;
 
 // *********************************************************************
 
-int  doGetINIKeyVal(int argc, char *argv[])//_GT_//OK
-{
+int  doGetINIKeyVal(int argc, char *argv[]) {
 	if (argc<2) return(1);
 	
 	char nextip[MAX_STRING];
@@ -888,9 +887,9 @@ int  doGetWorkSpace(int argc, char *argv[]) {
 // *********************************************************************
 
 int  doInputBox(int argc, char *argv[]){
-int nkey ;
-char lcap[MIN_STRING], lkey1[MIN_STRING], lkey2[MIN_STRING] ;
-char ltitle[DEF_STRING] ;
+  int nkey ;
+  char lcap[MIN_STRING], lkey1[MIN_STRING], lkey2[MIN_STRING] ;
+  char ltitle[DEF_STRING] ;
 
 	if (argc<6) return(1);
 	
@@ -912,8 +911,7 @@ char ltitle[DEF_STRING] ;
 
 // *********************************************************************
 
-int  doinputExtRefresh(int argc, char *argv[])
-{
+int  doinputExtRefresh(int argc, char *argv[]) {
 	ExtData.digitalsUpdated = 0 ;
 	Gsequence.TimeoutAnswer = ActCsec() + TIMEOUT_TK ;
 	Gdata.lastSlaveCommandId = WSCMD_T_GETDIGITAL ;
@@ -922,8 +920,7 @@ int  doinputExtRefresh(int argc, char *argv[])
 
 // *********************************************************************
 
-int  doinputExtA(int argc, char *argv[])
-{
+int  doinputExtA(int argc, char *argv[]){
 	sprintf(NextAnswer, "%lu" , ExtData.portA ) ;
 	return(0) ;
 }
@@ -960,13 +957,13 @@ int  doinputExtE(int argc, char *argv[])
 
 // *********************************************************************
 
-int  doMsgBox(int argc, char *argv[])
-{
-int nkey ;
-char lcap[MAX_STRING], lkey1[MIN_STRING], lkey2[MIN_STRING] ;
-char ltitle[DEF_STRING] ;
+int  doMsgBox(int argc, char *argv[]){
+  int nkey ;
+  char lcap[MAX_STRING], lkey1[MIN_STRING], lkey2[MIN_STRING] ;
+  char ltitle[DEF_STRING] ;
+
 	printf("\nMsgBox:argv=<%s %s %s %s %s>\n",argv[1],argv[2],argv[3],argv[4],argv[5]);
-    SLEEP(10);
+  SLEEP(10);
 
 	if (argc<6) return(1) ;
 	
@@ -992,8 +989,7 @@ char ltitle[DEF_STRING] ;
 
 // *********************************************************************
 
-int  doMsgFile(int argc, char *argv[])
-{
+int  doMsgFile(int argc, char *argv[]){
 FILE *msg_file ; 
 struct timeval  tv;
 struct timezone tz;
@@ -1070,8 +1066,7 @@ int  doM_ANALOG(int argc, char *argv[])
 
 
 
-int  doM_SENDCANCONF(int argc, char *argv[])//_GT_//OK_CAN
-{
+int  doM_SENDCANCONF(int argc, char *argv[]) {
 	int type;
 	int err;
 	

@@ -1,0 +1,39 @@
+------ Collaudo eseguito con impostazioni di /home/burla/Documenti/MtsTestKit/dati_TestKit/3055/Script/3055_Setting.txt ----
+Terzista:<burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaInV=0>---> Impostato: <QtaInV>=<0>
+<QtaOD=8>---> Impostato: <QtaOD>=<8>
+<QtaCAN=2>---> Impostato: <QtaCAN>=<2>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<EnRS485=no>---> Impostato: <EnRS485>=<NO>
+<EnHTL=SI>---> Impostato: <EnHTL>=<SI>
+<QtaCnt=2>---> Impostato: <QtaCnt>=<2>
+<CntToller=600>---> Impostato: <CntToller>=<600>
+<EnEmeLink=NO>---> Impostato: <EnEmeLink>=<NO>
+<EnChBat=SI>---> Impostato: <EnChBat>=<SI>
+<EnVibro=SI>---> Impostato: <EnVibro>=<SI>
+<EnDigInDn=SI>---> Impostato: <EnDigInDn>=<SI>
+<EnDigInUp=SI>---> Impostato: <EnDigInUp>=<SI>
+<EnDigOut=SI>---> Impostato: <EnDigOut>=<SI>
+<EnFonia=NO>---> Impostato: <EnFonia>=<NO>
+<EnAnlIn=SI>---> Impostato: <EnAnlIn>=<SI>
+<EnVext=NO>---> Impostato: <EnVext>=<NO>
+<EnVbat=SI>---> Impostato: <EnVbat>=<SI>
+<EnCnt=NO>---> Impostato: <EnCnt>=<NO>
+<EnGPS=SI>---> Impostato: <EnGPS>=<SI>
+<EnGSM=SI>---> Impostato: <EnGSM>=<SI>
+<EnCAN=SI>---> Impostato: <EnCAN>=<SI>
+<EnRTC=NO>---> Impostato: <EnRTC>=<NO>
+<EnAccel=NO>---> Impostato: <EnAccel>=<NO>
+<EnCOMAUX=NO>---> Impostato: <EnCOMAUX>=<NO>
+<EnSMset=SI>---> Impostato: <EnSMset>=<SI>
+<EnTamper=NO>---> Impostato: <EnTamper>=<NO>
+<EnCANConf=SI>---> Impostato: <EnCANConf>=<SI>
+---->   TestKit: 2.01;901400107   <----
+codMB inserito:<M26400245>
+----------------  Inizio Collaudo  ------------ Script 3.76 - 26/05/23 --
+07/03/2025 11:09:46(.73) | ATTENZIONE: l'unità collegata NON è un 3055, ma è: 54 - -1 (Ver. 4.12)

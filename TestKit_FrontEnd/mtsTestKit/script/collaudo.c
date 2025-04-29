@@ -201,8 +201,8 @@ Rel  3.77 - 03/03/25  Aggiunti 2054 e 3055
 //Delay in decimi di secondo 
 
 #define VER 3
-#define SUBVER 77
-#define VERDATE "03/03/25"
+#define SUBVER 78
+#define VERDATE "01/05/25"
 
 // Funzioni di visualizzazione per "Collaudo.c"
 // MsgWindow -> (definita in vbInterface.c)
@@ -345,6 +345,7 @@ void COLOR_STEP(int _N, int _C);
 //#define PATH_FW "..\\\\..\\\\"		// Percorso da path del programma al FW
 //--------------------------------------------------------------------------------------------------------------
 unsigned int TKTYPE; // Tipo di TestKit se 0 vecchio se 1 nuovo con SN maggiore di 901400100
+//unsigned int bIsNewTestKit; // Tipo di TestKit se 0 vecchio, se 1 nuovo con SN maggiore di 901400100
 char PathTK[NRMSIZE] ; 			// Path per gli app del TestKit (Wspace[]+app)
 uint32_t leveldebug ;		// Added from 2.13 (25/05/23) same name as Gdata into MTScu
 
@@ -790,8 +791,7 @@ unsigned char* strip( unsigned char* str, const size_t n, int ext)
  
   memset(buffer, 0, MAXBUF) ;		// FR 3.75 - 17/05/23: added
  
-  while (i < max )
-    {
+  while (i < max ) {
       if ( (ext && ascii_ext(str[i]) ) ||  (ascii(str[i]) ) )    // check
 	{
 	  buffer[j++] = str[i]; // assign
@@ -816,8 +816,7 @@ unsigned char* strip( unsigned char* str, const size_t n, int ext)
 
 enum {ASCII=0, EXT=1}; /* enumeration makes easier reading */
 
-int main(void)
-{
+int main(void) {
 //	==================================================================================
 // 								Versione dello Script di collaudo
 //	==================================================================================
@@ -866,7 +865,8 @@ int main(void)
 	if (TKTYPE==0){
 		//     uscite: 	a23b09b01b03a30a31b08b05d05b29d07d06c00c01c02c03d00d01d02d03b02c07   
 		T_SetMapDigOut("023109101103030031108105305129307306200201202203300301302303102207");
-	}else{
+	  }
+  else{
 		//     uscite: 	a23b09b01b03b06b07b08b05d00d01d02d03d04d05d06d07e00e01e02e03e04e05e06e07e08e09e10e11e12e13e14e15b02b04b13a12a22
 		T_SetMapDigOut("023109101103106107108105300301302303304305306307400401402403404405406407408409410411412413414415102104113012022");  
 		//   PUPDFL:	  L 00L 01L 02L 03L 04L 05L 06L 07L 08L 09L 10L 11L 12L 13L 14L 15

@@ -2,7 +2,7 @@ TARGET=mtsTestKit
 
 CC = gcc 
 CFLAGS = -std=gnu99 -m64 -DMYNAME=\"$(TARGET)\" -g -Wno-unused-function -Wno-deprecated-declarations -Wall -I./ 
-SRC = forlinux.c $(TARGET).c listClassDevices.c sequence.c cmdpslave.c mts_tk_man.c
+SRC = forlinux.c $(TARGET).c listClassDevices.c sequence.c cmdpslave.c mtsTestKitman.c
 # library path and names    
 LIBS=-L/usr/lib/x86_64-linux-gnu -ldl -lm
 
@@ -16,6 +16,7 @@ video_def.h: mtsTestKit.glade
 
 glade2include: glade2include.c
 	$(CC) glade2include.c -o glade2include $(LIBS)
+
 clean: 
 	rm -f *.o $(TARGET)
 

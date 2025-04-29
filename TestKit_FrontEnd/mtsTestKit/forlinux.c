@@ -40,11 +40,25 @@
 
 #include "mtsTestKit.h"
 #define  SEQUENCE_DEBUG
-
-
 #include "mtsGTK.h"
 
 #include "protocol.h"
+
+#define FORNINUX_DBG_MIN
+#ifdef FORNINUX_DBG_MIN
+  #define DBG_MIN(fmt...) do {printf("%s: ", __FUNCTION__); printf(fmt); printf("\n"); } while(0)
+#else
+  #define DBG_MIN(fmt...) do { } while(0)
+#endif
+//#define FORNINUX_DBG_MAX
+#ifdef FORNINUX_DBG_MAX
+  #define DBG_MAX(fmt...) do {printf("%s: ", __FUNCTION__); printf(fmt); printf("\n"); } while(0)
+#else
+  #define DBG_MAX(fmt...) do { } while(0)
+#endif
+
+
+
 #define MAX_UDPTX       1400    // Max UDP packet len in TX
 
 struct _COMSDATA{
@@ -61,8 +75,9 @@ char* rem_duble_slash(char *stringo,char *stringd) ;
 extern char *strcasestr(const char *haystack, const char *needle);
 
 // from sequence
+#ifdef LOW_INIT_NEW
 int Low_Init(int repeat) {
-	int i, ret_val ;
+	int ret_val;
 	DIR *ldir ; 
 	struct dirent  *afile ;
 	char msg[100] ;
@@ -72,40 +87,32 @@ int Low_Init(int repeat) {
 
 	
 	// Check if TestKit and MTS serial are present
-	ldir = opendir(USB_DIR);
+	ldir = opendir(Gdata.usb_dir);
 	
 	if (ldir!=NULL){
 		while ( (afile=readdir(ldir))!=NULL ) {
 		  if (afile->d_name[0]=='.') { continue; }
 			printf("\nafile->d_name %s\n", afile->d_name) ;
-			// search for TK_PORT
-			if (!strncmp( afile->d_name, TK_PORTNAME, strlen(TK_PORTNAME)) ){
-				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-				printf("TK port 1 found (%s)\n", Gdata.portname[PORT_TK]) ;
-			}
-      #if 0
-			if (strcasestr( afile->d_name, TK_PORTNAME2) != NULL ){
-				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
-				printf("TK port 2 found (%s)\n", Gdata.portname[PORT_TK]) ;
-			}
-			#endif
 
-			// search for MTS_PORT old
-			if (!strncmp( afile->d_name, MTS_PORTNAME, strlen(MTS_PORTNAME)) ){
-				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
-				printf("\nSearch old MTS port (%s)\n", &(afile->d_name[i])) ;
-				if (i>0){
-					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
-						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
-						Gdata.TKTYPE=0;
-						printf("\nMTS port found(%s)\n", Gdata.portname[PORT_MTS]) ;
-						printf("\nTK TYPE found(%d)\n", Gdata.TKTYPE) ;
-					}
-				}
-			} else { printf("no MTS_PORTPREFIX %s\n", MTS_PORTNAME); }
+
+			// search for TK_PORT
+			if (!strncmp( afile->d_name, Gdata.tk_portname, strlen(Gdata.tk_portname)) ){
+				strcpy(Gdata.portname[PORT_TK], afile->d_name);
+				printf("TK port 1 found (%s)\n", Gdata.portname[PORT_TK]) ;
+			  }
+      else {
+        // search for MTS_PORT
+        if (!strncmp( afile->d_name, Gdata.mts_portname, strlen(Gdata.mts_portname)) ){
+          strcpy(Gdata.portname[PORT_MTS], afile->d_name);
+          Gdata.TKTYPE=1;
+          printf("MTS port found (%s), TK TYPE found (%d)\n", Gdata.portname[PORT_MTS], Gdata.TKTYPE) ;
+          MTS_current_PORT=PORT_MTS;
+          } //else { printf("no MTS_PORTPREFIX %s\n", Gdata.mts_portname); }
+        }
 
       #if 0
 			// search for MTS_PORT new
+	    int i;
 			if (!strncmp( afile->d_name, MTS_PORTPREFIXNEW, strlen(MTS_PORTPREFIXNEW)) ){
 				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
 				printf("\nSearch new MTS port (%s)\n", &(afile->d_name[i])) ;
@@ -134,17 +141,17 @@ int Low_Init(int repeat) {
 			} else { printf("no MTS_PORTPREFIXNEW2 %s\n", MTS_PORTPREFIXNEW2); }
       #endif
 
-			if (!strncmp( afile->d_name, MTS_USB_PORTPREFIX, strlen(MTS_USB_PORTPREFIX)) ){
+			if (!strncmp( afile->d_name, Gdata.usb_dir, strlen(Gdata.usb_dir)) ){
 				strcpy(Gdata.portname[PORT_MTSUSB], afile->d_name) ;
-				printf("\nMTSUSB port (%s)\n", Gdata.portname[PORT_MTSUSB]) ;
-				printf("\nTK TYPE (%d)\n", Gdata.TKTYPE) ;
-			}	
+				printf("MTSUSB port (%s), TK TYPE (%d)\n", Gdata.portname[PORT_MTSUSB], Gdata.TKTYPE) ;
+			  }	
 
-		}   //end while
+		  }   //end while
 		closedir(ldir) ;
-	}else{
-		printf("\nError opening %s\n", USB_DIR) ;
-	}
+	  }
+  else{
+		printf("\nError opening %s\n", Gdata.usb_dir) ;
+	  }
 
 	free_msg[0] = '\0' ;
 	ret_val = 0  ;
@@ -162,6 +169,164 @@ int Low_Init(int repeat) {
 	
 	if (ret_val){		// ERROR
 		printf("\nErrore su com ret_val<'%d'> e repeat<'%d'>\n", ret_val,repeat);	
+		if(repeat){
+			Gdata.menu_choice = 1 ;
+			Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
+			while (Gdata.menu_choice){
+				while (gtk_events_pending ()){
+					gtk_main_iteration ();
+				}
+			}
+			//Gdata.run_loop = MAIN_END ; // _FR_
+		}
+		return( ret_val+repeat );
+	}
+	
+	// OPEN PORTs
+	ret_val= com_open(PORT_TK, B115200, 0 ) ;
+	if (ret_val){		// ERROR
+		printf("\nError opening TK port (%d,%s)\n", ret_val, strerror(ret_val)) ;
+		Gdata.menu_choice = 1 ;
+		sprintf(free_msg, ERRPORT_TK , ret_val ) ;
+		Popup("INIZIALIZZAZIONE",free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
+		while (Gdata.menu_choice){
+			while (gtk_events_pending ()){
+				gtk_main_iteration ();
+			}
+		}
+		//Gdata.run_loop = MAIN_END ;
+		return( ret_val );
+	}
+	// Send update rate data
+	strcpy(free_msg, TK_UPDATE) ;
+	//i = strlen(free_msg) ;
+	com_write(PORT_TK, -1, free_msg) ; 
+	
+        ret_val = com_open(MTS_current_PORT, B9600, 0 ) ;
+	if (ret_val){		// ERROR
+		printf("\nError opening MTS port (%d)\n", ret_val) ;
+		Gdata.menu_choice = 1 ;
+		sprintf(free_msg, ERRPORT_MTS , ret_val ) ;
+		Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
+		while (Gdata.menu_choice){
+			while (gtk_events_pending ()) { gtk_main_iteration (); }
+		  }
+		//Gdata.run_loop = MAIN_END ;
+		return( ret_val );
+	}
+	if (strlen(Gdata.portname[PORT_MTSUSB])){
+    ret_val = com_open(PORT_MTSUSB, B9600, 0 ) ;
+    if (ret_val){		// ERROR
+      printf("\nError opening MTS USB port (%d)\n", ret_val) ;
+      Gdata.menu_choice = 1 ;
+      sprintf(free_msg, ERRPORT_MTS , ret_val ) ;
+      Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
+      while (Gdata.menu_choice){
+          while (gtk_events_pending ()){
+              gtk_main_iteration ();
+          }
+        }
+      //Gdata.run_loop = MAIN_END ;
+      return( ret_val );
+      }
+    }
+	
+	
+    return( 0 );
+}
+
+#else
+
+int Low_Init(int repeat) {
+int i, ret_val ;
+DIR *ldir ; 
+struct dirent  *afile ;
+char msg[100] ;
+
+	// Get current directory path
+	//getcwd(Gdata.lpath, (MAX_STRING-1));
+
+	
+	// Check if TestKit and MTS serial are present
+	ldir = opendir(USB_DIR);
+	
+	if (ldir!=NULL){
+		while (( afile=readdir(ldir))!=NULL){
+			printf("\nNew file %s\n", afile->d_name) ;
+			// search for TK_PORT
+			if (!strncmp( afile->d_name, TK_PORTNAME, strlen(TK_PORTNAME)) ){
+				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
+				printf("\nTK port found(%s)\n", Gdata.portname[PORT_TK]) ;
+			}
+			if (strcasestr( afile->d_name, TK_PORTNAME2) != NULL ){
+				strcpy(Gdata.portname[PORT_TK], afile->d_name) ;
+				printf("\nFounded TK port (%s)\n", Gdata.portname[PORT_TK]) ;
+			}
+			
+			// search for MTS_PORT old
+			if (!strncmp( afile->d_name, MTS_PORTPREFIX, strlen(MTS_PORTPREFIX)) ){
+				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
+				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				if (i>0){
+					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
+						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
+						Gdata.TKTYPE=0;
+						printf("\nMTS port found(%s)\n", Gdata.portname[PORT_MTS]) ;
+						printf("\nTK TYPE found(%d)\n", Gdata.TKTYPE) ;
+					}
+				}
+			}
+			// search for MTS_PORT new
+			if (!strncmp( afile->d_name, MTS_PORTPREFIXNEW, strlen(MTS_PORTPREFIXNEW)) ){
+				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
+				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				if (i>0){
+					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
+						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
+						Gdata.TKTYPE=1;
+						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
+						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+					}
+				}
+			}
+			if (strcasestr( afile->d_name, MTS_PORTPREFIXNEW2) != NULL ){
+				i = strlen(afile->d_name) - strlen(MTS_PORTSUFFIX) ;
+				//printf("\nSearch MTS port (%s)\n", &(afile->d_name[i])) ;
+				if (i>0){
+					if (!strncmp( &(afile->d_name[i]), MTS_PORTSUFFIX, strlen(MTS_PORTSUFFIX)) ){
+						strcpy(Gdata.portname[PORT_MTS], afile->d_name) ;
+						Gdata.TKTYPE=1;
+						printf("\nFounded MTS port (%s)\n", Gdata.portname[PORT_MTS]) ;
+                                                MTS_current_PORT=PORT_MTS;
+						printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+					}
+				}
+			}
+			if (!strncmp( afile->d_name, MTS_USB_PORTPREFIX, strlen(MTS_USB_PORTPREFIX)) ){
+				strcpy(Gdata.portname[PORT_MTSUSB], afile->d_name) ;
+				printf("\nFounded MTSUSB port (%s)\n", Gdata.portname[PORT_MTSUSB]) ;
+				printf("\nFounded TK TYPE (%d)\n", Gdata.TKTYPE) ;
+			}	
+		}
+		closedir(ldir) ;
+	}else{
+		printf("\nError opening %s\n", USB_DIR) ;
+	}
+
+	free_msg[0] = '\0' ;
+	ret_val = 0  ;
+	if (!strlen(Gdata.portname[PORT_TK])){
+		ret_val = 1 ;
+		strcpy(free_msg, BADPORT_TK ) ; // "Porta TestKit non trovata\n"
+	}
+	if (!strlen(Gdata.portname[PORT_MTS])){
+		ret_val = 1 ;
+		strcpy(msg, BADPORT_MTS) ;			// "Porta MTS non trovata\n"
+		strcat(free_msg, msg) ;
+	}
+	
+	if (ret_val){		// ERROR
+		//printf("\nErrore su com ret_val<'%d'> e repeat<'%d'>\n", ret_val,repeat);	
 		if(repeat){
 			Gdata.menu_choice = 1 ;
 			Popup("INIZIALIZZAZIONE", free_msg, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,0) ;
@@ -230,12 +395,14 @@ int Low_Init(int repeat) {
     return( 0 );
 }
 
+#endif
+
 // *********************************************************************
 // Function for COMs
 // *********************************************************************
 
 int baud_select(int bval) {
-int retb ;
+  int retb ;
 	
 	switch(bval){
 		case 1200 :
@@ -267,9 +434,8 @@ int retb ;
 }
 
 // Change baud rate
-int com_baud(int port, int brate) 
-{
-struct termios * pnewtio =  &(D_ports[port].newtio) ;
+int com_baud(int port, int brate) {
+  struct termios * pnewtio =  &(D_ports[port].newtio) ;
 
 	//cfsetspeed(pnewtio, brate) ; 
 	pnewtio->c_cflag = brate | CS8 | CLOCAL | CREAD ;
@@ -280,23 +446,24 @@ struct termios * pnewtio =  &(D_ports[port].newtio) ;
 	return(0) ;
 }
 
-int com_open(int port, int brate, int flowcontrol)
-{
-struct termios * pnewtio =  &(D_ports[port].newtio) ;
-struct termios * poldtio  = &(D_ports[port].oldtio) ;
-char lbuf[2*MAX_STRING] ;
+int com_open(int port, int brate, int flowcontrol) {
+  int i ;
+  char *p, msg[100] ;
+    
+  struct termios * pnewtio =  &(D_ports[port].newtio) ;
+  struct termios * poldtio  = &(D_ports[port].oldtio) ;
+  char lbuf[2*MAX_STRING] ;
 
-struct sockaddr_in my_name ;
-struct ifreq freq ;
+  struct sockaddr_in my_name ;
+  struct ifreq freq ;
 
 // Open device for reading and writing and not as controlling tty
 // because we don't want to get killed if linenoise sends CTRL-C.
 	
-	if (port==PORT_UDP){
-		
+	if (port==PORT_UDP){		
 		D_ports[port].fd = socket(AF_INET, SOCK_DGRAM, 0) ;
 		if (D_ports[port].fd < 0) {
-			printf("\nSocket Port NOT opened\n") ;
+			DBG_MIN("Socket Port NOT opened\n") ;
 			return(errno) ;                // some error
 		}
 	
@@ -328,34 +495,29 @@ struct ifreq freq ;
 		}
 		fcntl(D_ports[port].fd, F_SETFL, O_NONBLOCK) ;
 		
-	}else{ // Com port
+	}
+else  { // Com port
 #ifdef SW_MTSCU
 		sprintf(lbuf, "%s%s", DEV_PREFIX,  Gdata.portname ) ;
 #endif
-		sprintf(lbuf, "%s/%s", USB_DIR, Gdata.portname[port] ) ;
-		{
-			int i ;
-			char *p, msg[100] ;
-			
-			i = readlink(lbuf, msg, 99 ) ;
-			msg[i]='\0' ;
-			p = strrchr(msg, '/') ;
-			if (p) {
-				sprintf(Gdata.portdev[port], "/dev%s", p) ;
-			}else{
-				sprintf(Gdata.portdev[port], "/dev%s", msg) ;
-			}
-		}
+		sprintf(lbuf, "%s/%s", Gdata.usb_dir, Gdata.portname[port] ) ;
+    i = readlink(lbuf, msg, 99 ) ;
+    msg[i]='\0' ;
+    p = strrchr(msg, '/') ;
+    if (p) {
+      sprintf(Gdata.portdev[port], "/dev%s", p) ;
+    }else{
+      sprintf(Gdata.portdev[port], "/dev%s", msg) ;
+    }
 		
 		D_ports[port].fd = open(lbuf, O_RDWR | O_NOCTTY ) ;
 		if (D_ports[port].fd < 0) {
-			printf("\nPort %s NOT opened\n", lbuf) ;
+			DBG_MIN("Port %s NOT opened\n", lbuf) ;
 			return(errno) ;                // some error
 		}
-		printf("\nPort %s opened (%d)\n", lbuf, port) ;
+		DBG_MAX("Port %s opened (%d)", lbuf, port) ;
 
 		tcgetattr(D_ports[port].fd, poldtio ) ;        // save current port settings
-
 		bzero(pnewtio, sizeof(struct termios)) ;
 
 // BAUDRATE: Set bps rate. You could also use cfsetispeed and cfsetospeed.
@@ -429,8 +591,7 @@ struct ifreq freq ;
 
 // *********************************************************************
 
-void com_close(int port) 
-{
+void com_close(int port) {
 
 	if (D_ports[port].isopen){
 		if (port!=PORT_UDP){
@@ -446,13 +607,12 @@ void com_close(int port)
 	Gdata.portopened = 0 ;		// Only for RS232 port
 #endif
 	Gdata.portopened[port] = 0 ;
-	printf("\nComPortclosed \n") ;
+	DBG_MAX("ComPortclosed") ;
 }
 
 // *********************************************************************
 
-void com_write(int port, int len, char * msg)
-{
+void com_write(int port, int len, char * msg) {
 int sl ;
 
 	if (len==-1) sl=strlen(msg) ;
@@ -469,8 +629,7 @@ int sl ;
 
 // *********************************************************************
 
-int  com_read(int port, int maxlen, char * buf)
-{
+int  com_read(int port, int maxlen, char * buf) {
 //char c ;
 int i, bytes,  nrx, totrx ;
 
@@ -481,7 +640,7 @@ int i, bytes,  nrx, totrx ;
 	if ((bytes) && (i>-1)){
 		//do{
 			nrx = ((totrx+bytes<maxlen)? bytes:(maxlen-totrx)) ;
-		printf ("\ncom_read: COM%d recv %d(%d) bytes\n", port, bytes,nrx) ;
+		  DBG_MAX("\ncom_read: COM%d recv %d(%d) bytes\n", port, bytes,nrx) ;
 			if (port==PORT_UDP){
 				totrx = GetGprsData(nrx, buf) ;
 				return(totrx) ;
@@ -499,24 +658,19 @@ int i, bytes,  nrx, totrx ;
 }
 
 // *********************************************************************
-
-int  com_inlen(int port) 
-{
-int bytes ;
+int  com_inlen(int port) {
+  int bytes ;
 
 	if (ioctl(D_ports[port].fd , FIONREAD, &bytes)>-1){
-		if (bytes) printf ("\ncom_inlen: COM%d recv %d bytes\n", port, bytes) ;
+		if (bytes) { DBG_MAX("COM%d recv %d bytes\n", port, bytes); }
 		return(bytes) ;
-	}
+	  }
 	return(0) ;
 }
 
-
 // *********************************************************************
-
-int  com_read_char(int port, char * buf)
-{
-int i, bytes ;
+int  com_read_char(int port, char * buf) {
+  int i, bytes ;
 
 	// check if other char from input buffer
 	i = ioctl(D_ports[port].fd , FIONREAD, &bytes) ;
@@ -796,17 +950,17 @@ printf("\nSending UDP (%s,%d)\n",Gdata.mts_ip, Gdata.mts_socket) ;
 
 // Check if sequence is running
 int Check_sequence(void) {
-int status, retcode ;
+  int status, retcode ;
 
 	retcode = waitpid(Gsequence.pid, &status, WNOHANG) ;
 	if (retcode == Gsequence.pid) {
 		if (WIFEXITED(status))
 			if( ( WIFEXITED(status) == 0 ) )
-				printf("\nSequence terminated OK\n") ;
+				DBG_MAX("Sequence terminated OK") ;
 			else
-				printf("\nSEQUENCE terminated 0x%X\n", WEXITSTATUS(status)) ;
+				DBG_MIN("SEQUENCE terminated 0x%X", WEXITSTATUS(status)) ;
 		else
-			printf("\nSEQUENCE terminated (abort1)\n") ;
+			DBG_MIN("SEQUENCE terminated (abort1)") ;
 		Gsequence.pid = -1 ;
 		kill(Gsequence.thr_p, SIGTERM) ;
 	}else
@@ -822,13 +976,13 @@ int status, retcode ;
 
 
 static void * ThreadProc(void * arg) {
-//char c ;
-int i ;
-//int ll, i ;
-char cnfbuf[MAX_STRING] ;
-unsigned long dwRead ;
+  //char c ;
+  int i ;
+  //int ll, i ;
+  char cnfbuf[MAX_STRING] ;
+  unsigned long dwRead ;
 
-//	ll = 0 ;
+  //	ll = 0 ;
 	while (Gdata.sequence_status != SEQ_ENDED) {
 		//printf("\nWait Command\n") ;
 		i = read(Gsequence.cgi_output[0], cnfbuf, MAX_STRING) ;
@@ -838,7 +992,7 @@ unsigned long dwRead ;
  			Gdata.sequence_status = SEQ_ENDED ;
 //			fclose(list_cmd) ;
 //			printf("\nCLOSED list_cmd\n") ;
-			printf("\nSEQUENCE terminated (abort2)\n") ;
+			printf("\nSEQUENCE terminated (abort2)\n");
 
 			pthread_exit(NULL) ;        // terminate thread
 			return(NULL) ;
@@ -875,10 +1029,10 @@ unsigned long dwRead ;
 // 			}
 		}
 		g_usleep(100000) ;
-		printf("\nSsat %d Command\n", i) ;
+		DBG_MAX("Ssat %d Command", i) ;
 		
 	}
-	printf("\nSEQUENCE thread end\n") ;
+	DBG_MIN("SEQUENCE thread end") ;
 	pthread_exit(NULL) ;        // terminate thread
 	return(NULL) ;
 }
@@ -890,20 +1044,20 @@ int run_sequence(void) {
 	
 	retcode = strlen(Gdata.ProgramFile) ; 
 	sprintf(name, "./app/%s", Gdata.ProgramFile ) ;		
-	printf("\nStarting %s\n", name );
+	DBG_MIN("Starting %s", name );
 
 	if (pipe(Gsequence.cgi_output) < 0) {
-		printf("\nStdout pipe creation failed (%d)\n", errno );
+		DBG_MIN("Stdout pipe creation failed (%d)", errno );
 		return 1;
 	}
 	
 	if (pipe(Gsequence.cgi_input) < 0) {
-		printf("\nStdin pipe creation failed (%d)\n", errno );
+		DBG_MIN("Stdin pipe creation failed (%d)", errno );
 		return 1;
 	  }
 
 	if ( (Gsequence.pid = fork()) < 0 ) {
-		printf("\nSequence start failed (%d)\n", errno );
+		DBG_MIN("Sequence start failed (%d)", errno );
 		return 1;
 	  }
 	if (Gsequence.pid == 0) { // child: CGI script
@@ -915,7 +1069,7 @@ int run_sequence(void) {
 #else
 		if (execl(name, name, NULL)){ // Starting sequence
 #endif
-			printf( "AA Sequence exe failed (%d)\n", errno );
+			DBG_MIN("AA Sequence exe failed (%d)", errno );
 		}
 		return(0);
 		
@@ -925,7 +1079,7 @@ int run_sequence(void) {
 	}
 
 
-	printf( "Sequence %s  started\n", name) ;
+	DBG_MIN("Sequence %s started", name) ;
 	// Is running
 	Gdata.sequence_status = SEQ_WAITCOMMAND ;
 
@@ -937,7 +1091,7 @@ int run_sequence(void) {
 	// create sequence IN/OUT thread
 	retcode = pthread_create(&Gsequence.thr_p, NULL, ThreadProc, NULL) ;
 	if (retcode != 0) {
-		printf("\nUTIL: thread error (%d)\n", retcode) ;
+		DBG_MIN("UTIL: thread error (%d)", retcode) ;
 		return(1) ;
 	}
 
@@ -948,10 +1102,10 @@ int run_sequence(void) {
 void Stop_sequence(void) {
 int status ;
 
-	printf("\nClosing sequence\n") ;
+	DBG_MIN("Closing sequence") ;
 	if  (Gsequence.pid != (pid_t)(0)) {        // close needed
 		if (kill(Gsequence.pid, SIGTERM)) {      // or SIGINT
-			printf("\nKill error\n") ;
+			DBG_MIN("Kill error") ;
 		} else {
 			SLEEP(1000) ;
 		}
@@ -960,7 +1114,7 @@ int status ;
 	close(Gsequence.cgi_input[1]) ;
 	waitpid(Gsequence.pid, &status, 0) ;
 
-    printf("\nSequence terminated OK\n") ;
+  DBG_MIN("Sequence terminated OK") ;
 }
 
 void Send_sequence_answer(char *answer) {
@@ -989,12 +1143,12 @@ int retcode;
 	
 	rem_duble_slash(name,name);
 	
-	printf("\nStarting %s\n", name );
+	DBG_MIN("Starting %s", name );
 
 	retcode = 0 ;
 	if (system(name)==-1){
 		retcode = errno ;
-    printf( "AA Sequence exe failed (%d)\n", errno );
+    DBG_MIN("AA Sequence exe failed (%d)", errno );
   	}
 	return(retcode);
 }

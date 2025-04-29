@@ -29,12 +29,24 @@
 #define BANNER    "MTS TestKit"
 #define TEXT_BOX  " - Diagnostic box"
 
-#define USB_DIR	      "/dev/serial/by-id"
+#define LOW_INIT_NEW
+#ifdef LOW_INIT_NEW
 #define TK_PORTNAME 	"usb-03eb_6124-if00"
-#define MTS_PORTNAME	"usb-T.E.S.T._TestKit_901400106-if00-port0"
-
-#define MTS_PORTSUFFIX	"-if00-port0"
-#define MTS_USB_PORTPREFIX "usb-1a86" //"usb-1a86_USB2.0-Serial-if00-port0"
+//#define MTS_PORTNAME	"usb-T.E.S.T._TestKit_901400106-if00-port0"
+ //"usb-1a86_USB2.0-Serial-if00-port0"
+#define MTS_USB_PORTPREFIX "usb-1a86"
+#else
+#define USB_DIR         "/dev/serial/by-id"
+//#define TK_PORTNAME     "usb-03eb_6124"
+#define TK_PORTNAME   "usb-03eb_6124-if00"
+#define TK_PORTNAME2    "03eb_6124"  // "pci-03eb_6124-if01-port0"
+#define MTS_PORTPREFIX  "usb-FTDI_DLP2232M_"
+#define MTS_PORTPREFIXNEW "usb-T.E.S.T._TestKit_901400106"
+#define MTS_PORTPREFIXNEW2 "T.E.S.T._TestKit_901400106"
+#define MTS_PORTSUFFIX  "-if01-port0"
+ //"usb-1a86_USB2.0-Serial-if00-port0"
+#define MTS_USB_PORTPREFIX "usb-1a86"
+#endif
 
 #define CLEAR_MEM(_A, _B)   bzero(_A, _B)
 
@@ -151,14 +163,17 @@ struct _TKGDATA{
 	char sn_next[MIN_STRING] ;
 	char mominival[MAX_STRING] ;
 
+	char usb_dir[MAX_STRING] ;
+	char tk_portname[MAX_STRING] ;
+	char mts_portname[MAX_STRING] ;
+
 	int   bar_msec ;
 	float bar_perc ;
 	unsigned short bar_oldmsec ;
 	
 	char ib_data[MAX_STRING] ;
 	FILE *up_sm; 
-	
-	
+		
 	int transnum ;
 	int txbuflen ;
 	int txpacketnum ;

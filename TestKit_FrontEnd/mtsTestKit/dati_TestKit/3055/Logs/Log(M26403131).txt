@@ -1,0 +1,111 @@
+------ Collaudo eseguito con impostazioni di /home/burla/Documenti/MtsTestKit/dati_TestKit/3055/Script/3055_Setting.txt ----
+Terzista:<burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaInV=0>---> Impostato: <QtaInV>=<0>
+<QtaOD=7>---> Impostato: <QtaOD>=<7>
+<QtaCAN=2>---> Impostato: <QtaCAN>=<2>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<EnRS485=no>---> Impostato: <EnRS485>=<NO>
+<EnHTL=SI>---> Impostato: <EnHTL>=<SI>
+<QtaCnt=2>---> Impostato: <QtaCnt>=<2>
+<CntToller=600>---> Impostato: <CntToller>=<600>
+<EnEmeLink=NO>---> Impostato: <EnEmeLink>=<NO>
+<EnChBat=SI>---> Impostato: <EnChBat>=<SI>
+<EnVibro=SI>---> Impostato: <EnVibro>=<SI>
+<EnDigInDn=SI>---> Impostato: <EnDigInDn>=<SI>
+<EnDigInUp=SI>---> Impostato: <EnDigInUp>=<SI>
+<EnDigOut=SI>---> Impostato: <EnDigOut>=<SI>
+<EnFonia=NO>---> Impostato: <EnFonia>=<NO>
+<EnAnlIn=SI>---> Impostato: <EnAnlIn>=<SI>
+<EnVext=NO>---> Impostato: <EnVext>=<NO>
+<EnVbat=SI>---> Impostato: <EnVbat>=<SI>
+<EnCnt=NO>---> Impostato: <EnCnt>=<NO>
+<EnGPS=SI>---> Impostato: <EnGPS>=<SI>
+<EnGSM=SI>---> Impostato: <EnGSM>=<SI>
+<EnCAN=SI>---> Impostato: <EnCAN>=<SI>
+<EnRTC=NO>---> Impostato: <EnRTC>=<NO>
+<EnAccel=NO>---> Impostato: <EnAccel>=<NO>
+<EnCOMAUX=NO>---> Impostato: <EnCOMAUX>=<NO>
+<EnSMset=SI>---> Impostato: <EnSMset>=<SI>
+<EnTamper=NO>---> Impostato: <EnTamper>=<NO>
+<EnCANConf=SI>---> Impostato: <EnCANConf>=<SI>
+---->   TestKit: 2.01;901400107   <----
+codMB inserito:<M26403131>
+----------------  Inizio Collaudo  ------------ Script 3.77 - 03/03/25 --
+07/04/2025 16:47:45(.29) | Collaudo dell'MTS tipo 3055, s.n. -1 (Ver. 4.12)
+07/04/2025 16:48:28(.38) | TEST Lettura Vbat
+07/04/2025 16:48:28(.79) | ATTENZIONE!!!Vbat  1.22 sotto il limite(3.50V)
+07/04/2025 16:48:38(.54) | TEST INPUT con Pull-DOWN
+07/04/2025 16:48:47(.36) | INEX2 K.O. (con Pull_DOWN)
+07/04/2025 16:48:47(.41) | INEX3 K.O. (con Pull_DOWN)
+07/04/2025 16:48:47(.45) | INEX4 K.O. (con Pull_DOWN)
+07/04/2025 16:48:47(.49) | INEX5 K.O. (con Pull_DOWN)
+07/04/2025 16:48:47(.54) | INEX6 K.O. (con Pull_DOWN)
+07/04/2025 16:48:47(.58) | INEX7 K.O. (con Pull_DOWN)
+07/04/2025 16:53:35(.44) | TEST INPUT con Pull-UP
+07/04/2025 16:53:41(.11) | INEX2 K.O. (no Pull_UP)
+07/04/2025 16:53:48(.57) | INEX2 K.O. (con Pull_UP)
+07/04/2025 16:53:48(.61) | INEX3 K.O. (con Pull_UP)
+07/04/2025 16:53:48(.66) | INEX4 K.O. (con Pull_UP)
+07/04/2025 16:53:48(.70) | INEX5 K.O. (con Pull_UP)
+07/04/2025 16:53:48(.74) | INEX6 K.O. (con Pull_UP)
+07/04/2025 16:53:48(.79) | INEX7 K.O. (con Pull_UP)
+07/04/2025 16:54:00(.68) | TEST INPUT con Pull-DOWN
+07/04/2025 16:54:02(.14) | INEX0 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.19) | INEX1 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.23) | INEX3 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.27) | INEX4 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.32) | INEX5 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.36) | INEX6 K.O. (no Pull_Down)
+07/04/2025 16:54:02(.41) | INEX7 K.O. (no Pull_Down)
+07/04/2025 16:54:09(.81) | INEX0 K.O. (con Pull_DOWN)
+07/04/2025 16:54:09(.86) | INEX1 K.O. (con Pull_DOWN)
+07/04/2025 16:54:09(.90) | INEX2 K.O. (con Pull_DOWN)
+07/04/2025 16:54:09(.95) | INEX3 K.O. (con Pull_DOWN)
+07/04/2025 16:54:09(.99) | INEX4 K.O. (con Pull_DOWN)
+07/04/2025 16:54:10(.04) | INEX5 K.O. (con Pull_DOWN)
+07/04/2025 16:54:10(.08) | INEX6 K.O. (con Pull_DOWN)
+07/04/2025 16:54:10(.12) | INEX7 K.O. (con Pull_DOWN)
+07/04/2025 16:54:23(.34) | TEST INPUT con Pull-UP
+07/04/2025 16:54:29(.00) | INEX2 K.O. (no Pull_UP)
+07/04/2025 16:54:36(.46) | INEX2 K.O. (con Pull_UP)
+07/04/2025 16:54:36(.51) | INEX3 K.O. (con Pull_UP)
+07/04/2025 16:54:36(.55) | INEX4 K.O. (con Pull_UP)
+07/04/2025 16:54:36(.60) | INEX5 K.O. (con Pull_UP)
+07/04/2025 16:54:36(.64) | INEX6 K.O. (con Pull_UP)
+07/04/2025 16:54:36(.69) | INEX7 K.O. (con Pull_UP)
+07/04/2025 17:14:30(.65) | TEST degli OUTPUT
+07/04/2025 17:14:32(.34) | OUTEX1 OK
+07/04/2025 17:14:34(.31) | OUTEX4 OK
+07/04/2025 17:14:35(.32) | OUTEX5 in Avaria: letta DISATTIVA)
+07/04/2025 17:14:35(.34) | OUTEX5 K.O.
+07/04/2025 17:14:36(.32) | OUTEX6 in Avaria: letta DISATTIVA)
+07/04/2025 17:14:36(.34) | OUTEX6 K.O.
+07/04/2025 17:14:37(.35) | OUTEX7 in Avaria: letta DISATTIVA)
+07/04/2025 17:14:37(.37) | OUTEX7 K.O.
+07/04/2025 17:14:39(.31) | OUTEX8 in Avaria: letta DISATTIVA)
+07/04/2025 17:14:39(.33) | OUTEX8 K.O.
+07/04/2025 17:14:40(.32) | OUTEX0 in Avaria: letta DISATTIVA)
+07/04/2025 17:14:40(.34) | OUTEX0 K.O.
+07/04/2025 17:19:23(.96) | TEST degli OUTPUT
+07/04/2025 17:19:25(.33) | OUTEX1 OK
+07/04/2025 17:19:26(.33) | OUTEX4 OK
+07/04/2025 17:19:27(.33) | OUTEX5 in Avaria: letta DISATTIVA)
+07/04/2025 17:19:27(.36) | OUTEX5 K.O.
+07/04/2025 17:19:28(.33) | OUTEX6 in Avaria: letta DISATTIVA)
+07/04/2025 17:19:28(.36) | OUTEX6 K.O.
+07/04/2025 17:19:29(.33) | OUTEX7 in Avaria: letta DISATTIVA)
+07/04/2025 17:19:29(.36) | OUTEX7 K.O.
+07/04/2025 17:19:30(.33) | OUTEX8 in Avaria: letta DISATTIVA)
+07/04/2025 17:19:30(.35) | OUTEX8 K.O.
+07/04/2025 17:19:31(.33) | OUTEX0 in Avaria: letta DISATTIVA)
+07/04/2025 17:19:31(.36) | OUTEX0 K.O.
+07/04/2025 17:19:32(.16) | TEST degli INPUT Analogici (4-20 mA)
+07/04/2025 17:19:38(.30) | Reference Corrente (media):   606 (13.47 mA)
+07/04/2025 17:19:39(.77) | Analogico 0:  611 (13.56 mA)  [Diff  0.09 mA (0.54 %)]
+07/04/2025 17:19:43(.40) | Reference Corrente (media):   604 (13.45 mA)
+07/04/2025 17:19:44(.88) | Analogico 1:    0 ( 4.00 mA)  [Diff  9.45 mA (59.06 %)]

@@ -1,0 +1,121 @@
+---->   TestKit: t�   <----
+------ Collaudo eseguito con impostazioni di /media/SRV/Laboratorio/dati_TestKit//3208/Script/3208_Setting.txt ----
+Terzista:<Burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<AnlTaratura=no>---> Impostato: <AnlTaratura>=<NO>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaOD=6						>---> Impostato: <QtaOD>=<6>
+<QtaCAN=1>---> Impostato: <QtaCAN>=<1>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<CntToller=600				>---> Impostato: <CntToller>=<600>
+<EnEmeLink=SI>---> Impostato: <EnEmeLink>=<SI>
+<EnFonia=no>---> Impostato: <EnFonia>=<NO>
+----------------  Inizio Collaudo  ------------ Script  2.51 - 23/03/12 --
+11/04/2012 16:21:38(.04) | Collaudo dell'MTS tipo 3208, s.n. 320800188 (Ver. 1.93)
+11/04/2012 16:22:04(.75) | TEST Lettura Vext
+11/04/2012 16:22:05(.11) | --> VExt O.K. 12.40 Volt (12.39 Volt)  [Diff. 0.01 V (0.07 %)]
+11/04/2012 16:22:05(.24) | TEST Lettura Vbat
+11/04/2012 16:22:05(.49) | --> Vbat O.K. - Sentito da MTS: 3.74 Volt
+11/04/2012 16:22:09(.59) | TEST INPUT con Pull-DOWN
+11/04/2012 16:22:14(.33) | --> INEX0..INEX7 O.K. (con Pull-Down)
+11/04/2012 16:22:18(.06) | TEST INPUT con Pull-UP
+11/04/2012 16:22:34(.24) | --> INEX0..INEX7 O.K. (con Pull-Up)
+11/04/2012 16:22:34(.42) | TEST degli OUTPUT
+11/04/2012 16:22:35(.96) | OUTEX1 OK
+11/04/2012 16:22:36(.95) | OUTEX4 OK
+11/04/2012 16:22:37(.95) | OUTEX5 OK
+11/04/2012 16:22:38(.95) | OUTEX6 OK
+11/04/2012 16:22:39(.95) | OUTEX7 OK
+11/04/2012 16:22:40(.95) | OUTEX8 OK
+11/04/2012 16:22:41(.74) | TEST degli INPUT Analogici (4-20 mA)
+11/04/2012 16:22:47(.94) | Reference Corrente (media):   947 (18.81 mA)
+11/04/2012 16:22:49(.27) | Analogico 0:  950 (18.86 mA)  [Diff  0.05 mA (0.32 %)]
+11/04/2012 16:22:53(.03) | Reference Corrente (media):   947 (18.81 mA)
+11/04/2012 16:22:54(.40) | Analogico 1:  949 (18.84 mA)  [Diff  0.04 mA (0.22 %)]
+11/04/2012 16:22:58(.24) | Reference Corrente (media):   947 (18.81 mA)
+11/04/2012 16:22:59(.57) | Analogico 2:  950 (18.86 mA)  [Diff  0.05 mA (0.32 %)]
+11/04/2012 16:23:00(.05) | --> ANIN0..ANIN2 O.K.
+11/04/2012 16:23:00(.24) | TEST del Counter
+11/04/2012 16:23:07(.67) | --> Counter(1) è O.K. (letto=3004 atteso=3135)
+11/04/2012 16:23:07(.80) | TEST della porta CAN1 di 1
+11/04/2012 16:23:20(.26) | --> Low Baud-Rate O.K.
+11/04/2012 16:23:36(.73) | --> CAN1 port O.K.
+11/04/2012 16:23:36(.92) | TEST COM Secondaria
+11/04/2012 16:23:39(.42) | --> COM Secondaria O.K.
+11/04/2012 16:23:44(.54) | --> CARICA Batteria O.K.
+11/04/2012 16:23:44(.68) | TEST di EMERGENCY LINK
+11/04/2012 16:23:50(.16) | EMERGENCY LINK: TestKit letto segnali (1) ...
+11/04/2012 16:23:53(.30) | EMERGENCY LINK: MTS ha rilevato segnali (0,2)
+11/04/2012 16:26:24(.35) | --> VIBRAZIONE O.K.
+11/04/2012 16:28:36(.53) | --> RIBALTAMENTO O.K.
+11/04/2012 16:28:40(.39) | TEST del GPS
+11/04/2012 16:28:40(.58) | Antenna GPS O.K.
+11/04/2012 16:28:40(.68) | GPS O.K.: Fixing O.K. (meno di 10s)
+11/04/2012 16:28:40(.80) | TEST del GSM
+11/04/2012 16:30:01(.97) | ATTENZIONE: GSM (353943041186200&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&&&0000&0000&00-353943041186200&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&&&0000&0000&00-IMEI:353943041186200&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&&&0000&0000&00) Registrato con CSQ basso (0)
+11/04/2012 16:30:05(.84) | Cancellata Macchina-Stati di Collaudo
+11/04/2012 16:30:05(.96) | MTS 3208, s/n 320800188 (Ver. 1.93): in AVARIA (Er:1)
+---->   TestKit: 1.18;901400011   <----
+------ Collaudo eseguito con impostazioni di /media/SRV/Laboratorio/dati_TestKit//3208/Script/3208_Setting.txt ----
+Terzista:<Burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<AnlTaratura=no>---> Impostato: <AnlTaratura>=<NO>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaOD=6						>---> Impostato: <QtaOD>=<6>
+<QtaCAN=1>---> Impostato: <QtaCAN>=<1>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<CntToller=600				>---> Impostato: <CntToller>=<600>
+<EnEmeLink=SI>---> Impostato: <EnEmeLink>=<SI>
+<EnFonia=no>---> Impostato: <EnFonia>=<NO>
+----------------  Inizio Collaudo  ------------ Script  2.51 - 23/03/12 --
+12/04/2012 17:14:27(.12) | Collaudo dell'MTS tipo 3208, s.n. 320800188 (Ver. 1.93)
+12/04/2012 17:15:29(.25) | TEST Lettura Vext
+12/04/2012 17:15:30(.29) | --> VExt O.K. 12.50 Volt (12.39 Volt)  [Diff. 0.12 V (0.93 %)]
+12/04/2012 17:15:30(.43) | TEST Lettura Vbat
+12/04/2012 17:15:30(.68) | --> Vbat O.K. - Sentito da MTS: 3.92 Volt
+12/04/2012 17:15:34(.78) | TEST INPUT con Pull-DOWN
+12/04/2012 17:15:39(.50) | --> INEX0..INEX7 O.K. (con Pull-Down)
+12/04/2012 17:15:43(.23) | TEST INPUT con Pull-UP
+12/04/2012 17:15:59(.29) | --> INEX0..INEX7 O.K. (con Pull-Up)
+12/04/2012 17:15:59(.41) | TEST degli OUTPUT
+12/04/2012 17:16:01(.13) | OUTEX1 OK
+12/04/2012 17:16:02(.14) | OUTEX4 OK
+12/04/2012 17:16:03(.13) | OUTEX5 OK
+12/04/2012 17:16:04(.13) | OUTEX6 OK
+12/04/2012 17:16:05(.14) | OUTEX7 OK
+12/04/2012 17:16:06(.14) | OUTEX8 OK
+12/04/2012 17:16:06(.93) | TEST degli INPUT Analogici (4-20 mA)
+12/04/2012 17:16:13(.12) | Reference Corrente (media):   947 (18.81 mA)
+12/04/2012 17:16:14(.48) | Analogico 0:  950 (18.86 mA)  [Diff  0.05 mA (0.32 %)]
+12/04/2012 17:16:18(.32) | Reference Corrente (media):   948 (18.83 mA)
+12/04/2012 17:16:19(.65) | Analogico 1:  949 (18.84 mA)  [Diff  0.02 mA (0.10 %)]
+12/04/2012 17:16:23(.42) | Reference Corrente (media):   947 (18.81 mA)
+12/04/2012 17:16:24(.74) | Analogico 2:  949 (18.84 mA)  [Diff  0.04 mA (0.22 %)]
+12/04/2012 17:16:25(.25) | --> ANIN0..ANIN2 O.K.
+12/04/2012 17:16:25(.43) | TEST del Counter
+12/04/2012 17:16:32(.87) | --> Counter(1) è O.K. (letto=3010 atteso=3135)
+12/04/2012 17:16:33(.03) | TEST della porta CAN1 di 1
+12/04/2012 17:16:45(.49) | --> Low Baud-Rate O.K.
+12/04/2012 17:17:01(.99) | --> CAN1 port O.K.
+12/04/2012 17:17:02(.13) | TEST COM Secondaria
+12/04/2012 17:17:04(.71) | --> COM Secondaria O.K.
+12/04/2012 17:17:09(.83) | --> CARICA Batteria O.K.
+12/04/2012 17:17:10(.00) | TEST di EMERGENCY LINK
+12/04/2012 17:17:15(.35) | EMERGENCY LINK: TestKit letto segnali (1) ...
+12/04/2012 17:17:18(.46) | EMERGENCY LINK: MTS ha rilevato segnali (0,2)
+12/04/2012 17:18:50(.70) | --> VIBRAZIONE O.K.
+12/04/2012 17:19:15(.40) | --> RIBALTAMENTO O.K.
+12/04/2012 17:19:18(.54) | TEST del GPS
+12/04/2012 17:19:18(.73) | Antenna GPS O.K.
+12/04/2012 17:19:18(.83) | GPS O.K.: Fixing O.K. (meno di 10s)
+12/04/2012 17:19:18(.94) | TEST del GSM
+12/04/2012 17:19:21(.52) | --> MODEM O.K. - 359983002851362&_MULTIBAND__900E__1800_&R74_00gg.Q2686G_2120060_041709_&22201&TORINO&FFFF87BD&000F&21-359983002851362&_MULTIBAND__900E__1800_&R74_00gg.Q2686G_2120060_041709_&22201&TORINO&FFFF87BD&000F&21-IMEI: 359983002851362&_MULTIBAND__900E__1800_&R74_00gg.Q2686G_2120060_041709_&22201&TORINO&FFFF87BD&000F&21 - Registrato con CSQ di 21 (min. 10)
+12/04/2012 17:19:21(.64) | 320800188 12.39  3.92 21 359983002851362&_MULTIBAND__900E__1800_&R74_00gg.Q2686G_2120060_041709_&22201&TORINO&FFFF87BD&000F&21
+12/04/2012 17:19:25(.38) | Cancellata Macchina-Stati di Collaudo
+12/04/2012 17:19:25(.48) | MTS 3208, s/n 320800188 (Ver. 1.93): Collaudo O.K.

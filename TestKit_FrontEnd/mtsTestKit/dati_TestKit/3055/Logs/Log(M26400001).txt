@@ -1,0 +1,279 @@
+------ Collaudo eseguito con impostazioni di /home/burla/Documenti/MtsTestKit/dati_TestKit/3055/Script/3055_Setting.txt ----
+Terzista:<burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaInV=0>---> Impostato: <QtaInV>=<0>
+<QtaOD=8>---> Impostato: <QtaOD>=<8>
+<QtaCAN=2>---> Impostato: <QtaCAN>=<2>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<EnRS485=no>---> Impostato: <EnRS485>=<NO>
+<EnHTL=SI>---> Impostato: <EnHTL>=<SI>
+<QtaCnt=2>---> Impostato: <QtaCnt>=<2>
+<CntToller=600>---> Impostato: <CntToller>=<600>
+<EnEmeLink=NO>---> Impostato: <EnEmeLink>=<NO>
+<EnChBat=SI>---> Impostato: <EnChBat>=<SI>
+<EnVibro=SI>---> Impostato: <EnVibro>=<SI>
+<EnDigInDn=SI>---> Impostato: <EnDigInDn>=<SI>
+<EnDigInUp=SI>---> Impostato: <EnDigInUp>=<SI>
+<EnDigOut=SI>---> Impostato: <EnDigOut>=<SI>
+<EnFonia=NO>---> Impostato: <EnFonia>=<NO>
+<EnAnlIn=SI>---> Impostato: <EnAnlIn>=<SI>
+<EnVext=NO>---> Impostato: <EnVext>=<NO>
+<EnVbat=SI>---> Impostato: <EnVbat>=<SI>
+<EnCnt=NO>---> Impostato: <EnCnt>=<NO>
+<EnGPS=SI>---> Impostato: <EnGPS>=<SI>
+<EnGSM=SI>---> Impostato: <EnGSM>=<SI>
+<EnCAN=SI>---> Impostato: <EnCAN>=<SI>
+<EnRTC=NO>---> Impostato: <EnRTC>=<NO>
+<EnAccel=NO>---> Impostato: <EnAccel>=<NO>
+<EnCOMAUX=NO>---> Impostato: <EnCOMAUX>=<NO>
+<EnSMset=SI>---> Impostato: <EnSMset>=<SI>
+<EnTamper=NO>---> Impostato: <EnTamper>=<NO>
+<EnCANConf=SI>---> Impostato: <EnCANConf>=<SI>
+---->   TestKit: 2.01;901400107   <----
+codMB inserito:<M26400001>
+----------------  Inizio Collaudo  ------------ Script 3.76 - 26/05/23 --
+07/03/2025 11:47:10(.52) | ATTENZIONE: l'unità collegata NON è un 3055, ma è: 55 - -1 (Ver. 4.12)
+------ Collaudo eseguito con impostazioni di /home/burla/Documenti/MtsTestKit/dati_TestKit/3055/Script/3055_Setting.txt ----
+Terzista:<burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaInV=0>---> Impostato: <QtaInV>=<0>
+<QtaOD=8>---> Impostato: <QtaOD>=<8>
+<QtaCAN=2>---> Impostato: <QtaCAN>=<2>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<EnRS485=no>---> Impostato: <EnRS485>=<NO>
+<EnHTL=SI>---> Impostato: <EnHTL>=<SI>
+<QtaCnt=2>---> Impostato: <QtaCnt>=<2>
+<CntToller=600>---> Impostato: <CntToller>=<600>
+<EnEmeLink=NO>---> Impostato: <EnEmeLink>=<NO>
+<EnChBat=SI>---> Impostato: <EnChBat>=<SI>
+<EnVibro=SI>---> Impostato: <EnVibro>=<SI>
+<EnDigInDn=SI>---> Impostato: <EnDigInDn>=<SI>
+<EnDigInUp=SI>---> Impostato: <EnDigInUp>=<SI>
+<EnDigOut=SI>---> Impostato: <EnDigOut>=<SI>
+<EnFonia=NO>---> Impostato: <EnFonia>=<NO>
+<EnAnlIn=SI>---> Impostato: <EnAnlIn>=<SI>
+<EnVext=NO>---> Impostato: <EnVext>=<NO>
+<EnVbat=SI>---> Impostato: <EnVbat>=<SI>
+<EnCnt=NO>---> Impostato: <EnCnt>=<NO>
+<EnGPS=SI>---> Impostato: <EnGPS>=<SI>
+<EnGSM=SI>---> Impostato: <EnGSM>=<SI>
+<EnCAN=SI>---> Impostato: <EnCAN>=<SI>
+<EnRTC=NO>---> Impostato: <EnRTC>=<NO>
+<EnAccel=NO>---> Impostato: <EnAccel>=<NO>
+<EnCOMAUX=NO>---> Impostato: <EnCOMAUX>=<NO>
+<EnSMset=SI>---> Impostato: <EnSMset>=<SI>
+<EnTamper=NO>---> Impostato: <EnTamper>=<NO>
+<EnCANConf=SI>---> Impostato: <EnCANConf>=<SI>
+---->   TestKit: 2.01;901400107   <----
+codMB inserito:<M26400001>
+----------------  Inizio Collaudo  ------------ Script 3.77 - 03/03/25 --
+07/03/2025 11:54:33(.12) | Collaudo dell'MTS tipo 3055, s.n. -1 (Ver. 4.12)
+07/03/2025 11:55:15(.71) | TEST Lettura Vbat
+07/03/2025 11:55:16(.11) | --> Vbat O.K. - Sentito da MTS: 4.05 Volt
+07/03/2025 11:55:17(.07) | TEST INPUT con Pull-DOWN
+07/03/2025 11:55:25(.88) | INEX0 K.O. (con Pull_DOWN)
+07/03/2025 11:56:04(.27) | TEST INPUT con Pull-UP
+07/03/2025 11:56:09(.91) | INEX0 K.O. (no Pull_UP)
+07/03/2025 11:56:17(.36) | INEX0 K.O. (con Pull_UP)
+07/03/2025 11:56:30(.49) | TEST INPUT con Pull-DOWN
+07/03/2025 11:56:31(.96) | INEX1 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.01) | INEX2 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.05) | INEX3 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.09) | INEX4 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.14) | INEX5 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.18) | INEX6 K.O. (no Pull_Down)
+07/03/2025 11:56:32(.23) | INEX7 K.O. (no Pull_Down)
+07/03/2025 11:56:39(.65) | INEX0 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.70) | INEX1 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.74) | INEX2 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.79) | INEX3 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.83) | INEX4 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.88) | INEX5 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.92) | INEX6 K.O. (con Pull_DOWN)
+07/03/2025 11:56:39(.97) | INEX7 K.O. (con Pull_DOWN)
+07/03/2025 11:56:52(.84) | TEST INPUT con Pull-UP
+07/03/2025 11:56:58(.46) | INEX0 K.O. (no Pull_UP)
+07/03/2025 11:57:05(.90) | INEX0 K.O. (con Pull_UP)
+07/03/2025 11:57:12(.24) | TEST degli OUTPUT
+07/03/2025 11:57:13(.68) | OUTEX1 OK
+07/03/2025 11:57:14(.69) | OUTEX4 OK
+07/03/2025 11:57:15(.68) | OUTEX5 OK
+07/03/2025 11:57:16(.69) | OUTEX6 OK
+07/03/2025 11:57:17(.69) | OUTEX7 OK
+07/03/2025 11:57:18(.69) | OUTEX8 OK
+07/03/2025 11:57:19(.69) | OUTEX0 OK
+07/03/2025 11:57:20(.70) | OUTEX0 in Avaria: letta DISATTIVA)
+07/03/2025 11:57:20(.72) | OUTEX0 K.O.
+07/03/2025 11:57:26(.22) | TEST degli OUTPUT
+07/03/2025 11:57:27(.68) | OUTEX1 OK
+07/03/2025 11:57:28(.69) | OUTEX4 OK
+07/03/2025 11:57:29(.69) | OUTEX5 OK
+07/03/2025 11:57:30(.69) | OUTEX6 OK
+07/03/2025 11:57:31(.68) | OUTEX7 OK
+07/03/2025 11:57:32(.69) | OUTEX8 OK
+07/03/2025 11:57:33(.68) | OUTEX0 OK
+07/03/2025 11:57:34(.69) | OUTEX0 in Avaria: letta DISATTIVA)
+07/03/2025 11:57:34(.71) | OUTEX0 K.O.
+07/03/2025 11:57:35(.52) | TEST degli INPUT Analogici (4-20 mA)
+07/03/2025 11:57:41(.65) | Reference Corrente (media):   599 (13.37 mA)
+07/03/2025 11:57:43(.14) | Analogico 0:    0 ( 4.00 mA)  [Diff  9.37 mA (58.57 %)]
+07/03/2025 11:57:48(.01) | ANIN0 K.O. x lettura
+07/03/2025 11:57:51(.75) | Reference Corrente (media):   597 (13.33 mA)
+07/03/2025 11:57:53(.24) | Analogico 1: 1023 (20.00 mA)  [Diff  6.67 mA (41.67 %)]
+07/03/2025 11:57:55(.80) | ANIN1 K.O. x lettura
+07/03/2025 11:57:59(.85) | Reference Corrente (media):   598 (13.35 mA)
+07/03/2025 11:58:01(.34) | Analogico 2: 1023 (20.00 mA)  [Diff  6.65 mA (41.55 %)]
+07/03/2025 11:58:03(.68) | ANIN2 K.O. x lettura
+07/03/2025 11:58:05(.16) | TEST degli INPUT Analogici (4-20 mA)
+07/03/2025 11:58:11(.75) | Reference Corrente (media):   599 (13.37 mA)
+07/03/2025 11:58:13(.23) | Analogico 0:    0 ( 4.00 mA)  [Diff  9.37 mA (58.57 %)]
+07/03/2025 11:58:15(.63) | ANIN0 K.O. x lettura
+07/03/2025 11:58:18(.85) | Reference Corrente (media):   600 (13.39 mA)
+07/03/2025 11:58:20(.33) | Analogico 1: 1023 (20.00 mA)  [Diff  6.61 mA (41.30 %)]
+07/03/2025 11:58:22(.55) | ANIN1 K.O. x lettura
+07/03/2025 11:58:25(.95) | Reference Corrente (media):   598 (13.35 mA)
+07/03/2025 11:58:27(.43) | Analogico 2: 1023 (20.00 mA)  [Diff  6.65 mA (41.55 %)]
+07/03/2025 11:58:29(.46) | ANIN2 K.O. x lettura
+07/03/2025 11:58:29(.54) | TEST porta HTL
+07/03/2025 11:59:43(.81) | HTL in AVARIA
+07/03/2025 11:59:48(.74) | TEST del Counter
+07/03/2025 12:00:03(.70) | ATTENZIONE: Counter(1) in AVARIA: impulsi 0 su 3135 (delta -3135)
+07/03/2025 12:00:03(.78) | TEST del Counter
+07/03/2025 12:00:18(.30) | ATTENZIONE: Counter(2) in AVARIA: impulsi 0 su 3135 (delta -3135)
+07/03/2025 12:00:20(.04) | TEST della porta CAN1 di 2
+07/03/2025 12:00:27(.22) | --> CAN1 port O.K.
+07/03/2025 12:00:27(.25) | TEST della porta CAN2 di 2
+07/03/2025 12:01:28(.57) | ATTENZIONE: CAN2 (High Baudrate) NON riceve
+07/03/2025 12:01:35(.95) | TEST COM Secondaria
+07/03/2025 12:03:08(.47) | ATTENZIONE: COM Secondaria in Avaria
+07/03/2025 12:03:18(.63) | --> CARICA Batteria O.K.
+07/03/2025 12:03:22(.44) | --> VIBRAZIONE O.K.
+07/03/2025 12:03:25(.84) | TEST del GPS
+07/03/2025 12:03:26(.04) | Antenna GPS O.K.
+07/03/2025 12:03:26(.08) | GPS O.K.: Fixing O.K. (meno di 10s)
+07/03/2025 12:03:37(.41) | ATTENZIONE: Sensore Antenna GPS in Avaria
+07/03/2025 12:03:43(.11) | TEST del GSM
+07/03/2025 12:03:51(.22) | --> MODEM O.K. - EG915U-R03A01M08-IMEI: 867747079382352 - Registrato con CSQ di 25 (min. 8)
+07/03/2025 12:03:51(.59) | MTS 3055, s/n -1 (Ver. 4.12): in AVARIA (Er:26)
+------ Collaudo eseguito con impostazioni di /home/burla/Documenti/MtsTestKit/dati_TestKit/3055/Script/3055_Setting.txt ----
+Terzista:<burla>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaInV=0>---> Impostato: <QtaInV>=<0>
+<QtaOD=8>---> Impostato: <QtaOD>=<8>
+<QtaCAN=2>---> Impostato: <QtaCAN>=<2>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<EnRS485=no>---> Impostato: <EnRS485>=<NO>
+<EnHTL=SI>---> Impostato: <EnHTL>=<SI>
+<QtaCnt=2>---> Impostato: <QtaCnt>=<2>
+<CntToller=600>---> Impostato: <CntToller>=<600>
+<EnEmeLink=NO>---> Impostato: <EnEmeLink>=<NO>
+<EnChBat=SI>---> Impostato: <EnChBat>=<SI>
+<EnVibro=SI>---> Impostato: <EnVibro>=<SI>
+<EnDigInDn=SI>---> Impostato: <EnDigInDn>=<SI>
+<EnDigInUp=SI>---> Impostato: <EnDigInUp>=<SI>
+<EnDigOut=SI>---> Impostato: <EnDigOut>=<SI>
+<EnFonia=NO>---> Impostato: <EnFonia>=<NO>
+<EnAnlIn=SI>---> Impostato: <EnAnlIn>=<SI>
+<EnVext=NO>---> Impostato: <EnVext>=<NO>
+<EnVbat=SI>---> Impostato: <EnVbat>=<SI>
+<EnCnt=NO>---> Impostato: <EnCnt>=<NO>
+<EnGPS=SI>---> Impostato: <EnGPS>=<SI>
+<EnGSM=SI>---> Impostato: <EnGSM>=<SI>
+<EnCAN=SI>---> Impostato: <EnCAN>=<SI>
+<EnRTC=NO>---> Impostato: <EnRTC>=<NO>
+<EnAccel=NO>---> Impostato: <EnAccel>=<NO>
+<EnCOMAUX=NO>---> Impostato: <EnCOMAUX>=<NO>
+<EnSMset=SI>---> Impostato: <EnSMset>=<SI>
+<EnTamper=NO>---> Impostato: <EnTamper>=<NO>
+<EnCANConf=SI>---> Impostato: <EnCANConf>=<SI>
+---->   TestKit: 2.01;901400107   <----
+codMB inserito:<M26400001>
+----------------  Inizio Collaudo  ------------ Script 3.77 - 03/03/25 --
+11/03/2025 09:10:43(.64) | Collaudo dell'MTS tipo 3055, s.n. -1 (Ver. 4.12)
+11/03/2025 09:11:26(.30) | TEST Lettura Vbat
+11/03/2025 09:11:26(.70) | --> Vbat O.K. - Sentito da MTS: 4.14 Volt
+11/03/2025 09:11:27(.74) | TEST INPUT con Pull-DOWN
+11/03/2025 09:11:36(.55) | INEX0 K.O. (con Pull_DOWN)
+11/03/2025 09:11:36(.60) | INEX2 K.O. (con Pull_DOWN)
+11/03/2025 09:11:44(.44) | TEST INPUT con Pull-UP
+11/03/2025 09:11:50(.11) | INEX0 K.O. (no Pull_UP)
+11/03/2025 09:11:50(.16) | INEX2 K.O. (no Pull_UP)
+11/03/2025 09:11:57(.61) | INEX0 K.O. (con Pull_UP)
+11/03/2025 09:11:57(.66) | INEX2 K.O. (con Pull_UP)
+11/03/2025 09:12:03(.64) | TEST INPUT con Pull-DOWN
+11/03/2025 09:12:05(.11) | INEX1 K.O. (no Pull_Down)
+11/03/2025 09:12:05(.16) | INEX3 K.O. (no Pull_Down)
+11/03/2025 09:12:05(.20) | INEX4 K.O. (no Pull_Down)
+11/03/2025 09:12:05(.24) | INEX5 K.O. (no Pull_Down)
+11/03/2025 09:12:05(.29) | INEX6 K.O. (no Pull_Down)
+11/03/2025 09:12:05(.33) | INEX7 K.O. (no Pull_Down)
+11/03/2025 09:12:12(.75) | INEX0 K.O. (con Pull_DOWN)
+11/03/2025 09:12:12(.80) | INEX1 K.O. (con Pull_DOWN)
+11/03/2025 09:12:12(.84) | INEX2 K.O. (con Pull_DOWN)
+11/03/2025 09:12:12(.89) | INEX3 K.O. (con Pull_DOWN)
+11/03/2025 09:12:12(.93) | INEX4 K.O. (con Pull_DOWN)
+11/03/2025 09:12:12(.97) | INEX5 K.O. (con Pull_DOWN)
+11/03/2025 09:12:13(.02) | INEX6 K.O. (con Pull_DOWN)
+11/03/2025 09:12:13(.06) | INEX7 K.O. (con Pull_DOWN)
+11/03/2025 09:12:20(.62) | TEST INPUT con Pull-UP
+11/03/2025 09:12:26(.29) | INEX0 K.O. (no Pull_UP)
+11/03/2025 09:12:26(.34) | INEX2 K.O. (no Pull_UP)
+11/03/2025 09:12:33(.81) | INEX0 K.O. (con Pull_UP)
+11/03/2025 09:12:33(.86) | INEX2 K.O. (con Pull_UP)
+11/03/2025 09:12:36(.67) | TEST degli OUTPUT
+11/03/2025 09:12:37(.50) | OUTEX1 OK
+11/03/2025 09:12:38(.50) | OUTEX4 OK
+11/03/2025 09:12:39(.49) | OUTEX5 OK
+11/03/2025 09:12:40(.50) | OUTEX6 OK
+11/03/2025 09:12:41(.50) | OUTEX7 OK
+11/03/2025 09:12:42(.50) | OUTEX8 OK
+11/03/2025 09:12:43(.50) | OUTEX0 OK
+11/03/2025 09:12:44(.50) | OUTEX0 in Avaria: letta DISATTIVA)
+11/03/2025 09:12:44(.52) | OUTEX0 K.O.
+11/03/2025 09:12:49(.61) | TEST degli INPUT Analogici (4-20 mA)
+11/03/2025 09:12:55(.47) | Reference Corrente (media):   599 (13.37 mA)
+11/03/2025 09:12:57(.07) | Analogico 0:    0 ( 4.00 mA)  [Diff  9.37 mA (58.57 %)]
+11/03/2025 09:13:02(.52) | ANIN0 K.O. x lettura
+11/03/2025 09:13:06(.57) | Reference Corrente (media):   598 (13.35 mA)
+11/03/2025 09:13:08(.05) | Analogico 1: 1023 (20.00 mA)  [Diff  6.65 mA (41.55 %)]
+11/03/2025 09:13:12(.68) | ANIN1 K.O. x lettura
+11/03/2025 09:13:16(.67) | Reference Corrente (media):   598 (13.35 mA)
+11/03/2025 09:13:18(.14) | Analogico 2: 1023 (20.00 mA)  [Diff  6.65 mA (41.55 %)]
+11/03/2025 09:13:21(.03) | ANIN2 K.O. x lettura
+11/03/2025 09:13:26(.01) | TEST porta HTL
+11/03/2025 09:14:40(.27) | HTL in AVARIA
+11/03/2025 09:14:53(.10) | TEST del Counter
+11/03/2025 09:15:12(.35) | ATTENZIONE: Counter(1) in AVARIA: impulsi 0 su 3135 (delta -3135)
+11/03/2025 09:15:12(.43) | TEST del Counter
+11/03/2025 09:15:30(.51) | ATTENZIONE: Counter(2) in AVARIA: impulsi 0 su 3135 (delta -3135)
+11/03/2025 09:15:36(.94) | TEST della porta CAN1 di 2
+11/03/2025 09:15:44(.27) | --> CAN1 port O.K.
+11/03/2025 09:15:44(.30) | TEST della porta CAN2 di 2
+11/03/2025 09:16:45(.69) | ATTENZIONE: CAN2 (High Baudrate) NON riceve
+11/03/2025 09:17:00(.04) | TEST COM Secondaria
+11/03/2025 09:18:32(.56) | ATTENZIONE: COM Secondaria in Avaria
+11/03/2025 09:21:26(.75) | --> CARICA Batteria O.K.
+11/03/2025 09:21:30(.36) | --> VIBRAZIONE O.K.
+11/03/2025 09:21:33(.46) | TEST del GPS
+11/03/2025 09:21:33(.65) | Antenna GPS O.K.
+11/03/2025 09:21:33(.69) | ATTENZIONE: GPS non fixa
+11/03/2025 09:24:44(.79) | ATTENZIONE: Sensore Antenna GPS in Avaria
+11/03/2025 09:24:52(.49) | TEST del GPS
+11/03/2025 09:24:52(.68) | Antenna GPS O.K.
+11/03/2025 09:24:52(.72) | GPS O.K.: Fixing entro 15 min
+11/03/2025 09:25:01(.63) | ATTENZIONE: Sensore Antenna GPS in Avaria
+11/03/2025 09:25:04(.60) | TEST del GSM
+11/03/2025 09:25:12(.71) | --> MODEM O.K. - EG915U-R03A01M08-IMEI: 867747079382352 - Registrato con CSQ di 21 (min. 8)
+11/03/2025 09:25:13(.10) | MTS 3055, s/n -1 (Ver. 4.12): in AVARIA (Er:25)

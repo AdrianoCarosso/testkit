@@ -1,0 +1,116 @@
+---->   TestKit: ×a   <----
+------ Collaudo eseguito con impostazioni di /media/SRV/Laboratorio/dati_TestKit//3208/Script/3208_Setting.txt ----
+Terzista:<Sgueglia-PC>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<AnlTaratura=no>---> Impostato: <AnlTaratura>=<NO>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaOD=6						>---> Impostato: <QtaOD>=<6>
+<QtaCAN=1>---> Impostato: <QtaCAN>=<1>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<CntToller=600				>---> Impostato: <CntToller>=<600>
+<EnEmeLink=SI>---> Impostato: <EnEmeLink>=<SI>
+<EnFonia=no>---> Impostato: <EnFonia>=<NO>
+----------------  Inizio Collaudo  ------------ Script  2.59 - 14/11/12 --
+15/11/2012 16:27:15(.98) | Collaudo dell'MTS tipo 3208, s.n. 320855555 (Ver. 2.03)
+15/11/2012 16:27:25(.34) | Parametri Salvati
+15/11/2012 16:27:51(.71) | TEST Lettura Vext
+15/11/2012 16:27:52(.07) | --> VExt O.K. 12.56 Volt (12.55 Volt)  [Diff. 0.00 V (0.03 %)]
+15/11/2012 16:27:52(.26) | TEST Lettura Vbat
+15/11/2012 16:27:52(.52) | --> Vbat O.K. - Sentito da MTS: 3.83 Volt
+15/11/2012 16:27:56(.55) | TEST INPUT con Pull-DOWN
+15/11/2012 16:28:01(.34) | --> INEX0..INEX7 O.K. (con Pull-Down)
+15/11/2012 16:28:05(.03) | TEST INPUT con Pull-UP
+15/11/2012 16:28:21(.12) | --> INEX0..INEX7 O.K. (con Pull-Up)
+15/11/2012 16:28:21(.25) | TEST degli OUTPUT
+15/11/2012 16:28:22(.91) | OUTEX1 OK
+15/11/2012 16:28:23(.91) | OUTEX4 OK
+15/11/2012 16:28:24(.91) | OUTEX5 OK
+15/11/2012 16:28:25(.91) | OUTEX6 OK
+15/11/2012 16:28:26(.91) | OUTEX7 OK
+15/11/2012 16:28:27(.91) | OUTEX8 OK
+15/11/2012 16:28:28(.67) | TEST degli INPUT Analogici (4-20 mA)
+15/11/2012 16:28:34(.90) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:28:36(.22) | Analogico 0:  940 (18.70 mA)  [Diff  0.03 mA (0.17 %)]
+15/11/2012 16:28:40(.00) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:28:41(.32) | Analogico 1:  940 (18.70 mA)  [Diff  0.03 mA (0.17 %)]
+15/11/2012 16:28:45(.10) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:28:46(.41) | Analogico 2:  940 (18.70 mA)  [Diff  0.03 mA (0.17 %)]
+15/11/2012 16:28:46(.89) | --> ANIN0..ANIN2 O.K.
+15/11/2012 16:28:47(.06) | TEST del Counter
+15/11/2012 16:28:54(.49) | --> Counter(1) Ã¨ O.K. (letto=2982 atteso=3135)
+15/11/2012 16:28:54(.61) | TEST della porta CAN1 di 1
+15/11/2012 16:29:07(.05) | --> Low Baud-Rate O.K.
+15/11/2012 16:29:23(.57) | --> CAN1 port O.K.
+15/11/2012 16:29:23(.68) | TEST COM Secondaria
+15/11/2012 16:29:26(.03) | --> COM Secondaria O.K.
+15/11/2012 16:29:31(.11) | --> CARICA Batteria O.K.
+15/11/2012 16:29:31(.23) | TEST di EMERGENCY LINK
+15/11/2012 16:29:37(.02) | EMERGENCY LINK: TestKit letto segnali (1) ...
+15/11/2012 16:29:40(.13) | EMERGENCY LINK: MTS ha rilevato segnali (0,1)
+15/11/2012 16:30:59(.46) | --> VIBRAZIONE O.K.
+15/11/2012 16:32:13(.16) | --> RIBALTAMENTO O.K.
+15/11/2012 16:32:16(.22) | TEST del GPS
+15/11/2012 16:32:16(.40) | Antenna GPS O.K.
+15/11/2012 16:32:16(.50) | GPS O.K.: Fixing O.K. (meno di 10s)
+15/11/2012 16:32:16(.60) | TEST del GSM
+---->   TestKit: ×a   <----
+------ Collaudo eseguito con impostazioni di /media/SRV/Laboratorio/dati_TestKit//3208/Script/3208_Setting.txt ----
+Terzista:<Sgueglia-PC>
+<CPU=CORTEX>---> Impostato: <CPU>=<CORTEX>
+<AnlTaratura=no>---> Impostato: <AnlTaratura>=<NO>
+<CurrMax=700>---> Impostato: <CurrMax>=<700>
+<QtaRL=0>---> Impostato: <QtaRL>=<0>
+<QtaIn=8>---> Impostato: <QtaIn>=<8>
+<QtaInA=3>---> Impostato: <QtaInA>=<3>
+<QtaOD=6						>---> Impostato: <QtaOD>=<6>
+<QtaCAN=1>---> Impostato: <QtaCAN>=<1>
+<EnCOM2=SI>---> Impostato: <EnCOM2>=<SI>
+<CntToller=600				>---> Impostato: <CntToller>=<600>
+<EnEmeLink=SI>---> Impostato: <EnEmeLink>=<SI>
+<EnFonia=no>---> Impostato: <EnFonia>=<NO>
+----------------  Inizio Collaudo  ------------ Script  2.59 - 14/11/12 --
+15/11/2012 16:44:46(.61) | Collaudo dell'MTS tipo 3208, s.n. 320855555 (Ver. 2.03)
+15/11/2012 16:45:26(.41) | TEST Lettura Vext
+15/11/2012 16:45:27(.70) | --> VExt O.K. 12.56 Volt (12.50 Volt)  [Diff. 0.06 V (0.47 %)]
+15/11/2012 16:45:27(.83) | TEST Lettura Vbat
+15/11/2012 16:45:28(.09) | --> Vbat O.K. - Sentito da MTS: 3.83 Volt
+15/11/2012 16:45:32(.17) | TEST INPUT con Pull-DOWN
+15/11/2012 16:45:36(.91) | --> INEX0..INEX7 O.K. (con Pull-Down)
+15/11/2012 16:45:40(.58) | TEST INPUT con Pull-UP
+15/11/2012 16:45:56(.60) | --> INEX0..INEX7 O.K. (con Pull-Up)
+15/11/2012 16:45:56(.73) | TEST degli OUTPUT
+15/11/2012 16:45:58(.54) | OUTEX1 OK
+15/11/2012 16:45:59(.54) | OUTEX4 OK
+15/11/2012 16:46:00(.54) | OUTEX5 OK
+15/11/2012 16:46:01(.54) | OUTEX6 OK
+15/11/2012 16:46:02(.54) | OUTEX7 OK
+15/11/2012 16:46:03(.54) | OUTEX8 OK
+15/11/2012 16:46:04(.30) | TEST degli INPUT Analogici (4-20 mA)
+15/11/2012 16:46:10(.52) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:46:11(.84) | Analogico 0:  940 (18.70 mA)  [Diff  0.03 mA (0.17 %)]
+15/11/2012 16:46:15(.63) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:46:16(.96) | Analogico 1:  941 (18.72 mA)  [Diff  0.01 mA (0.07 %)]
+15/11/2012 16:46:20(.73) | Reference Corrente (media):   942 (18.73 mA)
+15/11/2012 16:46:22(.04) | Analogico 2:  940 (18.70 mA)  [Diff  0.03 mA (0.17 %)]
+15/11/2012 16:46:22(.52) | --> ANIN0..ANIN2 O.K.
+15/11/2012 16:46:22(.68) | TEST del Counter
+15/11/2012 16:46:30(.11) | --> Counter(1) Ã¨ O.K. (letto=2979 atteso=3135)
+15/11/2012 16:46:30(.23) | TEST della porta CAN1 di 1
+15/11/2012 16:46:42(.67) | --> Low Baud-Rate O.K.
+15/11/2012 16:46:59(.10) | --> CAN1 port O.K.
+15/11/2012 16:46:59(.23) | TEST COM Secondaria
+15/11/2012 16:47:01(.66) | --> COM Secondaria O.K.
+15/11/2012 16:47:06(.72) | --> CARICA Batteria O.K.
+15/11/2012 16:47:06(.84) | TEST di EMERGENCY LINK
+15/11/2012 16:47:12(.65) | EMERGENCY LINK: TestKit letto segnali (1) ...
+15/11/2012 16:47:15(.77) | EMERGENCY LINK: MTS ha rilevato segnali (0,1)
+15/11/2012 16:47:50(.78) | --> VIBRAZIONE O.K.
+15/11/2012 16:48:37(.22) | --> RIBALTAMENTO O.K.
+15/11/2012 16:48:40(.85) | TEST del GPS
+15/11/2012 16:48:41(.07) | Antenna GPS O.K.
+15/11/2012 16:48:41(.15) | GPS O.K.: Fixing O.K. (meno di 10s)
+15/11/2012 16:48:41(.24) | TEST del GSM
+15/11/2012 16:48:43(.80) | --> MODEM O.K. - 353943041083993&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&22201&&0001&FFFFE341&14&00000&00000&00000-353943041083993&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&22201&&0001&FFFFE341&14&00000&00000&00000-IMEI: 353943041083993&Q2686RD_Product&R7.44.0.201008311212.Q2686RD_21&22201&&0001&FFFFE341&14&00000&00000&00000 - Registrato con CSQ di 14 (min. 10)

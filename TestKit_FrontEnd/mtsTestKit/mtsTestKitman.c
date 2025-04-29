@@ -2316,7 +2316,7 @@ FILE *ff ;
 #endif // #ifdef SW_MTSCU
 
 void ports_tick(int port) {
-int i,  oldrxnum ; //, ret_val ;
+  int i,  oldrxnum ; //, ret_val ;
 
 	//if ( (!Gdata.portopened) && (Gdata.LU_src!=LU8GPRS)) return ;
 #ifdef SW_MTSCU

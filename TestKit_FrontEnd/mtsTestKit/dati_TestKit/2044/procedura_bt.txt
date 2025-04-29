@@ -1,0 +1,17 @@
+hcitool scan
+Scanning ...
+	A4:86:AE:87:47:4B	MTS204490002
+
+AT+QBTADDR?
+sudo rfcomm bind 0 A4:86:AE:87:47:4B 13
+
+-> sudo rfcomm bind 0 34:87:3D:B4:49:AC 13 (MTS204600011)
+-> sudo rfcomm bind 0 34:87:3D:B4:49:B9 13 (MTS204600007)
+-> sudo rfcomm bind 0 34:87:3D:B4:49:7D 13 (MTS204400003)
+-> sudo ln -s /dev/rfcomm0 /dev/ttyMTS
+
+per liberare la rfcomm0:
+>sudo rfcomm release 0
+
+creare un lanciatore con l'opzione "-c" come da esempio:
+/usr/local/rovera/glade/MTScu/bin/MTScu -cMTS:9600:12 -h/usr/local/rovera/glade/MTScu/bin -u -w88.32.160.83:5150

@@ -1,0 +1,52 @@
+; Se la riga inizia con ';' è un commento! (in teoria qualunque carattere NON alfabetico)
+
+; Si salta la riga che inizia con spazio (come quella qui sopra e qui sotto)
+
+;	Le parole CHIAVE che controllano le impostazioni sono così regolate:
+;			- iniziano con LETTERE
+;			-	NON contegono spazi
+;			- sono scritte orientate a sinistra
+;			- seguite da '='
+;			- NON è rilevante l'ordine
+; i valori assunti dalle 'chiavi' seguono le seguenti regole:
+;			-	NON sono case-sensitive (è lo stesso scriverle MAIUSCOLE o minuscole)
+;			- saranno convertite in Maiuscolo
+;			- possono contenere solo caratteri alfanumerici
+;			- (possono contenere spazi (per separazioni)) ???????????  Ma serve ?????
+
+; per abilitare la taratura del convertitore analogico:  SI(abilita) <altro>(NON abilita)
+
+CPU=CORTEX
+CurrMax=700
+QtaRL=0
+QtaIn=5
+QtaInA=4
+QtaInV=0
+QtaOD=6						; <Numero> di uscite OpenDrain
+QtaCAN=1
+EnCOM2=SI
+EnRS485=no
+EnHTL=SI
+QtaCnt=2
+CntToller=600				; Delta in ms accettattati nella lettura del contatore ~1KHz in 2 sec (350)
+EnEmeLink=NO
+EnChBat=SI
+EnVibro=SI
+EnDigInDn=SI
+EnDigInUp=SI
+EnDigOut=SI
+EnFonia=NO
+EnAnlIn=SI
+EnVext=SI
+EnVbat=SI
+EnCnt=SI
+EnGPS=SI
+EnGSM=SI
+EnCAN=SI
+EnRTC=NO
+EnAccel=SI
+EnCOMAUX=NO
+EnCANLOGISTIC=NO
+EnSMset=NO
+EnTamper=NO
+EnCANConf=NO
