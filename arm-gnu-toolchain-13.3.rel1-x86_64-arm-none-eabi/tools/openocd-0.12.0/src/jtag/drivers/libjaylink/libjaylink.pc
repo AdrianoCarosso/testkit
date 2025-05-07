@@ -6,6 +6,6 @@ includedir=${prefix}/include
 Name: libjaylink
 Description: Library to access J-Link devices
 Version: 0.3.1
-Requires.private: libusb-1.0
+Requires.private: 
 Libs: -L${libdir} -ljaylink
 Cflags: -I${includedir}
