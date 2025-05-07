@@ -11,7 +11,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if libusb is available. */
-/* #undef HAVE_LIBUSB */
+#define HAVE_LIBUSB 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
