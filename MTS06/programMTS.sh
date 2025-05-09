@@ -8,12 +8,9 @@ case "$1" in
 
     -g)
 	#cd ~/test_kit/MTS06
-	sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/gd32f30x.cfg -c init -c "reset init" -c halt
-	;;
-
-    -o)
-	cd ~/test_kit/MTS06
-	sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/stm32f4x.cfg
+	#sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/stm32f4x.cfg
+	sudo openocd -f tcl/interface/ftdi/test-kit2.cfg -f tcl/target/gd32f30x.cfg -c init -c "reset init" -c halt -c "mmw 0xE0042008 0x00001800 0"
+	# "mmw 0xE0042008 0x00001800 0" to disable WatchDog
 	;;
 
     -p)
@@ -32,14 +29,13 @@ case "$1" in
     *)
       echo "usage: $0	-b open sw session to nrf52"
       echo "		-g open jtag session with gd32f4x"
-      echo "		-o open jtag session to stm32 (use <adapter assert srst> command before program nrf52)"
       echo "		-p <arg.hex> send arg.hex to nrf52832 cpu"
       echo "		-s <arg.bin> send arg.bin to GD32F407 cpu"
-      echo "ttyUSB0------DM Port, on EG91 is AT Port"
-      echo "ttyUSB1------NEMA Port"
-      echo "ttyUSB2------AT Port"
-      echo "ttyUSB3------Modem Port"
-      echo "ttyUSB4------Wireless Ethernet"
+      #echo "ttyUSB0------DM Port, on EG91 is AT Port"
+      #echo "ttyUSB1------NEMA Port"
+      #echo "ttyUSB2------AT Port"
+      #echo "ttyUSB3------Modem Port"
+      #echo "ttyUSB4------Wireless Ethernet"
       exit 0
 	;;
 esac
